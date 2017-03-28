@@ -1,114 +1,142 @@
-## Java
 
-*.class
-*.war
-*.ear
-hs_err_pid*
+# Created by https://www.gitignore.io/api/macos,linux,windows,eclipse,gradle
 
-## Robovm
-/ios/robovm-build/
+### Eclipse ###
 
-## GWT
-/html/war/
-/html/gwt-unitCache/
-.apt_generated/
-.gwt/
-gwt-unitCache/
-www-test/
-.gwt-tmp/
-
-## Android Studio and Intellij and Android in general
-/android/libs/armeabi/
-/android/libs/armeabi-v7a/
-/android/libs/arm64-v8a/
-/android/libs/x86/
-/android/libs/x86_64/
-/android/gen/
-.idea/
-*.ipr
-*.iws
-*.iml
-/android/out/
-com_crashlytics_export_strings.xml
-
-## Eclipse
-
-.classpath
-.project
-.metadata/
-/android/bin/
-/core/bin/
-/desktop/bin/
-/html/bin/
-/ios/bin/
-/ios-moe/bin/
+.metadata
+bin/
+tmp/
 *.tmp
 *.bak
 *.swp
 *~.nib
+local.properties
 .settings/
 .loadpath
+.recommenders
+
+# Eclipse Core
+.project
+
+# External tool builders
 .externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
 *.launch
 
-## NetBeans
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
 
-/nbproject/private/
-/android/nbproject/private/
-/core/nbproject/private/
-/desktop/nbproject/private/
-/html/nbproject/private/
-/ios/nbproject/private/
-/ios-moe/nbproject/private/
+# CDT-specific (C/C++ Development Tooling)
+.cproject
 
-/build/
-/android/build/
-/core/build/
-/desktop/build/
-/html/build/
-/ios/build/
-/ios-moe/build/
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
 
-/nbbuild/
-/android/nbbuild/
-/core/nbbuild/
-/desktop/nbbuild/
-/html/nbbuild/
-/ios/nbbuild/
-/ios-moe/nbbuild/
+# Java annotation processor (APT)
+.factorypath
 
-/dist/
-/android/dist/
-/core/dist/
-/desktop/dist/
-/html/dist/
-/ios/dist/
-/ios-moe/dist/
+# PDT-specific (PHP Development Tools)
+.buildpath
 
-/nbdist/
-/android/nbdist/
-/core/nbdist/
-/desktop/nbdist/
-/html/nbdist/
-/ios/nbdist/
-/ios-moe/nbdist/
+# sbteclipse plugin
+.target
 
-nbactions.xml
-nb-configuration.xml
+# Tern plugin
+.tern-project
 
-## Gradle
+# TeXlipse plugin
+.texlipse
 
-/local.properties
-.gradle/
-gradle-app.setting
-/build/
-/android/build/
-/core/build/
-/desktop/build/
-/html/build/
-/ios/build/
-/ios-moe/build/
+# STS (Spring Tool Suite)
+.springBeans
 
-## OS Specific
-.DS_Store
+# Code Recommenders
+.recommenders/
+
+# Scala IDE specific (Scala & Java development for Eclipse)
+.cache-main
+.scala_dependencies
+.worksheet
+
+### Linux ###
+*~
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+
+### macOS ###
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+### Windows ###
+# Windows thumbnail cache files
 Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+### Gradle ###
+.gradle
+/build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
+# End of https://www.gitignore.io/api/macos,linux,windows,eclipse,gradle
