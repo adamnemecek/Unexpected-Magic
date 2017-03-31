@@ -1,0 +1,24 @@
+"His Theme"; %Song name
+4/4; %Time signature. int/int. Numerator can be any int >0, denominator must be one that is a power of two.
+120; %BPM. int >0.
+%The bars don't all add up to 1 here, because syncopation...
+%Voice 1
+Eb4:1/8,Bb4:1/8,A4:1/8,Eb4:1/8,G4:3/16,G4:3/16,A4:1/4|%...This A for example will still ring in the next bar, hence the value.
+Eb4:1/8,A4:1/8,Eb4:1/8,G4:3/16,G4:3/16,A4:1/8|
+Eb4:1/8,Bb4:1/8,A4:1/8,Eb4:1/8,G4:3/16,G4:3/16,A4:1/4|
+Eb4:1/8,A4:1/8,Eb4:1/8,C5:1/8,Bb4:3/16,A4:3/16,Bb4:1/8;
+%Voice 2
+Eb4:1/8,-:1/8,-:1/8,-:1/8,G4:3/16,G4:3/16,-:1/4|
+-:1/8,-:1/8,-:1/8,G4:3/16,G4:3/16,-:1/8|
+Eb4:1/8,-:1/8,-:1/8,-:1/8,G4:3/16,G4:3/16,-:1/4|
+-:1/8,-:1/8,-:1/8,C5:1/8,Bb4:3/16,A4:3/16,Bb4:1/8;
+%Voice 3
+Eb2:1/2,Bb3:1/2|
+G3:1|
+Gb3:1/2,Bb3:1/2|
+Eb3:1;
+%Voice 4
+Eb6:1/2,Bb7:1/2|
+G7:1|
+Gb7:1/2,Bb7:1/2|
+Eb7:1;
