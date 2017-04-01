@@ -1,9 +1,11 @@
 package com.mygdx.game.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.mygdx.game.Constants;
 import com.mygdx.game.UnexpectedMagic;
 
 /**
@@ -13,12 +15,12 @@ public class MainMenuScreen extends ScreenAdapter{
 	
 	final UnexpectedMagic game;
 	OrthographicCamera guiCam;
-	float[] viewportDim = {480, 720};
+	
 
 	public MainMenuScreen(final UnexpectedMagic game){
 		this.game = game;
-		guiCam = new OrthographicCamera(viewportDim[0], viewportDim[1]);
-		guiCam.setToOrtho(false, viewportDim[0], viewportDim[1]);
+		guiCam = new OrthographicCamera(Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[1]);
+		guiCam.setToOrtho(false, Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[1]);
 	}
 	
 	public void update(){
@@ -35,8 +37,13 @@ public class MainMenuScreen extends ScreenAdapter{
 		guiCam.update();
 		game.batch.setProjectionMatrix(guiCam.combined);
 		game.batch.begin();
-		game.font.draw(game.batch, "MAIN MENU TEST", viewportDim[0]/2, viewportDim[1]/2);
+		game.font.draw(game.batch, "MAIN MENU TEST", Constants.VIEWPORT_DIM[0]/2, Constants.VIEWPORT_DIM[1]/2);
 		game.batch.end();
+		
+		if(Gdx.input.isKeyPressed(Keys.ANY_KEY)){
+			game.setScreen(new GameScreen(game)); //TODO
+			dispose();
+		}
 	}
 	
 	@Override
