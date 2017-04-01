@@ -38,10 +38,12 @@ public class MainMenuScreen extends ScreenAdapter{
 		game.batch.setProjectionMatrix(guiCam.combined);
 		game.batch.begin();
 		game.font.draw(game.batch, "MAIN MENU TEST", Constants.VIEWPORT_DIM[0]/2, Constants.VIEWPORT_DIM[1]/2);
+		game.font.draw(game.batch, "PRESS THE ANY KEY", Constants.VIEWPORT_DIM[0]/2, Constants.VIEWPORT_DIM[1]/2 - 100);
 		game.batch.end();
 		
 		if(Gdx.input.isKeyPressed(Keys.ANY_KEY)){
-			game.setScreen(new GameScreen(game)); //TODO
+			System.out.println("setScreen(new GameScreen(game)");
+			game.setScreen(new GameScreen(game));
 			dispose();
 		}
 	}
