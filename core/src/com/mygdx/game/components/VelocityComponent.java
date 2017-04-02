@@ -3,9 +3,9 @@ package com.mygdx.game.components;
 import com.badlogic.ashley.core.Component;
 
 /**
-* Component that represents the sprite.
+* Component that represents the velocity.
 */
-public class PositionComponent implements Component{
+public class VelocityComponent implements Component{
 	public int x;
 	public int y;
 }
