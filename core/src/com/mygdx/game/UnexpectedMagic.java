@@ -6,6 +6,10 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.screens.MainMenuScreen;
 
+/**
+ * The game class.
+ */
+
 public class UnexpectedMagic extends Game {
 	public SpriteBatch batch;
 	public BitmapFont font;

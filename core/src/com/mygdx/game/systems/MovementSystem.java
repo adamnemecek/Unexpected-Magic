@@ -9,6 +9,10 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.mygdx.game.components.PositionComponent;
 import com.mygdx.game.components.VelocityComponent;
 
+/**
+ * System that handles movement.
+ */
+
 public class MovementSystem extends EntitySystem{
     private ImmutableArray<Entity> entities;
 
