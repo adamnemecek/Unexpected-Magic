@@ -6,9 +6,12 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.Constants;
 import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.systems.MovementSystem;
+import com.mygdx.game.systems.RenderSystem;
 
 /**
 * Screen that contains the game (in-game).
@@ -19,15 +22,23 @@ public class GameScreen extends ScreenAdapter{
 	PooledEngine engine;
 	OrthographicCamera inGameCam;
 	Texture testTexture;
+	World world; //TODO
+	
+	Vector2 gravity = new Vector2(0,0.2f);
 	
 	public GameScreen(final UnexpectedMagic game){
 		this.game = game;
 		engine = new PooledEngine(); //TODO
+		world = new World(gravity, false); //TODO
 		
 		testTexture = new Texture("textures/textureCheckedBlue16x16.png");
 		inGameCam = new OrthographicCamera(Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[1]);
 		inGameCam.setToOrtho(false, Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[1]);
+		
 		engine.addSystem(new MovementSystem()); //TODO
+		engine.addSystem(new RenderSystem(game.batch));
+		System.out.println("GameScreen. Engine's systems: " + engine.getSystems().toString());
+		
 	}
 	
 	public void update (float delta) {
@@ -35,6 +46,7 @@ public class GameScreen extends ScreenAdapter{
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		inGameCam.update();
 		game.batch.setProjectionMatrix(inGameCam.combined);
+		/*
 		//Draw stuff
 		game.batch.begin();
 		game.font.draw(game.batch, "YOU'RE IN GAME YAY.", Constants.VIEWPORT_DIM[0]/2, Constants.VIEWPORT_DIM[1]/2);
@@ -43,8 +55,9 @@ public class GameScreen extends ScreenAdapter{
 		game.font.draw(game.batch, "Delta: "+ delta, Constants.VIEWPORT_DIM[0]/2, Constants.VIEWPORT_DIM[1]/2 - 200);
 		game.batch.draw(testTexture, 0, 0);
 		game.batch.end();
-		
+		*/
 		engine.update(delta);
+		//System.out.println("GameScreen. engine.update() called. delta = " + delta);
 
 		}
 
