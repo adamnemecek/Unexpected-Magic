@@ -1,15 +1,12 @@
 package com.mygdx.game.screens;
 
 import com.badlogic.ashley.core.Engine;
-import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.Constants;
 import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.managers.EntityManager;
@@ -49,6 +46,7 @@ public class GameScreen extends ScreenAdapter{
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		inGameCam.update();
 		game.batch.setProjectionMatrix(inGameCam.combined);
+		engine.update(delta);
 		/*
 		//Draw stuff
 		game.batch.begin();
@@ -59,7 +57,6 @@ public class GameScreen extends ScreenAdapter{
 		game.batch.draw(testTexture, 0, 0);
 		game.batch.end();
 		*/
-		engine.update(delta);
 		//System.out.println("GameScreen. engine.update() called. delta = " + delta);
 
 		}

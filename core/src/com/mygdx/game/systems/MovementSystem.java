@@ -20,12 +20,12 @@ public class MovementSystem extends IteratingSystem{
         super(Family.all(PositionComponent.class, VelocityComponent.class).get());
     }
 
-    public void processEntity(Entity entity, float deltaTime) {
-        PositionComponent position = pm.get(entity);
-        VelocityComponent velocity = vm.get(entity);
-
-        position.x += velocity.x * deltaTime;
-        position.y += velocity.y * deltaTime;
-        System.out.println("MovementSystem. New pos. x = " + position.x + "y = " + position.y);
+    public void processEntity(Entity entity, float delta) {
+        PositionComponent pos = pm.get(entity);
+        VelocityComponent vel = vm.get(entity);
+        System.out.println("MovementSystem. DELTA:" + delta);
+        pos.x += vel.x * delta * 10; //TODO
+        pos.y += vel.y * delta * 10; //TODO
+        System.out.println("MovementSystem. NEW POS. x = " + pos.x + ", y = " + pos.y);
     }
 }

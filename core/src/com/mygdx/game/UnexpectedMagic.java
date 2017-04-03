@@ -16,7 +16,6 @@ public class UnexpectedMagic extends Game {
 	public SpriteBatch batch;
 	public BitmapFont font;
 	public Engine engine;
-	Texture img;
 	
 	@Override
 	public void create () {
@@ -25,7 +24,7 @@ public class UnexpectedMagic extends Game {
 		engine = new PooledEngine(); 
 		this.setScreen(new MainMenuScreen(this));
 		//TODO
-		//init assets!
+		//init assets?
 		
 	}
 
@@ -42,6 +41,5 @@ public class UnexpectedMagic extends Game {
 	public void dispose () {
 		batch.dispose();
 		font.dispose();
-		img.dispose();
 	}
 }

@@ -31,10 +31,10 @@ public class EntityManager {
 		SpriteComponent testSpriteComponent = new SpriteComponent();
 		RenderableComponent testRenderableComponent = new RenderableComponent();
 		//How does one give the components values? I'll do it like this now.
-		testPositionComponent.x = 100;
-		testPositionComponent.y = 100;
+		testPositionComponent.x = 0;
+		testPositionComponent.y = 0;
 		testVelocityComponent.x = 0;
-		testVelocityComponent.x = 10;
+		testVelocityComponent.y = 1;
 		testSpriteComponent.sprite = new Sprite(new Texture("textures/textureCheckedBlue16x16.png"));
 		
 		testEntity.add(testPositionComponent).add(testVelocityComponent).add(testSpriteComponent).add(testRenderableComponent);
