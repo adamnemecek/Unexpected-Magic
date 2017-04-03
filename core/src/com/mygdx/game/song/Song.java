@@ -12,6 +12,7 @@ public class Song {
 	public Song(String uxm) throws IOException {
 		StringBuilder sb = new StringBuilder(uxm);
 		//First pass: strip comments
+		System.out.println("-- SB pass 1 --");
 		{
 			for(int i = 0; i < sb.length(); i++) {
 				char ch = sb.charAt(i);
@@ -21,11 +22,13 @@ public class Song {
 				}
 				//Remove comments
 				if(ch == '%') {
-					sb.delete(i, sb.indexOf("%", i--)+1);
+					sb.delete(i, sb.indexOf("\n", i--));
 				}
 			}
+			System.out.println(sb.toString());
 		}
 		//Second pass: remove non-string whitespace
+		System.out.println("-- SB pass 2 --");
 		{
 			for(int i = 0; i < sb.length(); i++) {
 				char ch = sb.charAt(i);
@@ -37,6 +40,7 @@ public class Song {
 					sb.deleteCharAt(i--);
 				}
 			}
+			System.out.println(sb.toString().replaceAll(";", "\n"));
 		}
 		//Final pass: split to list
 		List<String> sList = new LinkedList<>();
