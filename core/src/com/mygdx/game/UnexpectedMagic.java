@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -13,14 +15,17 @@ import com.mygdx.game.screens.MainMenuScreen;
 public class UnexpectedMagic extends Game {
 	public SpriteBatch batch;
 	public BitmapFont font;
+	public Engine engine;
 	Texture img;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
-		img = new Texture("badlogic.jpg");
+		engine = new PooledEngine(); 
 		this.setScreen(new MainMenuScreen(this));
+		//TODO
+		//init assets!
 		
 	}
 
@@ -30,9 +35,6 @@ public class UnexpectedMagic extends Game {
 		/*
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
 		*/
 	}
 	

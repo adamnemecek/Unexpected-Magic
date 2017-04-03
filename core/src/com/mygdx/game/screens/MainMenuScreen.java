@@ -1,5 +1,6 @@
 package com.mygdx.game.screens;
 
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.ScreenAdapter;
@@ -15,10 +16,12 @@ public class MainMenuScreen extends ScreenAdapter{
 	
 	final UnexpectedMagic game;
 	OrthographicCamera guiCam;
+	Engine engine;
 	
 
 	public MainMenuScreen(final UnexpectedMagic game){
 		this.game = game;
+		engine = game.engine;
 		guiCam = new OrthographicCamera(Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[1]);
 		guiCam.setToOrtho(false, Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[1]);
 	}

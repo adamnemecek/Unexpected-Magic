@@ -27,8 +27,9 @@ public class RenderSystem extends IteratingSystem{
     public void processEntity(Entity entity, float deltaTime) {
         PositionComponent pos = pm.get(entity);
         SpriteComponent sprite = sm.get(entity);
-        
+        batch.begin();
         batch.draw(sprite.sprite.getTexture(), pos.x, pos.y);
+        batch.end();
         System.out.println("RenderSystem.");
     }
 }

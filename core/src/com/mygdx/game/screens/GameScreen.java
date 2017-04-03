@@ -1,15 +1,18 @@
 package com.mygdx.game.screens;
 
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.Constants;
 import com.mygdx.game.UnexpectedMagic;
+import com.mygdx.game.managers.EntityManager;
 import com.mygdx.game.systems.MovementSystem;
 import com.mygdx.game.systems.RenderSystem;
 
@@ -19,25 +22,25 @@ import com.mygdx.game.systems.RenderSystem;
 public class GameScreen extends ScreenAdapter{
 	
 	final UnexpectedMagic game;
-	PooledEngine engine;
+	Engine engine;
 	OrthographicCamera inGameCam;
 	Texture testTexture;
-	World world; //TODO
-	
-	Vector2 gravity = new Vector2(0,0.2f);
+	EntityManager entityManager;
+	SpriteBatch batch;
 	
 	public GameScreen(final UnexpectedMagic game){
 		this.game = game;
-		engine = new PooledEngine(); //TODO
-		world = new World(gravity, false); //TODO
-		
+		engine = game.engine; //TODO
+		batch = game.batch;
 		testTexture = new Texture("textures/textureCheckedBlue16x16.png");
 		inGameCam = new OrthographicCamera(Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[1]);
 		inGameCam.setToOrtho(false, Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[1]);
 		
 		engine.addSystem(new MovementSystem()); //TODO
-		engine.addSystem(new RenderSystem(game.batch));
+		engine.addSystem(new RenderSystem(batch));
 		System.out.println("GameScreen. Engine's systems: " + engine.getSystems().toString());
+		
+		entityManager = new EntityManager(engine, batch);
 		
 	}
 	
