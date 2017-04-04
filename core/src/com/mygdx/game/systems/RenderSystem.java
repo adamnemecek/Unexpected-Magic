@@ -28,7 +28,7 @@ public class RenderSystem extends IteratingSystem{
         PositionComponent pos = pm.get(entity);
         SpriteComponent sprite = sm.get(entity);
         batch.begin();
-        batch.draw(sprite.sprite.getTexture(), pos.x, pos.y);
+        batch.draw(sprite.sprite.getTexture(), Math.round(pos.x), Math.round(pos.y));
         batch.end();
         System.out.println("RenderSystem.");
     }
