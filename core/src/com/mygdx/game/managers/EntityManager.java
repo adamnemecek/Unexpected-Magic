@@ -30,7 +30,7 @@ public class EntityManager {
 		VelocityComponent testVelocityComponent = new VelocityComponent();
 		SpriteComponent testSpriteComponent = new SpriteComponent();
 		RenderableComponent testRenderableComponent = new RenderableComponent();
-		//How does one give the components values? I'll do it like this now.
+		//TODO How does one give the components values? I'll do it like this now.
 		testPositionComponent.x = 0;
 		testPositionComponent.y = 0;
 		testVelocityComponent.x = 0;

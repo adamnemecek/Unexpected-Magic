@@ -31,7 +31,7 @@ public class GameScreen extends ScreenAdapter{
 		batch = game.batch;
 		testTexture = new Texture("textures/textureCheckedBlue16x16.png");
 		inGameCam = new OrthographicCamera(Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[1]);
-		inGameCam.setToOrtho(false, Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[1]);
+		inGameCam.setToOrtho(true, Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[1]);
 		
 		engine.addSystem(new MovementSystem()); //TODO
 		engine.addSystem(new RenderSystem(batch));
