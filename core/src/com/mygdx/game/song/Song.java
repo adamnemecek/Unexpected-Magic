@@ -59,10 +59,8 @@ public class Song {
 		time = sList.poll().replaceAll("\"", "");
 		bpm = Integer.parseInt(sList.poll());
 		voices = new Voice[sList.size()];
-		System.out.println(voices.length);
 		int i = 0;
 		for(String s : sList) {
-			System.out.println(i);
 			voices[i++] = new Voice(s, null);
 		}
 	}
