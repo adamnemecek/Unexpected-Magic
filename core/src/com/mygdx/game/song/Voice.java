@@ -10,7 +10,7 @@ public class Voice {
 	public Voice(String voice, String instrument) throws IOException {
 		this.instrument = instrument;
 		List<Note[]> bList = new LinkedList<>();
-		for(String bar : voice.split("|")) {
+		for(String bar : voice.split("\\|")) {
 			List<Note> nList = new LinkedList<>();
 			for(String note : bar.split(",")) {
 				nList.add(Note.getNote(note));

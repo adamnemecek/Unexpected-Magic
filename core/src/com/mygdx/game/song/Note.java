@@ -17,8 +17,8 @@ public class Note {
 		String pitch = sa[0], value = sa[1];
 		//sanity checking
 		if(sa.length != 2) throw new IOException("Note should have exactly 1 colon");
-		if(!(pitch.equals("-") || pitch.matches("[a-g][b#]?\\d"))) throw new IOException("Invalid note pitch " + pitch);
-		if(!value.matches("\\d+/\\d+")) throw new IOException("Invalid note value " + value);
+		if(!(pitch.equals("-") || pitch.matches("[A-G][b#]?\\d"))) throw new IOException("Invalid note pitch " + pitch);
+		if(!value.matches("\\d+(/\\d+)?")) throw new IOException("Invalid note value " + value);
 		//note retrieval/construction
 		if(noteMap.containsKey(pitch)) {
 			pitchMap = noteMap.get(pitch);

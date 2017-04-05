@@ -2,7 +2,7 @@ package com.mygdx.game.song;
 
 import java.io.IOException;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Queue;
 
 public class Song {
 	public final String title, time;
@@ -12,38 +12,34 @@ public class Song {
 	public Song(String uxm) throws IOException {
 		StringBuilder sb = new StringBuilder(uxm);
 		//First pass: strip comments
-		System.out.println("-- SB pass 1 --");
 		{
 			for(int i = 0; i < sb.length(); i++) {
 				char ch = sb.charAt(i);
 				//Skip strings
 				if(ch == '"') {
-					i = sb.indexOf("\"", i);
+					i = sb.indexOf("\"", i+1);
 				}
 				//Remove comments
 				if(ch == '%') {
 					sb.delete(i, sb.indexOf("\n", i--));
 				}
 			}
-			System.out.println(sb.toString());
 		}
 		//Second pass: remove non-string whitespace
-		System.out.println("-- SB pass 2 --");
 		{
 			for(int i = 0; i < sb.length(); i++) {
 				char ch = sb.charAt(i);
 				//Skip strings
 				if(ch == '"') {
-					i = sb.indexOf("\"", i);
+					i = sb.indexOf("\"", i+1);
 				}
 				if(Character.isWhitespace(ch)) {
 					sb.deleteCharAt(i--);
 				}
 			}
-			System.out.println(sb.toString().replaceAll(";", "\n"));
 		}
 		//Final pass: split to list
-		List<String> sList = new LinkedList<>();
+		Queue<String> sList = new LinkedList<>();
 		{
 			for(int i = 0; i < sb.length(); i++) {
 				char ch = sb.charAt(i);
@@ -59,16 +55,18 @@ public class Song {
 			}
 		}
 		//It's parsing time.
-		sList.set(0, sList.get(0).replaceAll("\"", ""));
-		title = sList.remove(0);//For performance reasons, as getting the nth element in a linked list is expensive.
-		sList.remove(0);
-		sList.set(0, sList.get(0).replaceAll("\"", ""));
-		time = sList.remove(0);
-		bpm = Integer.parseInt(sList.remove(0));
+		title = sList.poll().replaceAll("\"", "");
+		time = sList.poll().replaceAll("\"", "");
+		bpm = Integer.parseInt(sList.poll());
 		voices = new Voice[sList.size()];
+		System.out.println(voices.length);
 		int i = 0;
 		for(String s : sList) {
+			System.out.println(i);
 			voices[i++] = new Voice(s, null);
 		}
+	}
+	public Voice[] getVoices() {
+		return voices.clone();
 	}
 }
