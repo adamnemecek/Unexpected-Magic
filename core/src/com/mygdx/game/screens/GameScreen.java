@@ -80,13 +80,6 @@ public class GameScreen extends ScreenAdapter{
 	public void resize(int width, int height){
 		System.out.println("GameScreen. viewport.update()");
 		viewport.update(width, height);
-		
-		viewport.setScreenBounds(0,0,viewport.getScreenWidth(),viewport.getScreenHeight());
-		System.out.println("Gamescreen resize. "+ 
-				"\nLeftgutterwidth: " + viewport.getLeftGutterWidth() + 
-				"\n Rightgutterwidth: " + viewport.getRightGutterWidth() + 
-				"\n Screenwidth: " + viewport.getScreenWidth() + 
-				"\n Screenheight: " + viewport.getScreenHeight());
 	}
 	
 }
