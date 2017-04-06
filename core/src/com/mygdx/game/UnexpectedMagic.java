@@ -45,9 +45,7 @@ public class UnexpectedMagic extends Game {
 	
 	@Override
 	public void resize(int width, int height){
-		System.out.println("OOPPOOPOPOPPOOPOPOP");
 		this.getScreen().resize(width, height);
-		//super.resize(width, height);
 	}
 	
 }

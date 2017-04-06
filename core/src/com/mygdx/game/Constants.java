@@ -5,6 +5,6 @@ package com.mygdx.game;
  */
 
 public final class Constants {
-	//public static final float[] VIEWPORT_DIM = {340, 244}; //SNES
-	public static final float[] VIEWPORT_DIM = {160, 144}; //Game Boy
+	public static final float[] VIEWPORT_DIM = {340, 244}; //SNES
+	//public static final float[] VIEWPORT_DIM = {160, 144}; //Game Boy
 }

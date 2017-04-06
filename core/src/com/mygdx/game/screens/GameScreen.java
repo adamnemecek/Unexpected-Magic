@@ -24,23 +24,19 @@ public class GameScreen extends ScreenAdapter{
 	Engine engine;
 	OrthographicCamera inGameCam;
 	ScalingViewport viewport;
-	Texture testTexture;
 	EntityManager entityManager;
 	SpriteBatch batch;
 	
 	public GameScreen(final UnexpectedMagic game){
 		this.game = game;
-		engine = game.engine; //TODO
+		engine = game.engine;
 		batch = game.batch;
-		testTexture = new Texture("textures/textureCheckedBlue16x16.png");
 		inGameCam = new OrthographicCamera();
-		//inGameCam.setToOrtho(true, Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[1]);
-		inGameCam.setToOrtho(true);
+		inGameCam.setToOrtho(false);
 		
 		viewport = new ScalingViewport(Scaling.fit, Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[1], inGameCam);
 		viewport.apply(true);
 		
-		System.out.println("H: " + inGameCam.viewportWidth + " W: " + inGameCam.viewportHeight);
 		engine.addSystem(new MovementSystem()); //TODO
 		engine.addSystem(new RenderSystem(batch));
 		System.out.println("GameScreen. Engine's systems: " + engine.getSystems().toString());
@@ -53,8 +49,6 @@ public class GameScreen extends ScreenAdapter{
 		Gdx.gl.glClearColor(0,0,0,1);
 		//Gdx.gl.glClearColor(135/255f, 206/255f, 235/255f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		//inGameCam.update();
-		//viewport.update(Math.round(Constants.VIEWPORT_DIM[0]), Math.round(Constants.VIEWPORT_DIM[1]));
 		game.batch.setProjectionMatrix(inGameCam.combined);
 		engine.update(delta);
 		/*
