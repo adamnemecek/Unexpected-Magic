@@ -26,6 +26,7 @@ public class GameScreen extends ScreenAdapter{
 	ScalingViewport viewport;
 	EntityManager entityManager;
 	SpriteBatch batch;
+	Texture backgroundTexture;
 	
 	public GameScreen(final UnexpectedMagic game){
 		this.game = game;
@@ -33,6 +34,9 @@ public class GameScreen extends ScreenAdapter{
 		batch = game.batch;
 		inGameCam = new OrthographicCamera();
 		inGameCam.setToOrtho(false);
+		
+		backgroundTexture = new Texture("textures/textureCheckedBlue16x16.png");
+		backgroundTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
 		
 		viewport = new ScalingViewport(Scaling.fit, Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[1], inGameCam);
 		viewport.apply(true);
@@ -50,17 +54,16 @@ public class GameScreen extends ScreenAdapter{
 		//Gdx.gl.glClearColor(135/255f, 206/255f, 235/255f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		game.batch.setProjectionMatrix(inGameCam.combined);
-		engine.update(delta);
-		/*
-		//Draw stuff
-		game.batch.begin();
-		game.font.draw(game.batch, "YOU'RE IN GAME YAY.", Constants.VIEWPORT_DIM[0]/2, Constants.VIEWPORT_DIM[1]/2);
-		game.font.draw(game.batch, "look at the cutes texture in corner", Constants.VIEWPORT_DIM[0]/2, Constants.VIEWPORT_DIM[1]/2 - 100);
+		batch.begin();
+		batch.draw(backgroundTexture, 0, 0, Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[0], 0, 10, 10, 0);
+		
+		game.font.draw(game.batch, "YOU'RE IN GAME YAY.", Constants.VIEWPORT_DIM[0]/4, Constants.VIEWPORT_DIM[1]/2);
+		game.font.draw(game.batch, "look at the cutes texture in everywhere", Constants.VIEWPORT_DIM[0]/4, Constants.VIEWPORT_DIM[1]/2 - 20);
 		//Print the delta time on screen
-		game.font.draw(game.batch, "Delta: "+ delta, Constants.VIEWPORT_DIM[0]/2, Constants.VIEWPORT_DIM[1]/2 - 200);
-		game.batch.draw(testTexture, 0, 0);
-		game.batch.end();
-		*/
+		game.font.draw(game.batch, "Delta: "+ delta, Constants.VIEWPORT_DIM[0]/2, Constants.VIEWPORT_DIM[1]/2 - 40);
+		
+		batch.end();
+		engine.update(delta);
 		//System.out.println("GameScreen. engine.update() called. delta = " + delta);
 
 		}

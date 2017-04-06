@@ -21,7 +21,7 @@ public class Note {
 		if(!value.matches("\\d+(/\\d+)?")) throw new IOException("Invalid note value " + value);
 		//note retrieval/construction
 		if(noteMap.containsKey(pitch)) {
-			pitchMap = noteMap.get(pitch);
+			pitchMap = noteMap.get(pitch); 
 		} else {
 			pitchMap = new HashMap<>();
 			noteMap.put(pitch, pitchMap);
