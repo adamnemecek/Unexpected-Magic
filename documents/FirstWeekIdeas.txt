@@ -1,0 +1,14 @@
+Idea: pixel-spaceship-guitarhero/”hit the notes”-multiplayer
+
+Game where (one or) multiple players play a song map together by hitting controls according to the notes shown. Each player controls their own harmony. 
+The graphics are pixel art-inspired. Something flies around moving between the notes according to the player’s input, for example a spaceship.
+4 - 6 oct
+
+Ideas for further development: 
+Achievements/combos, note streak
+More than one map
+Other controls ex. Smartphone
+Cooperative mode - Competitive mode
+Navigation to note
+Different instruments?? → different control layout 
+Powerups, attack items, like mario kart 
