@@ -35,7 +35,7 @@ public class GameScreen extends ScreenAdapter{
 		inGameCam = new OrthographicCamera();
 		inGameCam.setToOrtho(false);
 		
-		backgroundTexture = new Texture("textures/textureCheckedBlue16x16.png");
+		backgroundTexture = new Texture("images/textureCheckedBlue16x16.png");
 		backgroundTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
 		
 		viewport = new ScalingViewport(Scaling.fit, Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[1], inGameCam);
