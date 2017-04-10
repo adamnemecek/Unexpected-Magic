@@ -1,0 +1,11 @@
+Joachim Von Hacht, handledning, 10/4 13:15 - 13:50.
+
+Separera ut ramverk och modell. 
+Modell ska innehålla domänmodellen. Ramverket får wrappa modellklasser ifall det behövs. 
+Viss data håller ramverket (ex. position), annan data finns i modellen (ex. score).
+Lägg hela modellen i ett paket (exn namn: model). Inget libgdx i den, ingen import av nåt externs bibliotek.
+
+Controller och view behöver INTE strikt delas upp i två directories. Vy och controller får lov att vara i ett paket, och skötas libgdx, vi får lov att anpassa det efter behov.
+
+
+Dynamisk data får lov att hanteras av libgdx, behöver inte ha nåt med model att göra.
