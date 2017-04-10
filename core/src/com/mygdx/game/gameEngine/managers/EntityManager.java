@@ -1,16 +1,16 @@
-package com.mygdx.game.managers;
+package com.mygdx.game.gameEngine.managers;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.Constants;
-import com.mygdx.game.components.PositionComponent;
-import com.mygdx.game.components.RenderableComponent;
-import com.mygdx.game.components.SpriteComponent;
-import com.mygdx.game.components.VelocityComponent;
-import com.mygdx.game.systems.MovementSystem;
+import com.mygdx.game.model.Constants;
+import com.mygdx.game.gameEngine.components.PositionComponent;
+import com.mygdx.game.gameEngine.components.RenderableComponent;
+import com.mygdx.game.gameEngine.components.SpriteComponent;
+import com.mygdx.game.gameEngine.components.VelocityComponent;
+import com.mygdx.game.gameEngine.systems.MovementSystem;
 
 /**
 * Class for managing entities.

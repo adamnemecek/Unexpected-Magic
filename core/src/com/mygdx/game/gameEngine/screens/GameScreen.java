@@ -1,4 +1,4 @@
-package com.mygdx.game.screens;
+package com.mygdx.game.gameEngine.screens;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
@@ -9,11 +9,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
-import com.mygdx.game.Constants;
+import com.mygdx.game.model.Constants;
 import com.mygdx.game.UnexpectedMagic;
-import com.mygdx.game.managers.EntityManager;
-import com.mygdx.game.systems.MovementSystem;
-import com.mygdx.game.systems.RenderSystem;
+import com.mygdx.game.gameEngine.managers.EntityManager;
+import com.mygdx.game.gameEngine.systems.MovementSystem;
+import com.mygdx.game.gameEngine.systems.RenderSystem;
 
 /**
 * Screen that contains the game (in-game).

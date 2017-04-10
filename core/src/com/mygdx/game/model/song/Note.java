@@ -1,4 +1,4 @@
-package com.mygdx.game.song;
+package com.mygdx.game.model.song;
 
 import java.io.IOException;
 import java.util.HashMap;

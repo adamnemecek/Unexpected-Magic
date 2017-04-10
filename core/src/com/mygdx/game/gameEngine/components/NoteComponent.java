@@ -1,7 +1,7 @@
-package com.mygdx.game.components;
+package com.mygdx.game.gameEngine.components;
 
 import com.badlogic.ashley.core.Component;
-import com.mygdx.game.song.Note;
+import com.mygdx.game.model.song.Note;
 
 /**
 * Component that holds the note.

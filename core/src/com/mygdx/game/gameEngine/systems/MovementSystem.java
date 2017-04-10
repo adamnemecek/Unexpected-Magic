@@ -1,11 +1,11 @@
-package com.mygdx.game.systems;
+package com.mygdx.game.gameEngine.systems;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.mygdx.game.components.PositionComponent;
-import com.mygdx.game.components.VelocityComponent;
+import com.mygdx.game.gameEngine.components.PositionComponent;
+import com.mygdx.game.gameEngine.components.VelocityComponent;
 
 /**
  * System that handles movement.

@@ -1,4 +1,4 @@
-package com.mygdx.game.screens;
+package com.mygdx.game.gameEngine.screens;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
-import com.mygdx.game.Constants;
+import com.mygdx.game.model.Constants;
 import com.mygdx.game.UnexpectedMagic;
 
 /**
