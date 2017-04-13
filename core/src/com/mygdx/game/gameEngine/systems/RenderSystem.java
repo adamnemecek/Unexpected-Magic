@@ -31,6 +31,6 @@ public class RenderSystem extends IteratingSystem{
         batch.begin();
         batch.draw(spr.sprite.getTexture(), Math.round(pos.x), Math.round(pos.y));
         batch.end();
-        System.out.println("RenderSystem.");
+        //System.out.println("RenderSystem.");
     }
 }

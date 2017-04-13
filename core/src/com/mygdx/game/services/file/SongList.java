@@ -1,30 +1,56 @@
 package com.mygdx.game.services.file;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
+
+import com.mygdx.game.model.song.Song;
 
 public class SongList {
 	
-	ArrayList<File> list;
+	ArrayList<String> list;
 
 	public SongList(){
-		retrieveFileNames();
+		list = new ArrayList<>();
+		list = retrieveFileNames();
 	}
 	
-	private ArrayList<File> retrieveFileNames(){
-		ArrayList<File> l = new ArrayList<File>();
-		File folder = new File("assets/songmaps");
+	private ArrayList<String> retrieveFileNames(){
+		ArrayList<String> l = new ArrayList<String>();
+		File folder = new File("songmaps");
 		File[] listOfFiles = folder.listFiles();
+		System.out.println(folder.listFiles());
 		
 			for(int i = 0; i < listOfFiles.length; i++){
 				if(listOfFiles[i].isFile()){
 					System.out.println("File " + listOfFiles[i].getName() + " was added to list.");
-					l.add(listOfFiles[i]);
+					l.add(listOfFiles[i].getName());
 					
 				}else if (listOfFiles[i].isDirectory()) {
 					System.out.println("Directory " + listOfFiles[i].getName() + " was not added.");
 				}
 			}
 		return l;
+	}
+	private String readFile(String fileName) throws FileNotFoundException{
+		System.out.println(System.getProperty("user.dir"));
+		String s;
+		{
+			System.out.println("SongList. assets/songmaps/"+fileName);
+			Scanner sc = new Scanner(new File("songmaps/"+fileName)).useDelimiter("\\Z");
+			s = sc.next();
+			sc.close();
+		}
+		return s;
+	}
+	public Song retrieveSongFromIndex(int index) throws FileNotFoundException, IOException{
+		Song r = new Song(readFile(list.get(index)));
+		return r;
+	}
+	
+	public ArrayList<String> getList(){
+		return list;
 	}
 }

@@ -23,9 +23,9 @@ public class MovementSystem extends IteratingSystem{
     public void processEntity(Entity entity, float delta) {
         PositionComponent pos = pm.get(entity);
         VelocityComponent vel = vm.get(entity);
-        System.out.println("MovementSystem. DELTA:" + delta);
+        //System.out.println("MovementSystem. DELTA:" + delta);
         pos.x += vel.x * delta; //TODO
         pos.y += vel.y * delta; //TODO
-        System.out.println("MovementSystem. NEW POS. x = " + pos.x + ", y = " + pos.y);
+        //System.out.println("MovementSystem. NEW POS. x = " + pos.x + ", y = " + pos.y);
     }
 }

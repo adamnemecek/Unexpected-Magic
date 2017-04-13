@@ -1,5 +1,8 @@
 package com.mygdx.game.gameEngine.screens;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -10,6 +13,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.mygdx.game.model.Constants;
+import com.mygdx.game.model.Player;
+import com.mygdx.game.model.Round;
+import com.mygdx.game.model.song.Song;
 import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.gameEngine.managers.EntityManager;
 import com.mygdx.game.gameEngine.systems.MovementSystem;
@@ -21,23 +27,23 @@ import com.mygdx.game.gameEngine.systems.RenderSystem;
 public class GameScreen extends ScreenAdapter{
 	
 	final UnexpectedMagic game;
+	Round round; //TODO
 	Engine engine;
 	OrthographicCamera inGameCam;
+	private boolean running;
 	ScalingViewport viewport;
 	EntityManager entityManager;
 	SpriteBatch batch;
 	Texture backgroundTexture;
 
 	
-	
-	
-	
-	public GameScreen(final UnexpectedMagic game){
+	public GameScreen(final UnexpectedMagic game, Song song, ArrayList<Player> players) throws IOException{
 		this.game = game;
 		engine = game.engine;
 		batch = game.batch;
 		inGameCam = new OrthographicCamera();
 		inGameCam.setToOrtho(false);
+		running = false;
 		
 		backgroundTexture = new Texture("images/textureCheckedBlue16x16.png");
 		backgroundTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
@@ -45,22 +51,23 @@ public class GameScreen extends ScreenAdapter{
 		viewport = new ScalingViewport(Scaling.fit, Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[1], inGameCam);
 		viewport.apply(true);
 		
-		engine.addSystem(new MovementSystem()); //TODO
+		engine.addSystem(new MovementSystem());
 		engine.addSystem(new RenderSystem(batch));
-		System.out.println("GameScreen. Engine's systems: " + engine.getSystems().toString());
+		//System.out.println("GameScreen. Engine's systems: " + engine.getSystems().toString());
 		
 		entityManager = new EntityManager(engine, batch);
-		
+		initRound(song, players); //TODO catch exceptions?
 	}
 	
 	public void update (float delta) {
-		batch.begin();
-		//Print the delta time on screen
-		game.font.draw(game.batch, "DYNAMIC STUFF Delta: "+ delta, Constants.VIEWPORT_DIM[0]/4, Constants.VIEWPORT_DIM[1]/2 - 40);
-		batch.end();
-		engine.update(delta);
-
+		if(running){
+			batch.begin();
+			//Print the delta time on screen
+			game.font.draw(game.batch, "DYNAMIC STUFF Delta: "+ delta, Constants.VIEWPORT_DIM[0]/4, Constants.VIEWPORT_DIM[1]/2 - 40);
+			batch.end();
+			engine.update(delta);
 		}
+	}
 
 	@Override
 	public void render(float delta){
@@ -79,8 +86,14 @@ public class GameScreen extends ScreenAdapter{
 	}
 	@Override
 	public void resize(int width, int height){
-		System.out.println("GameScreen. viewport.update()");
 		viewport.update(width, height);
+	}
+	
+	public void initRound(Song song, ArrayList<Player> players) throws IOException{
+		round = new Round(song, players);
+		
+		//wait for player input here before running?
+		running = true;
 	}
 	
 }
