@@ -27,6 +27,10 @@ public class GameScreen extends ScreenAdapter{
 	EntityManager entityManager;
 	SpriteBatch batch;
 	Texture backgroundTexture;
+
+	
+	
+	
 	
 	public GameScreen(final UnexpectedMagic game){
 		this.game = game;
