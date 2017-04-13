@@ -50,26 +50,26 @@ public class GameScreen extends ScreenAdapter{
 	}
 	
 	public void update (float delta) {
-		Gdx.gl.glClearColor(0,0,0,1);
-		//Gdx.gl.glClearColor(135/255f, 206/255f, 235/255f, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		game.batch.setProjectionMatrix(inGameCam.combined);
 		batch.begin();
-		batch.draw(backgroundTexture, 0, 0, Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[0], 0, 10, 10, 0);
-		
-		game.font.draw(game.batch, "YOU'RE IN GAME YAY.", Constants.VIEWPORT_DIM[0]/4, Constants.VIEWPORT_DIM[1]/2);
-		game.font.draw(game.batch, "look at the cutes texture in everywhere", Constants.VIEWPORT_DIM[0]/4, Constants.VIEWPORT_DIM[1]/2 - 20);
 		//Print the delta time on screen
-		game.font.draw(game.batch, "Delta: "+ delta, Constants.VIEWPORT_DIM[0]/2, Constants.VIEWPORT_DIM[1]/2 - 40);
-		
+		game.font.draw(game.batch, "DYNAMIC STUFF Delta: "+ delta, Constants.VIEWPORT_DIM[0]/4, Constants.VIEWPORT_DIM[1]/2 - 40);
 		batch.end();
 		engine.update(delta);
-		//System.out.println("GameScreen. engine.update() called. delta = " + delta);
 
 		}
 
 	@Override
 	public void render(float delta){
+		game.batch.setProjectionMatrix(inGameCam.combined);
+		Gdx.gl.glClearColor(0,0,0,1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
+		batch.begin();
+		batch.draw(backgroundTexture, 0, 0, Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[0], 0, 10, 10, 0);
+		game.font.draw(game.batch, "STATIC STUFF YOU'RE IN GAME YAY.", Constants.VIEWPORT_DIM[0]/4, Constants.VIEWPORT_DIM[1]/2);
+		game.font.draw(game.batch, "STATIC STUFF look at the cutes texture in everywhere", Constants.VIEWPORT_DIM[0]/4, Constants.VIEWPORT_DIM[1]/2 - 20);
+		game.batch.end();
+		
 		update(delta);
 		
 	}
