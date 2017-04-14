@@ -7,7 +7,7 @@ import com.mygdx.game.model.song.Song;
  * A class that represents a game round.
  */
 public class Round {
-	Song song;
+	public Song song;
 	ArrayList<Player> players;
 	
 	public Round(Song song, ArrayList<Player> players){

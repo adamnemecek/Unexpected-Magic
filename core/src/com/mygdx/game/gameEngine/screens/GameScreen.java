@@ -91,6 +91,7 @@ public class GameScreen extends ScreenAdapter{
 	
 	public void initRound(Song song, ArrayList<Player> players) throws IOException{
 		round = new Round(song, players);
+		System.out.println("Number of voices: "+round.song.getVoices().length);
 		
 		//wait for player input here before running?
 		running = true;

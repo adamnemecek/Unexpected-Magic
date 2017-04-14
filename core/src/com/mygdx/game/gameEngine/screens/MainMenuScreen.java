@@ -48,10 +48,11 @@ public class MainMenuScreen extends ScreenAdapter{
 	public void update(){
 		
 	}
-	
+	/*
 	public void draw(){
 		
 	}
+	*/
 	@Override
 	public void render(float delta){
 		Gdx.gl.glClearColor(0,0,0,1);
@@ -59,6 +60,7 @@ public class MainMenuScreen extends ScreenAdapter{
 		guiCam.update();
 		game.batch.setProjectionMatrix(guiCam.combined);
 		game.batch.begin();
+		game.font.draw(game.batch, songList.getList().toString(), Constants.VIEWPORT_DIM[0]/15, Constants.VIEWPORT_DIM[1] - 10);
 		game.font.draw(game.batch, "MAIN MENU TEST", Constants.VIEWPORT_DIM[0]/2, Constants.VIEWPORT_DIM[1]/2);
 		game.font.draw(game.batch, "PRESS THE ANY KEY", Constants.VIEWPORT_DIM[0]/2, Constants.VIEWPORT_DIM[1]/2 - 100);
 		game.batch.end();
