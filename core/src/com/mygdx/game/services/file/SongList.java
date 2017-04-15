@@ -21,11 +21,11 @@ public class SongList {
 		ArrayList<String> l = new ArrayList<String>();
 		File folder = new File("songmaps");
 		File[] listOfFiles = folder.listFiles();
-		System.out.println(folder.listFiles());
+		System.out.println("SongList.class folder.listFiles(): " + folder.listFiles());
 		
 			for(int i = 0; i < listOfFiles.length; i++){
-				if(listOfFiles[i].isFile()){
-					System.out.println("File " + listOfFiles[i].getName() + " was added to list.");
+				if(listOfFiles[i].isFile() && isUXM(listOfFiles[i])){
+					System.out.println("File " + listOfFiles[i].getName() + " is an .uxm and was added to list.");
 					l.add(listOfFiles[i].getName());
 					
 				}else if (listOfFiles[i].isDirectory()) {
@@ -48,6 +48,12 @@ public class SongList {
 	public Song retrieveSongFromIndex(int index) throws FileNotFoundException, IOException{
 		Song r = new Song(readFile(list.get(index)));
 		return r;
+	}
+	
+	private boolean isUXM(File file){
+		if(file.getName().length() < 4){return false;}
+		String fileExtension = file.getName().substring(file.getName().length()-4);
+		return fileExtension.equalsIgnoreCase(".uxm");
 	}
 	
 	public ArrayList<String> getList(){
