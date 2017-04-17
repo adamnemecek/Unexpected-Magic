@@ -27,7 +27,6 @@ import com.mygdx.game.gameEngine.systems.RenderSystem;
 public class GameScreen extends ScreenAdapter{
 	
 	final UnexpectedMagic game;
-	Round round; //TODO
 	Engine engine;
 	OrthographicCamera inGameCam;
 	private boolean running;
@@ -35,6 +34,7 @@ public class GameScreen extends ScreenAdapter{
 	EntityManager entityManager;
 	SpriteBatch batch;
 	Texture backgroundTexture;
+	private Round round;
 
 	
 	public GameScreen(final UnexpectedMagic game, Song song, ArrayList<Player> players) throws IOException{
@@ -44,6 +44,7 @@ public class GameScreen extends ScreenAdapter{
 		inGameCam = new OrthographicCamera();
 		inGameCam.setToOrtho(false);
 		running = false;
+		round = new Round(song, players); //TODO get the right arguments song, players
 		
 		backgroundTexture = new Texture("images/textureCheckedBlue16x16.png");
 		backgroundTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
@@ -61,9 +62,13 @@ public class GameScreen extends ScreenAdapter{
 	
 	public void update (float delta) {
 		if(running){
+			round.updateTick(delta);
+			//System.out.println("TICK: " + round.getTick());
 			batch.begin();
 			//Print the delta time on screen
 			game.font.draw(game.batch, "DYNAMIC STUFF Delta: "+ delta, Constants.VIEWPORT_DIM[0]/4, Constants.VIEWPORT_DIM[1]/2 - 40);
+			//Print the tick on the screen
+			game.font.draw(game.batch, "DYNAMIC STUFF Tick: "+ round.getTick(), Constants.VIEWPORT_DIM[0]/4, Constants.VIEWPORT_DIM[1]/2 - 60);
 			batch.end();
 			engine.update(delta);
 		}

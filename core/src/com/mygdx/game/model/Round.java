@@ -9,9 +9,20 @@ import com.mygdx.game.model.song.Song;
 public class Round {
 	public Song song;
 	ArrayList<Player> players;
+	private Ticker ticker;
+	
+	public Round(){}//TODO for testing only.
 	
 	public Round(Song song, ArrayList<Player> players){
 		this.song = song;
 		this.players = players;
+		ticker = new Ticker(song);
+	}
+	public void updateTick(float delta){
+		ticker.updateTick(delta);
+	}
+	public int getTick(){
+		return ticker.getTick();
 	}
 }
+
