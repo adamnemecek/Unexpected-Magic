@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 import org.junit.Test;
 
-import com.mygdx.game.song.Song;
-import com.mygdx.game.song.Voice;
+import com.mygdx.game.model.song.Song;
+import com.mygdx.game.model.song.Voice;
 
 public class SongTest {
 
