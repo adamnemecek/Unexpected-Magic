@@ -42,4 +42,6 @@ public class Note {
 	public String toString() {
 		return pitch + ":" + value[0] + "/" + value[1];
 	}
+	
+	
 }
