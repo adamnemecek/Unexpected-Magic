@@ -33,12 +33,10 @@ public class SongTest {
 	}
 	@Test
 	public void testNotes() throws IOException {
-		String note = "A1:1";
-		Note n1 = Note.getNote(note);
-		Note n2 = Note.getNote(note);
-		assertTrue(n1 == n2);
-		note = "A2:1";
-		n2 = Note.getNote(note);
-		assertFalse(n1 == n2);
+		Note n1 = Note.getNote("A1:1");
+		Note n2 = Note.getNote("A1:1/1");
+		assertEquals(n1, n2);
+		n2 = Note.getNote("A1:2/2");
+		assertNotEquals(n1, n2);
 	}
 }
