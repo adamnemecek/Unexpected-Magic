@@ -28,14 +28,14 @@ public class MainMenuScreen extends ScreenAdapter{
 	public MainMenuScreen(final UnexpectedMagic game){
 		this.game = game;
 		engine = game.engine;
-		guiCam = new OrthographicCamera(Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[1]);
-		guiCam.setToOrtho(false, Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[1]);
+		guiCam = new OrthographicCamera(Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y);
+		guiCam.setToOrtho(false, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y);
 		
 		songList = new SongList();
 		players = new ArrayList<>();
 		//TEST PLAYERS
-		players.add(new Player("Testplayer1"));
-		players.add(new Player("Testplayer2"));
+		players.add(new Player("Testplayer1", null, null));
+		players.add(new Player("Testplayer2", null, null));
 	}
 	
 	public void update(){
@@ -53,9 +53,9 @@ public class MainMenuScreen extends ScreenAdapter{
 		guiCam.update();
 		game.batch.setProjectionMatrix(guiCam.combined);
 		game.batch.begin();
-		game.font.draw(game.batch, songList.songs().toString(), Constants.VIEWPORT_DIM[0]/15, Constants.VIEWPORT_DIM[1] - 10);
-		game.font.draw(game.batch, "MAIN MENU TEST", Constants.VIEWPORT_DIM[0]/2, Constants.VIEWPORT_DIM[1]/2);
-		game.font.draw(game.batch, "PRESS THE ANY KEY", Constants.VIEWPORT_DIM[0]/2, Constants.VIEWPORT_DIM[1]/2 - 100);
+		game.font.draw(game.batch, songList.songs().toString(), Constants.VIEWPORT_DIM_X/15, Constants.VIEWPORT_DIM_Y - 10);
+		game.font.draw(game.batch, "MAIN MENU TEST", Constants.VIEWPORT_DIM_X/2, Constants.VIEWPORT_DIM_Y/2);
+		game.font.draw(game.batch, "PRESS THE ANY KEY", Constants.VIEWPORT_DIM_X/2, Constants.VIEWPORT_DIM_Y/2 - 100);
 		game.batch.end();
 
 		if(Gdx.input.isKeyPressed(Keys.ANY_KEY)){

@@ -49,7 +49,7 @@ public class GameScreen extends ScreenAdapter{
 		backgroundTexture = new Texture("images/textureCheckedBlue16x16.png");
 		backgroundTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
 		
-		viewport = new ScalingViewport(Scaling.fit, Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[1], inGameCam);
+		viewport = new ScalingViewport(Scaling.fit, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y, inGameCam);
 		viewport.apply(true);
 		
 		engine.addSystem(new MovementSystem());
@@ -66,9 +66,9 @@ public class GameScreen extends ScreenAdapter{
 			//System.out.println("TICK: " + round.getTick());
 			batch.begin();
 			//Print the delta time on screen
-			game.font.draw(game.batch, "DYNAMIC STUFF Delta: "+ delta, Constants.VIEWPORT_DIM[0]/4, Constants.VIEWPORT_DIM[1]/2 - 40);
+			game.font.draw(game.batch, "DYNAMIC STUFF Delta: "+ delta, Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 40);
 			//Print the tick on the screen
-			game.font.draw(game.batch, "DYNAMIC STUFF Tick: "+ round.getTick(), Constants.VIEWPORT_DIM[0]/4, Constants.VIEWPORT_DIM[1]/2 - 60);
+			game.font.draw(game.batch, "DYNAMIC STUFF Tick: "+ round.getTick(), Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 60);
 			batch.end();
 			engine.update(delta);
 		}
@@ -81,9 +81,9 @@ public class GameScreen extends ScreenAdapter{
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		batch.begin();
-		batch.draw(backgroundTexture, 0, 0, Constants.VIEWPORT_DIM[0], Constants.VIEWPORT_DIM[0], 0, 10, 10, 0);
-		game.font.draw(game.batch, "STATIC STUFF YOU'RE IN GAME YAY.", Constants.VIEWPORT_DIM[0]/4, Constants.VIEWPORT_DIM[1]/2);
-		game.font.draw(game.batch, "STATIC STUFF look at the cutes texture in everywhere", Constants.VIEWPORT_DIM[0]/4, Constants.VIEWPORT_DIM[1]/2 - 20);
+		batch.draw(backgroundTexture, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_X, 0, 10, 10, 0);
+		game.font.draw(game.batch, "STATIC STUFF YOU'RE IN GAME YAY.", Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2);
+		game.font.draw(game.batch, "STATIC STUFF look at the cutes texture in everywhere", Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 20);
 		game.batch.end();
 		
 		update(delta);

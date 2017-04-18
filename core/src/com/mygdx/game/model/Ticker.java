@@ -8,13 +8,13 @@ import com.mygdx.game.model.song.Song;
 public class Ticker {
 	private int tick;
 	private float trueTick;
-	private int songTotalTicks;
-	private double tickFreq;
+	private final int songTotalTicks;
+	private final double tickFreq;
 
 	public Ticker(Song song){
 		tick = 0;
-		calculateTickFreq(song);
-		songTotalTicks = 0; //TODO 
+		tickFreq = calculateTickFreq(song);
+		songTotalTicks = 0; //TODO
 		//how many ticks in the whole song? calculate somehow. using length of first voice of song maybe?
 	}
 	
@@ -23,23 +23,25 @@ public class Ticker {
 	}
 	
 	public void updateTick(float delta){
-		incTrueTick(delta);
+		trueTick += tickFreq * delta;
+		if(trueTick > 1) {
+			trueTick %= 1;
+			tick++;
+		}
+		/*incTrueTick(delta);
 		if(trueTickGreaterThanOne()){
 			trueTickReset();
 			incTick();
-		}
+		}*/
 	}
 	
-	private void calculateTickFreq(Song song){
+	private double calculateTickFreq(Song song){
 		int bpm = song.bpm;
-		String time = song.time;
-		int timeBeatSize = Integer.valueOf(time.substring(time.indexOf('/') + 1)); //the denominator of the time signature
-
-		tickFreq = bpm/60.0; //beats per second
-		tickFreq = tickFreq*64/timeBeatSize; //number of 64th notes per second
+		int timeBeatSize = song.getTime()[1]; //the denominator of the time signature
+		double r = bpm/60.0; //beats per second
+		return r*64/timeBeatSize; //number of 64th notes per second
 	}
-	
-	private void incTick(){
+	/*private void incTick(){
 		tick++;
 	}
 	private void incTrueTick(float delta){
@@ -53,5 +55,5 @@ public class Ticker {
 	}
 	private boolean trueTickGreaterThanOne(){
 		return trueTick > 1;
-	}
+	}*/
 }

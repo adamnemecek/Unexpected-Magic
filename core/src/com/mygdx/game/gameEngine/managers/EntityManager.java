@@ -33,7 +33,7 @@ public class EntityManager {
 		RenderableComponent testRenderableComponent = new RenderableComponent();
 		//TODO How does one give the components values? I'll do it like this now.
 		testPositionComponent.x = 0;
-		testPositionComponent.y = Constants.VIEWPORT_DIM[1];
+		testPositionComponent.y = Constants.VIEWPORT_DIM_Y;
 		testVelocityComponent.x = 0;
 		testVelocityComponent.y = -4;
 		testSpriteComponent.sprite = new Sprite(new Texture("sprites/note1.png"));
@@ -47,7 +47,7 @@ public class EntityManager {
 		RenderableComponent testRenderableComponent2 = new RenderableComponent();
 		//TODO How does one give the components values? I'll do it like this now.
 		testPositionComponent2.x = 20;
-		testPositionComponent2.y = Constants.VIEWPORT_DIM[1];
+		testPositionComponent2.y = Constants.VIEWPORT_DIM_Y;
 		testVelocityComponent2.x = 0;
 		testVelocityComponent2.y = -4;
 		testSpriteComponent2.sprite = new Sprite(new Texture("sprites/note1.png"));

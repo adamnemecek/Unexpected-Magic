@@ -7,13 +7,13 @@ import com.mygdx.game.model.song.Voice;
  */
 
 public class Player {
-	String name;
-	Voice voice;
-	Score score;
-	public Player(String name){} //TODO for testing
+	public final String name;
+	public final Voice voice;
+	public final Score score;
+	//public Player(String name){} //TODO for testing
 	public Player(String name, Voice voice, Score score){
+		this.name = name;
 		this.voice = voice;
 		this.score = score;
 	}
-
 }
