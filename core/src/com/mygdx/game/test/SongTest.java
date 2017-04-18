@@ -2,26 +2,19 @@ package com.mygdx.game.test;
 
 import static org.junit.Assert.*;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
 
 import org.junit.Test;
 
 import com.mygdx.game.model.song.Note;
 import com.mygdx.game.model.song.Song;
 import com.mygdx.game.model.song.Voice;
+import com.mygdx.game.services.file.FileReader;
 
 public class SongTest {
 	@Test
 	public void testHisTheme() throws IOException {
-		String s;
-		{
-			Scanner sc = new Scanner(new File("assets/songmaps/his_theme.uxm"));
-			sc.useDelimiter("\\Z");
-			s = sc.next();
-			sc.close();
-		}
+		String s = FileReader.readFile("assets/songmaps/his_theme.uxm");
 		Song song = new Song(s);
 		assertEquals("His Theme", song.title);
 		assertEquals("4/4", song.time);

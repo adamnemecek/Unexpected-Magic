@@ -1,62 +1,57 @@
 package com.mygdx.game.services.file;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import com.mygdx.game.model.song.Song;
 
 public class SongList {
 	
-	ArrayList<String> list;
-
-	public SongList(){
-		list = new ArrayList<>();
-		list = retrieveFileNames();
-	}
+	private final Map<String, String> map;
 	
 	private ArrayList<String> retrieveFileNames(){
-		ArrayList<String> l = new ArrayList<String>();
 		File folder = new File("songmaps");
 		File[] listOfFiles = folder.listFiles();
+		ArrayList<String> l = new ArrayList<String>(listOfFiles.length);
 		System.out.println("SongList.class folder.listFiles(): " + folder.listFiles());
-		
-			for(int i = 0; i < listOfFiles.length; i++){
-				if(listOfFiles[i].isFile() && isUXM(listOfFiles[i])){
-					System.out.println("File " + listOfFiles[i].getName() + " is an .uxm and was added to list.");
-					l.add(listOfFiles[i].getName());
-					
-				}else if (listOfFiles[i].isDirectory()) {
-					System.out.println("Directory " + listOfFiles[i].getName() + " was not added.");
-				}
+		for(File file : listOfFiles) {
+			if(file.isFile() && isUXM(file)){
+				System.out.println("File " + file.getName() + " is an .uxm and was added to list.");
+				l.add(file.getPath());
+			} else if (file.isDirectory()) {
+				System.out.println("Directory " + file.getName() + " was not added.");
+			} else {
+				System.out.println("File " + file.getName() + " was not added.");
 			}
+		}
 		return l;
 	}
-	private String readFile(String fileName) throws FileNotFoundException{
-		System.out.println(System.getProperty("user.dir"));
-		String s;
-		{
-			System.out.println("SongList. assets/songmaps/"+fileName);
-			Scanner sc = new Scanner(new File("songmaps/"+fileName)).useDelimiter("\\Z");
-			s = sc.next();
-			sc.close();
+	private static boolean isUXM(File file) {
+		return FileReader.fileExtension(file).equalsIgnoreCase("uxm");
+	}
+	public SongList(){
+		List<String> fList = retrieveFileNames();
+		map = new HashMap<>();
+		for(String s : fList) {
+			String name;
+			try {
+				name = FileReader.readUXM(s).peek();
+			} catch (IOException e) {
+				e.printStackTrace();
+				continue;
+			}
+			map.put(name, s);
 		}
-		return s;
 	}
-	public Song retrieveSongFromIndex(int index) throws FileNotFoundException, IOException{
-		Song r = new Song(readFile(list.get(index)));
-		return r;
+	public Song getSong(String name) throws IOException {
+		return new Song(map.get(name));
 	}
-	
-	private boolean isUXM(File file){
-		if(file.getName().length() < 4){return false;}
-		String fileExtension = file.getName().substring(file.getName().length()-4);
-		return fileExtension.equalsIgnoreCase(".uxm");
-	}
-	
-	public ArrayList<String> getList(){
-		return list;
+	public Set<String> songs() {
+		return map.keySet();
 	}
 }
