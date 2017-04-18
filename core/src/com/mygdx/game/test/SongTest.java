@@ -9,13 +9,11 @@ import org.junit.Test;
 import com.mygdx.game.model.song.Note;
 import com.mygdx.game.model.song.Song;
 import com.mygdx.game.model.song.Voice;
-import com.mygdx.game.services.file.FileReader;
 
 public class SongTest {
 	@Test
 	public void testHisTheme() throws IOException {
-		String s = FileReader.readFile("assets/songmaps/his_theme.uxm");
-		Song song = new Song(s);
+		Song song = new Song("songmaps/his_theme.uxm");
 		assertEquals("His Theme", song.title);
 		assertEquals("4/4", song.time);
 		assertEquals(120, song.bpm);
