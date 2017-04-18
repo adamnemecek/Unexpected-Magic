@@ -8,37 +8,38 @@ import java.util.Map;
  */
 public class Note {
 	//static
-	private static Map<String, Map<String, Note>> noteMap = new HashMap<>();
+	private static Map<String, Note> noteMap = new HashMap<>();
 	public static Note getNote(String note) throws IOException {
-		//allocations
-		Note n;
-		Map<String, Note> pitchMap;
-		String[] sa = note.split(":");
-		String pitch = sa[0], value = sa[1];
 		//sanity checking
-		if(sa.length != 2) throw new IOException("Note should have exactly 1 colon");
-		if(!(pitch.equals("-") || pitch.matches("[A-G][b#]?\\d"))) throw new IOException("Invalid note pitch " + pitch);
-		if(!value.matches("\\d+(/\\d+)?")) throw new IOException("Invalid note value " + value);
-		//note retrieval/construction
-		if(noteMap.containsKey(pitch)) {
-			pitchMap = noteMap.get(pitch); 
-		} else {
-			pitchMap = new HashMap<>();
-			noteMap.put(pitch, pitchMap);
-		}
-		if(pitchMap.containsKey(value)) {
-			n = pitchMap.get(value);
-		} else {
-			n = new Note(pitch, value);
-			pitchMap.put(value, n);
-		}
+		if(!note.contains("/")) return getNote(note + "/1");
+		if(!note.matches("([A-G][b#]?\\d|-):\\d+/\\d+")) //Regex might not be the most readable solution, but it's very writable.
+			throw new IOException("Invalid note " + note);
+		if(noteMap.containsKey(note)) return noteMap.get(note);
+		//allocations
+		String[] sa = note.split(":");
+		String pitch = sa[0];
+		sa = sa[1].split("/");
+		int[] value = new int[]{Integer.parseInt(sa[0]), Integer.parseInt(sa[1])};
+		//note construction/storage
+		Note n = new Note(pitch, value);
+		noteMap.put(note, n);
 		return n;
 	}
 	//instance
 	final String pitch;
-	final String value;
-	private Note(String pitch, String value) {
+	private final int[] value;
+	private Note(String pitch, int[] value) {
 		this.pitch = pitch;
 		this.value = value;
+	}
+	public String getPitch() {
+		return pitch;
+	}
+	public int[] getValue() {
+		return value.clone(); //defensive copying
+	}
+	@Override
+	public String toString() {
+		return pitch + ":" + value[0] + "/" + value[1];
 	}
 }
