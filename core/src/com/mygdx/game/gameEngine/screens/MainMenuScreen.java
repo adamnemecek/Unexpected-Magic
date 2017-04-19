@@ -133,7 +133,14 @@ public class MainMenuScreen extends ScreenAdapter{
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //playButtonPushed();
-            	System.out.println("HELLO");
+            	System.out.println("PLAY");
+            	try {
+    				game.setScreen(new GameScreen(game, songList.getSong(songList.songs().iterator().next()), players)); //TODO The Song argument is null!
+    				//song takes the text in the text doc as a String
+    			} catch (IOException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
             }
         });
         		
