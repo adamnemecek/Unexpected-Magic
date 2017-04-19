@@ -10,12 +10,14 @@ public class Ticker {
 	private float trueTick;
 	private final int songTotalTicks;
 	private final double tickFreq;
+	private boolean ticking;
 
 	public Ticker(Song song){
 		tick = 0;
 		tickFreq = calculateTickFreq(song);
-		songTotalTicks = 0; //TODO
-		//how many ticks in the whole song? calculate somehow. using length of first voice of song maybe?
+		songTotalTicks = song.getVoices()[2].length; //TODO voice length is in number of 64 notes, every tick is a 64 note
+		System.out.println("songTotalTicks: " +songTotalTicks);
+		ticking = true;
 	}
 	
 	public int getTick(){
@@ -23,10 +25,13 @@ public class Ticker {
 	}
 	
 	public void updateTick(float delta){
-		trueTick += tickFreq * delta;
-		if(trueTick > 1) {
-			trueTick %= 1;
-			tick++;
+		if(tick >= songTotalTicks){ ticking = false; }
+		if(ticking){
+			trueTick += tickFreq * delta;
+			if(trueTick > 1) {
+				trueTick %= 1;
+				tick++;
+			}
 		}
 		/*incTrueTick(delta);
 		if(trueTickGreaterThanOne()){

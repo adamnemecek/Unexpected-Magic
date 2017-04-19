@@ -22,8 +22,8 @@ public class SongTest {
 		assertEquals(120, song.bpm);
 		Voice[] voices = song.getVoices();
 		assertEquals(4, voices.length);
-		Note[] bar = voices[0].getBars()[0];
-		assertTrue(bar[0] == bar[3]);
+		Note[] notes = voices[0].getNotes();
+		assertTrue(notes[0] == notes[3]);
 	}
 	@Test
 	public void testNotes() throws IOException {

@@ -43,5 +43,12 @@ public class Note {
 		return pitch + ":" + value[0] + "/" + value[1];
 	}
 	
+	public int calculateLength(){
+		int num = value[0];
+		int denom = value[1];
+		int factor = 64 / denom;
+		return num * factor;
+	}
+	
 	
 }
