@@ -60,15 +60,23 @@ public class GameScreen extends ScreenAdapter{
 		initRound(song, players); //TODO catch exceptions?
 	}
 	
+	public void initRound(Song song, ArrayList<Player> players) throws IOException{
+		round = new Round(song, players);
+		System.out.println("Number of voices: "+round.song.getVoices().length);
+		
+		//wait for player input here before running?
+		running = true;
+	}
+	
 	public void update (float delta) {
 		if(running){
 			round.updateTick(delta);
 			//System.out.println("TICK: " + round.getTick());
 			batch.begin();
 			//Print the delta time on screen
-			game.font.draw(game.batch, "DYNAMIC STUFF Delta: "+ delta, Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 40);
+			game.font.draw(game.batch, "\nDYNAMIC STUFF Delta: "+ delta, Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 40);
 			//Print the tick on the screen
-			game.font.draw(game.batch, "DYNAMIC STUFF Tick: "+ round.getTick(), Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 60);
+			game.font.draw(game.batch, "\nDYNAMIC STUFF Tick: "+ round.getTick(), Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 60);
 			batch.end();
 			engine.update(delta);
 		}
@@ -83,7 +91,7 @@ public class GameScreen extends ScreenAdapter{
 		batch.begin();
 		batch.draw(backgroundTexture, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_X, 0, 10, 10, 0);
 		game.font.draw(game.batch, "STATIC STUFF YOU'RE IN GAME YAY.", Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2);
-		game.font.draw(game.batch, "STATIC STUFF look at the cutes texture in everywhere", Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 20);
+		game.font.draw(game.batch, "STATIC STUFF look at the cutes\ntexture in everywhere", Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 20);
 		game.batch.end();
 		
 		update(delta);
@@ -94,12 +102,5 @@ public class GameScreen extends ScreenAdapter{
 		viewport.update(width, height);
 	}
 	
-	public void initRound(Song song, ArrayList<Player> players) throws IOException{
-		round = new Round(song, players);
-		System.out.println("Number of voices: "+round.song.getVoices().length);
-		
-		//wait for player input here before running?
-		running = true;
-	}
 	
 }
