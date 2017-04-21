@@ -31,7 +31,7 @@ public class GameScreen extends ScreenAdapter{
 	OrthographicCamera inGameCam;
 	private boolean running;
 	ScalingViewport viewport;
-	EntityManager entityManager;
+	//EntityManager entityManager;
 	SpriteBatch batch;
 	Texture backgroundTexture;
 	private Round round;
@@ -43,41 +43,27 @@ public class GameScreen extends ScreenAdapter{
 		batch = game.batch;
 		inGameCam = new OrthographicCamera();
 		inGameCam.setToOrtho(false);
-		running = false;
-		round = new Round(song, players); //TODO get the right arguments song, players
+		running = false; //TODO get the right arguments song, players
 		
 		backgroundTexture = new Texture("images/textureCheckedBlue16x16.png");
 		backgroundTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
-		
 		viewport = new ScalingViewport(Scaling.fit, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y, inGameCam);
 		viewport.apply(true);
 		
-		engine.addSystem(new MovementSystem());
-		engine.addSystem(new RenderSystem(batch));
-		//System.out.println("GameScreen. Engine's systems: " + engine.getSystems().toString());
-		
-		entityManager = new EntityManager(engine, batch);
-		initRound(song, players); //TODO catch exceptions?
+		initRound(song, players, engine, batch); //TODO catch exceptions?
 	}
 	
-	public void initRound(Song song, ArrayList<Player> players) throws IOException{
-		round = new Round(song, players);
-		System.out.println("Number of voices: "+round.song.getVoices().length);
-		
+	public void initRound(Song song, ArrayList<Player> players, Engine engine, SpriteBatch batch) throws IOException{
+		round = new Round(song, players, engine, batch);
+		System.out.println("Number of voices: "+ round.song.getVoices().length);
 		//wait for player input here before running?
 		running = true;
 	}
 	
 	public void update (float delta) {
 		if(running){
-			round.updateTick(delta);
+			round.update(delta);
 			//System.out.println("TICK: " + round.getTick());
-			batch.begin();
-			//Print the delta time on screen
-			game.font.draw(game.batch, "\nDYNAMIC STUFF Delta: "+ delta, Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 40);
-			//Print the tick on the screen
-			game.font.draw(game.batch, "\nDYNAMIC STUFF Tick: "+ round.getTick(), Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 60);
-			batch.end();
 			engine.update(delta);
 		}
 	}
@@ -89,14 +75,19 @@ public class GameScreen extends ScreenAdapter{
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		batch.begin();
+		
 		batch.draw(backgroundTexture, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_X, 0, 10, 10, 0);
-		game.font.draw(game.batch, "STATIC STUFF YOU'RE IN GAME YAY.", Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2);
-		game.font.draw(game.batch, "STATIC STUFF look at the cutes\ntexture in everywhere", Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 20);
+		game.font.draw(game.batch, "YOU'RE IN GAME YAY.", Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2);
+		game.font.draw(game.batch, "look at the cutes\ntexture in everywhere", Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 20);
+		//Print the delta time on screen
+		game.font.draw(game.batch, "\nDYNAMIC STUFF Delta: "+ delta, Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 40);
+		//Print the tick on the screen
+		game.font.draw(game.batch, "\nDYNAMIC STUFF Tick: "+ round.getTick(), Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 60);
+		
 		game.batch.end();
-		
 		update(delta);
-		
 	}
+		
 	@Override
 	public void resize(int width, int height){
 		viewport.update(width, height);

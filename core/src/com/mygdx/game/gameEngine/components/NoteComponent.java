@@ -8,4 +8,7 @@ import com.mygdx.game.model.song.Note;
 */
 public class NoteComponent implements Component{
 	public Note note;
+	public NoteComponent(Note note){
+		this.note = note;
+	}
 }

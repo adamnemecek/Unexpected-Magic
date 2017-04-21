@@ -8,4 +8,8 @@ import com.badlogic.ashley.core.Component;
 public class VelocityComponent implements Component{
 	public int x;
 	public int y;
+	public VelocityComponent(int x, int y){
+		this.x = x;
+		this.y = y;
+	}
 }

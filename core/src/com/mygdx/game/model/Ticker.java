@@ -61,4 +61,7 @@ public class Ticker {
 	private boolean trueTickGreaterThanOne(){
 		return trueTick > 1;
 	}*/
+	public boolean isTicking(){
+		return ticking;
+	}
 }
