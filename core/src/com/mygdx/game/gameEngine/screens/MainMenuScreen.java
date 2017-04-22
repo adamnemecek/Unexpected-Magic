@@ -84,12 +84,12 @@ public class MainMenuScreen extends ScreenAdapter{
         
        //Creates button Style
        TextButtonStyle textButtonStyle = new TextButtonStyle();
-       textButtonStyle.font = game.font;
+       textButtonStyle.font = skin.getFont("giygas");
        textButtonStyle.checked = skin.getDrawable("window");
        textButtonStyle.down = skin.getDrawable("window-player");
        
        	
-       float fontScale = (float) 0.5;
+       float fontScale = (float) 1;
        float buttonScale = (float) 1;
        
        //PLAY BUTTON
@@ -200,12 +200,15 @@ public class MainMenuScreen extends ScreenAdapter{
         
         
         // listener for option
-      
+        
+        float width = Gdx.graphics.getWidth()-Gdx.graphics.getHeight();
+        float height = Gdx.graphics.getHeight()/8;
+        
         //Add buttons to table  
-        mainTable.add(playButton).row();
-        mainTable.add(optionButton).row();
-        mainTable.add(animationButton).row();
-        mainTable.add(exitButton);
+        mainTable.add(playButton).size(width, height).row();
+        mainTable.add(optionButton).size(width, height).row();
+        mainTable.add(animationButton).size(width, height).row();
+        mainTable.add(exitButton).size(width, height);
         
         //Add table to stage
         
@@ -244,6 +247,8 @@ public class MainMenuScreen extends ScreenAdapter{
 	@Override
 	public void resize(int width, int height){
 		viewport.update(width, height);
+		guiCam.position.set(guiCam.viewportWidth / 2, guiCam.viewportHeight / 2, 0);
+        guiCam.update();
 	}
 	
 	@Override
