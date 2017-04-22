@@ -1,5 +1,6 @@
 package com.mygdx.game.gameEngine.screens;
 
+import java.awt.Font;
 import java.io.IOException;
 import java.util.ArrayList;
 import com.badlogic.ashley.core.Engine;
@@ -11,6 +12,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -46,6 +48,7 @@ public class MainMenuScreen extends ScreenAdapter{
 	
 	private TextureAtlas atlas;
 	private Skin skin;
+	private ButtonGroup<TextButton> buttongroup;
 
 	public MainMenuScreen(final UnexpectedMagic game){
 		this.game = game;
@@ -76,107 +79,132 @@ public class MainMenuScreen extends ScreenAdapter{
     	
         //Create Table
         Table mainTable = new Table();
-        //Set table to fill stage
         mainTable.setFillParent(true);
+       
         
        //Creates button Style
        TextButtonStyle textButtonStyle = new TextButtonStyle();
-       textButtonStyle.font = skin.getFont("giygas");
-       textButtonStyle.over = skin.getDrawable("smash");
-        
-        //PLAY BUTTON
-        TextButton playButton = new TextButton("Play", textButtonStyle);
-        //playButton.getLabel().setFontScale(3/2,3/2);
+       textButtonStyle.font = game.font;
+       textButtonStyle.checked = skin.getDrawable("window");
+       textButtonStyle.down = skin.getDrawable("window-player");
        
+       	
+       float fontScale = (float) 0.5;
+       float buttonScale = (float) 1;
+       
+       //PLAY BUTTON
+       	TextButton playButton = new TextButton("Play", textButtonStyle);
+       	playButton.setTransform(true);
+       	playButton.getLabel().setFontScale(fontScale);
+       	playButton.setScale(buttonScale);
+       	
         
         //ANIMATION BUTTON 
         TextButton animationButton = new TextButton("Animation",textButtonStyle);
-        //animationButton.getLabel().setFontScale(3/2,3/2);
+        animationButton.setTransform(true);
+        animationButton.getLabel().setFontScale(fontScale);
+        animationButton.setScale(buttonScale);
         
         //EXIT BUTTON
         TextButton exitButton = new TextButton("Exit",textButtonStyle);
-        //exitButton.getLabel().setFontScale(3/2,3/2);
+        exitButton.setTransform(true);
+        exitButton.getLabel().setFontScale(fontScale);
+        exitButton.setScale(buttonScale);
         
         //OPTION BUTTON
         TextButton optionButton = new TextButton("Options",textButtonStyle);
-        //optionButton.getLabel().setFontScale(3/2,3/2);
-       
+        optionButton.setTransform(true);
+        optionButton.getLabel().setFontScale(fontScale);
+        optionButton.setScale(buttonScale);
         
-        ButtonGroup bG = new ButtonGroup(playButton, animationButton, exitButton, optionButton);
-        bG.setMaxCheckCount(1);
-        bG.setMinCheckCount(0);
-        bG.setChecked(menuItems[0]);
-        
-        //Add listeners to buttons
-        stage.addListener(new InputListener(){
-        	@Override
-        	public boolean keyDown(InputEvent event, int keycode){
-        		if(keycode == Input.Keys.UP){
-        			menuItemSelected = (menuItemSelected+3) % 4;
-        			bG.setChecked(menuItems[menuItemSelected]);
-        		}
-        		else if (keycode == Input.Keys.DOWN){
-        			menuItemSelected = (menuItemSelected+1) % 4;
-        			bG.setChecked(menuItems[menuItemSelected]);
-        		}
-        		
-        		else if (keycode == Input.Keys.ENTER){
-        	
-        			//buttonPushed();
-        		}
-        		
-        		return true;
-        	}
-        });
+        buttongroup = new ButtonGroup<TextButton>(playButton, animationButton, exitButton, optionButton);
+        buttongroup.setMaxCheckCount(1);
+        buttongroup.setMinCheckCount(0);
+        buttongroup.setChecked(menuItems[0]);
         
         playButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //playButtonPushed();
-            	System.out.println("PLAY");
-            	try {
-    				game.setScreen(new GameScreen(game, songList.getSong(songList.songs().iterator().next()), players)); //TODO The Song argument is null!
-    				//song takes the text in the text doc as a String
-    			} catch (IOException e) {
-    				// TODO Auto-generated catch block
-    				e.printStackTrace();
-    			}
+            	playButtonPushed();
             }
+            
         });
         		
         exitButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-            	//exitButtonPushed();
-            	System.out.println("HELLO");
+            	exitButtonPushed();
             }
+            
+            
         });
+        
         animationButton.addListener(new ClickListener(){
         	@Override
         	public void clicked(InputEvent event, float x, float y){
-        		//animationButtonPushed();
-        		System.out.println("HELLO");
+        		        		
         	}
         });
         
         optionButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-            	
+            	optionButtonPushed();
             }
+        });
+        
+      //Add listeners to buttons
+        stage.addListener(new InputListener(){
+        	@Override
+        	public boolean keyDown(InputEvent event, int keycode){
+        		if(keycode == Input.Keys.UP){
+        			menuItemSelected = (menuItemSelected+3) % 4;
+        			buttongroup.setChecked(menuItems[menuItemSelected]);
+        		}
+        		else if (keycode == Input.Keys.DOWN){
+        			menuItemSelected = (menuItemSelected+1) % 4;
+        			buttongroup.setChecked(menuItems[menuItemSelected]);
+        		}
+        		
+        		else if (keycode == Input.Keys.ENTER){
+        			buttonPushed();
+        		}
+        		
+        		return true;
+        	}
+        	@Override
+        	public boolean mouseMoved(InputEvent event, float x,  float y){
+        		if (playButton.isOver()){
+        			menuItemSelected = 0;
+        			buttongroup.setChecked(menuItems[menuItemSelected]);
+        		}
+        		else if (optionButton.isOver()){
+        			menuItemSelected = 1;
+        			buttongroup.setChecked(menuItems[menuItemSelected]);
+        		}
+        		else if (animationButton.isOver()){
+        			menuItemSelected = 2;
+        			buttongroup.setChecked(menuItems[menuItemSelected]);
+        		}
+        		else if (exitButton.isOver()){
+        			menuItemSelected = 3;
+        			buttongroup.setChecked(menuItems[menuItemSelected]);
+        		}
+        		return false;
+        		
+        	}
+        	
+        	
         });
         	
         
         
-        // listener for option button
+        // listener for option
       
-        //Add buttons to table
-        mainTable.add(playButton);
-        mainTable.row();
-        mainTable.add(optionButton);
-        mainTable.row();
-        mainTable.add(animationButton);
-        mainTable.row();
+        //Add buttons to table  
+        mainTable.add(playButton).row();
+        mainTable.add(optionButton).row();
+        mainTable.add(animationButton).row();
         mainTable.add(exitButton);
         
         //Add table to stage
@@ -199,33 +227,18 @@ public class MainMenuScreen extends ScreenAdapter{
 		guiCam.update();
 		game.batch.setProjectionMatrix(guiCam.combined);
 		game.batch.begin();
-		//game.font.draw(game.batch, songList.songs().toString(), Constants.VIEWPORT_DIM_X/15, Constants.VIEWPORT_DIM_Y - 10);
-		//game.font.draw(game.batch, "MAIN MENU TEST", Constants.VIEWPORT_DIM_X/2, Constants.VIEWPORT_DIM_Y/2);
-		//game.font.draw(game.batch, "PRESS THE ANY KEY", Constants.VIEWPORT_DIM_X/2, Constants.VIEWPORT_DIM_Y/2 - 100);
 		game.batch.end();
 		
 		 stage.act();
 	     stage.draw();
 
-		/*if(Gdx.input.isKeyPressed(Keys.ANY_KEY)){
-			try {
-				game.setScreen(new GameScreen(game, songList.getSong(songList.songs().iterator().next()), players)); //TODO The Song argument is null!
-				//song takes the text in the text doc as a String
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			dispose();
-		}*/
 	}
 	
 	@Override
     public void dispose() {
         skin.dispose();
 		atlas.dispose();
-        
-        //atlas.dispose();
+       
     }
 	
 	@Override
@@ -238,4 +251,43 @@ public class MainMenuScreen extends ScreenAdapter{
 		
 	}
 	
+    public void playButtonPushed (){
+    	try {
+			game.setScreen(new GameScreen(game, songList.getSong(songList.songs().iterator().next()), players)); //TODO The Song argument is null!
+			//song takes the text in the text doc as a String
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    public void optionButtonPushed(){
+    	
+    }
+    
+    public void animationButtonPushed(){
+    	
+    }
+    
+    public void exitButtonPushed(){
+    	 Gdx.app.exit();
+    }
+    
+    public void buttonPushed(){
+    	switch(menuItemSelected){
+    		
+    	case 0: playButtonPushed();
+    	break;
+    	
+    	case 1: optionButtonPushed();
+    	break;
+    	
+    	case 2: animationButtonPushed();
+    	break;
+    	
+    	case 3: exitButtonPushed();
+    	break;
+    		
+    	}
+    }
 }
