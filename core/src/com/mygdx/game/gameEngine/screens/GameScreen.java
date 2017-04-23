@@ -18,6 +18,7 @@ import com.mygdx.game.model.Round;
 import com.mygdx.game.model.song.Song;
 import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.gameEngine.managers.EntityManager;
+import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.gameEngine.systems.MovementSystem;
 import com.mygdx.game.gameEngine.systems.RenderSystem;
 
@@ -35,6 +36,7 @@ public class GameScreen extends ScreenAdapter{
 	SpriteBatch batch;
 	Texture backgroundTexture;
 	private Round round;
+	private Hud hud;
 
 	
 	public GameScreen(final UnexpectedMagic game, Song song, ArrayList<Player> players) throws IOException{
@@ -49,6 +51,7 @@ public class GameScreen extends ScreenAdapter{
 		backgroundTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
 		viewport = new ScalingViewport(Scaling.fit, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y, inGameCam);
 		viewport.apply(true);
+		hud = new Hud(batch);
 		
 		initRound(song, players, engine, batch); //TODO catch exceptions?
 	}
@@ -70,12 +73,11 @@ public class GameScreen extends ScreenAdapter{
 
 	@Override
 	public void render(float delta){
-		game.batch.setProjectionMatrix(inGameCam.combined);
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		batch.setProjectionMatrix(inGameCam.combined);
 		
 		batch.begin();
-		
 		batch.draw(backgroundTexture, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_X, 0, 10, 10, 0);
 		game.font.draw(game.batch, "YOU'RE IN GAME YAY.", Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2);
 		game.font.draw(game.batch, "look at the cutes\ntexture in everywhere", Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 20);
@@ -83,8 +85,10 @@ public class GameScreen extends ScreenAdapter{
 		game.font.draw(game.batch, "\nDYNAMIC STUFF Delta: "+ delta, Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 40);
 		//Print the tick on the screen
 		game.font.draw(game.batch, "\nDYNAMIC STUFF Tick: "+ round.getTick(), Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 60);
-		
 		game.batch.end();
+		//now draw HUD
+		batch.setProjectionMatrix(hud.stage.getCamera().combined);
+		hud.stage.draw();
 		update(delta);
 	}
 		
