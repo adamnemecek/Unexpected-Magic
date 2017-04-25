@@ -35,6 +35,7 @@ public class GameScreen extends ScreenAdapter{
 	//EntityManager entityManager;
 	SpriteBatch batch;
 	Texture backgroundTexture;
+	Texture pianoRollTexture;
 	private Round round;
 	private Hud hud;
 
@@ -49,6 +50,7 @@ public class GameScreen extends ScreenAdapter{
 		
 		backgroundTexture = new Texture("images/textureCheckedBlue16x16.png");
 		backgroundTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+		pianoRollTexture = new Texture("images/textureCheckedPurple16x16.png");
 		viewport = new ScalingViewport(Scaling.fit, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y, inGameCam);
 		viewport.apply(true);
 		hud = new Hud(batch);
@@ -75,21 +77,28 @@ public class GameScreen extends ScreenAdapter{
 	public void render(float delta){
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
+		//draw things on the gamescreen
 		batch.setProjectionMatrix(inGameCam.combined);
 		
 		batch.begin();
 		batch.draw(backgroundTexture, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_X, 0, 10, 10, 0);
+		/*
 		game.font.draw(game.batch, "YOU'RE IN GAME YAY.", Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2);
 		game.font.draw(game.batch, "look at the cutes\ntexture in everywhere", Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 20);
 		//Print the delta time on screen
 		game.font.draw(game.batch, "\nDYNAMIC STUFF Delta: "+ delta, Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 40);
 		//Print the tick on the screen
 		game.font.draw(game.batch, "\nDYNAMIC STUFF Tick: "+ round.getTick(), Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2 - 60);
-		game.batch.end();
+		*/
+		batch.draw(pianoRollTexture, 0, Constants.PIANOROLL_POS_Y, Constants.PIANOROLL_DIM_X, Constants.PIANOROLL_DIM_Y);
+		batch.end();
+		
+		update(delta);
+		
 		//now draw HUD
 		batch.setProjectionMatrix(hud.stage.getCamera().combined);
 		hud.stage.draw();
-		update(delta);
 	}
 		
 	@Override
