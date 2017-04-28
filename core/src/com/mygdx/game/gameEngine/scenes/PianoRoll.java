@@ -36,7 +36,7 @@ public class PianoRoll {
 	public void draw(){
 		batch.begin();
 		batch.draw(backgroundTexture, 0, 0, 2000, 2000, 0, 10, 10, 0);
-		batch.end();
+		batch.end(); 
 	}
 	
 	public void resize(int width, int height){
