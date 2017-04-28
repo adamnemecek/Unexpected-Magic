@@ -3,9 +3,7 @@ package com.mygdx.game.gameEngine.managers;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.gameEngine.systems.MovementSystem;
-import com.mygdx.game.gameEngine.systems.RenderSystem;
 import com.mygdx.game.model.song.Note;
 import com.mygdx.game.model.song.Song;
 import com.mygdx.game.model.song.Voice;
@@ -28,10 +26,8 @@ public class EntityManager {
 		
 		//Create all the systems
 		MovementSystem movementSystem = new MovementSystem();
-		RenderSystem renderSystem = new RenderSystem(batch);
 		//Add all the systems to the engine
 		this.engine.addSystem(movementSystem);
-		this.engine.addSystem(renderSystem);
 	}
 	
 	public void update(int tick){

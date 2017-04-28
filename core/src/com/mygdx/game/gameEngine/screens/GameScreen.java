@@ -22,7 +22,6 @@ import com.mygdx.game.gameEngine.managers.SoundManager;
 import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
 import com.mygdx.game.gameEngine.systems.MovementSystem;
-import com.mygdx.game.gameEngine.systems.RenderSystem;
 
 /**
 * Screen that contains the game (in-game).
@@ -57,7 +56,7 @@ public class GameScreen extends ScreenAdapter{
 		viewport = new ScalingViewport(Scaling.fit, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y, inGameCam);
 		viewport.apply(true);
 		hud = new Hud(batch);
-		pianoRoll = new PianoRoll(batch);
+		pianoRoll = new PianoRoll(engine, batch);
 		
 		initRound(song, players, engine, batch); //TODO catch exceptions?
 	}
@@ -98,7 +97,7 @@ public class GameScreen extends ScreenAdapter{
 		//Gdx.gl.glViewport((int)Constants.PIANOROLL_POS_X,(int)Constants.PIANOROLL_POS_Y,(int)Constants.PIANOROLL_DIM_X,(int)Constants.PIANOROLL_DIM_Y);
 		batch.setProjectionMatrix(pianoRoll.camera.combined);
 		pianoRoll.viewport.apply(true);
-		pianoRoll.draw();
+		pianoRoll.draw(delta);
 		
 		batch.setProjectionMatrix(inGameCam.combined);
 		viewport.apply(true);
@@ -113,7 +112,8 @@ public class GameScreen extends ScreenAdapter{
 	@Override
 	public void resize(int width, int height){
 		viewport.update(width, height);
-		pianoRoll.resize(width, height);
+		pianoRoll.resize(viewport.getScreenWidth(), viewport.getScreenHeight(), viewport.getScreenX(), viewport.getScreenY());
+		
 	}
 	
 	
