@@ -75,9 +75,4 @@ public class Note {
 	public String toString() {
 		return str;
 	}
-	
-	@Deprecated
-	public int calculateLength(){
-		return duration;
-	}
 }

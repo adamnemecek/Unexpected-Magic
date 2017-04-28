@@ -5,6 +5,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+/**
+ * A class representing a single voice of a song.
+ * @author car0b1nius
+ * @author soflarb
+ */
 public class Voice {
 	private final Note[] notes;
 	
@@ -18,13 +23,13 @@ public class Voice {
 		for(String note : voice.split("[,|]")) {
 			Note n = Note.getNote(note);
 			nList.add(n);
-			sum += n.calculateLength();
+			sum += n.duration;
 		}
 		notes = new Note[sum];
 		sum = 0;
 		for(Note note : nList) {
 			notes[sum] = note;
-			sum += note.calculateLength();
+			sum += note.duration;
 		}
 		oMGIHAVECORNINMYCODEEEEE();
 		length = sum;
