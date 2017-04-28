@@ -1,18 +1,14 @@
 package com.mygdx.game.gameEngine.screens;
 
-import java.awt.Font;
 import java.io.IOException;
 import java.util.ArrayList;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -45,7 +41,7 @@ public class MainMenuScreen extends ScreenAdapter{
 	private int menuItemSelected;
     private String [] menuItems; 
     private Stage stage;
-	private ScalingViewport viewport;
+	private Viewport viewport;
 	
 	private TextureAtlas atlas;
 	private Skin skin;
@@ -263,7 +259,7 @@ public class MainMenuScreen extends ScreenAdapter{
 	
     public void playButtonPushed (){
     	try {
-			game.setScreen(new GameScreen(game, songList.getSong(songList.songs().iterator().next()), players)); //TODO The Song argument is null!
+			game.setScreen(new GameScreen(game, songList.getSong(songList.songs().iterator().next()), players));
 			//song takes the text in the text doc as a String
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -272,6 +268,7 @@ public class MainMenuScreen extends ScreenAdapter{
     }
     
     public void optionButtonPushed(){
+		game.setScreen(new OptionsScreen(game));
     }
     
     public void animationButtonPushed(){
