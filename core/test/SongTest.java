@@ -1,5 +1,3 @@
-package com.mygdx.game.test;
-
 import static org.junit.Assert.*;
 
 import java.io.IOException;
@@ -23,16 +21,19 @@ public class SongTest {
 		Voice[] voices = song.getVoices();
 		assertEquals(4, voices.length);
 		Note[] notes = voices[0].getNotes();
-		assertTrue(notes[0] == notes[3]);
+		assertNotNull(notes[0]);
 	}
 	@Test
 	public void testNotes() throws IOException {
-		Note n1 = Note.getNote("A1:1/1");
-		assertEquals("A1:1/1", n1.toString());
-		Note n2 = Note.getNote("A1:1");
-		assertEquals("A1:1/1", n2.toString());
+		Note n1 = Note.getNote("A4:1/1");
+		assertEquals("A4:1/1", n1.toString());
+		assertEquals(57, n1.number);
+		Note n2 = Note.getNote("A4:1");
+		assertEquals("A4:1/1", n2.toString());
 		assertEquals(n1, n2);
-		n2 = Note.getNote("A1:2/2");
+		n2 = Note.getNote("A4:2/2");
 		assertNotEquals(n1, n2);
+		n2 = Note.getNote("-:1/1");
+		assertEquals(-1, n2.number);
 	}
 }

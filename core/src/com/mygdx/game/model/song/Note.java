@@ -41,6 +41,7 @@ public class Note {
 	}
 	private static final int[] MAJOR_SCALE = new int[] {0,2,4,5,6,9,11};
 	private static int getNum(String str) {
+		if(str.equals("-")) return -1;
 		char[] chs = str.toCharArray();
 		char pitch = chs[0];
 		int alt = 0;
