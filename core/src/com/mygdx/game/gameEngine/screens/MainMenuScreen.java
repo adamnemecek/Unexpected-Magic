@@ -29,6 +29,7 @@ import com.mygdx.game.model.Constants;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.services.file.SongList;
 import com.mygdx.game.UnexpectedMagic;
+import com.mygdx.game.gameEngine.managers.SoundManager;
 
 /**
 * Screen that contains the main menu.
@@ -49,6 +50,8 @@ public class MainMenuScreen extends ScreenAdapter{
 	private TextureAtlas atlas;
 	private Skin skin;
 	private ButtonGroup<TextButton> buttongroup;
+	
+	private SoundManager soundmanager;
 
 	public MainMenuScreen(final UnexpectedMagic game){
 		this.game = game;
@@ -70,6 +73,8 @@ public class MainMenuScreen extends ScreenAdapter{
 	    atlas = new TextureAtlas("skins/Mother_Skin/terramotherui/terra-mother-ui.atlas");
 	    skin = new Skin(Gdx.files.internal("skins/Mother_Skin/terramotherui/terra-mother-ui.json"),atlas);
 	    Gdx.input.setInputProcessor(stage);
+	    soundmanager = new SoundManager();
+	    
 	}
 	
     @Override
@@ -166,7 +171,7 @@ public class MainMenuScreen extends ScreenAdapter{
         			buttongroup.setChecked(menuItems[menuItemSelected]);
         		}
         		
-        		else if (keycode == Input.Keys.ENTER){
+        		else if (keycode == Input.Keys.ENTER){       			
         			buttonPushed();
         		}
         		
@@ -267,11 +272,12 @@ public class MainMenuScreen extends ScreenAdapter{
     }
     
     public void optionButtonPushed(){
-    	
     }
     
     public void animationButtonPushed(){
-    	
+    	soundmanager.play(50,3000);	
+    	soundmanager.play(52,1000);	
+    	soundmanager.play(55,2000);	
     }
     
     public void exitButtonPushed(){

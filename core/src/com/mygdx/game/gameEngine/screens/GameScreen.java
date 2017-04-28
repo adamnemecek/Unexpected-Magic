@@ -18,6 +18,7 @@ import com.mygdx.game.model.Round;
 import com.mygdx.game.model.song.Song;
 import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.gameEngine.managers.EntityManager;
+import com.mygdx.game.gameEngine.managers.SoundManager;
 import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
 import com.mygdx.game.gameEngine.systems.MovementSystem;
@@ -73,6 +74,7 @@ public class GameScreen extends ScreenAdapter{
 			round.update(delta);
 			//System.out.println("TICK: " + round.getTick());
 			engine.update(delta);
+			
 		}
 	}
 
@@ -113,6 +115,7 @@ public class GameScreen extends ScreenAdapter{
 		viewport.update(width, height);
 		pianoRoll.resize(width, height);
 	}
+	
 	
 	
 }
