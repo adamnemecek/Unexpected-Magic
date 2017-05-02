@@ -29,6 +29,9 @@ public class PianoRoll {
 	private Texture activeLaneTexture;
 	private Texture inactiveLaneTexture;
 	private Texture [] laneStates;
+	private int nLanes = 20;
+	private float laneWidth;
+	
 	
 	public PianoRoll(Engine engine, SpriteBatch spriteBatch){
 		this.engine = engine;
@@ -44,7 +47,8 @@ public class PianoRoll {
 		//camera.zoom = 0.5f;
 		activeLaneTexture = new Texture("images/Lanes/Lime.png");
 		inactiveLaneTexture = new Texture("images/Lanes/Yellow.png");
-		laneStates = new Texture[8];
+		laneStates = new Texture[nLanes];
+		laneWidth = 340/laneStates.length;
 		
 		for (int i = 0; i < laneStates.length; i ++){
 			laneStates[i] = inactiveLaneTexture;
@@ -90,13 +94,8 @@ public class PianoRoll {
 	}
 	
 	public void drawLanes(){
-		batch.draw(laneStates[0], 0, 0, (340/8), 2000, 0, 10, 10, 0);
-		batch.draw(laneStates[1], 340/8, 0, (340/8), 2000, 0, 10, 10, 0);
-		batch.draw(laneStates[2], (340/8)*2, 0, (340/8), 2000, 0, 10, 10, 0);
-		batch.draw(laneStates[3], (340/8)*3, 0, (340/8), 2000, 0, 10, 10, 0);
-		batch.draw(laneStates[4], (340/8)*4, 0, (340/8), 2000, 0, 10, 10, 0);
-		batch.draw(laneStates[5], (340/8)*5, 0, (340/8), 2000, 0, 10, 10, 0);
-		batch.draw(laneStates[6], (340/8)*6, 0, (340/8), 2000, 0, 10, 10, 0);
-		batch.draw(laneStates[7], (340/8)*7, 0, (340/8), 2000, 0, 10, 10, 0);
+		for (int i = 0; i < laneStates.length; i ++){
+			batch.draw(laneStates[i], laneWidth*i, 0, laneWidth, 2000, 0, 10, 10, 0);
+		}
 	}
 }
