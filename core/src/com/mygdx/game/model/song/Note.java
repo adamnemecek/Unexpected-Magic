@@ -25,7 +25,7 @@ public class Note {
 		 * [A-G][b#]?\d: a character A-G, followed by optional b or #, followed by any number
 		 * ([A-G][b#]?\d|-): either the above or a -
 		 * \d+/\d+: Any fraction
-		 * ([A-G][b#]?\\d|-):\\d+/\\d+: both the above two lines, separated by a :
+		 * ([A-G][b#]?\d|-):\d+/\d+: both the above two lines, separated by a :
 		 */
 		if(!note.matches("([A-G][b#]?\\d|-):\\d+/\\d+")) //Regex might not be the most readable solution, but it's very writable.
 			throw new IOException("Invalid note " + note);
