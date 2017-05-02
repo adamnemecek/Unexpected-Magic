@@ -18,12 +18,15 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.mygdx.game.UnexpectedMagic;
+import com.mygdx.game.gameEngine.managers.EntityManager;
+import com.mygdx.game.gameEngine.managers.RoundManager;
 import com.mygdx.game.gameEngine.managers.SoundManager;
 import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
 import com.mygdx.game.model.Constants;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Round;
+import com.mygdx.game.model.Ticker;
 import com.mygdx.game.model.song.Song;
 
 
@@ -42,7 +45,7 @@ public class GameScreen extends ScreenAdapter{
 	Texture backgroundTexture;
 	Texture pianoRollTexture;
 	//EntityManager entityManager;
-	private Round round;
+	private RoundManager roundManager;
 	private Hud hud;
 	private PianoRoll pianoRoll;
 	private final SoundManager soundmanager;
@@ -71,7 +74,8 @@ public class GameScreen extends ScreenAdapter{
 	}
 	
 	public void initRound(Song song, ArrayList<Player> players, Engine engine, SpriteBatch batch) throws IOException{
-		round = new Round(song, players, engine, batch);
+		roundManager = new RoundManager(new Round(song, players), new EntityManager(engine, batch, song), new Ticker(song));
+		
 		//System.out.println("Number of voices: "+ round.song.getVoices().length);
 		//wait for player input here before running?
 		running = true;
@@ -79,7 +83,7 @@ public class GameScreen extends ScreenAdapter{
 	
 	public void update (float delta) {
 		if(running){
-			round.update(delta);
+			roundManager.update(delta);
 			//System.out.println("TICK: " + round.getTick());
 			engine.update(delta);
 			
@@ -108,14 +112,12 @@ public class GameScreen extends ScreenAdapter{
 		pianoRoll.viewport.apply(true);
 		pianoRoll.draw(delta);
 		
-		
 		batch.setProjectionMatrix(inGameCam.combined);
 		viewport.apply(true);
 		update(delta);
 		//Draw HUD
 		batch.setProjectionMatrix(hud.stage.getCamera().combined);
 		hud.stage.draw();
-		
 		
 	}
 		
