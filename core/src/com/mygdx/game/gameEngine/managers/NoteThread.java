@@ -1,7 +1,5 @@
 package com.mygdx.game.gameEngine.managers;
 
-import java.util.HashMap;
-import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.sound.midi.MidiChannel;
@@ -18,6 +16,7 @@ public class NoteThread extends Thread{
 	
 	public NoteThread (MidiChannel channel){
 		this.channel = channel;
+	
 	}
 	
 	public void play(Integer noteNumber, Integer noteDuration){
@@ -25,7 +24,7 @@ public class NoteThread extends Thread{
 		
 		channel.noteOn(noteNumber, noteVolume);
 	}
-
+	
 	@Override
 	public void run() {	
 		
@@ -33,7 +32,7 @@ public class NoteThread extends Thread{
 		
 		while(!interrupted){
 			try {
-				this.sleep(sleepTime);
+				NoteThread.sleep(sleepTime);
 			} catch (InterruptedException e) {
 				interrupted = true;
 			}
@@ -52,6 +51,4 @@ public class NoteThread extends Thread{
 			}
 		}
 	}
-
-	
 }
