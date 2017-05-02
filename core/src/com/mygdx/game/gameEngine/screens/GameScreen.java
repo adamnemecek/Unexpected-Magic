@@ -180,7 +180,12 @@ public class GameScreen extends ScreenAdapter{
         		case (Input.Keys.K): 
         			soundmanager.noteOn(64);
         			pianoRoll.activateLane(7);
-
+        		
+        		break;
+        		
+        		case (Input.Keys.L): 
+        			soundmanager.noteOn(65);
+        			pianoRoll.activateLane(8);
         		
         		break;
         		        		
@@ -234,6 +239,12 @@ public class GameScreen extends ScreenAdapter{
         		case (Input.Keys.K): 
         			soundmanager.noteOff(64);
         			pianoRoll.deactivateLane(7);
+        		break;
+        		
+        		case (Input.Keys.L): 
+        			soundmanager.noteOff(65);
+        			pianoRoll.deactivateLane(8);
+        		
         		break;
         		
         		default:
