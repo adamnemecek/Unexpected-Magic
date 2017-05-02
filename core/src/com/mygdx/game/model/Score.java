@@ -20,7 +20,7 @@ public class Score {
 	}
 	//first draft, score calculation? Keep track of percentage of note hit?
 	public void hitnote(Note note){
-		int length = note.calculateLength();
+		int length = note.duration;
 		score += length;
 		streak++;
 	}

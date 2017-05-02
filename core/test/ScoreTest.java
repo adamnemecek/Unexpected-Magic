@@ -1,4 +1,4 @@
-package com.mygdx.game.test;
+
 import static org.junit.Assert.*;
 
 import java.io.IOException;
@@ -39,7 +39,7 @@ public class ScoreTest {
 			score.hitnote(n);
 		}
 		
-		assertEquals(score.getScore(), n.calculateLength()*100);
+		assertEquals(score.getScore(), n.duration*100);
 		System.out.println(score.getScore());
 	}
 
