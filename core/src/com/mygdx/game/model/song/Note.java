@@ -40,7 +40,7 @@ public class Note {
 		return n;
 	}
 	private static final int[] MAJOR_SCALE = new int[] {0,2,4,5,6,9,11};
-	private static int getNum(String str) {
+	private static int getNum(String str) throws IOException {
 		if(str.equals("-")) return -1;
 		char[] chs = str.toCharArray();
 		char pitch = chs[0];
@@ -55,7 +55,9 @@ public class Note {
 				break;
 			}
 		int oct = Character.getNumericValue(chs[chs.length-1]);
-		return MAJOR_SCALE["CDEFGAB".indexOf(pitch)] + alt + oct * 12;
+		int num = MAJOR_SCALE["CDEFGAB".indexOf(pitch)] + alt + oct * 12;
+		if(num < 0 || 127 < num) throw new IOException("Invalid pitch: " + str + "(" + num + ")");
+		return num;
 	}
 	private static int getDur(String str) {
 		String[] sa = str.split("/");
