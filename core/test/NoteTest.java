@@ -6,6 +6,10 @@ import org.junit.Test;
 
 import com.mygdx.game.model.song.Note;
 
+/**
+ * Test note creation
+ * @author car0b1nius
+ */
 public class NoteTest {
 	@Test
 	public void testNumbers() throws IOException {
