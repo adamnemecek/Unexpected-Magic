@@ -36,8 +36,8 @@ public class SoundManager {
 				
 		}
 					
-//		setInstrument(40);
 		setInstrument(5);
+//		setInstrument(108);
 		notethread = new NoteThread(channel);
 		notethread.start();
 		
