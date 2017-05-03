@@ -17,6 +17,7 @@ public class EntityManager {
 	private Engine engine;
 	SpriteBatch batch;
 	Song song;
+	SoundManager soundManager;
 	
 	public EntityManager(Engine engine, SpriteBatch batch/*, UnexpectedMagic game*/, Song song){
 		//this.game = game;
@@ -28,6 +29,7 @@ public class EntityManager {
 		MovementSystem movementSystem = new MovementSystem();
 		//Add all the systems to the engine
 		this.engine.addSystem(movementSystem);
+		soundManager = new SoundManager();
 	}
 	
 	public void update(int tick){
@@ -44,6 +46,7 @@ public class EntityManager {
 					if(note != null){
 						Entity newNoteEntity = EntityFactory.createNoteEntity(note);
 						engine.addEntity(newNoteEntity);
+						soundManager.play(note);
 					}
 				}
 			}

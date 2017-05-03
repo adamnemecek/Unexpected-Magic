@@ -2,6 +2,8 @@ package com.mygdx.game.gameEngine.managers;
 
 import javax.sound.midi.*;
 
+import com.mygdx.game.model.song.Note;
+
 public class SoundManager {
 
 	int volume = 1000;
@@ -34,13 +36,16 @@ public class SoundManager {
 				
 		}
 					
-		
+//		setInstrument(40);
+		setInstrument(5);
 		notethread = new NoteThread(channel);
-		//notethread.start();
+		notethread.start();
 		
 	}
-		
-	public void play(int noteNumber, int noteDuration){
+	public void play(Note note){
+		 play(note.number, note.duration);
+	}
+	private void play(int noteNumber, int noteDuration){
 		notethread.play(noteNumber, noteDuration);
 	}
 	

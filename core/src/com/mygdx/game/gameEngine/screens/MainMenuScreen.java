@@ -2,6 +2,8 @@ package com.mygdx.game.gameEngine.screens;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -239,7 +241,9 @@ public class MainMenuScreen extends ScreenAdapter{
 	
     public void playButtonPushed (){
     	try {
-			game.setScreen(new GameScreen(game, songList.getSong(songList.songs().iterator().next()), players));
+    		Iterator<String> it = songList.songs().iterator();
+    		it.next();
+			game.setScreen(new GameScreen(game, songList.getSong(it.next()), players));
 			//song takes the text in the text doc as a String
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
