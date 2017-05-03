@@ -39,6 +39,7 @@ public class Note {
 		noteMap.put(note, n);
 		return n;
 	}
+	// http://www.midimountain.com/midi/midi_note_numbers.html
 	private static final int[] MAJOR_SCALE = new int[] {0,2,4,5,7,9,11};
 	private static int getNum(String str) throws IOException {
 		if(str.equals("-")) return -1;
