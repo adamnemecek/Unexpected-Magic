@@ -53,7 +53,7 @@ public class Note {
 			alt = +1;
 			break;
 		}
-		System.out.println(str+ ", " + str.substring(alt == 0 ? 1 : 2));
+		//System.out.println(str+ ", " + str.substring(alt == 0 ? 1 : 2));
 		int oct = Integer.parseInt(str.replaceAll("[^\\d]", ""));
 		int num = MAJOR_SCALE["CDEFGAB".indexOf(pitch)] + alt + oct * 12;
 		if(num < 0 || 127 < num) throw new IOException("Invalid pitch: " + str + "(" + num + ")");
