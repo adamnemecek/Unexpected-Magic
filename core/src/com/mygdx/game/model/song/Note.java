@@ -18,16 +18,16 @@ public class Note {
 		 * [ABC]: any of A, B and C
 		 * [A-C]: any character between A-C (inclusive)
 		 * A?: zero or one A
-		 * \d: any number (needs Java string escaping)
+		 * \d: any single digit (needs Java string escaping)
 		 * (ABC): the sequence ABC as a capture group, as a single regex entity
 		 * (ABC|DEF): either sequence ABC or DEF
 		 * A+: any non-zero number of A
-		 * [A-G][b#]?\d: a character A-G, followed by optional b or #, followed by any number
-		 * ([A-G][b#]?\d|-): either the above or a -
+		 * [A-G][b#]?\d+: a character A-G, followed by optional b or #, followed by any number
+		 * ([A-G][b#]?\d+|-): either the above or a -
 		 * \d+/\d+: Any fraction
-		 * ([A-G][b#]?\d|-):\d+/\d+: both the above two lines, separated by a :
+		 * ([A-G][b#]?\d+|-):\d+/\d+: both the above two lines, separated by a :
 		 */
-		if(!note.matches("([A-G][b#]?\\d|-):\\d+/\\d+")) //Regex might not be the most readable solution, but it's very writable.
+		if(!note.matches("([A-G][b#]?\\d+|-):\\d+/\\d+")) //Regex might not be the most readable solution, but it's very writable.
 			throw new IOException("Invalid note " + note);
 		if(noteMap.containsKey(note)) return noteMap.get(note);
 		//allocations
@@ -43,19 +43,18 @@ public class Note {
 	private static final int[] MAJOR_SCALE = new int[] {0,2,4,5,7,9,11};
 	private static int getNum(String str) throws IOException {
 		if(str.equals("-")) return -1;
-		char[] chs = str.toCharArray();
-		char pitch = chs[0];
+		char pitch = str.charAt(0);
 		int alt = 0;
-		if(chs.length == 3)
-			switch(chs[1]) {
-			case 'b':
-				alt = -1;
-				break;
-			case '#':
-				alt = +1;
-				break;
-			}
-		int oct = Character.getNumericValue(chs[chs.length-1]);
+		switch(str.charAt(1)) {
+		case 'b':
+			alt = -1;
+			break;
+		case '#':
+			alt = +1;
+			break;
+		}
+		System.out.println(str+ ", " + str.substring(alt == 0 ? 1 : 2));
+		int oct = Integer.parseInt(str.replaceAll("[^\\d]", ""));
 		int num = MAJOR_SCALE["CDEFGAB".indexOf(pitch)] + alt + oct * 12;
 		if(num < 0 || 127 < num) throw new IOException("Invalid pitch: " + str + "(" + num + ")");
 		return num;
