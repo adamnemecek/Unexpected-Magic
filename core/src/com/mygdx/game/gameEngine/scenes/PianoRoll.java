@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.gameEngine.components.PositionComponent;
 import com.mygdx.game.gameEngine.components.SpriteComponent;
 import com.mygdx.game.model.Constants;
+import com.mygdx.game.model.NoteLanes;
 
 /**
  * A class that defines the properties of the piano roll (the area where the notes are drawn).
@@ -29,7 +30,7 @@ public class PianoRoll {
 	private Texture activeLaneTexture;
 	private Texture inactiveLaneTexture;
 	private Texture [] laneStates;
-	private int nLanes = 20;
+	private int nLanes = 12; //TODO
 	private float laneWidth;
 	
 	
@@ -48,9 +49,10 @@ public class PianoRoll {
 		activeLaneTexture = new Texture("images/Lanes/Lime.png");
 		inactiveLaneTexture = new Texture("images/Lanes/Yellow.png");
 		laneStates = new Texture[nLanes];
-		laneWidth = 340/laneStates.length;
+		laneWidth = Constants.PIANOROLL_DIM_X/nLanes;
 		
-		for (int i = 0; i < laneStates.length; i ++){
+		//set all lanes inactive
+		for (int i = 0; i < nLanes; i ++){
 			laneStates[i] = inactiveLaneTexture;
 		}
 		

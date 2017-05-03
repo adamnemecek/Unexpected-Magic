@@ -41,9 +41,8 @@ public class EntityManager {
 				if(tick < voice.getNotes().length){
 					Note note = voice.getNotes()[tick];
 					//float posX = 100;
-					float posX = (float) Math.floor(Math.random() * Constants.VIEWPORT_DIM_X);
 					if(note != null){
-						Entity newNoteEntity = EntityFactory.createNoteEntity(posX, note);
+						Entity newNoteEntity = EntityFactory.createNoteEntity(note);
 						engine.addEntity(newNoteEntity);
 					}
 				}

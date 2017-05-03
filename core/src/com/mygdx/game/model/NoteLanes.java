@@ -1,7 +1,10 @@
 package com.mygdx.game.model;
 
+import com.mygdx.game.model.song.Note;
+
 public class NoteLanes {
-	private String[] keyboard = {"A0","A#0","B0",
+	/*
+	public static final String[] keyboard = {"A0","A#0","B0",
 								 "C1","C#1","D1","D#1","E1","F1","F#1","G1","G#1","A1","A#1","B1",
 								 "C2","C#2","D2","D#2","E2","F2","F#2","G2","G#2","A2","A#2","B2",
 								 "C3","C#3","D3","D#3","E3","F3","F#3","G3","G#3","A3","A#3","B3",
@@ -10,4 +13,12 @@ public class NoteLanes {
 								 "C6","C#6","D6","D#6","E6","F6","F#6","G6","G#6","A6","A#6","B6",
 								 "C7","C#7","D7","D#7","E7","F7","F#7","G7","G#7","A7","A#7","B7",
 								 "C8"};
+	*/
+	private static int laneIndex(Note n) {
+		System.out.println("NoteLanes. Note: " + n.toString() + " laneIndex: " + n.number % 12);
+		return n.number % 12;
 	}
+	public static int laneX(Note n){
+		return laneIndex(n) * (int) Constants.PIANOROLL_DIM_X/Constants.NUMBER_OF_LANES; //TODO cast everythinhg??
+	}
+}
