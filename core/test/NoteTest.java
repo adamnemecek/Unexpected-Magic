@@ -18,6 +18,14 @@ public class NoteTest {
 			assertEquals(i, n.number);
 		}
 	}
+	@Test(expected=IOException.class) 
+	public void testLow() throws IOException {
+		Note.getNote("Cb0:1/1");
+	}
+	@Test(expected=IOException.class) 
+	public void testHigh() throws IOException {
+		Note.getNote("G#10:1/1");
+	}
 	
 	@Test
 	public void testSameness() throws IOException {
