@@ -23,17 +23,4 @@ public class SongTest {
 		Note[] notes = voices[0].getNotes();
 		assertNotNull(notes[0]);
 	}
-	@Test
-	public void testNotes() throws IOException {
-		Note n1 = Note.getNote("A4:1/1");
-		assertEquals("A4:1/1", n1.toString());
-		assertEquals(57, n1.number);
-		Note n2 = Note.getNote("A4:1");
-		assertEquals("A4:1/1", n2.toString());
-		assertEquals(n1, n2);
-		n2 = Note.getNote("A4:2/2");
-		assertNotEquals(n1, n2);
-		n2 = Note.getNote("-:1/1");
-		assertEquals(-1, n2.number);
-	}
 }
