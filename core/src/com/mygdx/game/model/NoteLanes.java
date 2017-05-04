@@ -15,7 +15,7 @@ public class NoteLanes {
 								 "C8"};
 	*/
 	private static int laneIndex(Note n) {
-		System.out.println("NoteLanes. Note: " + n.toString() + " laneIndex: " + n.number % 12 + " number: " + n.number);
+		//System.out.println("NoteLanes. Note: " + n.toString() + " laneIndex: " + n.number % 12 + " number: " + n.number);
 		return n.number % 12;
 	}
 	public static int laneX(Note n){

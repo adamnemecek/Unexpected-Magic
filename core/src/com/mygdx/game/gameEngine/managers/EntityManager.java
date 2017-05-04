@@ -36,22 +36,19 @@ public class EntityManager {
 		manageNoteEntities(tick);
 	}
 	int prevTick = -1;
-	private void manageNoteEntities(int tick){
-		if(tick != prevTick) {
-			prevTick = tick;
+	private void manageNoteEntities(int tick) {
+		for(int i = prevTick+1; i <= tick; i++) {
+			System.out.println(i);
 			for(Voice voice : song.getVoices()){
-				if(tick < voice.getNotes().length){
-					Note note = voice.getNotes()[tick];
-					//float posX = 100;
-					if(note != null){
-						Entity newNoteEntity = EntityFactory.createNoteEntity(note);
-						engine.addEntity(newNoteEntity);
-						soundManager.play(note);
-					}
-				}
+				if(i >= voice.length) continue;
+				Note note = voice.noteAtTick(i);
+				//float posX = 100;
+				if(note == null) continue;
+				Entity newNoteEntity = EntityFactory.createNoteEntity(note);
+				engine.addEntity(newNoteEntity);
+				soundManager.play(note);
 			}
 		}
+		prevTick = tick;
 	}	
 }
-	
-

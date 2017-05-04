@@ -5,7 +5,7 @@ import com.mygdx.game.model.Round;
 
 public class RoundManager {
 	private Round round;
-	EntityManager entityManager;
+	private EntityManager entityManager;
 	private Ticker ticker;
 	
 	public RoundManager(Round round, EntityManager entityManager, Ticker ticker){
@@ -19,6 +19,6 @@ public class RoundManager {
 	}
 	public void update(float delta){
 		ticker.updateTick(delta);
-		entityManager.update(ticker.getTick());
+		entityManager.update(getTick());
 	}
 }
