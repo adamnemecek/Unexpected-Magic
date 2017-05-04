@@ -33,14 +33,12 @@ import com.mygdx.game.model.song.Song;
 /**
 * Screen that contains the game (in-game).
 */
-public class GameScreen extends ScreenAdapter{
+public class GameScreen extends AbstractScreen{
 	
-	final UnexpectedMagic game;
+	
 	Engine engine;
-	OrthographicCamera inGameCam;
+
 	private boolean running;
-	ScalingViewport viewport;
-	private final Stage stage;
 	SpriteBatch batch;
 	Texture backgroundTexture;
 	Texture pianoRollTexture;
@@ -54,13 +52,13 @@ public class GameScreen extends ScreenAdapter{
 		this.game = game;
 		engine = game.engine;
 		batch = game.batch;
-		inGameCam = new OrthographicCamera();
-		inGameCam.setToOrtho(false);
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false);
 		running = false; //TODO get the right arguments song, players
 		backgroundTexture = new Texture("images/textureCheckedBlue16x16.png");
 		backgroundTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
 		pianoRollTexture = new Texture("images/textureCheckedPurple16x16.png");
-		viewport = new ScalingViewport(Scaling.fit, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y, inGameCam);
+		viewport = new ScalingViewport(Scaling.fit, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y, camera);
 		viewport.apply(true);
 		hud = new Hud(batch);
 		pianoRoll = new PianoRoll(engine, batch);
@@ -100,7 +98,7 @@ public class GameScreen extends ScreenAdapter{
 		//Gdx.gl.glViewport(0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight()); //TODO
 		
 		//Draw things on the gamescreen
-		batch.setProjectionMatrix(inGameCam.combined);
+		batch.setProjectionMatrix(camera.combined);
 		viewport.apply(true);
 		batch.begin();
 		batch.draw(backgroundTexture, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_X, 0, 10, 10, 0);
@@ -112,7 +110,7 @@ public class GameScreen extends ScreenAdapter{
 		pianoRoll.viewport.apply(true);
 		pianoRoll.draw(delta);
 		
-		batch.setProjectionMatrix(inGameCam.combined);
+		batch.setProjectionMatrix(camera.combined);
 		viewport.apply(true);
 		update(delta);
 		//Draw HUD

@@ -13,8 +13,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.model.Constants;
 
-public class OptionsScreen extends ScreenAdapter{
-	final UnexpectedMagic game;
+public class OptionsScreen extends AbstractScreen{
+	
 	OrthographicCamera guiCam;
 	private Viewport viewport;
 	private TextureAtlas atlas;

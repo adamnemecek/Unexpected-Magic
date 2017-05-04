@@ -31,10 +31,10 @@ import com.mygdx.game.UnexpectedMagic;
 /**
 * Screen that contains the main menu.
 */
-public class MainMenuScreen extends ScreenAdapter{
+public class MainMenuScreen extends AbstractScreen{
 	
 	//GAME STUFF
-	final UnexpectedMagic game;
+	
 	OrthographicCamera guiCam;
 	Engine engine;
 	private SongList songList;
@@ -242,9 +242,9 @@ public class MainMenuScreen extends ScreenAdapter{
     public void playButtonPushed (){
     	try {
     		Iterator<String> it = songList.songs().iterator();
-//    		it.next();
-//    		it.next();
-//    		it.next();
+    		//it.next();
+    		//it.next();
+    		//it.next();
 			game.setScreen(new GameScreen(game, songList.getSong(it.next()), players));
 			//song takes the text in the text doc as a String
 		} catch (IOException e) {
