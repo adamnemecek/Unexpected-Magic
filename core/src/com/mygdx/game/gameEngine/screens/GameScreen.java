@@ -49,21 +49,20 @@ public class GameScreen extends AbstractScreen{
 	private final SoundManager soundmanager;
 	
 	public GameScreen(final UnexpectedMagic game, Song song, ArrayList<Player> players) throws IOException{
-		this.game = game;
+		super(game);
 		engine = game.engine;
 		batch = game.batch;
-		camera = new OrthographicCamera();
-		camera.setToOrtho(false);
+		/*camera = new OrthographicCamera();
+		camera.setToOrtho(false);*/
 		running = false; //TODO get the right arguments song, players
 		backgroundTexture = new Texture("images/textureCheckedBlue16x16.png");
 		backgroundTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
 		pianoRollTexture = new Texture("images/textureCheckedPurple16x16.png");
-		viewport = new ScalingViewport(Scaling.fit, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y, camera);
-		viewport.apply(true);
+		
 		hud = new Hud(batch);
 		pianoRoll = new PianoRoll(engine, batch);
 		initRound(song, players, engine, batch); //TODO catch exceptions?
-	    stage = new Stage(viewport, game.batch);
+
 	    Gdx.input.setInputProcessor(stage);
 		soundmanager = new SoundManager();	
 	    soundmanager.setInstrument(40);

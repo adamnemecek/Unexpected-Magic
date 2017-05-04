@@ -35,12 +35,9 @@ public class MainMenuScreen extends AbstractScreen{
 	
 	//GAME STUFF
 	
-	OrthographicCamera guiCam;
 	Engine engine;
 	private SongList songList;
 	private ArrayList<Player> players;
-    private Stage stage;
-	private Viewport viewport;
 	
 	//BUTTONS
 	private TextureAtlas atlas;
@@ -55,10 +52,9 @@ public class MainMenuScreen extends AbstractScreen{
 	private TextButton exitButton;
 	
 	public MainMenuScreen(final UnexpectedMagic game){
-		this.game = game;
+		super(game);
 		engine = game.engine;
-		guiCam = new OrthographicCamera(Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y);
-		guiCam.setToOrtho(false, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y);
+		
 		
 		songList = new SongList();
 		players = new ArrayList<>();
@@ -68,9 +64,7 @@ public class MainMenuScreen extends AbstractScreen{
 		
 		menuItemSelected = 0;
 	    menuItems =  new String [] {"Play","Options","Animation","Exit"};
-	    viewport = new ScalingViewport(Scaling.fit,Constants.VIEWPORT_DIM_X,Constants.VIEWPORT_DIM_Y, guiCam);
-	    viewport.apply();
-	    stage = new Stage(viewport, game.batch);
+	   
 	    atlas = new TextureAtlas("skins/Mother_Skin/terramotherui/terra-mother-ui.atlas");
 	    skin = new Skin(Gdx.files.internal("skins/Mother_Skin/terramotherui/terra-mother-ui.json"),atlas);
 	    Gdx.input.setInputProcessor(stage);
@@ -136,8 +130,8 @@ public class MainMenuScreen extends AbstractScreen{
 	public void render(float delta){
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		guiCam.update();
-		game.batch.setProjectionMatrix(guiCam.combined);
+		camera.update();
+		game.batch.setProjectionMatrix(camera.combined);
 		game.batch.begin();
 		game.batch.end();
 		
@@ -155,8 +149,8 @@ public class MainMenuScreen extends AbstractScreen{
 	@Override
 	public void resize(int width, int height){
 		viewport.update(width, height);
-		guiCam.position.set(guiCam.viewportWidth / 2, guiCam.viewportHeight / 2, 0);
-        guiCam.update();
+		camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
+        camera.update();
 	}
 	
 	@Override

@@ -15,19 +15,14 @@ import com.mygdx.game.model.Constants;
 
 public class OptionsScreen extends AbstractScreen{
 	
-	OrthographicCamera guiCam;
-	private Viewport viewport;
+	OrthographicCamera camera;
 	private TextureAtlas atlas;
-	private Stage stage;
 	private Skin skin;
 	
 	public OptionsScreen(final UnexpectedMagic game){
-		this.game = game;
-		guiCam = new OrthographicCamera(Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y);
-		guiCam.setToOrtho(false, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y);
-		viewport = new ScalingViewport(Scaling.fit,Constants.VIEWPORT_DIM_X,Constants.VIEWPORT_DIM_Y, guiCam);
-	    viewport.apply();
-		stage = new Stage(viewport, game.batch);
+		super(game);
+		
+
 	    atlas = new TextureAtlas("skins/Mother_Skin/terramotherui/terra-mother-ui.atlas");
 	    skin = new Skin(Gdx.files.internal("skins/Mother_Skin/terramotherui/terra-mother-ui.json"),atlas);
 		}
@@ -36,8 +31,8 @@ public class OptionsScreen extends AbstractScreen{
 	public void render(float delta){
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		guiCam.update();
-		game.batch.setProjectionMatrix(guiCam.combined);
+		camera.update();
+		game.batch.setProjectionMatrix(camera.combined);
 		game.batch.begin();
 		game.font.draw(game.batch, "OPTIONS SCREEN", Constants.VIEWPORT_DIM_X/4, Constants.VIEWPORT_DIM_Y/2);
 		game.batch.end();
