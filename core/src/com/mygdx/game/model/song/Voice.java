@@ -3,7 +3,6 @@ package com.mygdx.game.model.song;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 /**
  * A class representing a single voice of a song.
@@ -21,23 +20,25 @@ public class Voice {
 	public Voice(String voice) throws IOException {
 		List<Note> nList = new LinkedList<>();
 		int sum = 0;
-		int min = nList.get(0).number, max = min;
 		for(String note : voice.split("[,|]")) {
 			Note n = Note.getNote(note);
-			min = Math.min(min, n.number);
-			max = Math.max(max, n.number);
 			nList.add(n);
 			sum += n.duration;
 		}
-		this.min = min;
-		this.max = max;
 		length = sum;
 		notes = new Note[sum];
 		sum = 0;
+		int min = nList.get(0).number, max = min;
 		for(Note note : nList) {
+			if(note != null) {
+				min = Math.min(min, note.number);
+				max = Math.max(max, note.number);
+			}
 			notes[sum] = note;
 			sum += note.duration;
 		}
+		this.min = min;
+		this.max = max;
 		//oMGIHAVECORNINMYCODEEEEE();
 		
 	}
