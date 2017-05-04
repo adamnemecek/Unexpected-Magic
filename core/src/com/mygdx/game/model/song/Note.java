@@ -46,12 +46,12 @@ public class Note {
 		char pitch = str.charAt(0);
 		int alt = 0;
 		switch(str.charAt(1)) {
-		case 'b':
-			alt = -1;
-			break;
-		case '#':
-			alt = +1;
-			break;
+			case 'b':
+				alt = -1;
+				break;
+			case '#':
+				alt = +1;
+				break;
 		}
 		//System.out.println(str+ ", " + str.substring(alt == 0 ? 1 : 2));
 		int oct = Integer.parseInt(str.replaceAll("[^\\d]", ""));

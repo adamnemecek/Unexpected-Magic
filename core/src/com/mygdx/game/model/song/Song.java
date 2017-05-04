@@ -5,6 +5,10 @@ import java.util.Queue;
 
 import com.mygdx.game.services.file.FileReader;
 
+/**
+ * A class representing a single song.
+ * @author car0b1nius
+ */
 public class Song {
 	public final String title;
 	public final int bpm;
@@ -19,7 +23,7 @@ public class Song {
 		voices = new Voice[sList.size()];
 		int i = 0;
 		for(String s : sList) {
-			voices[i++] = new Voice(s, null);
+			voices[i++] = new Voice(s);
 		}
 	}
 	public Voice[] getVoices() {
