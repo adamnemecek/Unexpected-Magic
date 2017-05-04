@@ -1,6 +1,9 @@
 
 # Created by https://www.gitignore.io/api/macos,linux,windows,eclipse,gradle
 
+###IntelliJ
+.idea
+
 ### Eclipse ###
 
 .metadata
@@ -126,6 +129,8 @@ $RECYCLE.BIN/
 ### Gradle ###
 .gradle
 /build/
+core/build
+desktop/build
 
 # Ignore Gradle GUI config
 gradle-app.setting
