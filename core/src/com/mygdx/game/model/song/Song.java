@@ -9,10 +9,13 @@ import com.mygdx.game.services.file.FileReader;
  * A class representing a single song.
  * @author car0b1nius
  */
-public class Song {
+public class Song implements ISong {
+	@Deprecated
 	public final String title;
+	@Deprecated
 	public final int bpm;
 	private final int[] time;
+	//TODO make IVoice
 	private final Voice[] voices;
 	public Song(String path) throws IOException {
 		Queue<String> sList = FileReader.readUXM(path);
@@ -31,5 +34,21 @@ public class Song {
 	}
 	public int[] getTime() {
 		return time.clone();
+	}
+	@Override
+	public String getTitle() {
+		return title;
+	}
+	@Override
+	public int getBpm() {
+		return bpm;
+	}
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for(Voice v : voices) {
+			sb.append("[").append(v.toString()).append("]");
+		}
+		return sb.toString();
 	}
 }

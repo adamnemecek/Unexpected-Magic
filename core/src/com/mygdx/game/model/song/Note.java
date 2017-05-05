@@ -1,7 +1,5 @@
 package com.mygdx.game.model.song;
 
-import com.mygdx.game.model.Constants;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,8 +7,7 @@ import java.util.Map;
  * A class that represents a single note.
  * @author car0b1nius
  */
-public class
-Note {
+public class Note implements INote {
 	//static
 	private static Map<String, Note> noteMap = new HashMap<>();
 	public static Note getNote(String note) throws IOException {
@@ -70,16 +67,24 @@ Note {
 		return num * factor;
 	}
 	//instance
-	public final int number, duration, lane;
+	@Deprecated
+	public final int number, duration;
 	private final String str;
 	private Note(String str, int number, int duration) {
 		this.number = number;
 		this.duration = duration;
 		this.str = str;
-		this.lane = number% Constants.NUMBER_OF_LANES;
 	}
 	@Override
 	public String toString() {
 		return str;
+	}
+	@Override
+	public int getNumber() {
+		return number;
+	}
+	@Override
+	public int getDuration() {
+		return duration;
 	}
 }

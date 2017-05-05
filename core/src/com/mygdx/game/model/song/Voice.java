@@ -9,10 +9,12 @@ import java.util.List;
  * @author car0b1nius
  * Revised by soflarb
  */
-public class Voice {
+public class Voice implements IVoice {
+	//TODO make INote
 	private final Note[] notes;
+	@Deprecated
 	public final int length;
-	public final int min, max;
+	private final int min, max;
 	@Deprecated
 	public Voice(String voice, String instrument) throws IOException {
 		this(voice);
@@ -23,19 +25,19 @@ public class Voice {
 		for(String note : voice.split("[,|]")) {
 			Note n = Note.getNote(note);
 			nList.add(n);
-			sum += n.duration;
+			sum += n.getDuration();
 		}
 		length = sum;
 		notes = new Note[sum];
 		sum = 0;
-		int min = nList.get(0).number, max = min;
+		int min = nList.get(0).getNumber(), max = min;
 		for(Note note : nList) {
 			if(note != null) {
-				min = Math.min(min, note.number);
-				max = Math.max(max, note.number);
+				min = Math.min(min, note.getNumber());
+				max = Math.max(max, note.getNumber());
 			}
 			notes[sum] = note;
-			sum += note.duration;
+			sum += note.getDuration();
 		}
 		this.min = min;
 		this.max = max;
@@ -52,16 +54,24 @@ public class Voice {
 	public Note[] getNotes() {
 		return notes.clone();
 	}
-	@Deprecated
+	/*@Deprecated
 	private void oMGIHAVECORNINMYCODEEEEE(){
 		System.out.println(toString());
-	}
+	}*/
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder(notes[0].toString());
-		for(int i=0;i<notes.length;i++){
+		for(int i=1;i<notes.length;i++){
 			sb.append(", ").append(notes[i]);
 		}
 		return sb.toString();
+	}
+	@Override
+	public int max() {
+		return max;
+	}
+	@Override
+	public int min() {
+		return min;
 	}
 }
