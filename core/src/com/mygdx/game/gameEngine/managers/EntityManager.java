@@ -41,7 +41,7 @@ public class EntityManager {
 
 	private void manageNoteEntities(int tick) {
 		for(int i = prevTick+1; i <= tick; i++) {
-            for(Voice voice : song.getVoices()){
+			for(Voice voice : song.getVoices()){
 				if(i >= voice.length) continue;
 				Note note = voice.noteAtTick(i);
 				//float posX = 100;

@@ -16,8 +16,8 @@ public class Song {
 	private final Voice[] voices;
 	public Song(String path) throws IOException {
 		Queue<String> sList = FileReader.readUXM(path);
-		title = sList.poll().replaceAll("\"", "");
-		String[] t = sList.poll().replaceAll("\"", "").split("/", 2);
+		title = sList.poll();
+		String[] t = sList.poll().split("/", 2);
 		time = new int[]{Integer.parseInt(t[0]), Integer.parseInt(t[1])};
 		bpm = Integer.parseInt(sList.poll());
 		voices = new Voice[sList.size()];

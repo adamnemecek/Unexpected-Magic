@@ -1,4 +1,4 @@
-package com.mygdx.game.services.file;
+package com.mygdx.game.model;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.mygdx.game.model.song.Song;
+import com.mygdx.game.services.file.FileReader;
 
 public class SongList {
 	

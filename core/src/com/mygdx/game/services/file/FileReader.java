@@ -64,7 +64,9 @@ public class FileReader {
 				char ch = sb.charAt(i);
 				//Skip strings
 				if(ch == '"') {
+					sb.deleteCharAt(i--);
 					i = sb.indexOf("\"", i);
+					sb.deleteCharAt(i--);
 				}
 				if(ch == ';') {
 					sList.add(sb.substring(0, i));
