@@ -8,6 +8,7 @@ import com.mygdx.game.model.song.Song;
 public class Round {
 	public final Song song;
 	public final ArrayList<Player> players;
+
 	
 	public Round(Song song, ArrayList<Player> players){
 		this.song = song;

@@ -4,6 +4,9 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.gameEngine.systems.MovementSystem;
+import com.mygdx.game.gameEngine.systems.ScoreSystem;
+import com.mygdx.game.gameEngine.systems.SoundSystem;
+import com.mygdx.game.model.Score;
 import com.mygdx.game.model.song.Note;
 import com.mygdx.game.model.song.Song;
 import com.mygdx.game.model.song.Voice;
@@ -17,7 +20,7 @@ public class EntityManager {
 	private Engine engine;
 	SpriteBatch batch;
 	Song song;
-	SoundManager soundManager;
+
 	
 	public EntityManager(Engine engine, SpriteBatch batch/*, UnexpectedMagic game*/, Song song){
 		//this.game = game;
@@ -27,9 +30,10 @@ public class EntityManager {
 		
 		//Create all the systems
 		MovementSystem movementSystem = new MovementSystem();
+        SoundSystem soundSystem = new SoundSystem(new SoundManager());
 		//Add all the systems to the engine
 		this.engine.addSystem(movementSystem);
-		soundManager = new SoundManager();
+        this.engine.addSystem(soundSystem);
 	}
 	
 	public void update(int tick){
@@ -38,17 +42,19 @@ public class EntityManager {
 	int prevTick = -1;
 	private void manageNoteEntities(int tick) {
 		for(int i = prevTick+1; i <= tick; i++) {
-			System.out.println(i);
-			for(Voice voice : song.getVoices()){
+            for(Voice voice : song.getVoices()){
 				if(i >= voice.length) continue;
 				Note note = voice.noteAtTick(i);
 				//float posX = 100;
 				if(note == null) continue;
-				Entity newNoteEntity = EntityFactory.createNoteEntity(note);
-				engine.addEntity(newNoteEntity);
-				soundManager.play(note);
+                    Entity newNoteEntity = EntityFactory.createNoteEntity(note);
+                    engine.addEntity(newNoteEntity);
+
+
+                }
 			}
-		}
+
 		prevTick = tick;
-	}	
+	}
+
 }

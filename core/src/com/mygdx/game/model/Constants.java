@@ -26,6 +26,7 @@ public final class Constants {
 	public static final float PIANOROLL_POS_Y = VIEWPORT_DIM_Y - PIANOROLL_DIM_Y - PIANOROLL_TOP_PADDING;
 //	public static final double PIANOROLL_BOT_PADDING_FACTOR = PIANOROLL_BOT_PADDING/PIANOROLL_DIM_Y;
 	public static final int NUMBER_OF_LANES = 12;
+    public static final float LANE_WIDTH = VIEWPORT_DIM_X/NUMBER_OF_LANES;
 	public static final int PIANOROLL_SOUNDLINE_Y = 20;
 
 }

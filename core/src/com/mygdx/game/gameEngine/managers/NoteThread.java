@@ -9,7 +9,7 @@ import java.util.Map;
 public class NoteThread extends Thread{
 
 	private final MidiChannel channel;
-	private final int sleepTime = 5;
+	private final int sleepTime = 1;
 	private final int noteVolume = 1000;
 	
 	Map<Integer, Integer> notes = new ConcurrentHashMap<Integer, Integer>();
@@ -20,7 +20,8 @@ public class NoteThread extends Thread{
 	}
 	
 	public void play(Integer noteNumber, Integer noteDuration){
-		notes.put(noteNumber, noteDuration);
+
+	    notes.put(noteNumber, noteDuration);
 		
 		channel.noteOn(noteNumber, noteVolume);
 	}
@@ -29,7 +30,8 @@ public class NoteThread extends Thread{
 	public void run() {	
 		
 		boolean interrupted = false;
-		
+
+
 		while(!interrupted){
 			try {
 				NoteThread.sleep(sleepTime);

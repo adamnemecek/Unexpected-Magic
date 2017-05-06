@@ -19,14 +19,13 @@ import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.gameEngine.managers.EntityManager;
+import com.mygdx.game.gameEngine.managers.KeyboardInputManager;
 import com.mygdx.game.gameEngine.managers.RoundManager;
 import com.mygdx.game.gameEngine.managers.SoundManager;
 import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
-import com.mygdx.game.model.Constants;
-import com.mygdx.game.model.Player;
-import com.mygdx.game.model.Round;
-import com.mygdx.game.model.Ticker;
+import com.mygdx.game.gameEngine.systems.ScoreSystem;
+import com.mygdx.game.model.*;
 import com.mygdx.game.model.song.Song;
 
 
@@ -47,6 +46,7 @@ public class GameScreen extends AbstractScreen{
 	private Hud hud;
 	private PianoRoll pianoRoll;
 	private final SoundManager soundmanager;
+	private final KeyboardInputManager keyboardInputManager;
 	
 	public GameScreen(final UnexpectedMagic game, Song song, ArrayList<Player> players) throws IOException{
 		super(game);
@@ -58,16 +58,22 @@ public class GameScreen extends AbstractScreen{
 		backgroundTexture = new Texture("images/textureCheckedBlue16x16.png");
 		backgroundTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
 		pianoRollTexture = new Texture("images/textureCheckedPurple16x16.png");
-		
-		hud = new Hud(batch);
+
+
+
+        hud = new Hud(batch);
 		pianoRoll = new PianoRoll(engine, batch);
 		initRound(song, players, engine, batch); //TODO catch exceptions?
 
-	    Gdx.input.setInputProcessor(stage);
-		soundmanager = new SoundManager();	
+        ScoreSystem scoreSystem = new ScoreSystem(new Score(),pianoRoll); //TODO SHOULD BE SOMEWHERE ELSE
+        engine.addSystem(scoreSystem);
+
+        soundmanager = new SoundManager();
 	    soundmanager.setInstrument(40);
-	    
-	    addStageListener();
+
+        this.keyboardInputManager = new KeyboardInputManager(soundmanager, pianoRoll);
+	    Gdx.input.setInputProcessor(keyboardInputManager);
+
 	}
 	
 	public void initRound(Song song, ArrayList<Player> players, Engine engine, SpriteBatch batch) throws IOException{
@@ -101,7 +107,6 @@ public class GameScreen extends AbstractScreen{
 		viewport.apply(true);
 		batch.begin();
 		batch.draw(backgroundTexture, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_X, 0, 10, 10, 0);
-		
 		batch.end();
 		
 		//Gdx.gl.glViewport((int)Constants.PIANOROLL_POS_X,(int)Constants.PIANOROLL_POS_Y,(int)Constants.PIANOROLL_DIM_X,(int)Constants.PIANOROLL_DIM_Y);
@@ -124,136 +129,4 @@ public class GameScreen extends AbstractScreen{
 		pianoRoll.resize(viewport.getScreenWidth(), viewport.getScreenHeight(), viewport.getScreenX(), viewport.getScreenY());
 		
 	}
-	
-	private void addStageListener(){
-		stage.addListener(new InputListener(){
-        	@Override
-        	public boolean keyDown(InputEvent event, int keycode){
-        		
-        		switch(keycode){
-        		
-        		case (Input.Keys.TAB) : soundmanager.setInstrument(new Random().nextInt(100));
-        		break;
-        		
-        		case (Input.Keys.A): 
-        			soundmanager.noteOn(57);
-        			pianoRoll.activateLane(0);
-        		break;
-        		
-        		case (Input.Keys.S):
-        			soundmanager.noteOn(58);
-        			pianoRoll.activateLane(1);
-
-        		break;
-        		
-        		case (Input.Keys.D): 
-        			soundmanager.noteOn(59);
-        			pianoRoll.activateLane(2);
-
-        		break;
-        		
-        		case (Input.Keys.F):
-        			soundmanager.noteOn(60);
-        			pianoRoll.activateLane(3);
-
-        		break;
-        		
-        		case (Input.Keys.G): 
-        			soundmanager.noteOn(61);
-    				pianoRoll.activateLane(4);
-    			
-        		break;
-        		
-        		case (Input.Keys.H): 
-        			soundmanager.noteOn(62);
-    				pianoRoll.activateLane(5);
-        		
-        		break;
-        		
-        		case (Input.Keys.J): 
-        			soundmanager.noteOn(63);
-        			pianoRoll.activateLane(6);
-
-        		break;
-        		
-        		case (Input.Keys.K): 
-        			soundmanager.noteOn(64);
-        			pianoRoll.activateLane(7);
-        		
-        		break;
-        		
-        		case (Input.Keys.L): 
-        			soundmanager.noteOn(65);
-        			pianoRoll.activateLane(8);
-        		
-        		break;
-        		        		
-        		default:
-        		break;
-        		}
-        		
-        		return true;
-        	
-        	
-        	}
-        	@Override
-        	public boolean keyUp(InputEvent event, int keycode){
-        		switch(keycode){
-        		
-        		case (Input.Keys.A): 
-        			soundmanager.noteOff(57);
-        			pianoRoll.deactivateLane(0);
-        		break;
-        		
-        		case (Input.Keys.S): 
-        			soundmanager.noteOff(58);
-        			pianoRoll.deactivateLane(1);
-        		break;
-        		
-        		case (Input.Keys.D): 
-        			soundmanager.noteOff(59);
-        			pianoRoll.deactivateLane(2);
-        		break;
-        		
-        		case (Input.Keys.F): 
-        			soundmanager.noteOff(60);
-        			pianoRoll.deactivateLane(3);
-        		break;
-        		
-        		case (Input.Keys.G):
-        			soundmanager.noteOff(61);
-        			pianoRoll.deactivateLane(4);
-        		break;
-        		
-        		case (Input.Keys.H): 
-        			soundmanager.noteOff(62);
-        			pianoRoll.deactivateLane(5);
-        		break;
-        		
-        		case (Input.Keys.J): 
-        			soundmanager.noteOff(63);
-        			pianoRoll.deactivateLane(6);
-        		break;
-        		
-        		case (Input.Keys.K): 
-        			soundmanager.noteOff(64);
-        			pianoRoll.deactivateLane(7);
-        		break;
-        		
-        		case (Input.Keys.L): 
-        			soundmanager.noteOff(65);
-        			pianoRoll.deactivateLane(8);
-        		
-        		break;
-        		
-        		default:
-        		break;
-        		}
-        		
-        		 		return true;
-        	}
-        	
-	    	});
-	}
-	
 }

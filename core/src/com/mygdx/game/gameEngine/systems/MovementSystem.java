@@ -26,6 +26,10 @@ public class MovementSystem extends IteratingSystem{
         //System.out.println("MovementSystem. DELTA:" + delta);
         pos.x += vel.x * delta; //TODO
         pos.y += vel.y * delta; //TODO
+
+        if (pos.y < 0){
+            getEngine().removeEntity(entity);
+        }
         //System.out.println("MovementSystem. NEW POS. x = " + pos.x + ", y = " + pos.y);
     }
 }

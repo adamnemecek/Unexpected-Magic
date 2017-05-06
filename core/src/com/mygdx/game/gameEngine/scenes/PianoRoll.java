@@ -29,8 +29,8 @@ public class PianoRoll {
 	ComponentMapper<SpriteComponent> spriteComponentMapper;	
 	private Texture activeLaneTexture;
 	private Texture inactiveLaneTexture;
-	private Texture [] laneStates;
-	private int nLanes = 12; //TODO
+	private boolean [] laneStates; //True = active, False = inactive
+	private int nLanes = Constants.NUMBER_OF_LANES; //TODO
 	private float laneWidth;
 	
 	
@@ -48,12 +48,12 @@ public class PianoRoll {
 		//camera.zoom = 0.5f;
 		activeLaneTexture = new Texture("images/Lanes/Lime.png");
 		inactiveLaneTexture = new Texture("images/Lanes/Yellow.png");
-		laneStates = new Texture[nLanes];
+		laneStates = new boolean[nLanes];
 		laneWidth = Constants.PIANOROLL_DIM_X/nLanes;
 		
 		//set all lanes inactive
 		for (int i = 0; i < nLanes; i ++){
-			laneStates[i] = inactiveLaneTexture;
+			laneStates[i] = false;
 		}
 		
 		//backgroundTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
@@ -67,7 +67,7 @@ public class PianoRoll {
 			PositionComponent pos = positionComponentMapper.get(entity);
 	        SpriteComponent spr = spriteComponentMapper.get(entity);
 	        
-	        batch.draw(spr.sprite.getTexture(), (float)Math.floor(pos.x), (float)Math.floor(pos.y));
+	        batch.draw(spr.sprite.getTexture(), (float)Math.floor(pos.x)+Constants.LANE_WIDTH/2, (float)Math.floor(pos.y));
 	        //batch.draw(spr.sprite.getTexture(), pos.x, pos.y);
 
 		}
@@ -88,16 +88,25 @@ public class PianoRoll {
 	}
 	
 	public void activateLane(int lane){
-		this.laneStates[lane] = this.activeLaneTexture;
+		this.laneStates[lane] = true;
 	}
 	
 	public void deactivateLane(int lane){
-		this.laneStates[lane] = this.inactiveLaneTexture;
+		this.laneStates[lane] = false;
 	}
 	
 	public void drawLanes(){
-		for (int i = 0; i < laneStates.length; i ++){
-			batch.draw(laneStates[i], laneWidth*i, 0, laneWidth, 2000, 0, 10, 10, 0);
+		for (int i = 0; i < laneStates.length; i ++) {
+            if (laneStates[i]) {
+                batch.draw(activeLaneTexture, laneWidth * i, 50, laneWidth, 50, 0, 10, 10, 0);
+            } else {
+                batch.draw(inactiveLaneTexture, laneWidth * i, 50, laneWidth, 50, 0, 10, 10, 0);
+            }
+        }
+
 		}
+
+	public boolean getLaneState(int i){
+    return this.laneStates[i];
 	}
 }
