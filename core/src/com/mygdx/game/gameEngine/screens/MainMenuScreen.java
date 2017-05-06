@@ -34,14 +34,10 @@ import com.mygdx.game.UnexpectedMagic;
 public class MainMenuScreen extends AbstractScreen{
 	
 	//GAME STUFF
-	
-	Engine engine;
 	private SongList songList;
 	private ArrayList<Player> players;
 	
 	//BUTTONS
-	private TextureAtlas atlas;
-	private Skin skin;
 	private ButtonGroup<TextButton> buttongroup;
 	private String [] menuItems;
 	private int menuItemSelected;
@@ -51,38 +47,38 @@ public class MainMenuScreen extends AbstractScreen{
 	private TextButton animationButton;
 	private TextButton exitButton;
 	
-	public MainMenuScreen(final UnexpectedMagic game){
+	public MainMenuScreen (final UnexpectedMagic game){
 		super(game);
-		engine = game.engine;
-		
-		
+
 		songList = new SongList();
 		players = new ArrayList<>();
+
 		//TEST PLAYERS
 		players.add(new Player("Testplayer1", null, null));
 		players.add(new Player("Testplayer2", null, null));
 		
 		menuItemSelected = 0;
 	    menuItems =  new String [] {"Play","Options","Animation","Exit"};
-	   
-	    atlas = new TextureAtlas("skins/Mother_Skin/terramotherui/terra-mother-ui.atlas");
-	    skin = new Skin(Gdx.files.internal("skins/Mother_Skin/terramotherui/terra-mother-ui.json"),atlas);
-	    Gdx.input.setInputProcessor(stage);
+
+	    Gdx.input.setInputProcessor(stage); //TODO USE THE SAME INPUT PROCESSOR FOR EVERYTHING?
 	}
 	
     @Override
     public void show() {
-        //Create Table
+
+	    //Create Table
         Table mainTable = new Table();
         mainTable.setFillParent(true);        
-       //Creates button Style
+
+        //Creates button Style
        TextButtonStyle textButtonStyle = new TextButtonStyle();
        textButtonStyle.font = skin.getFont("giygas");
        textButtonStyle.checked = skin.getDrawable("window");
        textButtonStyle.down = skin.getDrawable("window-player");
-       
+
        float fontScale = (float) 1;
        float buttonScale = (float) 1;
+
        //PLAY BUTTON
        	playButton = new TextButton("Play", textButtonStyle);
        	playButton.setTransform(true);
@@ -121,11 +117,7 @@ public class MainMenuScreen extends AbstractScreen{
         //Add table to stage
         stage.addActor(mainTable);
     }
-	
-	public void update(){
-		
-	}
-	
+
 	@Override
 	public void render(float delta){
 		Gdx.gl.glClearColor(0,0,0,1);
@@ -143,7 +135,6 @@ public class MainMenuScreen extends AbstractScreen{
     public void dispose() {
         skin.dispose();
 		atlas.dispose();
-       
     }
 	
 	@Override
@@ -152,12 +143,7 @@ public class MainMenuScreen extends AbstractScreen{
 		camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
         camera.update();
 	}
-	
-	@Override
-	public void pause(){
-		
-	}
-	
+    //TODO should be done in a more elegant way
 	private void addButtonListeners(){
 		playButton.addListener(new ClickListener(){
             @Override
@@ -232,10 +218,10 @@ public class MainMenuScreen extends AbstractScreen{
         	
         });
 	}
-	
+
     public void playButtonPushed (){
     	try {
-    		Iterator<String> it = songList.songs().iterator();
+    		Iterator<String> it = songList.songs().iterator(); //TODO SHOULD BE DONE PERHAPS SOMEWHERE ELSE
     		//it.next();
     		//it.next();
     		//it.next();

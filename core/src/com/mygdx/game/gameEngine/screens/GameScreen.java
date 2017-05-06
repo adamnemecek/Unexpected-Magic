@@ -55,8 +55,7 @@ public class GameScreen extends AbstractScreen{
 		/*camera = new OrthographicCamera();
 		camera.setToOrtho(false);*/
 		running = false; //TODO get the right arguments song, players
-		backgroundTexture = new Texture("images/textureCheckedBlue16x16.png");
-		backgroundTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+		backgroundTexture = new Texture("images/lanes/White.png");
 		pianoRollTexture = new Texture("images/textureCheckedPurple16x16.png");
 
 
@@ -65,7 +64,7 @@ public class GameScreen extends AbstractScreen{
 		pianoRoll = new PianoRoll(engine, batch);
 		initRound(song, players, engine, batch); //TODO catch exceptions?
 
-        ScoreSystem scoreSystem = new ScoreSystem(new Score(),pianoRoll); //TODO SHOULD BE SOMEWHERE ELSE
+        ScoreSystem scoreSystem = new ScoreSystem(new Score(),pianoRoll.getNoteLanes()); //TODO SHOULD BE SOMEWHERE ELSE
         engine.addSystem(scoreSystem);
 
         soundmanager = new SoundManager();

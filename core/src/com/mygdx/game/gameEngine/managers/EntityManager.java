@@ -16,14 +16,12 @@ import com.mygdx.game.model.Constants;
 * Class for managing entities.
 */
 public class EntityManager {
-	//final UnexpectedMagic game;
 	private Engine engine;
-	SpriteBatch batch;
-	Song song;
+	private SpriteBatch batch;
+	private Song song;
 
 	
-	public EntityManager(Engine engine, SpriteBatch batch/*, UnexpectedMagic game*/, Song song){
-		//this.game = game;
+	public EntityManager(Engine engine, SpriteBatch batch, Song song){
 		this.engine = engine;
 		this.batch = batch;
 		this.song = song;
@@ -40,6 +38,7 @@ public class EntityManager {
 		manageNoteEntities(tick);
 	}
 	int prevTick = -1;
+
 	private void manageNoteEntities(int tick) {
 		for(int i = prevTick+1; i <= tick; i++) {
             for(Voice voice : song.getVoices()){

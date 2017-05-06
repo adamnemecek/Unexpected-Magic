@@ -7,6 +7,7 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.mygdx.game.gameEngine.components.NoteComponent;
 import com.mygdx.game.gameEngine.components.PositionComponent;
 import com.mygdx.game.gameEngine.managers.SoundManager;
+import com.mygdx.game.model.Constants;
 
 /**
  * Created by rasmus on 2017-05-05.
@@ -27,7 +28,8 @@ public class SoundSystem extends IteratingSystem{
     protected void processEntity(Entity entity, float deltaTime) {
         PositionComponent pos = pm.get(entity);
         NoteComponent not = nm.get(entity);
-        if(pos.y < 100 && pos.y > 95){ //TODO THIS IS NOT ACCURATE
+
+        if((int)pos.y == Constants.SCORE_LINE){ //TODO Is this accurate
             soundManager.play(not.note);
         }
     }

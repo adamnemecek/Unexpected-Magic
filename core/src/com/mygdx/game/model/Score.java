@@ -10,27 +10,28 @@ public class Score {
 	 * Modified by Arunvik
 	 * Primitive, mostly made for me to test testing
 	 */
+
+	//TODO if score is only part of model should it calculate things??
 	
 	private int score;
 	private int streak;
-	
+	private int multiplier; //higher score if higher streak
 	
 	public Score(){
 		score = 0;
-		streak = 0;	
+		streak = 0;
+		multiplier = Math.round(((float)(score)/10)); //TODO this could perhaps work
 	}
 	//first draft, score calculation? Keep track of percentage of note hit?
 	public void hitNote(){
 		score += 1;
-		System.out.println("SCORE: " + score);
-		//streak++;
-	}
+		//streak++
+    }
 
 
 	public void missedNote(){
 		streak=0;
 	}
-	
 	public int getStreak(){
 		return streak;
 	}

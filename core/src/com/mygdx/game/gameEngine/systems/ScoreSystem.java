@@ -7,6 +7,8 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.mygdx.game.gameEngine.components.NoteComponent;
 import com.mygdx.game.gameEngine.components.PositionComponent;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
+import com.mygdx.game.model.Constants;
+import com.mygdx.game.model.NoteLanes;
 import com.mygdx.game.model.Score;
 
 /**
@@ -15,25 +17,25 @@ import com.mygdx.game.model.Score;
 public class ScoreSystem extends IteratingSystem {
 
     private final Score score;
-    private final PianoRoll pianoRoll;
+    private final NoteLanes noteLanes;
 
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
     private ComponentMapper<NoteComponent> nm = ComponentMapper.getFor(NoteComponent.class);
 
-    public ScoreSystem(Score s, PianoRoll p) {
+    public ScoreSystem(Score s, NoteLanes n) {
         super(Family.all(PositionComponent.class, NoteComponent.class).get());
         this.score = s;
-        this.pianoRoll = p;
+        this.noteLanes = n;
     }
 
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
         NoteComponent not = nm.get(entity);
-        if (pianoRoll.getLaneState(not.note.lane)) {
+        if (noteLanes.getLaneState(not.note.lane)) {
             PositionComponent pos = pm.get(entity);
 
-        if(pos.y < 100 && pos.y > 50) { //TODO THIS IS NOT ACCURATE
+        if(pos.y < Constants.SCORE_LINE && pos.y > 0) { //TODO THIS IS NOT ACCURATE
             score.hitNote();
         }
         }

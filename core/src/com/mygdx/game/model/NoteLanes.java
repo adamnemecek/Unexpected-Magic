@@ -1,24 +1,47 @@
 package com.mygdx.game.model;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.game.model.song.Note;
 
+/**
+ * A class that represents all the note lanes
+ */
+
 public class NoteLanes {
-	/*
-	public static final String[] keyboard = {"A0","A#0","B0",
-								 "C1","C#1","D1","D#1","E1","F1","F#1","G1","G#1","A1","A#1","B1",
-								 "C2","C#2","D2","D#2","E2","F2","F#2","G2","G#2","A2","A#2","B2",
-								 "C3","C#3","D3","D#3","E3","F3","F#3","G3","G#3","A3","A#3","B3",
-								 "C4","C#4","D4","D#4","E4","F4","F#4","G4","G#4","A4","A#4","B4",
-								 "C5","C#5","D5","D#5","E5","F5","F#5","G5","G#5","A5","A#5","B5",
-								 "C6","C#6","D6","D#6","E6","F6","F#6","G6","G#6","A6","A#6","B6",
-								 "C7","C#7","D7","D#7","E7","F7","F#7","G7","G#7","A7","A#7","B7",
-								 "C8"};
-	*/
-	private static int laneIndex(Note n) {
-		//System.out.println("NoteLanes. Note: " + n.toString() + " laneIndex: " + n.number % 12 + " number: " + n.number);
-		return n.number % 12;
-	}
-	public static int laneX(Note n){
-		return laneIndex(n) * (int) Constants.PIANOROLL_DIM_X/Constants.NUMBER_OF_LANES; //TODO cast everythinhg??
-	}
+
+	private boolean[] laneStates; //false = inactive, true = active
+    private Texture activeTexture;
+    private Texture inactiveTexture;
+
+    public NoteLanes(){
+
+        laneStates = new boolean[Constants.NUMBER_OF_LANES];
+
+        //init all lanes inactive
+        for(int i = 0; i < Constants.NUMBER_OF_LANES; i++){
+            this.laneStates[i] = false;
+        }
+
+        this.activeTexture = new Texture("images/lanes/Blue.png");
+        this.inactiveTexture = new Texture("images/lanes/Red.png");
+    }
+
+	public Texture getLaneTexture(int i){
+	    if(laneStates[i]){
+	        return activeTexture;
+        }
+        else return inactiveTexture;
+    }
+
+    public boolean getLaneState(int i){
+	    return this.laneStates[i];
+    }
+
+    public void activateLane(int i){
+	    this.laneStates[i] = true;
+    }
+
+    public void deactivateLane(int i){
+        this.laneStates[i] = false;
+    }
 }
