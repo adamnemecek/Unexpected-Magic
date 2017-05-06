@@ -21,8 +21,8 @@ public class EntityFactory {
 		PositionComponent positionComponent = new PositionComponent(posX, NoteOrigPosY);
 		VelocityComponent velocityComponent = new VelocityComponent(0, NoteVelY);
 		NoteComponent noteComponent = new NoteComponent(note);
-		SpriteComponent spriteComponent = new SpriteComponent(new Sprite(new Texture("sprites/note1.png")));
-		entity.add(positionComponent).add(velocityComponent).add(noteComponent).add(spriteComponent);
+		SpriteComponent normalSprite = new SpriteComponent(new Sprite(new Texture("sprites/note1.png")));
+		entity.add(positionComponent).add(velocityComponent).add(noteComponent).add(normalSprite);
 		return entity;
 	}
 	
