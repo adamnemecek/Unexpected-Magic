@@ -37,7 +37,6 @@ public class MainMenuScreen extends AbstractScreen {
 
 	@Override
 	public void show() {
-
 		// Create Table
 		Table mainTable = new Table();
 		mainTable.setFillParent(true);
@@ -46,36 +45,47 @@ public class MainMenuScreen extends AbstractScreen {
 		stage.addActor(mainTable);
 
 		// Creates button Style
-		TextButtonStyle textButtonStyle = new TextButtonStyle();
-		textButtonStyle.font = skin.getFont("giygas");
-		textButtonStyle.checked = skin.getDrawable("window");
-		textButtonStyle.down = skin.getDrawable("window-player");
+		//TextButtonStyle textButtonStyle = new TextButtonStyle();
+		//textButtonStyle.font = skin.getFont("font");
+		//textButtonStyle.checked = skin.getDrawable("window");
+		//textButtonStyle.down = skin.getDrawable("window-player");
 
-		float fontScale = (float) 1;
-		float buttonScale = (float) 1;
+		//float fontScale = 1f;
+		//float buttonScale = 1f;
 
-		newgameButton = new TextButton(menuItems[0], textButtonStyle);
-		optionButton = new TextButton(menuItems[1], textButtonStyle);
-		animationButton = new TextButton(menuItems[2], textButtonStyle);
-		exitButton = new TextButton(menuItems[3], textButtonStyle);
+		newgameButton = new TextButton(menuItems[0], skin);
+		optionButton = new TextButton(menuItems[1], skin);
+		animationButton = new TextButton(menuItems[2], skin);
+		exitButton = new TextButton(menuItems[3], skin);
+		
 		// Add buttons to table
 		float width = Gdx.graphics.getWidth() - Gdx.graphics.getHeight();
 		float height = Gdx.graphics.getHeight() / 8;
+		/*
 		mainTable.add(newgameButton).size(width, height).row();
 		mainTable.add(optionButton).size(width, height).row();
 		mainTable.add(animationButton).size(width, height).row();
 		mainTable.add(exitButton).size(width, height);
-		for(TextButton btn : new TextButton[]{newgameButton, optionButton, animationButton, exitButton}) {
-			btn.setTransform(true);
-			btn.getLabel().setFontScale(fontScale);
-			btn.setScale(buttonScale);
-		}
+		*/
+		mainTable.add(newgameButton).fillX().uniformX();
+		mainTable.row();//.pad(-30,0,-30,0);
+		mainTable.add(optionButton).fillX().uniformX();
+		mainTable.row();
+		mainTable.add(animationButton).fillX().uniformX();
+		mainTable.row();
+		mainTable.add(exitButton).fillX().uniformX();
+		
 		// BUTTON GROUP
 		buttongroup = new ButtonGroup<TextButton>(newgameButton, optionButton, animationButton, exitButton);
 		buttongroup.setMaxCheckCount(1);
 		buttongroup.setMinCheckCount(0);
 		buttongroup.setChecked(menuItems[0]);
-
+		
+		/*for(TextButton btn : buttongroup.getButtons()) {
+			btn.setTransform(true);
+			btn.getLabel().setFontScale(fontScale);
+			btn.setScale(buttonScale);
+		}*/
 		addButtonListeners();
 
 	}
