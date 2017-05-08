@@ -33,11 +33,11 @@ public class ScoreSystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
         NoteComponent not = nm.get(entity);
         if (noteLanes.getLaneState(not.note.getPitch() % Constants.NUMBER_OF_LANES)) {
-            PositionComponent pos = pm.get(entity);
+        	PositionComponent pos = pm.get(entity);
 
-        if(pos.y < Constants.SCORE_LINE && pos.y > 0) { //TODO THIS IS NOT ACCURATE
-            score.hitNote();
-        }
+        	if(pos.y < Constants.SCORE_LINE && pos.y > 0) { //TODO THIS IS NOT ACCURATE
+        		score.hitNote();
+        	}
         }
     }
 }
