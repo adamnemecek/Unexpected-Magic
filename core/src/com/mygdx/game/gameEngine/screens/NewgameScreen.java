@@ -7,10 +7,16 @@ import java.util.Set;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.model.Constants;
 import com.mygdx.game.model.Player;
@@ -36,10 +42,13 @@ public class NewgameScreen extends AbstractScreen {
 		players.add(new Player("Testplayer2", null, null));
 		//game.setScreen(new GameScreen(game, songList.getSong("Swordland"), players));
 		// song takes the text in the text doc as a String
-		// SONG LIST
+		
+		// table
 		Table table = new Table();
-		table.setDebug(true, true);
 		table.setFillParent(true);
+		table.setDebug(true, true);
+		stage.addActor(table);
+		// selectbox
 		SelectBox<String> songSelector = new SelectBox<String>(skin);
 		{
 			Set<String> sa = songList.songs();
@@ -49,8 +58,19 @@ public class NewgameScreen extends AbstractScreen {
 			songSelector.setSelected(a[1]);
 			System.out.println(Arrays.toString(a));
 		}
-		table.add(songSelector);
-		stage.addActor(table);
+		TextButton playButton = new TextButton("Play", skin);
+		playButton.addListener(
+			(Event event) -> {
+				if(!(event instanceof InputEvent)) return false;
+				InputEvent e = (InputEvent) event;
+				if(e.getType() != InputEvent.Type.touchDown) return false;
+				System.out.println(songSelector.getSelected());
+				return true;
+			}
+		);
+		table.add(songSelector).fillX().uniformX();
+		table.row();
+		table.add(playButton).fillX().uniformX();
 	}
 
 	@Override

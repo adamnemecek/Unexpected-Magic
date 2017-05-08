@@ -119,7 +119,7 @@ public class GameScreen extends AbstractScreen{
 		
 	@Override
 	public void resize(int width, int height){
-		viewport.update(width, height);
+		super.resize(width, height);
 		pianoRoll.resize(viewport.getScreenWidth(), viewport.getScreenHeight(), viewport.getScreenX(), viewport.getScreenY());
 		
 	}

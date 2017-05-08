@@ -38,11 +38,11 @@ public class MainMenuScreen extends AbstractScreen {
 	@Override
 	public void show() {
 		// Create Table
-		Table mainTable = new Table();
-		mainTable.setFillParent(true);
-		mainTable.setDebug(true, true);
+		Table table = new Table();
+		table.setFillParent(true);
+		table.setDebug(true, true);
 		// Add table to stage
-		stage.addActor(mainTable);
+		stage.addActor(table);
 
 		// Creates button Style
 		//TextButtonStyle textButtonStyle = new TextButtonStyle();
@@ -67,13 +67,13 @@ public class MainMenuScreen extends AbstractScreen {
 		mainTable.add(animationButton).size(width, height).row();
 		mainTable.add(exitButton).size(width, height);
 		*/
-		mainTable.add(newgameButton).fillX().uniformX();
-		mainTable.row();//.pad(-30,0,-30,0);
-		mainTable.add(optionButton).fillX().uniformX();
-		mainTable.row();
-		mainTable.add(animationButton).fillX().uniformX();
-		mainTable.row();
-		mainTable.add(exitButton).fillX().uniformX();
+		table.add(newgameButton).fillX().uniformX();
+		table.row();//.pad(-30,0,-30,0);
+		table.add(optionButton).fillX().uniformX();
+		table.row();
+		table.add(animationButton).fillX().uniformX();
+		table.row();
+		table.add(exitButton).fillX().uniformX();
 		
 		// BUTTON GROUP
 		buttongroup = new ButtonGroup<TextButton>(newgameButton, optionButton, animationButton, exitButton);
@@ -101,13 +101,6 @@ public class MainMenuScreen extends AbstractScreen {
 
 		stage.act();
 		stage.draw();
-	}
-
-	@Override
-	public void resize(int width, int height) {
-		viewport.update(width, height);
-		camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
-		camera.update();
 	}
 
 	// TODO should be done in a more elegant way
