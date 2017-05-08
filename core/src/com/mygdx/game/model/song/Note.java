@@ -80,7 +80,7 @@ public class Note implements INote {
 		return str;
 	}
 	@Override
-	public int getNumber() {
+	public int getPitch() {
 		return number;
 	}
 	@Override

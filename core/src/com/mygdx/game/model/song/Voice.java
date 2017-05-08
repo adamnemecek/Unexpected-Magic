@@ -30,11 +30,11 @@ public class Voice implements IVoice {
 		length = sum;
 		notes = new Note[sum];
 		sum = 0;
-		int min = nList.get(0).getNumber(), max = min;
+		int min = nList.get(0).getPitch(), max = min;
 		for(Note note : nList) {
 			if(note != null) {
-				min = Math.min(min, note.getNumber());
-				max = Math.max(max, note.getNumber());
+				min = Math.min(min, note.getPitch());
+				max = Math.max(max, note.getPitch());
 			}
 			notes[sum] = note;
 			sum += note.getDuration();

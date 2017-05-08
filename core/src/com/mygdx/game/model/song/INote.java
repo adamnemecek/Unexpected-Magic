@@ -5,6 +5,9 @@ package com.mygdx.game.model.song;
  * @author car0b1nius
  */
 public interface INote {
-	int getNumber();
+	int getPitch();
 	int getDuration();
+	default boolean isRest() {
+		return getPitch() == -1;
+	}
 }
