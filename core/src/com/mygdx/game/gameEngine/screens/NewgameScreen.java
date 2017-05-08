@@ -1,5 +1,6 @@
 package com.mygdx.game.gameEngine.screens;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
@@ -40,7 +41,6 @@ public class NewgameScreen extends AbstractScreen {
 		// TEST PLAYERS
 		players.add(new Player("Testplayer1", null, null));
 		players.add(new Player("Testplayer2", null, null));
-		//game.setScreen(new GameScreen(game, songList.getSong("Swordland"), players));
 		// song takes the text in the text doc as a String
 		
 		// table
@@ -65,6 +65,11 @@ public class NewgameScreen extends AbstractScreen {
 				InputEvent e = (InputEvent) event;
 				if(e.getType() != InputEvent.Type.touchDown) return false;
 				System.out.println(songSelector.getSelected());
+				try {
+					game.setScreen(new GameScreen(game, songList.getSong(songSelector.getSelected()), players));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 				return true;
 			}
 		);
