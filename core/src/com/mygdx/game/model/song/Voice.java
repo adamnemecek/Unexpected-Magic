@@ -12,13 +12,7 @@ import java.util.List;
 public class Voice implements IVoice {
 	//TODO make INote
 	private final Note[] notes;
-	@Deprecated
-	public final int length;
 	private final int min, max;
-	@Deprecated
-	public Voice(String voice, String instrument) throws IOException {
-		this(voice);
-	}
 	public Voice(String voice) throws IOException {
 		List<Note> nList = new LinkedList<>();
 		int sum = 0;
@@ -27,7 +21,6 @@ public class Voice implements IVoice {
 			nList.add(n);
 			sum += n.getDuration();
 		}
-		length = sum;
 		notes = new Note[sum];
 		sum = 0;
 		int min = nList.get(0).getPitch(), max = min;
@@ -49,10 +42,6 @@ public class Voice implements IVoice {
 	}
 	public int length() {
 		return notes.length;
-	}
-	@Deprecated
-	public Note[] getNotes() {
-		return notes.clone();
 	}
 	/*@Deprecated
 	private void oMGIHAVECORNINMYCODEEEEE(){

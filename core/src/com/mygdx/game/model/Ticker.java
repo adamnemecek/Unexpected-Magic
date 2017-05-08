@@ -1,6 +1,6 @@
 package com.mygdx.game.model;
 
-import com.mygdx.game.model.song.Song;
+import com.mygdx.game.model.song.ISong;
 
 /**
 * Class that handles ticking through the songmap in-game.
@@ -12,10 +12,10 @@ public class Ticker {
 	private final double tickFreq;
 	private boolean ticking;
 
-	public Ticker(Song song){
+	public Ticker(ISong song){
 		tick = 0;
 		tickFreq = calculateTickFreq(song);
-		songTotalTicks = song.getVoices()[0].length; //TODO voice length is in number of 64 notes, every tick is a 64 note
+		songTotalTicks = song.getVoices()[0].length(); //TODO voice length is in number of 64 notes, every tick is a 64 note
 		//System.out.println("songTotalTicks: " +songTotalTicks);
 		ticking = true;
 	}
@@ -36,8 +36,8 @@ public class Ticker {
 		if(tick >= songTotalTicks){ ticking = false; }
 	}
 	
-	private double calculateTickFreq(Song song){
-		int bpm = song.bpm;
+	private double calculateTickFreq(ISong song){
+		int bpm = song.getBpm();
 		int timeBeatSize = song.getTime()[1]; //the denominator of the time signature
 		double r = bpm/60.0; //beats per second
 		return r*64/timeBeatSize; //number of 64th notes per second

@@ -4,13 +4,10 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.gameEngine.systems.MovementSystem;
-import com.mygdx.game.gameEngine.systems.ScoreSystem;
 import com.mygdx.game.gameEngine.systems.SoundSystem;
-import com.mygdx.game.model.Score;
-import com.mygdx.game.model.song.Note;
-import com.mygdx.game.model.song.Song;
-import com.mygdx.game.model.song.Voice;
-import com.mygdx.game.model.Constants;
+import com.mygdx.game.model.song.INote;
+import com.mygdx.game.model.song.ISong;
+import com.mygdx.game.model.song.IVoice;
 
 /**
 * Class for managing entities.
@@ -18,10 +15,10 @@ import com.mygdx.game.model.Constants;
 public class EntityManager {
 	private Engine engine;
 	private SpriteBatch batch;
-	private Song song;
+	private ISong song;
 
 	
-	public EntityManager(Engine engine, SpriteBatch batch, Song song){
+	public EntityManager(Engine engine, SpriteBatch batch, ISong song){
 		this.engine = engine;
 		this.batch = batch;
 		this.song = song;
@@ -41,9 +38,9 @@ public class EntityManager {
 
 	private void manageNoteEntities(int tick) {
 		for(int i = prevTick+1; i <= tick; i++) {
-			for(Voice voice : song.getVoices()){
-				if(i >= voice.length) continue;
-				Note note = voice.noteAtTick(i);
+			for(IVoice voice : song.getVoices()){
+				if(i >= voice.length()) continue;
+				INote note = voice.noteAtTick(i);
 				//float posX = 100;
 				if(note == null) continue;
                     Entity newNoteEntity = EntityFactory.createNoteEntity(note);

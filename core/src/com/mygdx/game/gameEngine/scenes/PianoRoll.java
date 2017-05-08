@@ -7,7 +7,6 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
@@ -16,7 +15,6 @@ import com.mygdx.game.gameEngine.components.PositionComponent;
 import com.mygdx.game.gameEngine.components.SpriteComponent;
 import com.mygdx.game.model.Constants;
 import com.mygdx.game.model.NoteLanes;
-import com.mygdx.game.model.song.Note;
 
 /**
  * A class that defines the properties of the piano roll (the area where the notes are drawn).

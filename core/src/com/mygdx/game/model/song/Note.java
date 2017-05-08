@@ -67,8 +67,7 @@ public class Note implements INote {
 		return num * factor;
 	}
 	//instance
-	@Deprecated
-	public final int number, duration;
+	private final int number, duration;
 	private final String str;
 	private Note(String str, int number, int duration) {
 		this.number = number;

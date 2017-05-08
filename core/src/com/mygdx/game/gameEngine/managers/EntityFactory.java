@@ -8,16 +8,16 @@ import com.mygdx.game.gameEngine.components.PositionComponent;
 import com.mygdx.game.gameEngine.components.SpriteComponent;
 import com.mygdx.game.gameEngine.components.VelocityComponent;
 import com.mygdx.game.model.Constants;
-import com.mygdx.game.model.song.Note;
+import com.mygdx.game.model.song.INote;
 
 public class EntityFactory {
 
 	private static final float NoteOrigPosY = Constants.VIEWPORT_DIM_Y;
 	private static final int NoteVelY = -64;
 	
-	public static Entity createNoteEntity(Note note){
+	public static Entity createNoteEntity(INote note){
 		Entity entity = new Entity();
-		float posX = (note.number % Constants.NUMBER_OF_LANES)*Constants.LANE_WIDTH;
+		float posX = (note.getPitch() % Constants.NUMBER_OF_LANES)*Constants.LANE_WIDTH;
 		PositionComponent positionComponent = new PositionComponent(posX, NoteOrigPosY);
 		VelocityComponent velocityComponent = new VelocityComponent(0, NoteVelY);
 		NoteComponent noteComponent = new NoteComponent(note);

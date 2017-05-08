@@ -2,21 +2,12 @@ package com.mygdx.game.gameEngine.screens;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.Scaling;
-import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.gameEngine.managers.EntityManager;
 import com.mygdx.game.gameEngine.managers.KeyboardInputManager;
@@ -25,8 +16,12 @@ import com.mygdx.game.gameEngine.managers.SoundManager;
 import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
 import com.mygdx.game.gameEngine.systems.ScoreSystem;
-import com.mygdx.game.model.*;
-import com.mygdx.game.model.song.Song;
+import com.mygdx.game.model.Constants;
+import com.mygdx.game.model.Player;
+import com.mygdx.game.model.Round;
+import com.mygdx.game.model.Score;
+import com.mygdx.game.model.Ticker;
+import com.mygdx.game.model.song.ISong;
 
 
 /**
@@ -48,7 +43,7 @@ public class GameScreen extends AbstractScreen{
 	private final SoundManager soundmanager;
 	private final KeyboardInputManager keyboardInputManager;
 	
-	public GameScreen(final UnexpectedMagic game, Song song, ArrayList<Player> players) throws IOException{
+	public GameScreen(final UnexpectedMagic game, ISong song, ArrayList<Player> players) throws IOException{
 		super(game);
 		engine = game.engine;
 		batch = game.batch;
@@ -75,7 +70,7 @@ public class GameScreen extends AbstractScreen{
 
 	}
 	
-	public void initRound(Song song, ArrayList<Player> players, Engine engine, SpriteBatch batch) throws IOException{
+	public void initRound(ISong song, ArrayList<Player> players, Engine engine, SpriteBatch batch) throws IOException{
 		roundManager = new RoundManager(new Round(song, players), new EntityManager(engine, batch, song), new Ticker(song));
 		
 		//System.out.println("Number of voices: "+ round.song.getVoices().length);

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.model.song.Song;
 import com.mygdx.game.services.file.FileReader;
 
@@ -49,7 +50,7 @@ public class SongList {
 			map.put(name, s);
 		}
 	}
-	public Song getSong(String name) throws IOException {
+	public ISong getSong(String name) throws IOException {
 		return new Song(map.get(name));
 	}
 	public Set<String> songs() {

@@ -2,7 +2,7 @@ package com.mygdx.game.gameEngine.managers;
 
 import javax.sound.midi.*;
 
-import com.mygdx.game.model.song.Note;
+import com.mygdx.game.model.song.INote;
 
 public class SoundManager {
 
@@ -42,8 +42,8 @@ public class SoundManager {
 		notethread.start();
 		
 	}
-	public void play(Note note){
-		 play(note.number, note.duration);
+	public void play(INote note){
+		 play(note.getPitch(), note.getDuration());
 	}
 	private void play(int noteNumber, int noteDuration){
 		notethread.play(noteNumber, noteDuration);
@@ -68,8 +68,8 @@ public class SoundManager {
 		Sequence sequence = null;
 		try {
 			sequence = new Sequence(Sequence.PPQ,1);
-		} catch (InvalidMidiDataException e1) {
-			
+		} catch (InvalidMidiDataException e) {
+			e.printStackTrace();
 		}
 	
 		Track track = sequence.createTrack();
@@ -78,7 +78,7 @@ public class SoundManager {
 		try {
 			sm.setMessage(ShortMessage.PROGRAM_CHANGE, nChannelNumber, instrument,nChannelNumber );
 		} catch (InvalidMidiDataException e) {
-	
+			e.printStackTrace();
 		}
 		track.add(new MidiEvent(sm,0));
 	
