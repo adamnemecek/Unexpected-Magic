@@ -19,18 +19,17 @@ import com.mygdx.game.model.Constants;
  *
  */
 
-public abstract class AbstractScreen extends ScreenAdapter{
+public abstract class AbstractScreen extends ScreenAdapter {
 	final protected UnexpectedMagic game;
 	final protected Engine engine;
 	protected OrthographicCamera camera;
 	protected Viewport viewport;
 	protected Stage stage;
 
-    protected TextureAtlas atlas;
-    protected Skin skin;
-	
-	
-	protected AbstractScreen(final UnexpectedMagic game){
+	protected TextureAtlas atlas;
+	protected Skin skin;
+
+	protected AbstractScreen(final UnexpectedMagic game) {
 		this.game = game;
 		this.engine = game.engine;
 		camera = new OrthographicCamera(Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y);
@@ -38,9 +37,16 @@ public abstract class AbstractScreen extends ScreenAdapter{
 		viewport = new ScalingViewport(Scaling.fit, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y, camera);
 		viewport.apply();
 		stage = new Stage(viewport, game.batch);
+		Gdx.input.setInputProcessor(stage);
 
-        atlas = new TextureAtlas("skins/Mother_Skin/terramotherui/terra-mother-ui.atlas");
-        skin = new Skin(Gdx.files.internal("skins/Mother_Skin/terramotherui/terra-mother-ui.json"),atlas);
+		atlas = new TextureAtlas("skins/Mother_Skin/terramotherui/terra-mother-ui.atlas");
+		skin = new Skin(Gdx.files.internal("skins/Mother_Skin/terramotherui/terra-mother-ui.json"), atlas);
+	}
+	@Override
+	public void dispose() {
+		stage.dispose();
+		atlas.dispose();
+		skin.dispose();
 	}
 
 }
