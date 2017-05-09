@@ -2,24 +2,15 @@ package com.mygdx.game.gameEngine.screens;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.Scaling;
-import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.gameEngine.managers.EntityManager;
-import com.mygdx.game.gameEngine.managers.KeyboardInputManager;
+import com.mygdx.game.gameEngine.input.KeyboardInputManager;
 import com.mygdx.game.gameEngine.managers.RoundManager;
 import com.mygdx.game.gameEngine.managers.SoundManager;
 import com.mygdx.game.gameEngine.scenes.Hud;
@@ -27,7 +18,6 @@ import com.mygdx.game.gameEngine.scenes.PianoRoll;
 import com.mygdx.game.gameEngine.systems.ScoreSystem;
 import com.mygdx.game.model.*;
 import com.mygdx.game.model.song.Song;
-import com.sun.javafx.scene.traversal.Hueristic2D;
 
 
 /**

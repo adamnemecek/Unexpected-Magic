@@ -49,7 +49,7 @@ public class ScoreSystem extends IteratingSystem {
             //soundManager.noteOff(not.note.number);
         }
         else{
-            this.soundManager.play(new Random().nextInt(100), 10);
+            //this.soundManager.play(new Random().nextInt(100), 10);
         }
 
         }
