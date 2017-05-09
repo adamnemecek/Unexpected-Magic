@@ -23,7 +23,7 @@ public class SongTest {
 		assertEquals(4, time[0]);
 		assertEquals(4, time[1]);
 		assertEquals(2, time.length);
-		assertEquals(120, song.getBpm());
+		assertEquals(76, song.getBpm());
 		Voice[] voices = song.getVoices();
 		assertEquals(4, voices.length);
 		Note[] notes = voices[0].getNotes();

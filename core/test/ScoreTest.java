@@ -14,7 +14,7 @@ public class ScoreTest {
 	Note n;
 	Score score;
 	@Before
-	public void beforeClass() throws IOException{
+	public void before() throws IOException{
 		score = new Score();
 		n = Note.getNote("A1:1/1");
 	}
