@@ -3,6 +3,7 @@ package com.mygdx.game.gameEngine.screens;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -55,5 +56,10 @@ public abstract class AbstractScreen extends ScreenAdapter {
 		viewport.update(width, height);
 		//camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
 		//camera.update();
+	}
+	@Override
+	public void render(float delta) {
+		Gdx.gl.glClearColor(0.25882354f,0.25882354f,0.90588236f,1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 	}
 }
