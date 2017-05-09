@@ -86,4 +86,5 @@ public class Note implements INote {
 	public int getDuration() {
 		return duration;
 	}
+	
 }

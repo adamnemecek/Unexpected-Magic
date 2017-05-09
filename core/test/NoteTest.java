@@ -19,7 +19,7 @@ public class NoteTest {
 			int oct = i / 12;
 			String pitch = notes[i % 12];
 			Note n = Note.getNote(pitch + oct + ":1/1");
-			assertEquals(i, n.number);
+			assertEquals(i, n.getPitch());
 		}
 	}
 	@Test(expected=IOException.class) 
@@ -41,6 +41,6 @@ public class NoteTest {
 		n2 = Note.getNote("C5:2/2");
 		assertNotSame(n1, n2);
 		n2 = Note.getNote("-:1/1");
-		assertSame(-1, n2.number);
+		assertSame(-1, n2.getPitch());
 	}
 }

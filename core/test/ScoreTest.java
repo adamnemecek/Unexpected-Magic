@@ -23,24 +23,26 @@ public class ScoreTest {
 	public void testStreak(){
 	
 		for	(int i = 0; i < 100; i++){
-			score.hitnote(n);
+			score.hitNote();
 		}
 		assertEquals(100, score.getStreak());
+		assertEquals(100, score.getScore());
 		
 		score.missedNote();
 		
 		assertEquals(0, score.getStreak());
+		assertEquals(100, score.getScore());
 		
 	}
 	
-	@Test
+	/*
 	public void testScore(){
 		for	(int i = 0; i < 100; i++){
-			score.hitnote(n);
+			score.hitNote();
 		}
 		
 		assertEquals(score.getScore(), n.duration*100);
 		System.out.println(score.getScore());
 	}
-
+*/
 }

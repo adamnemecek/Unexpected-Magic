@@ -25,7 +25,7 @@ public class Score {
 	//first draft, score calculation? Keep track of percentage of note hit?
 	public void hitNote(){
 		score += 1;
-		//streak++
+		streak++;
     }
 
 
