@@ -43,6 +43,10 @@ public class Voice implements IVoice {
 	public int length() {
 		return notes.length;
 	}
+	
+	public Note[] getNotes(){
+		return notes;
+	}
 	/*@Deprecated
 	private void oMGIHAVECORNINMYCODEEEEE(){
 		System.out.println(toString());
