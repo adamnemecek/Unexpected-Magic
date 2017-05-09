@@ -45,7 +45,7 @@ public class SoundManager {
 	public void play(Note note){
 		 play(note.number, note.duration);
 	}
-	private void play(int noteNumber, int noteDuration){
+	public void play(int noteNumber, int noteDuration){
 		notethread.play(noteNumber, noteDuration);
 	}
 	

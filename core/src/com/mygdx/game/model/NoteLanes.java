@@ -22,8 +22,8 @@ public class NoteLanes {
             this.laneStates[i] = false;
         }
 
-        this.activeTexture = new Texture("images/lanes/Blue.png");
-        this.inactiveTexture = new Texture("images/lanes/Red.png");
+        this.activeTexture = new Texture("images/lanes/Cyan.png");
+        this.inactiveTexture = new Texture("images/lanes/Pink.png");
     }
 
 	public Texture getLaneTexture(int i){

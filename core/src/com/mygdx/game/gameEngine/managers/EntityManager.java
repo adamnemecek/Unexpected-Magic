@@ -46,7 +46,7 @@ public class EntityManager {
 				Note note = voice.noteAtTick(i);
 				//float posX = 100;
 				if(note == null) continue;
-                    Entity newNoteEntity = EntityFactory.createNoteEntity(note);
+                    Entity newNoteEntity = EntityFactory.createNoteEntity(note, voice);
                     engine.addEntity(newNoteEntity);
 
 

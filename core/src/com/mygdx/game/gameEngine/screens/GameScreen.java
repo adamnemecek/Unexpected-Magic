@@ -27,6 +27,7 @@ import com.mygdx.game.gameEngine.scenes.PianoRoll;
 import com.mygdx.game.gameEngine.systems.ScoreSystem;
 import com.mygdx.game.model.*;
 import com.mygdx.game.model.song.Song;
+import com.sun.javafx.scene.traversal.Hueristic2D;
 
 
 /**
@@ -40,7 +41,6 @@ public class GameScreen extends AbstractScreen{
 	private boolean running;
 	SpriteBatch batch;
 	Texture backgroundTexture;
-	Texture pianoRollTexture;
 	//EntityManager entityManager;
 	private RoundManager roundManager;
 	private Hud hud;
@@ -55,8 +55,7 @@ public class GameScreen extends AbstractScreen{
 		/*camera = new OrthographicCamera();
 		camera.setToOrtho(false);*/
 		running = false; //TODO get the right arguments song, players
-		backgroundTexture = new Texture("images/lanes/White.png");
-		pianoRollTexture = new Texture("images/textureCheckedPurple16x16.png");
+		backgroundTexture = new Texture("images/lanes/Purple.png");
 
 
 
@@ -64,11 +63,11 @@ public class GameScreen extends AbstractScreen{
 		pianoRoll = new PianoRoll(engine, batch);
 		initRound(song, players, engine, batch); //TODO catch exceptions?
 
-        ScoreSystem scoreSystem = new ScoreSystem(new Score(),pianoRoll.getNoteLanes()); //TODO SHOULD BE SOMEWHERE ELSE
-        engine.addSystem(scoreSystem);
+		soundmanager = new SoundManager();
+		soundmanager.setInstrument(40);
 
-        soundmanager = new SoundManager();
-	    soundmanager.setInstrument(40);
+		ScoreSystem scoreSystem = new ScoreSystem(new Score(),pianoRoll.getNoteLanes(), soundmanager); //TODO SHOULD BE SOMEWHERE ELSE
+        engine.addSystem(scoreSystem);
 
         this.keyboardInputManager = new KeyboardInputManager(soundmanager, pianoRoll);
 	    Gdx.input.setInputProcessor(keyboardInputManager);
@@ -86,9 +85,8 @@ public class GameScreen extends AbstractScreen{
 	public void update (float delta) {
 		if(running){
 			roundManager.update(delta);
-			//System.out.println("TICK: " + round.getTick());
 			engine.update(delta);
-			
+            hud.setScoreLabel();
 		}
 	}
 

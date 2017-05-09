@@ -30,29 +30,32 @@ public class KeyboardInputManager implements InputProcessor {
                 break;
 
             case (Input.Keys.A):
-                soundManager.noteOn(57);
+                //soundManager.noteOn(57);
                 pianoRoll.activateLane(0);
                 break;
 
-            case (Input.Keys.W):
-                soundManager.noteOn(58);
+            case (Input.Keys.S):
+                //soundManager.noteOn(58);
                 pianoRoll.activateLane(1);
 
                 break;
 
-            case (Input.Keys.S):
-                soundManager.noteOn(59);
+            case (Input.Keys.D):
+                //soundManager.noteOn(59);
                 pianoRoll.activateLane(2);
 
                 break;
 
-            case (Input.Keys.D):
-                soundManager.noteOn(60);
+            case (Input.Keys.F):
+                //soundManager.noteOn(60);
                 pianoRoll.activateLane(3);
 
                 break;
 
-            case (Input.Keys.R):
+            default:
+                break;
+
+            /*case (Input.Keys.R):
                 soundManager.noteOn(61);
                 pianoRoll.activateLane(4);
 
@@ -99,6 +102,7 @@ public class KeyboardInputManager implements InputProcessor {
 
             default:
                 break;
+                */
         }
 
         return true;
@@ -109,25 +113,29 @@ public class KeyboardInputManager implements InputProcessor {
         switch(keycode){
 
             case (Input.Keys.A):
-                soundManager.noteOff(57);
+                //soundManager.noteOff(57);
+                //randomNotePlay();
                 pianoRoll.deactivateLane(0);
                 break;
 
-            case (Input.Keys.W):
-                soundManager.noteOff(58);
+            case (Input.Keys.S):
+                //soundManager.noteOff(58);
+                //randomNotePlay();
                 pianoRoll.deactivateLane(1);
                 break;
 
-            case (Input.Keys.S):
-                soundManager.noteOff(59);
+            case (Input.Keys.D):
+                //soundManager.noteOff(59);
+                //randomNotePlay();
                 pianoRoll.deactivateLane(2);
                 break;
 
-            case (Input.Keys.D):
-                soundManager.noteOff(60);
+            case (Input.Keys.F):
+                //soundManager.noteOff(60);
+                //randomNotePlay();
                 pianoRoll.deactivateLane(3);
                 break;
-
+/*
             case (Input.Keys.R):
                 soundManager.noteOff(61);
                 pianoRoll.deactivateLane(4);
@@ -171,7 +179,7 @@ public class KeyboardInputManager implements InputProcessor {
                 pianoRoll.deactivateLane(11);
 
                 break;
-
+*/
 
             default:
                 break;
@@ -209,4 +217,9 @@ public class KeyboardInputManager implements InputProcessor {
     public boolean scrolled(int amount) {
         return false;
     }
+
+    public void randomNotePlay(){
+        this.soundManager.play(new Random().nextInt(100),10);
+    }
+
 }
