@@ -4,18 +4,18 @@ package com.mygdx.game.gameEngine.input;
  * Created by rasmus on 2017-05-09.
  */
 public enum NoteEnum {
-	C (80),
-	C_SHARP (81),
-	D (82),
-	D_SHARP (83),
-	E (84),
-	F (85),
-	F_SHARP (86),
-	G (87),
-	G_SHARP (88),
-	A (89),
-	A_SHARP (90),
-	B (91);
+	C (0),
+	C_SHARP (1),
+	D (2),
+	D_SHARP (3),
+	E (4),
+	F (5),
+	F_SHARP (6),
+	G (7),
+	G_SHARP (8),
+	A (9),
+	A_SHARP (10),
+	B (11);
 
 	private final int value;
 	NoteEnum(int v){
@@ -23,6 +23,11 @@ public enum NoteEnum {
 	}
 
 	public int defaultValue() {
-		return value;
+		return valueInOctave(5);
+	}
+	public int valueInOctave(int oct) {
+		int ret = value + oct * 12;
+		if(ret < 0 || 127 < ret) throw new IllegalArgumentException();
+		return ret;
 	}
 }

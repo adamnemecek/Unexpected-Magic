@@ -1,5 +1,7 @@
 package com.mygdx.game.gameEngine.input;
 
+import com.mygdx.game.services.file.ConfigService;
+
 /**
  * Created by rasmus on 2017-05-09.
  */
@@ -8,13 +10,11 @@ public class KeyboardControllerAdapter {
 	public KeyboardControllerAdapter(){
 		inputAction = new InputAction();
 	}
-	@Override
-	public void noteKeyPressed(int keyCode) {
-		//InputConfig.getKeyAction
+	public void keyPressed(int keyCode) {
+		ConfigService.keyAction(keyCode);
+		inputAction.noteKeyPressed(NoteEnum.C);
 	}
-
-	@Override
-	public void menuKeyPressed() {
-
+	public void keyReleased(int keyCode) {
+		
 	}
 }

@@ -7,15 +7,28 @@ import com.mygdx.game.gameEngine.managers.SoundManager;
  */
 public class InputAction implements IInputController{
 
-	private SoundManager soundManager;
-
 	@Override
 	public void noteKeyPressed(NoteEnum note) {
-			soundManager.noteOn(note.defaultValue());
+		soundManager.noteOn(note.defaultValue());
+		
 	}
 
 	@Override
-	public void menuKeyPressed() {
-
+	public void noteKeyReleased(NoteEnum note) {
+		// TODO Auto-generated method stub
+		
 	}
+
+	@Override
+	public void uiKeyPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void uiKeyReleased() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

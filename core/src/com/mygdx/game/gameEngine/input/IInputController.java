@@ -5,11 +5,11 @@ package com.mygdx.game.gameEngine.input;
  */
 public interface IInputController {
 
+	void noteKeyPressed(NoteEnum note);
+	
+	void noteKeyReleased(NoteEnum note);
 
-
-	void noteKeyPressed(int keyCode);
-
-	void menuKeyPressed();
-
-
+	void uiKeyPressed();
+	
+	void uiKeyReleased();
 }
