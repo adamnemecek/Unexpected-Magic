@@ -19,6 +19,7 @@ public class SongList {
 	private ArrayList<String> retrieveFileNames(){
 		File folder = new File("songmaps");
 		File[] listOfFiles = folder.listFiles();
+		if(listOfFiles.length == 0) throw new IllegalStateException("No songs found.");
 		ArrayList<String> l = new ArrayList<String>(listOfFiles.length);
 		System.out.println("SongList.class folder.listFiles(): " + folder.listFiles());
 		for(File file : listOfFiles) {
