@@ -4,14 +4,20 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import com.mygdx.game.model.SongList;
+
 import com.mygdx.game.model.song.Note;
 import com.mygdx.game.model.song.Song;
 import com.mygdx.game.model.song.Voice;
+import com.mygdx.game.model.song.ISong;
 
 public class SongTest {
 	@Test
 	public void testHisTheme() throws IOException {
-		Song song = new Song("songmaps/his_theme.uxm");
+		//Song song = new Song("songmaps/his_theme.uxm");
+		SongList songList = new SongList();
+		ISong isong = songList.getSong("His Theme");
+		Song song = (Song) isong;
 		assertEquals("His Theme", song.getTitle());
 		int[] time = song.getTime();
 		assertEquals(4, time[0]);
