@@ -30,7 +30,7 @@ public class SoundSystem extends IteratingSystem{
         NoteComponent not = nm.get(entity);
 
         if((int)pos.getY() == Constants.SCORE_LINE){ //TODO Is this accurate
-            soundManager.play(not.note);
+            soundManager.play(not.getNote());
         }
     }
 }

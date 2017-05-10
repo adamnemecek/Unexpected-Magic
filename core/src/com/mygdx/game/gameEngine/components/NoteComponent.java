@@ -7,8 +7,12 @@ import com.mygdx.game.model.song.INote;
 * Component that holds the note.
 */
 public class NoteComponent implements Component{
-	public INote note;
+	private INote note;
 	public NoteComponent(INote note){
 		this.note = note;
+	}
+	
+	public INote getNote(){
+		return note;
 	}
 }

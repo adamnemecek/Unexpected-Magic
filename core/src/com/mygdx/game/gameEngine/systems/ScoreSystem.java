@@ -33,20 +33,20 @@ public class ScoreSystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
         NoteComponent not = nm.get(entity);
         PositionComponent pos = pm.get(entity);
-        if (noteLanes.getLaneState(not.note.getPitch() % Constants.NUMBER_OF_LANES)) { //checks if the note's noteLane is active
+        if (noteLanes.getLaneState(not.getNote().getPitch() % Constants.NUMBER_OF_LANES)) { //checks if the note's noteLane is active
         	//PositionComponent pos = pm.get(entity);
 
         	if(pos.getY() < Constants.SCORE_LINE && pos.getY() > 0) { //checks if the note is in the playable area TODO THIS MAY NOT BE ACCURATE
         		score.hitNote();
-        		System.out.println(score.getScore());
-        		if(!not.note.isHit()){
+        		
+        		if(!not.getNote().isHit()){
         			score.incStreak();
         		}
         	}
         }
-        else if(pos.getY() >=0 && pos.getY() <=1 && !not.note.isHit()){ //checks if note has passed the play area without being played
+        else if(pos.getY() >=0 && pos.getY() <=1 && !not.getNote().isHit()){ //checks if note has passed the play area without being played
         	score.missedNote();
-        	System.out.println("broke");
+        
         }
     }
     

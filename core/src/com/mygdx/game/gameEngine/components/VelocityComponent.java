@@ -6,8 +6,8 @@ import com.badlogic.ashley.core.Component;
 * Component that holds the velocity.
 */
 public class VelocityComponent implements Component{
-	public int x;
-	public int y;
+	private int x;
+	private int y;
 	public VelocityComponent(int x, int y){
 		this.x = x;
 		this.y = y;
@@ -17,5 +17,11 @@ public class VelocityComponent implements Component{
 	}
 	public int getY(){
 		return y;
+	}
+	public void setX(int x){
+		this.x=x;
+	}
+	public void setY(int y){
+		this.y=y;
 	}
 }
