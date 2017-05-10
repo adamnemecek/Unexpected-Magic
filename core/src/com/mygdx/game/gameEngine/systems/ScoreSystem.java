@@ -36,7 +36,7 @@ public class ScoreSystem extends IteratingSystem {
         if (noteLanes.getLaneState(not.note.getPitch() % Constants.NUMBER_OF_LANES)) { //checks if the note's noteLane is active
         	//PositionComponent pos = pm.get(entity);
 
-        	if(pos.y < Constants.SCORE_LINE && pos.y > 0) { //TODO THIS IS NOT ACCURATE
+        	if(pos.getY() < Constants.SCORE_LINE && pos.getY() > 0) { //checks if the note is in the playable area TODO THIS MAY NOT BE ACCURATE
         		score.hitNote();
         		System.out.println(score.getScore());
         		if(!not.note.isHit()){
@@ -44,7 +44,7 @@ public class ScoreSystem extends IteratingSystem {
         		}
         	}
         }
-        else if(pos.y >=0 && pos.y <=1 && !not.note.isHit()){
+        else if(pos.getY() >=0 && pos.getY() <=1 && !not.note.isHit()){ //checks if note has passed the play area without being played
         	score.missedNote();
         	System.out.println("broke");
         }
