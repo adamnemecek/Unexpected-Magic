@@ -3,6 +3,7 @@ package com.mygdx.game.gameEngine.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
@@ -11,12 +12,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.UnexpectedMagic;
+import com.mygdx.game.gameEngine.managers.AnimationManager;
 
 /**
  * Screen that contains the main menu.
  */
 public class MainMenuScreen extends AbstractScreen {
 
+
+	private AnimationManager amOne;
+	private AnimationManager amTwo;
 
 	// BUTTONS
 	private ButtonGroup<TextButton> buttongroup;
@@ -33,6 +38,10 @@ public class MainMenuScreen extends AbstractScreen {
 
 		menuItemSelected = 0;
 		menuItems = new String[] { "New game", "Options", "Animation", "Exit" };
+		amOne = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/wizard.png"))
+				, game.batch, 1,10, 250, 0, 200, 300, 0.1f );
+		amTwo = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/sprite-animation4.png"))
+				, game.batch, 5,6, 10 , 0, 100, 100, 0.05f);
 	}
 
 	@Override
@@ -96,6 +105,8 @@ public class MainMenuScreen extends AbstractScreen {
 		camera.update();
 		game.batch.setProjectionMatrix(camera.combined);
 		game.batch.begin();
+		amOne.render(); // render animation
+		amTwo.render();
 		game.batch.end();
 
 		stage.act();
