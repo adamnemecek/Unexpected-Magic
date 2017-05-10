@@ -10,8 +10,6 @@ import com.mygdx.game.model.song.Note;
 public class NoteLanes {
 
 	private boolean[] laneStates; //false = inactive, true = active
-    private Texture activeTexture;
-    private Texture inactiveTexture;
 
     public NoteLanes(){
 
@@ -22,16 +20,9 @@ public class NoteLanes {
             this.laneStates[i] = false;
         }
 
-        this.activeTexture = new Texture("images/lanes/Blue.png");
-        this.inactiveTexture = new Texture("images/lanes/Red.png");
     }
 
-	public Texture getLaneTexture(int i){
-	    if(laneStates[i]){
-	        return activeTexture;
-        }
-        else return inactiveTexture;
-    }
+
 
     public boolean getLaneState(int i){
 	    return this.laneStates[i];

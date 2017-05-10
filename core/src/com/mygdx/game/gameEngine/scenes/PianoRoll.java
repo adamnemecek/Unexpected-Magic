@@ -7,6 +7,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
@@ -25,6 +26,8 @@ public class PianoRoll {
 	public OrthographicCamera camera;
 	public Viewport viewport;
 	private NoteLanes noteLanes;
+	private Texture activeTexture;
+	private Texture inactiveTexture;
 	ComponentMapper<PositionComponent> positionComponentMapper; //TODO Should this class draw all notes?
 	ComponentMapper<SpriteComponent> spriteComponentMapper;	
 
@@ -38,6 +41,9 @@ public class PianoRoll {
         viewport.setScreenBounds((int) Constants.PIANOROLL_POS_X, (int) Constants.PIANOROLL_POS_Y, (int) Constants.PIANOROLL_DIM_X, (int) Constants.PIANOROLL_DIM_Y);
         positionComponentMapper = ComponentMapper.getFor(PositionComponent.class);
         spriteComponentMapper = ComponentMapper.getFor(SpriteComponent.class);
+        
+        this.activeTexture = new Texture("images/lanes/Blue.png");
+        this.inactiveTexture = new Texture("images/lanes/Red.png");
     }
 
 	private void drawEntities(float delta){
@@ -72,10 +78,17 @@ public class PianoRoll {
 	}
 	
 	private void drawLanes(){
-            for(int i  = 0; i < Constants.NUMBER_OF_LANES; i ++){
-                batch.draw(noteLanes.getLaneTexture(i),Constants.LANE_WIDTH*i,0,Constants.LANE_WIDTH,Constants.SCORE_LINE);
-            }
+		for(int i  = 0; i < Constants.NUMBER_OF_LANES; i ++){
+			batch.draw(getLaneTexture(i),Constants.LANE_WIDTH*i,0,Constants.LANE_WIDTH,Constants.SCORE_LINE);
+		}
+    }
+	
+	public Texture getLaneTexture(int i){
+	    if(noteLanes.getLaneState(i)){
+	        return activeTexture;
         }
+        else return inactiveTexture;
+    }
 
     public NoteLanes getNoteLanes(){
 	    return noteLanes;
