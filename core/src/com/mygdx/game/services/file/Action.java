@@ -1,9 +1,9 @@
-package com.mygdx.game.gameEngine.input;
+package com.mygdx.game.services.file;
 
 /**
  * Created by rasmus on 2017-05-09.
  */
-public enum NoteEnum {
+public enum Action {
 	C (0),
 	C_SHARP (1),
 	D (2),
@@ -15,17 +15,18 @@ public enum NoteEnum {
 	G_SHARP (8),
 	A (9),
 	A_SHARP (10),
-	B (11);
+	B (11),
+	PAUSE (12);
 
 	private final int value;
-	NoteEnum(int v){
+	Action(int v){
 		value = v;
 	}
 
-	public int defaultValue() {
-		return valueInOctave(5);
+	public int noteValue() {
+		return noteValueInOctave(5);
 	}
-	public int valueInOctave(int oct) {
+	public int noteValueInOctave(int oct) {
 		int ret = value + oct * 12;
 		if(ret < 0 || 127 < ret) throw new IllegalArgumentException();
 		return ret;
