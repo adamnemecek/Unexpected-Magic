@@ -16,12 +16,16 @@ public class InputAction implements IInputController{
 	
 	@Override
 	public void noteKeyPressed(Action note) {
+		if(!note.isNote()) throw new IllegalArgumentException("Cannot play non-note action");
 		soundManager.noteOn(note.noteValue());
+		System.out.println(note.noteValue()); //TODO remove debug print
 		
 	}
 
 	@Override
 	public void noteKeyReleased(Action note) {
+		if(!note.isNote()) throw new IllegalArgumentException("Cannot play non-note action");
+		soundManager.noteOff(note.noteValue());
 		// TODO Auto-generated method stub
 		
 	}

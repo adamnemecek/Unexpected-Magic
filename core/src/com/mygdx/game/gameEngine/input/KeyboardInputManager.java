@@ -15,6 +15,7 @@ public class KeyboardInputManager implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
+    	System.out.println(keycode); //TODO remove debug print
         keyboardControllerAdapter.keyPressed(keycode);
         return true;
     }

@@ -59,7 +59,7 @@ public class GameScreen extends AbstractScreen{
 		ScoreSystem scoreSystem = new ScoreSystem(new Score(),pianoRoll.getNoteLanes(), soundmanager); //TODO SHOULD BE SOMEWHERE ELSE
         engine.addSystem(scoreSystem);
 
-        this.keyboardInputManager = new KeyboardInputManager(soundmanager, pianoRoll);
+        this.keyboardInputManager = new KeyboardInputManager();
 	    Gdx.input.setInputProcessor(keyboardInputManager);
 
 	}
