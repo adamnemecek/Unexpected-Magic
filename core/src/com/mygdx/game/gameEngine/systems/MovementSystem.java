@@ -24,10 +24,10 @@ public class MovementSystem extends IteratingSystem{
         PositionComponent pos = pm.get(entity);
         VelocityComponent vel = vm.get(entity);
         //System.out.println("MovementSystem. DELTA:" + delta);
-        pos.setX(pos.getX() + (float)vel.getX()*delta);//TODO
-       
-        pos.setY(pos.getY() + (float)vel.getX()*delta);//TODO
-
+        pos.setX((float)pos.getX() + delta*vel.getX());//TODO
+        
+        pos.setY((float)pos.getY() + delta*vel.getY());//TODO
+        
         if (pos.getY() < 0){
             getEngine().removeEntity(entity);
         }
