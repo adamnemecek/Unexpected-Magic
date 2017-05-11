@@ -9,6 +9,8 @@ import com.mygdx.game.gameEngine.components.VelocityComponent;
 
 /**
  * System that handles movement.
+ * @author soflarb
+ * Revised by 
  */
 
 public class MovementSystem extends IteratingSystem{
@@ -25,12 +27,7 @@ public class MovementSystem extends IteratingSystem{
         VelocityComponent vel = vm.get(entity);
         //System.out.println("MovementSystem. DELTA:" + delta);
         pos.setX((float)pos.getX() + delta*vel.getX());//TODO
-        
         pos.setY((float)pos.getY() + delta*vel.getY());//TODO
-        
-        if (pos.getY() < -20){
-            getEngine().removeEntity(entity);
-        }
         //System.out.println("MovementSystem. NEW POS. x = " + pos.x + ", y = " + pos.y);
     }
 }
