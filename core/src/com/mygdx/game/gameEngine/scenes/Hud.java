@@ -47,7 +47,7 @@ public class Hud {
 		//scoreLabel = new Label("scoreLabel", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 		//songNameLabel = new Label("songNameLabel", skin);
 		//songBPMLabel = new Label("songBPMLabel", skin);
-		scoreLabel = new Label("SCORE " + Constants.score, skin);
+		scoreLabel = new Label("SCORE " + score, skin); //TODO dynamic score
 		menuButton = new TextButton("Menu", skin);
 		//("%03d, someNumberVariable") for displaying 3 digits of it in a label or something
 		table.add(songNameLabel).expandX().padTop(5);
@@ -58,7 +58,7 @@ public class Hud {
 	}
 
 	public void setScoreLabel(){
-	    this.scoreLabel.setText("SCORE " + Constants.score);
+	    this.scoreLabel.setText("SCORE " + score);
     }
 
 }
