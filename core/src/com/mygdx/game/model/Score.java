@@ -1,10 +1,7 @@
 package com.mygdx.game.model;
 
-import com.mygdx.game.gameEngine.scenes.PianoRoll;
-import com.mygdx.game.model.song.Note;
-
 public class Score {
-	
+
 	/**
 	 * A class that holds score.
 	 * Modified by Arunvik
@@ -15,7 +12,7 @@ public class Score {
 	private double score;
 	private int streak;
 	private int multiplier; //higher score if higher streak
-	
+
 	public Score(){
 		score = 0;
 		streak = 0;
@@ -23,10 +20,10 @@ public class Score {
 	}
 	//first draft, score calculation? Keep track of percentage of note hit?
 	public void hitNote(){
-		
+
 		score +=1*multiplier;
-    }
-	
+	}
+
 	public void incStreak(){
 		streak++;
 		multiplier = 1 + streak/50;
@@ -40,7 +37,7 @@ public class Score {
 	public int getMultiplier(){
 		return multiplier;
 	}
-	
+
 	public int getStreak(){
 		return streak;
 	}
@@ -48,5 +45,5 @@ public class Score {
 		return (int)score;
 	}
 
-    }
+}
 
