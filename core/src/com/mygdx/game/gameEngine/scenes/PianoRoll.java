@@ -79,10 +79,9 @@ public class PianoRoll {
 	
 	private void drawLanes(){
 		for(int i  = 0; i < Constants.NUMBER_OF_LANES; i ++){
-			batch.draw(getLaneTexture(i),Constants.LANE_WIDTH*i,0,Constants.LANE_WIDTH,Constants.SCORE_LINE);
+			batch.draw(getLaneTexture(i),Constants.LANE_WIDTH*i,Constants.SCORE_BOUNDS_LOWER,Constants.LANE_WIDTH,Constants.SCORE_BOUNDS_UPPER-Constants.SCORE_BOUNDS_LOWER);
 		}
-    }
-	
+	}
 	public Texture getLaneTexture(int i){
 	    if(noteLanes.getLaneState(i)){
 	        return activeTexture;

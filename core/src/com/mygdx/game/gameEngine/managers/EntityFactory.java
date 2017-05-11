@@ -17,7 +17,7 @@ public class EntityFactory {
 	
 	public static Entity createNoteEntity(INote note){
 		Entity entity = new Entity();
-		float posX = (note.getPitch() % Constants.NUMBER_OF_LANES)*Constants.LANE_WIDTH;
+		float posX = (note.getPitch() % Constants.NUMBER_OF_LANES)*Constants.LANE_WIDTH +(Constants.LANE_WIDTH/2)-10;
 		PositionComponent positionComponent = new PositionComponent(posX, NoteOrigPosY);
 		VelocityComponent velocityComponent = new VelocityComponent(0, NoteVelY);
 		NoteComponent noteComponent = new NoteComponent(note);

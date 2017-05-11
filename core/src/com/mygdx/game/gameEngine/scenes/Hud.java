@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.model.Constants;
 import com.mygdx.game.model.Score;
+import com.sun.corba.se.impl.orbutil.closure.Constant;
 
 public class Hud {
 	public Stage stage;
@@ -44,9 +45,9 @@ public class Hud {
 		table.top();
 		table.setFillParent(true);
 		//scoreLabel = new Label("scoreLabel", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-		songNameLabel = new Label("songNameLabel", skin);
-		songBPMLabel = new Label("songBPMLabel", skin);
-		scoreLabel = new Label("scoreLabel", skin);
+		//songNameLabel = new Label("songNameLabel", skin);
+		//songBPMLabel = new Label("songBPMLabel", skin);
+		scoreLabel = new Label("SCORE " + Constants.score, skin);
 		menuButton = new TextButton("Menu", skin);
 		//("%03d, someNumberVariable") for displaying 3 digits of it in a label or something
 		table.add(songNameLabel).expandX().padTop(5);
@@ -55,5 +56,9 @@ public class Hud {
 		stage.addActor(table);
 		
 	}
-	
+
+	public void setScoreLabel(){
+	    this.scoreLabel.setText("SCORE " + Constants.score);
+    }
+
 }

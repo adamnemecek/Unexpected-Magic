@@ -28,7 +28,7 @@ public class MovementSystem extends IteratingSystem{
         
         pos.setY((float)pos.getY() + delta*vel.getY());//TODO
         
-        if (pos.getY() < 0){
+        if (pos.getY() < -20){
             getEngine().removeEntity(entity);
         }
         //System.out.println("MovementSystem. NEW POS. x = " + pos.x + ", y = " + pos.y);
