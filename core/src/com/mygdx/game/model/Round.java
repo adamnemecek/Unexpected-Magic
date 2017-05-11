@@ -1,6 +1,6 @@
 package com.mygdx.game.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.mygdx.game.model.song.ISong;
 /**
@@ -8,10 +8,10 @@ import com.mygdx.game.model.song.ISong;
  */
 public class Round {
 	public final ISong song;
-	public final ArrayList<Player> players;
+	public final List<Player> players;
 
 	
-	public Round(ISong song, ArrayList<Player> players){
+	public Round(ISong song, List<Player> players){
 		this.song = song;
 		this.players = players;
 		
