@@ -23,8 +23,6 @@ import com.mygdx.game.model.SongList;
  */
 public class NewgameScreen extends AbstractScreen {
 
-	private TextureAtlas atlas;
-	private Skin skin;
 	// GAME STUFF
 	private ArrayList<Player> players;
 	private SongList songList;
@@ -33,8 +31,6 @@ public class NewgameScreen extends AbstractScreen {
 		super(game);
 		songList = new SongList();
 		players = new ArrayList<>();
-		atlas = new TextureAtlas("skins/commodore64/skin/uiskin.atlas");
-		skin = new Skin(Gdx.files.internal("skins/commodore64/skin/uiskin.json"), atlas);
 		Gdx.input.setInputProcessor(stage);
 		// TEST PLAYERS
 		players.add(new Player("Testplayer1", null, null));

@@ -39,9 +39,6 @@ public abstract class AbstractScreen extends ScreenAdapter {
 		viewport.apply();
 		stage = new Stage(viewport, game.batch);
 		Gdx.input.setInputProcessor(stage);
-
-		//atlas = new TextureAtlas("skins/Mother_Skin/terramotherui/terra-mother-ui.atlas");
-		//skin = new Skin(Gdx.files.internal("skins/Mother_Skin/terramotherui/terra-mother-ui.json"), atlas);
 		atlas = new TextureAtlas("skins/commodore64/skin/uiskin.atlas");
 		skin = new Skin(Gdx.files.internal("skins/commodore64/skin/uiskin.json"), atlas);
 	}

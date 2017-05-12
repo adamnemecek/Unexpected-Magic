@@ -9,9 +9,6 @@ import com.mygdx.game.model.Constants;
 
 public class OptionsScreen extends AbstractScreen {
 
-	private TextureAtlas atlas;
-	private Skin skin;
-
 	public OptionsScreen(final UnexpectedMagic game) {
 		super(game);
 	}
