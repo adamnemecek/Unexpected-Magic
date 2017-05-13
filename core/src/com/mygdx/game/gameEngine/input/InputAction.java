@@ -25,7 +25,7 @@ public class InputAction implements IInputController{
 		if(!note.isNote()) throw new IllegalArgumentException("Cannot play non-note action");
 		soundManager.noteOn(note.noteValue());
 		System.out.println(note.noteValue()); //TODO remove debug print
-		roundManager.activateLane(getNoteLane(note));
+		roundManager.activateLane(note.noteValue()%12);
 		
 	}
 
@@ -33,7 +33,7 @@ public class InputAction implements IInputController{
 	public void noteKeyReleased(Action note) {
 		if(!note.isNote()) throw new IllegalArgumentException("Cannot play non-note action");
 		soundManager.noteOff(note.noteValue());
-		roundManager.deactivateLane(getNoteLane(note));
+		roundManager.deactivateLane(note.noteValue()%12);
 		
 		
 	}
@@ -50,7 +50,7 @@ public class InputAction implements IInputController{
 		
 	}
 	
-	private int getNoteLane(Action note){
+	/*private int getNoteLane(Action note){
 		switch(note){
 		
 		case NOTE_C: return 0;
@@ -79,6 +79,6 @@ public class InputAction implements IInputController{
 		
 		default: return 0;
 		}
-	}
+	}*/
 
 }

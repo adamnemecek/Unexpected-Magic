@@ -19,6 +19,8 @@ import com.mygdx.game.model.NoteLanes;
 
 /**
  * A class that defines the properties of the piano roll (the area where the notes are drawn).
+ * @author ???
+ * 
  */
 public class PianoRoll {
 	private Engine engine;
@@ -68,12 +70,19 @@ public class PianoRoll {
 //		viewport.setScreenPosition(screenX, 0);
 		
 	}
-	
-	
+	/**
+	 * 
+	 * @deprecated go via roundmanager instead
+	 */
 	@Deprecated
 	public void activateLane(int lane){
 		this.noteLanes.activateLane(lane);
 	}
+	
+	/**
+	 * 
+	 * @deprecated go via roundmanager instead
+	 */
 	@Deprecated
 	public void deactivateLane(int lane){
 		this.noteLanes.deactivateLane(lane);
