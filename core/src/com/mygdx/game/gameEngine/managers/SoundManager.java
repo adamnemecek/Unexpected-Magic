@@ -45,8 +45,9 @@ public class SoundManager {
 		
 	}
 
-	public void setSongTimeSignaure(int timeSignaure, int bpm){
-		this.timeSignature = timeSignaure;
+	public void setSongTimeSignaure(int timeSignature, int bpm){
+		System.out.println("timeSignature: " + timeSignature + "bpm: " + bpm );
+		this.timeSignature = timeSignature;
 		this.bpm = bpm;
 	}
 

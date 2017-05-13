@@ -62,7 +62,8 @@ public class GameScreen extends AbstractScreen{
 		initRound(song, players, engine, batch); //TODO catch exceptions?
 
 		soundmanager = new SoundManager();
-		soundmanager.setInstrument(40);
+		soundmanager.setInstrument(40); //
+		soundmanager.setSongTimeSignaure(song.getTime()[1],song.getBpm()); //TODO, soundmanger should perhaps only be in one class
 
 		ScoreSystem scoreSystem = new ScoreSystem(score,pianoRoll.getNoteLanes(), soundmanager); //TODO SHOULD BE SOMEWHERE ELSE
         engine.addSystem(scoreSystem);

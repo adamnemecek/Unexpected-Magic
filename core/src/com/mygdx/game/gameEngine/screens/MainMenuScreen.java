@@ -21,7 +21,6 @@ public class MainMenuScreen extends AbstractScreen {
 
 
 	private AnimationManager amOne;
-	private AnimationManager amTwo;
 
 	// BUTTONS
 	private ButtonGroup<TextButton> buttongroup;
@@ -40,8 +39,6 @@ public class MainMenuScreen extends AbstractScreen {
 		menuItems = new String[] { "New game", "Options", "Animation", "Exit" };
 		amOne = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/wizard.png"))
 				, game.batch, 1,10, 250, 0, 200, 300, 0.1f );
-		amTwo = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/sprite-animation4.png"))
-				, game.batch, 5,6, 10 , 0, 100, 100, 0.05f);
 	}
 
 	@Override
@@ -105,8 +102,7 @@ public class MainMenuScreen extends AbstractScreen {
 		camera.update();
 		game.batch.setProjectionMatrix(camera.combined);
 		game.batch.begin();
-		amOne.render(); // render animation
-		amTwo.render();
+		amOne.render(); // render animation TODO should perhaps be automated
 		game.batch.end();
 
 		stage.act();
