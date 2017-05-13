@@ -11,6 +11,9 @@ public class Player {
 	public final IVoice voice;
 	public final Score score;
 	//public Player(String name){} //TODO for testing
+	public Player(String name, IVoice voice) {
+		this(name, voice, new Score());
+	}
 	public Player(String name, IVoice voice, Score score){
 		this.name = name;
 		this.voice = voice;

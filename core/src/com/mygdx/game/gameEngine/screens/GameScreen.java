@@ -1,7 +1,6 @@
 package com.mygdx.game.gameEngine.screens;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
@@ -9,10 +8,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.UnexpectedMagic;
-import com.mygdx.game.gameEngine.managers.EntityManager;
 import com.mygdx.game.gameEngine.input.InputAction;
 import com.mygdx.game.gameEngine.input.KeyboardControllerAdapter;
 import com.mygdx.game.gameEngine.input.KeyboardInputManager;
+import com.mygdx.game.gameEngine.managers.EntityManager;
 import com.mygdx.game.gameEngine.managers.RoundManager;
 import com.mygdx.game.gameEngine.managers.SoundManager;
 import com.mygdx.game.gameEngine.scenes.Hud;
@@ -46,7 +45,7 @@ public class GameScreen extends AbstractScreen{
 	private final SoundManager soundmanager;
 	private KeyboardInputManager keyboardInputManager;
 	
-	public GameScreen(final UnexpectedMagic game, ISong song, ArrayList<Player> players) throws IOException{
+	public GameScreen(final UnexpectedMagic game, ISong song, List<Player> players) {
 		super(game);
 		engine = game.engine;
 		batch = game.batch;
@@ -72,7 +71,7 @@ public class GameScreen extends AbstractScreen{
 
 	}
 	
-	public void initRound(ISong song, ArrayList<Player> players, Engine engine, SpriteBatch batch) throws IOException{
+	public void initRound(ISong song, List<Player> players, Engine engine, SpriteBatch batch) {
 		roundManager = new RoundManager(new Round(song, players), new EntityManager(engine, batch, song), new Ticker(song), noteLanes);
 		
 		//System.out.println("Number of voices: "+ round.song.getVoices().length);
