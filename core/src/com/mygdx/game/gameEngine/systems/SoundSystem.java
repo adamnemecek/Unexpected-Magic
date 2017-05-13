@@ -12,7 +12,7 @@ import com.mygdx.game.model.Constants;
 /**
  * Created by rasmus on 2017-05-05.
  */
-public class SoundSystem extends IteratingSystem{
+public class SoundSystem extends IteratingSystem {
 
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
     private ComponentMapper<NoteComponent> nm = ComponentMapper.getFor(NoteComponent.class);
@@ -29,8 +29,9 @@ public class SoundSystem extends IteratingSystem{
         PositionComponent pos = pm.get(entity);
         NoteComponent not = nm.get(entity);
 
-        //if((int)pos.y == Constants.SCORE_LINE){ //TODO Is this accurate
-        //    soundManager.play(not.note);
-        //}
+        if ((int) pos.getY() == Constants.SCORE_BOUNDS_UPPER) { //TODO Is this accurate
+            soundManager.play(not.getNote());
+            //}
+        }
     }
 }

@@ -6,13 +6,16 @@ import com.mygdx.game.model.song.INote;
 
 public class SoundManager {
 
-	int volume = 1000;
-	int nChannelNumber = 1;
-	MidiChannel channel;
-	MidiChannel[] channels;
-	Synthesizer synth = null;
-	Soundbank soundbank;
-	Instrument[] instr;
+	private int volume = 1000;
+	private int nChannelNumber = 1;
+	private MidiChannel channel;
+	private MidiChannel[] channels;
+	private Synthesizer synth = null;
+	private Soundbank soundbank;
+	private Instrument[] instr;
+	private int defualtBPM = 76;
+	private double defaultTimeSignature = 4; //TODO read from song
+
 	
 	 private final NoteThread notethread;
 	
@@ -37,13 +40,12 @@ public class SoundManager {
 		}
 					
 		setInstrument(90);
-//		setInstrument(108);
 		notethread = new NoteThread(channel);
 		notethread.start();
 		
 	}
 	public void play(INote note){
-		 play(note.getPitch(), note.getDuration());
+		 play(note.getPitch(), timeConvert(note.getDuration(),defaultTimeSignature,defualtBPM));
 	}
 	public void play(int noteNumber, int noteDuration){
 		notethread.play(noteNumber, noteDuration);
@@ -83,6 +85,13 @@ public class SoundManager {
 		track.add(new MidiEvent(sm,0));
 	
 	}
-	
+
+	private int timeConvert(double noteSignature, double songSignature, double bpm){
+
+		double mspm = 60*1000;
+		double i  = mspm/(songSignature*(1/(noteSignature))*bpm);
+		System.out.println(i);
+		return (int)i;
+	}
 	
 }
