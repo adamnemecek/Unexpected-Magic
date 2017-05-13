@@ -2,14 +2,12 @@ package com.mygdx.game.gameEngine.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.gameEngine.managers.AnimationManager;
@@ -20,25 +18,20 @@ import com.mygdx.game.gameEngine.managers.AnimationManager;
 public class MainMenuScreen extends AbstractScreen {
 
 
-	private AnimationManager amOne;
+	private AnimationManager wizardAnim;
 
 	// BUTTONS
 	private ButtonGroup<TextButton> buttongroup;
 	private String[] menuItems;
 	private int menuItemSelected;
 
-	private TextButton newgameButton;
-	private TextButton optionButton;
-	private TextButton animationButton;
-	private TextButton exitButton;
-
 	public MainMenuScreen(final UnexpectedMagic game) {
 		super(game);
 
 		menuItemSelected = 0;
 		menuItems = new String[] { "New game", "Options", "Animation", "Exit" };
-		amOne = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/wizard.png"))
-				, game.batch, 1,10, 250, 0, 200, 300, 0.1f );
+		wizardAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/wizard.png")),
+				game.batch, 1, 10, 250, 0, 200, 300, 0.1f );
 	}
 
 	@Override
@@ -59,14 +52,12 @@ public class MainMenuScreen extends AbstractScreen {
 		//float fontScale = 1f;
 		//float buttonScale = 1f;
 
-		newgameButton = new TextButton(menuItems[0], skin);
-		optionButton = new TextButton(menuItems[1], skin);
-		animationButton = new TextButton(menuItems[2], skin);
-		exitButton = new TextButton(menuItems[3], skin);
+		TextButton newgameButton = new TextButton(menuItems[0], skin);
+		TextButton optionButton = new TextButton(menuItems[1], skin);
+		TextButton animationButton = new TextButton(menuItems[2], skin);
+		TextButton exitButton = new TextButton(menuItems[3], skin);
 		
 		// Add buttons to table
-		float width = Gdx.graphics.getWidth() - Gdx.graphics.getHeight();
-		float height = Gdx.graphics.getHeight() / 8;
 		/*
 		mainTable.add(newgameButton).size(width, height).row();
 		mainTable.add(optionButton).size(width, height).row();
@@ -92,25 +83,14 @@ public class MainMenuScreen extends AbstractScreen {
 			btn.getLabel().setFontScale(fontScale);
 			btn.setScale(buttonScale);
 		}*/
+		/*
 		addButtonListeners();
 
 	}
 
-	@Override
-	public void render(float delta) {
-		super.render(delta);
-		camera.update();
-		game.batch.setProjectionMatrix(camera.combined);
-		game.batch.begin();
-		amOne.render(); // render animation TODO should perhaps be automated
-		game.batch.end();
-
-		stage.act();
-		stage.draw();
-	}
-
 	// TODO should be done in a more elegant way
 	private void addButtonListeners() {
+		*/
 		newgameButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
@@ -179,6 +159,19 @@ public class MainMenuScreen extends AbstractScreen {
 			}
 
 		});
+	}
+
+	@Override
+	public void render(float delta) {
+		super.render(delta);
+		camera.update();
+		game.batch.setProjectionMatrix(camera.combined);
+		game.batch.begin();
+		wizardAnim.render(); // render animation TODO should perhaps be automated
+		game.batch.end();
+
+		stage.act();
+		stage.draw();
 	}
 
 	public void newgameButtonPushed() {
