@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.gameEngine.managers.EntityManager;
+import com.mygdx.game.gameEngine.input.InputAction;
+import com.mygdx.game.gameEngine.input.KeyboardControllerAdapter;
 import com.mygdx.game.gameEngine.input.KeyboardInputManager;
 import com.mygdx.game.gameEngine.managers.RoundManager;
 import com.mygdx.game.gameEngine.managers.SoundManager;
@@ -17,6 +19,7 @@ import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
 import com.mygdx.game.gameEngine.systems.ScoreSystem;
 import com.mygdx.game.model.Constants;
+import com.mygdx.game.model.NoteLanes;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Round;
 import com.mygdx.game.model.Score;
@@ -37,15 +40,17 @@ public class GameScreen extends AbstractScreen{
 	Texture backgroundTexture;
 	//EntityManager entityManager;
 	private RoundManager roundManager;
+	private final NoteLanes noteLanes;
 	private Hud hud;
 	private PianoRoll pianoRoll;
 	private final SoundManager soundmanager;
-	private final KeyboardInputManager keyboardInputManager;
+	private KeyboardInputManager keyboardInputManager;
 	
 	public GameScreen(final UnexpectedMagic game, ISong song, ArrayList<Player> players) throws IOException{
 		super(game);
 		engine = game.engine;
 		batch = game.batch;
+		noteLanes = new NoteLanes();
 		/*camera = new OrthographicCamera();
 		camera.setToOrtho(false);*/
 		running = false; //TODO get the right arguments song, players
@@ -54,7 +59,7 @@ public class GameScreen extends AbstractScreen{
 		Score score = new Score(); //TODO Should be somewhere else, probably RoundManager
 
         hud = new Hud(batch, score);
-		pianoRoll = new PianoRoll(engine, batch);
+		pianoRoll = new PianoRoll(engine, batch, noteLanes);
 		initRound(song, players, engine, batch); //TODO catch exceptions?
 
 		soundmanager = new SoundManager();
@@ -62,18 +67,27 @@ public class GameScreen extends AbstractScreen{
 
 		ScoreSystem scoreSystem = new ScoreSystem(score,pianoRoll.getNoteLanes(), soundmanager); //TODO SHOULD BE SOMEWHERE ELSE
         engine.addSystem(scoreSystem);
-
-        this.keyboardInputManager = new KeyboardInputManager();
-	    Gdx.input.setInputProcessor(keyboardInputManager);
+        
+        initInput();
 
 	}
 	
 	public void initRound(ISong song, ArrayList<Player> players, Engine engine, SpriteBatch batch) throws IOException{
-		roundManager = new RoundManager(new Round(song, players), new EntityManager(engine, batch, song), new Ticker(song));
+		roundManager = new RoundManager(new Round(song, players), new EntityManager(engine, batch, song), new Ticker(song), noteLanes);
 		
 		//System.out.println("Number of voices: "+ round.song.getVoices().length);
 		//wait for player input here before running?
 		running = true;
+	}
+	
+	private void initInput(){
+		
+		final InputAction ia = new InputAction(roundManager);
+		final KeyboardControllerAdapter  kca= new KeyboardControllerAdapter(ia);
+		
+		this.keyboardInputManager = new KeyboardInputManager(kca);
+	    Gdx.input.setInputProcessor(keyboardInputManager);
+		
 	}
 	
 	public void update (float delta) {

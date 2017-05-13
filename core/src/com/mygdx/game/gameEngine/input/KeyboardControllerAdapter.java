@@ -8,8 +8,8 @@ import com.mygdx.game.services.file.Action;
  */
 public class KeyboardControllerAdapter {
 	private InputAction inputAction;
-	public KeyboardControllerAdapter(){
-		inputAction = new InputAction();
+	public KeyboardControllerAdapter(InputAction inputAction){
+		this.inputAction = inputAction;
 	}
 	public void keyPressed(int keyCode) {
 		Action action = ConfigService.keyAction(keyCode);

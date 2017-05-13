@@ -9,8 +9,8 @@ public class KeyboardInputManager implements InputProcessor {
 
     private final KeyboardControllerAdapter keyboardControllerAdapter;
 
-    public KeyboardInputManager(){
-        keyboardControllerAdapter = new KeyboardControllerAdapter();
+    public KeyboardInputManager(KeyboardControllerAdapter adapter){
+        this.keyboardControllerAdapter = adapter;
     }
 
     @Override

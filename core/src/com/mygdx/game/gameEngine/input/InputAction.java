@@ -1,7 +1,10 @@
 package com.mygdx.game.gameEngine.input;
 
+import com.mygdx.game.gameEngine.managers.RoundManager;
 import com.mygdx.game.gameEngine.managers.SoundManager;
+import com.mygdx.game.model.Constants;
 import com.mygdx.game.services.file.Action;
+
 
 /**
  * Created by rasmus on 2017-05-09.
@@ -9,9 +12,12 @@ import com.mygdx.game.services.file.Action;
 public class InputAction implements IInputController{
 
 	private SoundManager soundManager;
+	private RoundManager roundManager;
+
 	
-	public InputAction(){
-		soundManager = new SoundManager();
+	public InputAction(RoundManager rm){
+		soundManager = new SoundManager(); //TODO would make sense if this was created somewhere else
+		roundManager =rm;
 	}
 	
 	@Override
@@ -19,6 +25,7 @@ public class InputAction implements IInputController{
 		if(!note.isNote()) throw new IllegalArgumentException("Cannot play non-note action");
 		soundManager.noteOn(note.noteValue());
 		System.out.println(note.noteValue()); //TODO remove debug print
+		roundManager.activateLane(getNoteLane(note));
 		
 	}
 
@@ -26,7 +33,8 @@ public class InputAction implements IInputController{
 	public void noteKeyReleased(Action note) {
 		if(!note.isNote()) throw new IllegalArgumentException("Cannot play non-note action");
 		soundManager.noteOff(note.noteValue());
-		// TODO Auto-generated method stub
+		roundManager.deactivateLane(getNoteLane(note));
+		
 		
 	}
 
@@ -40,6 +48,37 @@ public class InputAction implements IInputController{
 	public void uiKeyReleased() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private int getNoteLane(Action note){
+		switch(note){
+		
+		case NOTE_C: return 0;
+		
+		case NOTE_C_SHARP: return 1;
+		
+		case NOTE_D: return 2;
+		
+		case NOTE_D_SHARP: return 3;
+		
+		case NOTE_E: return 4;
+		
+		case NOTE_F: return 5;
+		
+		case NOTE_F_SHARP: return 6;
+		
+		case NOTE_G: return 7;
+		
+		case NOTE_G_SHARP: return 8;
+		
+		case NOTE_A: return 9;
+		
+		case NOTE_A_SHARP: return 10;
+		
+		case NOTE_B: return 11;
+		
+		default: return 0;
+		}
 	}
 
 }

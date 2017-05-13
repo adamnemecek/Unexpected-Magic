@@ -32,9 +32,9 @@ public class PianoRoll {
 	ComponentMapper<SpriteComponent> spriteComponentMapper;	
 
 	
-	public PianoRoll(Engine engine, SpriteBatch spriteBatch) {
+	public PianoRoll(Engine engine, SpriteBatch spriteBatch, NoteLanes noteLanes) {
         this.engine = engine;
-        this.noteLanes = new NoteLanes();
+        this.noteLanes = noteLanes;
         batch = spriteBatch;
         camera = new OrthographicCamera();
         viewport = new ScalingViewport(Scaling.fit, Constants.PIANOROLL_DIM_X, Constants.PIANOROLL_DIM_Y, camera);
@@ -69,10 +69,12 @@ public class PianoRoll {
 		
 	}
 	
+	
+	@Deprecated
 	public void activateLane(int lane){
 		this.noteLanes.activateLane(lane);
 	}
-	
+	@Deprecated
 	public void deactivateLane(int lane){
 		this.noteLanes.deactivateLane(lane);
 	}

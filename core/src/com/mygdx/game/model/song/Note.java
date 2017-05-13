@@ -76,13 +76,7 @@ public class Note implements INote {
 		this.str = str;
 		this.isHit = false;
 	}
-	public void Hit(){
-		isHit = true;
-	}
 	
-	public boolean isHit(){
-		return isHit;
-	}
 	@Override
 	public String toString() {
 		return str;
