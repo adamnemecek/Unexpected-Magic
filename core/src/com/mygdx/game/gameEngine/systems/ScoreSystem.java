@@ -49,7 +49,6 @@ public class ScoreSystem extends IteratingSystem {
 
         	if(pos.getY() < Constants.SCORE_BOUNDS_UPPER && pos.getY() > Constants.SCORE_BOUNDS_LOWER) { //checks if the note is in the playable area TODO THIS MAY NOT BE ACCURATE
         		score.hitNote(hit.isHit());
-        		System.out.println("score++");
         		if(!hit.isHit()){
         			soundManager.play(not.getNote().getPitch(),not.getNote().getDuration());
         			getEngine().removeEntity(entity);
