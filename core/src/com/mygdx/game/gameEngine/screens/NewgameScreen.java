@@ -27,7 +27,6 @@ import com.mygdx.game.model.SongList;
  * @author car0b1nius
  */
 public class NewgameScreen extends AbstractScreen {
-
 	// GAME STUFF
 	private ArrayList<Player> players;
 	private SongList songList;
