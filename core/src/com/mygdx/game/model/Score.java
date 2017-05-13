@@ -19,14 +19,12 @@ public class Score {
 		multiplier = 1; //TODO this could perhaps work
 	}
 	//first draft, score calculation? Keep track of percentage of note hit?
-	public void hitNote(){
-
+	public void hitNote(boolean previouslyHit){
 		score +=1*multiplier;
-	}
-
-	public void incStreak(){
-		streak++;
-		multiplier = 1 + streak/50;
+		if(!previouslyHit){
+			streak++;
+			multiplier = 1 + streak/50;
+		}
 	}
 
 

@@ -3,6 +3,7 @@ package com.mygdx.game.gameEngine.managers;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.mygdx.game.gameEngine.components.HitComponent;
 import com.mygdx.game.gameEngine.components.NoteComponent;
 import com.mygdx.game.gameEngine.components.PositionComponent;
 import com.mygdx.game.gameEngine.components.SpriteComponent;
@@ -22,7 +23,8 @@ public class EntityFactory {
 		VelocityComponent velocityComponent = new VelocityComponent(0, NoteVelY);
 		NoteComponent noteComponent = new NoteComponent(note);
 		SpriteComponent normalSprite = new SpriteComponent(new Sprite(new Texture("sprites/note1pink.png")));
-		entity.add(positionComponent).add(velocityComponent).add(noteComponent).add(normalSprite);
+		HitComponent hitComponent = new HitComponent();
+		entity.add(positionComponent).add(velocityComponent).add(noteComponent).add(normalSprite).add(hitComponent);
 		return entity;
 	}
 	//TODO remove?

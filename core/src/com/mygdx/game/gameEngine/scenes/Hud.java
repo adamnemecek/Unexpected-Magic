@@ -32,7 +32,7 @@ public class Hud {
 	
 	private TextButton menuButton;
 	
-	public Hud(SpriteBatch spriteBatch){
+	public Hud(SpriteBatch spriteBatch, Score score){
 		atlas = new TextureAtlas("skins/Mother_Skin/terramotherui/terra-mother-ui.atlas");
 		skin = new Skin(Gdx.files.internal("skins/Mother_Skin/terramotherui/terra-mother-ui.json"),atlas);
 		
@@ -40,7 +40,7 @@ public class Hud {
 		viewport = new ScalingViewport(Scaling.fit, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y, camera);
 		stage = new Stage(viewport, spriteBatch);
 		
-		score = new Score();
+		this.score = score;
 		Table table = new Table();
 		table.top();
 		table.setFillParent(true);
@@ -58,7 +58,7 @@ public class Hud {
 	}
 
 	public void setScoreLabel(){
-	    this.scoreLabel.setText("SCORE " + score);
+	    this.scoreLabel.setText("SCORE " + score.getScore());
     }
 
 }

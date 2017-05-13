@@ -23,15 +23,15 @@ public class ScoreTest {
 	public void testStreak(){
 	
 		for	(int i = 0; i < 100; i++){
-			score.hitNote();
+			score.hitNote(false);
 		}
 		assertEquals(100, score.getStreak());
-		assertEquals(100, score.getScore());
+		assertEquals(150, score.getScore());
 		
 		score.missedNote();
 		
 		assertEquals(0, score.getStreak());
-		assertEquals(100, score.getScore());
+		assertEquals(150, score.getScore());
 		
 	}
 	

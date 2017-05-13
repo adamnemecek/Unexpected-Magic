@@ -50,17 +50,17 @@ public class GameScreen extends AbstractScreen{
 		camera.setToOrtho(false);*/
 		running = false; //TODO get the right arguments song, players
 		backgroundTexture = new Texture("images/lanes/Purple.png");
+		
+		Score score = new Score(); //TODO Should be somewhere else, probably RoundManager
 
-
-
-        hud = new Hud(batch);
+        hud = new Hud(batch, score);
 		pianoRoll = new PianoRoll(engine, batch);
 		initRound(song, players, engine, batch); //TODO catch exceptions?
 
 		soundmanager = new SoundManager();
 		soundmanager.setInstrument(40);
 
-		ScoreSystem scoreSystem = new ScoreSystem(new Score(),pianoRoll.getNoteLanes(), soundmanager); //TODO SHOULD BE SOMEWHERE ELSE
+		ScoreSystem scoreSystem = new ScoreSystem(score,pianoRoll.getNoteLanes(), soundmanager); //TODO SHOULD BE SOMEWHERE ELSE
         engine.addSystem(scoreSystem);
 
         this.keyboardInputManager = new KeyboardInputManager();

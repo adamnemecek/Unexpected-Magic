@@ -15,4 +15,5 @@ public class NoteComponent implements Component{
 	public INote getNote(){
 		return note;
 	}
+	
 }
