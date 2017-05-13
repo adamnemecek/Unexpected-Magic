@@ -39,11 +39,13 @@ public class ScoreSystem extends IteratingSystem {
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
+    	
         NoteComponent not = nm.get(entity);
         PositionComponent pos = pm.get(entity);
         HitComponent hit = hm.get(entity);
         if (noteLanes.getLaneState(not.getNote().getPitch() % Constants.NUMBER_OF_LANES)) { //checks if the note's noteLane is active
         	//PositionComponent pos = pm.get(entity);
+        	System.out.println("does this get called?");
 
         	if(pos.getY() < Constants.SCORE_BOUNDS_UPPER && pos.getY() > Constants.SCORE_BOUNDS_LOWER) { //checks if the note is in the playable area TODO THIS MAY NOT BE ACCURATE
         		score.hitNote(hit.isHit());
