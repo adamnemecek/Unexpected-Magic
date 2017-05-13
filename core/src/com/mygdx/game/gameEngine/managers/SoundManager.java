@@ -13,8 +13,8 @@ public class SoundManager {
 	private Synthesizer synth = null;
 	private Soundbank soundbank;
 	private Instrument[] instr;
-	private int defualtBPM = 76;
-	private double defaultTimeSignature = 4; //TODO read from song
+	private int bpm = 155;
+	private int timeSignature = 4; //TODO read from song
 
 	
 	 private final NoteThread notethread;
@@ -44,9 +44,16 @@ public class SoundManager {
 		notethread.start();
 		
 	}
-	public void play(INote note){
-		 play(note.getPitch(), timeConvert(note.getDuration(),defaultTimeSignature,defualtBPM));
+
+	public void setSongTimeSignaure(int timeSignaure, int bpm){
+		this.timeSignature = timeSignaure;
+		this.bpm = bpm;
 	}
+
+	public void play(INote note){
+		 play(note.getPitch(), timeConvert(note.getDuration(),timeSignature,bpm));
+	}
+
 	public void play(int noteNumber, int noteDuration){
 		notethread.play(noteNumber, noteDuration);
 	}
@@ -89,7 +96,7 @@ public class SoundManager {
 	private int timeConvert(double noteSignature, double songSignature, double bpm){
 
 		double mspm = 60*1000;
-		double i  = mspm/(songSignature*(1/(noteSignature))*bpm);
+		double i = mspm/(songSignature*(1/(noteSignature))*bpm);
 		System.out.println(i);
 		return (int)i;
 	}

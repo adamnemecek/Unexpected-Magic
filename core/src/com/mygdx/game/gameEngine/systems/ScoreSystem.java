@@ -23,7 +23,7 @@ public class ScoreSystem extends IteratingSystem {
 
     private final Score score;
     private final NoteLanes noteLanes;
-    private final SoundManager soundManager;
+    private final SoundManager soundManager; //TODO
 
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
     private ComponentMapper<NoteComponent> nm = ComponentMapper.getFor(NoteComponent.class);
@@ -58,7 +58,7 @@ public class ScoreSystem extends IteratingSystem {
         else if(pos.getY() >=0 && pos.getY() <=1 && !hit.isHit()){ //checks if note has passed the play area without being played
         	score.missedNote();
             //this.soundManager.play(new Random().nextInt(100), 10);
-        
+
         }
     }
     
