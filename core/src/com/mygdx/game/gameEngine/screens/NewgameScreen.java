@@ -123,7 +123,7 @@ public class NewgameScreen extends AbstractScreen {
 					players.add(new Player(playerNames[i].getText(), voices[i]));
 				}
 				//game.setScreen(new GameScreen(game, song, players));
-				notifyListeners(new GameScreen(engine, batch, song, players));
+				notifyScreenChange(new GameScreen(engine, batch, song, players));
 				return true;
 			}
 		);

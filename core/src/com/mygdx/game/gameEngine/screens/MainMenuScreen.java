@@ -180,12 +180,12 @@ public class MainMenuScreen extends AbstractScreen {
 	}
 
 	public void newgameButtonPushed() {
-		notifyListeners(new NewgameScreen(engine, batch));
+		notifyScreenChange(new NewgameScreen(engine, batch));
 		//game.setScreen(new NewgameScreen(game));
 	}
 
 	public void optionButtonPushed() {
-		notifyListeners(new OptionsScreen(engine, batch));
+		notifyScreenChange(new OptionsScreen(engine, batch));
 		//game.setScreen(new OptionsScreen(game));
 	}
 
