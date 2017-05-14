@@ -4,7 +4,7 @@ public class Score {
 
 	/**
 	 * A class that holds score.
-	 * Modified by Arunvik
+	 * Revised by Arunvik
 	 * Primitive, mostly made for me to test testing
 	 */
 
