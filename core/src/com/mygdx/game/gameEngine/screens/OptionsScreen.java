@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.game.UnexpectedMagic;
-import com.mygdx.game.model.Constants;
+import com.mygdx.game.utilities.file.Constants;
 
 public class OptionsScreen extends AbstractScreen {
 

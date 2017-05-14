@@ -14,8 +14,8 @@ import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.gameEngine.components.PositionComponent;
 import com.mygdx.game.gameEngine.components.SpriteComponent;
-import com.mygdx.game.model.Constants;
 import com.mygdx.game.model.NoteLanes;
+import com.mygdx.game.utilities.file.Constants;
 
 /**
  * A class that defines the properties of the piano roll (the area where the notes are drawn).

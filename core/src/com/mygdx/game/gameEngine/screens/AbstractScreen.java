@@ -17,7 +17,7 @@ import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.UnexpectedMagic;
-import com.mygdx.game.model.Constants;
+import com.mygdx.game.utilities.file.Constants;
 
 /**
  * 

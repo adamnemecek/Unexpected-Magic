@@ -18,13 +18,13 @@ import com.mygdx.game.gameEngine.managers.SoundManager;
 import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
 import com.mygdx.game.gameEngine.systems.ScoreSystem;
-import com.mygdx.game.model.Constants;
 import com.mygdx.game.model.NoteLanes;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Round;
 import com.mygdx.game.model.Score;
 import com.mygdx.game.model.Ticker;
 import com.mygdx.game.model.song.ISong;
+import com.mygdx.game.utilities.file.Constants;
 
 
 /**

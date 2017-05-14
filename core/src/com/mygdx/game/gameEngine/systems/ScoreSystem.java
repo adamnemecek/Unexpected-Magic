@@ -9,9 +9,9 @@ import com.mygdx.game.gameEngine.components.NoteComponent;
 import com.mygdx.game.gameEngine.components.PositionComponent;
 import com.mygdx.game.gameEngine.managers.SoundManager;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
-import com.mygdx.game.model.Constants;
 import com.mygdx.game.model.NoteLanes;
 import com.mygdx.game.model.Score;
+import com.mygdx.game.utilities.file.Constants;
 
 import java.util.Random;
 

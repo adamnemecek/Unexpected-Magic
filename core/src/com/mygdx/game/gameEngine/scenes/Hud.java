@@ -14,8 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.game.model.Constants;
 import com.mygdx.game.model.Score;
+import com.mygdx.game.utilities.file.Constants;
 import com.sun.corba.se.impl.orbutil.closure.Constant;
 
 public class Hud {

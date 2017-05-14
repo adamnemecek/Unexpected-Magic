@@ -1,4 +1,4 @@
-package com.mygdx.game.model;
+package com.mygdx.game.utilities.file;
 
 /**
  * A class that holds global constants.

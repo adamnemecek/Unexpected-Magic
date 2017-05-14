@@ -8,8 +8,8 @@ import com.mygdx.game.gameEngine.components.NoteComponent;
 import com.mygdx.game.gameEngine.components.PositionComponent;
 import com.mygdx.game.gameEngine.components.SpriteComponent;
 import com.mygdx.game.gameEngine.components.VelocityComponent;
-import com.mygdx.game.model.Constants;
 import com.mygdx.game.model.song.INote;
+import com.mygdx.game.utilities.file.Constants;
 
 public class EntityFactory {
 

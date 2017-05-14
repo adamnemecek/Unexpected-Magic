@@ -7,7 +7,7 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.mygdx.game.gameEngine.components.NoteComponent;
 import com.mygdx.game.gameEngine.components.PositionComponent;
 import com.mygdx.game.gameEngine.managers.SoundManager;
-import com.mygdx.game.model.Constants;
+import com.mygdx.game.utilities.file.Constants;
 
 /**
  * Created by rasmus on 2017-05-05.

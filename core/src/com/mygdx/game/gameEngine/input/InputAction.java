@@ -2,8 +2,8 @@ package com.mygdx.game.gameEngine.input;
 
 import com.mygdx.game.gameEngine.managers.RoundManager;
 import com.mygdx.game.gameEngine.managers.SoundManager;
-import com.mygdx.game.model.Constants;
 import com.mygdx.game.utilities.file.Action;
+import com.mygdx.game.utilities.file.Constants;
 
 
 /**
