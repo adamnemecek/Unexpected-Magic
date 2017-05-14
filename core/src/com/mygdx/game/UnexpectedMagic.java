@@ -23,7 +23,10 @@ public class UnexpectedMagic extends Game implements ScreenListener{
 		batch = new SpriteBatch();
 		font = new BitmapFont();
 		engine = new PooledEngine(); 
-		this.setScreen(new MainMenuScreen(this));
+		
+		MainMenuScreen MMS = new MainMenuScreen(this.engine, this.batch);
+		MMS.addListener(this);
+		this.setScreen(MMS);
 		//TODO
 		//init assets?
 		
@@ -47,7 +50,7 @@ public class UnexpectedMagic extends Game implements ScreenListener{
 
 	@Override
 	public void screenChanged(AbstractScreen screen) {
-		// TODO Auto-generated method stub
+		this.setScreen(screen);
 		
 	}
 	

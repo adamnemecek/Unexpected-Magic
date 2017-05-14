@@ -1,8 +1,11 @@
 package com.mygdx.game.gameEngine.screens;
 
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
@@ -24,14 +27,16 @@ public class MainMenuScreen extends AbstractScreen {
 	private ButtonGroup<TextButton> buttongroup;
 	private String[] menuItems;
 	private int menuItemSelected;
+	
 
-	public MainMenuScreen(final UnexpectedMagic game) {
-		super(game);
+	public MainMenuScreen(final Engine engine, final SpriteBatch batch) {
+		super(engine, batch);
+		
 
 		menuItemSelected = 0;
 		menuItems = new String[] { "New game", "Options", "Animation", "Exit" };
 		wizardAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/wizard.png")),
-				game.batch, 1, 10, 250, 0, 200, 300, 0.1f );
+				batch, 1, 10, 250, 0, 200, 300, 0.1f );
 	}
 
 	@Override
@@ -165,21 +170,23 @@ public class MainMenuScreen extends AbstractScreen {
 	public void render(float delta) {
 		super.render(delta);
 		camera.update();
-		game.batch.setProjectionMatrix(camera.combined);
-		game.batch.begin();
+		batch.setProjectionMatrix(camera.combined);
+		batch.begin();
 		wizardAnim.render(); // render animation TODO should perhaps be automated
-		game.batch.end();
+		batch.end();
 
 		stage.act();
 		stage.draw();
 	}
 
 	public void newgameButtonPushed() {
-		game.setScreen(new NewgameScreen(game));
+		notifyListeners(new NewgameScreen(engine, batch));
+		//game.setScreen(new NewgameScreen(game));
 	}
 
 	public void optionButtonPushed() {
-		game.setScreen(new OptionsScreen(game));
+		notifyListeners(new OptionsScreen(engine, batch));
+		//game.setScreen(new OptionsScreen(game));
 	}
 
 	public void animationButtonPushed() {

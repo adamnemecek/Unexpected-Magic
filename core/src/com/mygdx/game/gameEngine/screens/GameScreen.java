@@ -6,6 +6,7 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.gameEngine.input.InputAction;
@@ -45,10 +46,10 @@ public class GameScreen extends AbstractScreen{
 	private final SoundManager soundmanager;
 	private KeyboardInputManager keyboardInputManager;
 	
-	public GameScreen(final UnexpectedMagic game, ISong song, List<Player> players) {
-		super(game);
-		engine = game.engine;
-		batch = game.batch;
+	public GameScreen(final Engine engine, final SpriteBatch batch, ISong song, List<Player> players) {
+		super(engine, batch);
+		this.engine = engine;
+		this.batch = batch;
 		noteLanes = new NoteLanes();
 		/*camera = new OrthographicCamera();
 		camera.setToOrtho(false);*/

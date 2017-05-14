@@ -6,7 +6,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
@@ -33,8 +36,8 @@ public class NewgameScreen extends AbstractScreen {
 	private TextField[] playerNames;
 	//private String[] playerNumItems;
 
-	public NewgameScreen(final UnexpectedMagic game) {
-		super(game);
+	public NewgameScreen(final Engine engine, SpriteBatch batch) {
+		super(engine, batch);
 		songList = new SongList();
 		Gdx.input.setInputProcessor(stage);
 		
@@ -119,7 +122,8 @@ public class NewgameScreen extends AbstractScreen {
 				for(int i = 0; i < pl; i++) {
 					players.add(new Player(playerNames[i].getText(), voices[i]));
 				}
-				game.setScreen(new GameScreen(game, song, players));
+				//game.setScreen(new GameScreen(game, song, players));
+				notifyListeners(new GameScreen(engine, batch, song, players));
 				return true;
 			}
 		);
@@ -156,7 +160,7 @@ public class NewgameScreen extends AbstractScreen {
 	public void render(float delta) {
 		super.render(delta);
 		camera.update();
-		game.batch.setProjectionMatrix(camera.combined);
+		batch.setProjectionMatrix(camera.combined);
 		/*game.batch.begin();
 		game.font.draw(game.batch, "THY NEWE GAME SCREENE", Constants.VIEWPORT_DIM_X / 4, Constants.VIEWPORT_DIM_Y / 2);
 		game.batch.end();*/
