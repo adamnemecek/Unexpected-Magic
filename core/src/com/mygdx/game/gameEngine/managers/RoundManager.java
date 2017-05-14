@@ -7,8 +7,8 @@ import com.mygdx.game.model.Round;
 
 /**
  * 
- * @author ?
- * modified by Arvid
+ * @author soflarb
+ * Revised by Arvid
  *
  */
 
@@ -37,6 +37,13 @@ public class RoundManager {
 	public int getTick(){
 		return ticker.getTick();
 	}
+	//returns true if game is over
+	public boolean gameOver(){
+		//TODO use ticker do not use position or anything
+		//temporary this will end the game too early but it's a test:
+		return (ticker.getTick() > 0 && !ticker.isTicking());
+	}
+	
 	public void update(float delta){
 		ticker.updateTick(delta);
 		entityManager.update(getTick());

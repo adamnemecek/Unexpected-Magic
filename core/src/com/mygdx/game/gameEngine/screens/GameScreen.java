@@ -38,7 +38,6 @@ public class GameScreen extends AbstractScreen{
 	private boolean running;
 	SpriteBatch batch;
 	Texture backgroundTexture;
-	//EntityManager entityManager;
 	private RoundManager roundManager;
 	private final NoteLanes noteLanes;
 	private Hud hud;
@@ -51,9 +50,7 @@ public class GameScreen extends AbstractScreen{
 		this.engine = engine;
 		this.batch = batch;
 		noteLanes = new NoteLanes();
-		/*camera = new OrthographicCamera();
-		camera.setToOrtho(false);*/
-		running = false; //TODO get the right arguments song, players
+		running = false;
 		backgroundTexture = new Texture("images/lanes/Purple.png");
 		
 		Score score = new Score(); //TODO Should be somewhere else, probably RoundManager
@@ -101,6 +98,9 @@ public class GameScreen extends AbstractScreen{
 
 	@Override
 	public void render(float delta){
+		if(roundManager.gameOver()){
+			notifyScreenChange(new ScoreScreen(engine, batch));
+		}
 		//Wipe screen (don't use super because super clears with blue)
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -116,12 +116,13 @@ public class GameScreen extends AbstractScreen{
 		batch.end();
 		
 		//Gdx.gl.glViewport((int)Constants.PIANOROLL_POS_X,(int)Constants.PIANOROLL_POS_Y,(int)Constants.PIANOROLL_DIM_X,(int)Constants.PIANOROLL_DIM_Y);
+		//draw pianoroll
 		batch.setProjectionMatrix(pianoRoll.camera.combined);
 		pianoRoll.viewport.apply(true);
 		pianoRoll.draw(delta);
-		
-		batch.setProjectionMatrix(camera.combined);
-		viewport.apply(true);
+		//update systems
+		//batch.setProjectionMatrix(camera.combined);
+		//viewport.apply(true);
 		update(delta);
 		//Draw HUD
 		batch.setProjectionMatrix(hud.stage.getCamera().combined);
