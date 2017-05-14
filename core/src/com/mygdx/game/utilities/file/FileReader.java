@@ -1,4 +1,4 @@
-package com.mygdx.game.services.file;
+package com.mygdx.game.utilities.file;
 
 import java.io.File;
 import java.io.FileNotFoundException;

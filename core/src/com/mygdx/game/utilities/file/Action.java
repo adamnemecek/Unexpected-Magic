@@ -1,4 +1,4 @@
-package com.mygdx.game.services.file;
+package com.mygdx.game.utilities.file;
 
 /**
  * Created by rasmus on 2017-05-09.

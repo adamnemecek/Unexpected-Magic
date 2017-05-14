@@ -40,7 +40,6 @@ public class Note implements INote {
 		return n;
 	}
 	// http://www.midimountain.com/midi/midi_note_numbers.html
-	private boolean isHit;
 	private static final int[] MAJOR_SCALE = new int[] {0,2,4,5,7,9,11};
 	private static int getNum(String str) throws IOException {
 		if(str.equals("-")) return -1;
@@ -74,7 +73,6 @@ public class Note implements INote {
 		this.number = number;
 		this.duration = duration;
 		this.str = str;
-		this.isHit = false;
 	}
 	
 	@Override

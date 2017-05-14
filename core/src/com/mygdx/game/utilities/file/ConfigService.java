@@ -1,4 +1,4 @@
-package com.mygdx.game.services.file;
+package com.mygdx.game.utilities.file;
 
 public class ConfigService {
 	public static Action keyAction(int keyCode){

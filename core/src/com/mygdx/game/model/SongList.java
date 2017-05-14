@@ -10,7 +10,7 @@ import java.util.Set;
 
 import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.model.song.Song;
-import com.mygdx.game.services.file.FileReader;
+import com.mygdx.game.utilities.file.FileReader;
 
 public class SongList {
 	
