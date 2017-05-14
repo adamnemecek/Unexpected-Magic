@@ -2,6 +2,7 @@ package com.mygdx.game.gameEngine.input;
 
 import com.mygdx.game.gameEngine.managers.RoundManager;
 import com.mygdx.game.gameEngine.managers.SoundManager;
+import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.utilities.file.Action;
 import com.mygdx.game.utilities.file.Constants;
 
@@ -12,12 +13,11 @@ import com.mygdx.game.utilities.file.Constants;
 public class InputAction implements IInputController{
 
 	private SoundManager soundManager;
-	private RoundManager roundManager;
-
+	private Hud hud;
 	
-	public InputAction(RoundManager rm){
+	public InputAction(Hud hud){
 		soundManager = new SoundManager(); //TODO would make sense if this was created somewhere else
-		roundManager =rm;
+		this.hud = hud;
 	}
 	
 	@Override
@@ -25,7 +25,7 @@ public class InputAction implements IInputController{
 		if(!note.isNote()) throw new IllegalArgumentException("Cannot play non-note action");
 		soundManager.noteOn(note.noteValue());
 		System.out.println(note.noteValue()); //TODO remove debug print
-		roundManager.activateLane(note.noteValue()%12);
+		hud.activateLane(note.noteValue()%12);
 		
 	}
 
@@ -33,7 +33,7 @@ public class InputAction implements IInputController{
 	public void noteKeyReleased(Action note) {
 		if(!note.isNote()) throw new IllegalArgumentException("Cannot play non-note action");
 		soundManager.noteOff(note.noteValue());
-		roundManager.deactivateLane(note.noteValue()%12);
+		hud.deactivateLane(note.noteValue()%12);
 		
 		
 	}

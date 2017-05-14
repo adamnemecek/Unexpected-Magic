@@ -6,9 +6,7 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.gameEngine.input.InputAction;
 import com.mygdx.game.gameEngine.input.KeyboardControllerAdapter;
 import com.mygdx.game.gameEngine.input.KeyboardInputManager;
@@ -55,15 +53,15 @@ public class GameScreen extends AbstractScreen{
 		
 		Score score = new Score(); //TODO Should be somewhere else, probably RoundManager
 
-        hud = new Hud(batch, score);
-		pianoRoll = new PianoRoll(engine, batch, noteLanes);
+        hud = new Hud(batch, score, noteLanes);
+		pianoRoll = new PianoRoll(engine, batch);
 		initRound(song, players, engine, batch); //TODO catch exceptions?
 
 		soundmanager = new SoundManager();
 		soundmanager.setInstrument(40); //
 		soundmanager.setSongTimeSignaure(song.getTime()[1],song.getBpm()); //TODO, soundmanger should perhaps only be in one class
 
-		ScoreSystem scoreSystem = new ScoreSystem(score,pianoRoll.getNoteLanes(), soundmanager); //TODO SHOULD BE SOMEWHERE ELSE
+		ScoreSystem scoreSystem = new ScoreSystem(score, noteLanes, soundmanager); //TODO SHOULD BE SOMEWHERE ELSE
         engine.addSystem(scoreSystem);
         
         initInput();
@@ -71,7 +69,7 @@ public class GameScreen extends AbstractScreen{
 	}
 	
 	public void initRound(ISong song, List<Player> players, Engine engine, SpriteBatch batch) {
-		roundManager = new RoundManager(new Round(song, players), new EntityManager(engine, batch, song), new Ticker(song), noteLanes);
+		roundManager = new RoundManager(new Round(song, players), new EntityManager(engine, batch, song), new Ticker(song));
 		
 		//System.out.println("Number of voices: "+ round.song.getVoices().length);
 		//wait for player input here before running?
@@ -80,7 +78,7 @@ public class GameScreen extends AbstractScreen{
 	
 	private void initInput(){
 		
-		final InputAction ia = new InputAction(roundManager);
+		final InputAction ia = new InputAction(hud);
 		final KeyboardControllerAdapter  kca= new KeyboardControllerAdapter(ia);
 		
 		this.keyboardInputManager = new KeyboardInputManager(kca);
@@ -126,7 +124,7 @@ public class GameScreen extends AbstractScreen{
 		update(delta);
 		//Draw HUD
 		batch.setProjectionMatrix(hud.stage.getCamera().combined);
-		hud.stage.draw();
+		hud.draw();
 		
 	}
 		
