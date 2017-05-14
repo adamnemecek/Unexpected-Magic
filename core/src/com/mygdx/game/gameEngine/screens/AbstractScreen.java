@@ -1,5 +1,8 @@
 package com.mygdx.game.gameEngine.screens;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -29,6 +32,7 @@ public abstract class AbstractScreen extends ScreenAdapter {
 
 	protected TextureAtlas atlas;
 	protected Skin skin;
+	protected final List<ScreenListener> listeners = new ArrayList<>();
 
 	protected AbstractScreen(final UnexpectedMagic game) {
 		this.game = game;
@@ -58,5 +62,9 @@ public abstract class AbstractScreen extends ScreenAdapter {
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0.25882354f,0.25882354f,0.90588236f,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+	}
+	
+	public void screenChanged(AbstractScreen screen){
+		
 	}
 }
