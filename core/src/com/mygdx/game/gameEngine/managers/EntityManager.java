@@ -54,7 +54,7 @@ public class EntityManager {
 					noteEntityQueue.add(null);
 					continue;
 				}
-				Entity newNoteEntity = EntityFactory.createNoteEntity(note);
+				Entity newNoteEntity = EntityFactory.createNoteEntity(note, voice.voiceNumber());
 				engine.addEntity(newNoteEntity);
 				noteEntityQueue.add(newNoteEntity);
 			}

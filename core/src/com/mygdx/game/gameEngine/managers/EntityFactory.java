@@ -15,14 +15,15 @@ public class EntityFactory {
 
 	private static final float NoteOrigPosY = Constants.VIEWPORT_DIM_Y;
 	private static final int NoteVelY = -64;
+	private static int nextColor =0;
 	
-	public static Entity createNoteEntity(INote note){
+	public static Entity createNoteEntity(INote note, int voiceNum){
 		Entity entity = new Entity();
 		float posX = (note.getPitch() % Constants.NUMBER_OF_LANES)*Constants.LANE_WIDTH +(Constants.LANE_WIDTH/2)-10;
 		PositionComponent positionComponent = new PositionComponent(posX, NoteOrigPosY);
 		VelocityComponent velocityComponent = new VelocityComponent(0, NoteVelY);
 		NoteComponent noteComponent = new NoteComponent(note);
-		SpriteComponent normalSprite = new SpriteComponent(new Sprite(new Texture("sprites/note1pink.png")));
+		SpriteComponent normalSprite = new SpriteComponent(new Sprite(newNote(voiceNum)));
 		HitComponent hitComponent = new HitComponent();
 		entity.add(positionComponent).add(velocityComponent).add(noteComponent).add(normalSprite).add(hitComponent);
 		return entity;
@@ -38,6 +39,20 @@ public class EntityFactory {
 		entity.add(positionComponent).add(velocityComponent).add(noteComponent).add(spriteComponent);
 		*/
 		return entity;
+	}
+	
+	private static Texture newNote(int voiceNum){
+		switch(voiceNum){
+			case 0: return new Texture("sprites/note1pink.png");
+			
+			case 1: return new Texture("sprites/note1blue.png");
+			
+			case 2: return new Texture("sprites/note1yellow.png");
+			
+			case 3: return new Texture("sprites/note1green.png");
+			
+			default: return null;
+		}
 	}
 
 }
