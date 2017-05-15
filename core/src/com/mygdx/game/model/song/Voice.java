@@ -10,7 +10,9 @@ import java.util.List;
  * Revised by soflarb
  */
 public class Voice implements IVoice {
-	//TODO make INote
+	
+	private static int voiceNum;
+	private final int voiceNumber;
 	private final Note[] notes;
 	private final int min, max;
 	public Voice(String voice) throws IOException {
@@ -21,6 +23,8 @@ public class Voice implements IVoice {
 			nList.add(n);
 			sum += n.getDuration();
 		}
+		voiceNumber = voiceNum;
+		voiceNum++;
 		notes = new Note[sum];
 		sum = 0;
 		int min = nList.get(0).getPitch(), max = min;
@@ -66,5 +70,9 @@ public class Voice implements IVoice {
 	@Override
 	public int min() {
 		return min;
+	}
+	
+	public int voiceNumber(){
+		return voiceNumber;
 	}
 }

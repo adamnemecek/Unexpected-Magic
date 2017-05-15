@@ -9,4 +9,5 @@ public interface IVoice {
 	int length();
 	int max();
 	int min();
+	int voiceNumber();
 }

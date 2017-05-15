@@ -22,11 +22,11 @@ import com.mygdx.game.model.SongList;
 public class TickerTest {
 	//tests ticker
 	private Ticker ticker;
-	static private Song song;
+	static private ISong song;
 	@BeforeClass
 	public static void BeforeClass() throws IOException{
 		final SongList songList = new SongList();
-		song = (Song)songList.getSong("M.U.L.E. Theme");
+		song = songList.getSong("M.U.L.E. Theme");
 	}
 	@Before
 	public void Before(){
