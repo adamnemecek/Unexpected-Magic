@@ -1,11 +1,10 @@
 package com.mygdx.game.model;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.mygdx.game.model.song.Note;
 import com.mygdx.game.utilities.file.Constants;
 
 /**
  * A class that represents all the note lanes
+ * @author ???
  */
 
 public class NoteLanes {

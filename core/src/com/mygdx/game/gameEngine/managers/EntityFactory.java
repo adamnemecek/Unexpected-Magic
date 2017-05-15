@@ -12,7 +12,11 @@ import com.mygdx.game.gameEngine.components.SpriteComponent;
 import com.mygdx.game.gameEngine.components.VelocityComponent;
 import com.mygdx.game.model.song.INote;
 import com.mygdx.game.utilities.file.Constants;
-
+/**
+ * A factory class that handles creation of entities.
+ * @author soflarb
+ * Revised by 
+ */
 public class EntityFactory {
 
 	private static final float NoteOrigPosY = Constants.VIEWPORT_DIM_Y;
