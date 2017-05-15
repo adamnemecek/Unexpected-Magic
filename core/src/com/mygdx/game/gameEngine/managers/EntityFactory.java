@@ -60,7 +60,7 @@ public class EntityFactory {
 			
 			case 3: return new Texture("sprites/note1green.png");
 			
-			default: return null;
+			default: return new Texture("sprites/note1green.png");
 		}
 	}
 
