@@ -1,5 +1,7 @@
 package com.mygdx.game.gameEngine.managers;
 
+import java.util.List;
+
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -16,6 +18,7 @@ public class EntityFactory {
 	private static final float NoteOrigPosY = Constants.VIEWPORT_DIM_Y;
 	private static final int NoteVelY = -64;
 	private static int nextColor =0;
+
 	
 	public static Entity createNoteEntity(INote note, int voiceNum){
 		Entity entity = new Entity();
@@ -42,6 +45,8 @@ public class EntityFactory {
 	}
 	
 	private static Texture newNote(int voiceNum){
+		
+		
 		switch(voiceNum){
 			case 0: return new Texture("sprites/note1pink.png");
 			
