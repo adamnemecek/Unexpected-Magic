@@ -3,6 +3,7 @@ package com.mygdx.game.model.song;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
@@ -13,8 +14,6 @@ import java.util.TreeMap;
  */
 public class Voice implements IVoice {
 	
-	private static int voiceNum;
-	private final int voiceNumber;
 	private final NavigableMap<Integer, INote> notes;
 	private final int min, max;
 	public Voice(String voice) throws IOException {
@@ -25,8 +24,6 @@ public class Voice implements IVoice {
 			nList.add(n);
 			sum += n.getDuration();
 		}
-		voiceNumber = voiceNum;
-		voiceNum++;
 		notes = new TreeMap<>();
 		sum = 0;
 		int min = nList.get(0).getPitch(), max = min;
@@ -44,11 +41,17 @@ public class Voice implements IVoice {
 		//oMGIHAVECORNINMYCODEEEEE();
 		
 	}
+	@Override
 	public INote noteAtTick(int tick) {
 		return notes.get(tick);
 	}
-	int octaveAtTick(int tick) {
+	@Override
+	public int octaveAtTick(int tick) {
 		return noteClosestToTick(tick).getOctave();
+	}
+	@Override
+	public int pitchAtTick(int tick) {
+		return noteBelowTick(tick).getPitch();
 	}
 	private INote noteClosestToTick(int tick) {
 		if(notes.get(tick) != null) return notes.get(tick);
@@ -56,6 +59,12 @@ public class Voice implements IVoice {
 		int hi = notes.higherKey(tick);
 		return tick - lo <= hi - tick ? notes.get(lo) : notes.get(hi);
 	}
+	private INote noteBelowTick(int tick) {
+		Entry<Integer, INote> r = notes.floorEntry(tick);
+		if(r == null) return null;
+		return r.getValue();
+	}
+	@Override
 	public int length() {
 		int last = notes.lastKey();
 		return last + notes.get(last).getDuration();
@@ -76,8 +85,9 @@ public class Voice implements IVoice {
 	public int min() {
 		return min;
 	}
-	
+
+	@Override
 	public int voiceNumber(){
-		return voiceNumber;
+		return hashCode();
 	}
 }
