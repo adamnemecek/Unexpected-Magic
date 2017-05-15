@@ -6,9 +6,7 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.gameEngine.input.InputAction;
 import com.mygdx.game.gameEngine.input.KeyboardControllerAdapter;
 import com.mygdx.game.gameEngine.input.KeyboardInputManager;
@@ -38,7 +36,6 @@ public class GameScreen extends AbstractScreen{
 	private boolean running;
 	SpriteBatch batch;
 	Texture backgroundTexture;
-	//EntityManager entityManager;
 	private RoundManager roundManager;
 	private final NoteLanes noteLanes;
 	private Hud hud;
@@ -51,22 +48,20 @@ public class GameScreen extends AbstractScreen{
 		this.engine = engine;
 		this.batch = batch;
 		noteLanes = new NoteLanes();
-		/*camera = new OrthographicCamera();
-		camera.setToOrtho(false);*/
-		running = false; //TODO get the right arguments song, players
+		running = false;
 		backgroundTexture = new Texture("images/lanes/Purple.png");
 		
 		Score score = new Score(); //TODO Should be somewhere else, probably RoundManager
 
-        hud = new Hud(batch, score);
-		pianoRoll = new PianoRoll(engine, batch, noteLanes);
+        hud = new Hud(batch, score, noteLanes);
+		pianoRoll = new PianoRoll(engine, batch);
 		initRound(song, players, engine, batch); //TODO catch exceptions?
 
 		soundmanager = new SoundManager();
 		soundmanager.setInstrument(40); //
 		soundmanager.setSongTimeSignaure(song.getTime()[1],song.getBpm()); //TODO, soundmanger should perhaps only be in one class
 
-		ScoreSystem scoreSystem = new ScoreSystem(score,pianoRoll.getNoteLanes(), soundmanager); //TODO SHOULD BE SOMEWHERE ELSE
+		ScoreSystem scoreSystem = new ScoreSystem(score, noteLanes, soundmanager); //TODO SHOULD BE SOMEWHERE ELSE
         engine.addSystem(scoreSystem);
         
         initInput();
@@ -74,7 +69,7 @@ public class GameScreen extends AbstractScreen{
 	}
 	
 	public void initRound(ISong song, List<Player> players, Engine engine, SpriteBatch batch) {
-		roundManager = new RoundManager(new Round(song, players), new EntityManager(engine, batch, song), new Ticker(song), noteLanes);
+		roundManager = new RoundManager(new Round(song, players), new EntityManager(engine, batch, song), new Ticker(song));
 		
 		//System.out.println("Number of voices: "+ round.song.getVoices().length);
 		//wait for player input here before running?
@@ -83,7 +78,7 @@ public class GameScreen extends AbstractScreen{
 	
 	private void initInput(){
 		
-		final InputAction ia = new InputAction(roundManager);
+		final InputAction ia = new InputAction(hud);
 		final KeyboardControllerAdapter  kca= new KeyboardControllerAdapter(ia);
 		
 		this.keyboardInputManager = new KeyboardInputManager(kca);
@@ -101,6 +96,9 @@ public class GameScreen extends AbstractScreen{
 
 	@Override
 	public void render(float delta){
+		if(roundManager.gameOver()){
+			notifyScreenChange(new ScoreScreen(engine, batch));
+		}
 		//Wipe screen (don't use super because super clears with blue)
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -116,16 +114,17 @@ public class GameScreen extends AbstractScreen{
 		batch.end();
 		
 		//Gdx.gl.glViewport((int)Constants.PIANOROLL_POS_X,(int)Constants.PIANOROLL_POS_Y,(int)Constants.PIANOROLL_DIM_X,(int)Constants.PIANOROLL_DIM_Y);
+		//draw pianoroll
 		batch.setProjectionMatrix(pianoRoll.camera.combined);
 		pianoRoll.viewport.apply(true);
 		pianoRoll.draw(delta);
-		
-		batch.setProjectionMatrix(camera.combined);
-		viewport.apply(true);
+		//update systems
+		//batch.setProjectionMatrix(camera.combined);
+		//viewport.apply(true);
 		update(delta);
 		//Draw HUD
 		batch.setProjectionMatrix(hud.stage.getCamera().combined);
-		hud.stage.draw();
+		hud.draw();
 		
 	}
 		

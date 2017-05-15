@@ -25,7 +25,7 @@ import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.model.song.IVoice;
 
 /**
- * 
+ * Screen for setting up a new game. 
  * @author car0b1nius
  * Revised by soflarb
  */
@@ -161,9 +161,6 @@ public class NewgameScreen extends AbstractScreen {
 		super.render(delta);
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);
-		/*game.batch.begin();
-		game.font.draw(game.batch, "THY NEWE GAME SCREENE", Constants.VIEWPORT_DIM_X / 4, Constants.VIEWPORT_DIM_Y / 2);
-		game.batch.end();*/
 		stage.act();
 		stage.draw();
 	}
