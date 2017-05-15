@@ -21,7 +21,7 @@ import com.mygdx.game.gameEngine.managers.AnimationManager;
 public class MainMenuScreen extends AbstractScreen {
 
 
-	private AnimationManager wizardAnim;
+	private AnimationManager feffeAnim;
 
 	// BUTTONS
 	private ButtonGroup<TextButton> buttongroup;
@@ -35,8 +35,8 @@ public class MainMenuScreen extends AbstractScreen {
 
 		menuItemSelected = 0;
 		menuItems = new String[] { "New game", "Options", "Animation", "Exit" };
-		wizardAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/wizard.png")),
-				batch, 1, 10, 250, 0, 200, 300, 0.1f );
+		feffeAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/feffe.png")),
+				batch, 1, 6, 240, -20, 200, 200, 0.1f );
 	}
 
 	@Override
@@ -172,7 +172,7 @@ public class MainMenuScreen extends AbstractScreen {
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		wizardAnim.render(); // render animation TODO should perhaps be automated
+		feffeAnim.render(); // render animation TODO should perhaps be automated
 		batch.end();
 
 		stage.act();
