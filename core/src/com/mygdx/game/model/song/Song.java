@@ -13,8 +13,7 @@ public class Song implements ISong {
 	private final String title;
 	private final int bpm;
 	private final int[] time;
-	//TODO make IVoice
-	private final Voice[] voices;
+	private final IVoice[] voices;
 	public Song(String path) throws IOException {
 		Queue<String> sList = FileReader.readUXM(path);
 		title = sList.poll();
@@ -27,7 +26,7 @@ public class Song implements ISong {
 			voices[i++] = new Voice(s);
 		}
 	}
-	public Voice[] getVoices() {
+	public IVoice[] getVoices() {
 		return voices.clone();
 	}
 	public int[] getTime() {
@@ -44,7 +43,7 @@ public class Song implements ISong {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		for(Voice v : voices) {
+		for(IVoice v : voices) {
 			sb.append("[").append(v.toString()).append("]");
 		}
 		return sb.toString();
