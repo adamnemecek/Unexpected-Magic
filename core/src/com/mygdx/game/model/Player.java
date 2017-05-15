@@ -4,6 +4,7 @@ import com.mygdx.game.model.song.IVoice;
 
 /**
  * A class that represents an in-game player.
+ * @author soflarb
  */
 
 public class Player {

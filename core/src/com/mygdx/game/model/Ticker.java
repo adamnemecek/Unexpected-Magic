@@ -4,6 +4,7 @@ import com.mygdx.game.model.song.ISong;
 
 /**
 * Class that handles ticking through the songmap in-game.
+* @author soflarb
 */
 public class Ticker {
 	private int tick;

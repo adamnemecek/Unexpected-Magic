@@ -11,7 +11,11 @@ import java.util.Set;
 import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.model.song.Song;
 import com.mygdx.game.utilities.file.FileReader;
-
+/**
+ * A class that holds a list of the available songmaps.
+ * @author soflarb
+ * Revised by car0b1nius
+ */
 public class SongList {
 	
 	private final Map<String, String> map;
