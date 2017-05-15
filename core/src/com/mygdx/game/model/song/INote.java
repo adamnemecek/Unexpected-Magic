@@ -7,6 +7,9 @@ package com.mygdx.game.model.song;
 public interface INote {
 	int getPitch();
 	int getDuration();
+	default int getOctave() {
+		return getPitch() % 12;
+	}
 	default boolean isRest() {
 		return getPitch() == -1;
 	}

@@ -3,6 +3,8 @@ package com.mygdx.game.model.song;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NavigableMap;
+import java.util.TreeMap;
 
 /**
  * A class representing a single voice of a song.
@@ -13,7 +15,7 @@ public class Voice implements IVoice {
 	
 	private static int voiceNum;
 	private final int voiceNumber;
-	private final Note[] notes;
+	private final NavigableMap<Integer, INote> notes;
 	private final int min, max;
 	public Voice(String voice) throws IOException {
 		List<Note> nList = new LinkedList<>();
@@ -25,31 +27,37 @@ public class Voice implements IVoice {
 		}
 		voiceNumber = voiceNum;
 		voiceNum++;
-		notes = new Note[sum];
+		notes = new TreeMap<>();
 		sum = 0;
 		int min = nList.get(0).getPitch(), max = min;
-		for(Note note : nList) {
+		for(INote note : nList) {
 			if(note != null) {
 				min = Math.min(min, note.getPitch());
 				max = Math.max(max, note.getPitch());
 			}
-			notes[sum] = note;
+			notes.put(sum, note);
 			sum += note.getDuration();
 		}
+		
 		this.min = min;
 		this.max = max;
 		//oMGIHAVECORNINMYCODEEEEE();
 		
 	}
-	public Note noteAtTick(int tick) {
-		return notes[tick];
+	public INote noteAtTick(int tick) {
+		return notes.get(tick);
+	}
+	int octaveAtTick(int tick) {
+		return noteClosestToTick(tick).getOctave();
+	}
+	private INote noteClosestToTick(int tick) {
+		if(notes.get(tick) != null) return notes.get(tick);
+		int lo = notes.lowerKey(tick);
+		int hi = notes.higherKey(tick);
+		return tick - lo <= hi - tick ? notes.get(lo) : notes.get(hi);
 	}
 	public int length() {
-		return notes.length;
-	}
-	
-	public Note[] getNotes(){
-		return notes;
+		return notes.size();
 	}
 	/*@Deprecated
 	private void oMGIHAVECORNINMYCODEEEEE(){
@@ -57,11 +65,7 @@ public class Voice implements IVoice {
 	}*/
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder(notes[0].toString());
-		for(int i=1;i<notes.length;i++){
-			sb.append(", ").append(notes[i]);
-		}
-		return sb.toString();
+		return notes.toString();
 	}
 	@Override
 	public int max() {
