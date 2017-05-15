@@ -57,7 +57,8 @@ public class Voice implements IVoice {
 		return tick - lo <= hi - tick ? notes.get(lo) : notes.get(hi);
 	}
 	public int length() {
-		return notes.size();
+		int last = notes.lastKey();
+		return last + notes.get(last).getDuration();
 	}
 	/*@Deprecated
 	private void oMGIHAVECORNINMYCODEEEEE(){
