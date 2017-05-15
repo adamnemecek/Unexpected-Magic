@@ -16,11 +16,15 @@ public class RoundManager {
 	private Round round;
 	private EntityManager entityManager;
 	private Ticker ticker;
+	private HitManager hitManager;
+	private SoundManager soundManager;
 
 	public RoundManager(Round round, EntityManager entityManager, Ticker ticker){
-	this.round = round;
-	this.entityManager = entityManager;
-	this.ticker = ticker;
+		this.round = round;
+		this.entityManager = entityManager;
+		this.ticker = ticker;
+		this.soundManager = new SoundManager();
+		this.hitManager = new HitManager(ticker, round.getPlayers(), soundManager);
 	}
 	
 	public int getTick(){

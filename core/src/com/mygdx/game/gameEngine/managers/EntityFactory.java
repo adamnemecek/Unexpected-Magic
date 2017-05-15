@@ -61,7 +61,11 @@ public class EntityFactory {
 			case 3: return new Texture("sprites/note1green.png");
 			
 			default: return new Texture("sprites/note1green.png");
+<<<<<<< HEAD
 		}
+=======
+			}
+>>>>>>> implemented notePlay functionality in HitManager
 	}
 
 }

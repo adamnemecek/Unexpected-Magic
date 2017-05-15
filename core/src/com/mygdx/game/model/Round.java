@@ -17,5 +17,8 @@ public class Round {
 		this.players = players;
 		
 	}
+	public List<Player> getPlayers(){
+		return players;
+	}
 }
 
