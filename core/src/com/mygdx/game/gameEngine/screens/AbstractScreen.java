@@ -24,8 +24,6 @@ import com.mygdx.game.utilities.file.Constants;
  */
 
 public abstract class AbstractScreen extends ScreenAdapter {
-	//protected final UnexpectedMagic game;
-	protected final Engine engine;
 	protected OrthographicCamera camera;
 	protected Viewport viewport;
 	protected Stage stage;
@@ -36,9 +34,7 @@ public abstract class AbstractScreen extends ScreenAdapter {
 	protected Skin skin;
 	private static final List<ScreenListener> listeners = new ArrayList<>();
 
-	protected AbstractScreen(final Engine engine, SpriteBatch batch) {
-		//this.game = game;
-		this.engine = engine;
+	protected AbstractScreen(SpriteBatch batch) {
 		this.batch = batch;
 		camera = new OrthographicCamera(Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y);
 		camera.setToOrtho(false, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y);

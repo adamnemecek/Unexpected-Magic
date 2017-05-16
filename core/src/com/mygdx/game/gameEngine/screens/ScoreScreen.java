@@ -14,8 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
  */
 public class ScoreScreen extends AbstractScreen{
 
-	protected ScoreScreen(Engine engine, SpriteBatch batch) {
-		super(engine, batch);
+	protected ScoreScreen(SpriteBatch batch) {
+		super(batch);
 		
 		// table
 		Table table = new Table();
@@ -33,7 +33,7 @@ public class ScoreScreen extends AbstractScreen{
 				if(!(event instanceof InputEvent)) return false;
 				InputEvent evt = (InputEvent) event;
 				if(evt.getType() != InputEvent.Type.touchDown) return false;
-				notifyScreenChange(new MainMenuScreen(engine, batch));
+				notifyScreenChange(new MainMenuScreen(batch));
 				return true;
 				
 			}

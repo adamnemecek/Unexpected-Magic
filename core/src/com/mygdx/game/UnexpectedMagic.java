@@ -14,18 +14,16 @@ import com.mygdx.game.gameEngine.screens.ScreenListener;
  */
 
 public class UnexpectedMagic extends Game implements ScreenListener{
-	public SpriteBatch batch;
-	public BitmapFont font;
-	public Engine engine;
+	private SpriteBatch batch;
+	private BitmapFont font;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
-		engine = new PooledEngine(); 
 		
 		AbstractScreen.addListener(this);
-		this.setScreen(new MainMenuScreen(this.engine, this.batch));
+		this.setScreen(new MainMenuScreen(this.batch));
 		//TODO
 		//init assets?
 		

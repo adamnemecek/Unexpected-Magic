@@ -12,8 +12,8 @@ import com.mygdx.game.utilities.file.Constants;
 
 public class OptionsScreen extends AbstractScreen {
 
-	public OptionsScreen(final Engine engine, SpriteBatch batch) {
-		super(engine, batch);
+	public OptionsScreen(/*final Engine engine,*/ SpriteBatch batch) {
+		super(/*engine,*/ batch);
 	}
 
 	@Override

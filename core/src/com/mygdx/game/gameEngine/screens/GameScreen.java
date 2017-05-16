@@ -3,6 +3,7 @@ package com.mygdx.game.gameEngine.screens;
 import java.util.List;
 
 import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -37,9 +38,11 @@ public class GameScreen extends AbstractScreen{
 	private PianoRoll pianoRoll;
 	private final SoundManager soundmanager;
 	private KeyboardInputManager keyboardInputManager;
+	private Engine engine;
 	
-	public GameScreen(final Engine engine, final SpriteBatch batch, ISong song, List<Player> players) {
-		super(engine, batch);
+	public GameScreen(final SpriteBatch batch, ISong song, List<Player> players) {
+		super(batch);
+		this.engine = new PooledEngine();
 		noteLanes = new NoteLanes();
 		running = false;
 		backgroundTexture = new Texture("images/lanes/Purple.png");
@@ -90,7 +93,7 @@ public class GameScreen extends AbstractScreen{
 	@Override
 	public void render(float delta){
 		if(roundManager.gameOver()){
-			notifyScreenChange(new ScoreScreen(engine, batch));
+			notifyScreenChange(new ScoreScreen(batch));
 		}
 		//Wipe screen (don't use super because super clears with blue)
 		Gdx.gl.glClearColor(0,0,0,1);

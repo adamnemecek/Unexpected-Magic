@@ -30,8 +30,8 @@ public class MainMenuScreen extends AbstractScreen {
 	private int menuItemSelected;
 	
 
-	public MainMenuScreen(final Engine engine, final SpriteBatch batch) {
-		super(engine, batch);
+	public MainMenuScreen(final SpriteBatch batch) {
+		super(batch);
 		
 
 		menuItemSelected = 0;
@@ -184,13 +184,11 @@ public class MainMenuScreen extends AbstractScreen {
 	}
 
 	public void newgameButtonPushed() {
-		notifyScreenChange(new NewgameScreen(engine, batch));
-		//game.setScreen(new NewgameScreen(game));
+		notifyScreenChange(new NewgameScreen(batch));
 	}
 
 	public void optionButtonPushed() {
-		notifyScreenChange(new OptionsScreen(engine, batch));
-		//game.setScreen(new OptionsScreen(game));
+		notifyScreenChange(new OptionsScreen(batch));
 	}
 
 	public void animationButtonPushed() {
