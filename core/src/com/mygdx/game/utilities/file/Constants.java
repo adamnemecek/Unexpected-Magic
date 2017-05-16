@@ -27,5 +27,5 @@ public final class Constants {
 	public static final int NUMBER_OF_LANES = 12;
     public static final float LANE_WIDTH = VIEWPORT_DIM_X/NUMBER_OF_LANES;
 	public static final int SCORE_BOUNDS_UPPER= 30;
-    public static final int SCORE_BOUNDS_LOWER= 20;
+    public static final int SCORE_BOUNDS_LOWER= 10;
 }

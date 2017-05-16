@@ -6,6 +6,8 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.mygdx.game.gameEngine.components.PositionComponent;
 import com.mygdx.game.gameEngine.components.VelocityComponent;
+import com.mygdx.game.gameEngine.managers.HitManager;
+import com.mygdx.game.utilities.file.Constants;
 
 /**
  * System that handles movement.
@@ -15,6 +17,7 @@ import com.mygdx.game.gameEngine.components.VelocityComponent;
 
 public class MovementSystem extends IteratingSystem{
 	
+	//private HitManager hitManager;
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
     private ComponentMapper<VelocityComponent> vm = ComponentMapper.getFor(VelocityComponent.class);
 
@@ -25,9 +28,14 @@ public class MovementSystem extends IteratingSystem{
     public void processEntity(Entity entity, float delta) {
         PositionComponent pos = pm.get(entity);
         VelocityComponent vel = vm.get(entity);
+        
+        //ever since I was 8 or 9, I've been standing on the scoreLine
+        
+        
         //System.out.println("MovementSystem. DELTA:" + delta);
         pos.setX((float)pos.getX() + delta*vel.getX());//TODO
         pos.setY((float)pos.getY() + delta*vel.getY());//TODO
+
         //System.out.println("MovementSystem. NEW POS. x = " + pos.x + ", y = " + pos.y);
     }
 }

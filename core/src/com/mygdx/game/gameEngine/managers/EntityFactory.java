@@ -10,7 +10,9 @@ import com.mygdx.game.gameEngine.components.NoteComponent;
 import com.mygdx.game.gameEngine.components.PositionComponent;
 import com.mygdx.game.gameEngine.components.SpriteComponent;
 import com.mygdx.game.gameEngine.components.VelocityComponent;
+import com.mygdx.game.gameEngine.components.VoiceComponent;
 import com.mygdx.game.model.song.INote;
+import com.mygdx.game.model.song.IVoice;
 import com.mygdx.game.utilities.file.Constants;
 /**
  * A factory class that handles creation of entities.
@@ -24,15 +26,16 @@ public class EntityFactory {
 	private static int nextColor =0;
 
 	
-	public static Entity createNoteEntity(INote note, int voiceNum){
+	public static Entity createNoteEntity(INote note, IVoice voice){
 		Entity entity = new Entity();
 		float posX = (note.getPitch() % Constants.NUMBER_OF_LANES)*Constants.LANE_WIDTH +(Constants.LANE_WIDTH/2)-10;
 		PositionComponent positionComponent = new PositionComponent(posX, NoteOrigPosY);
 		VelocityComponent velocityComponent = new VelocityComponent(0, NoteVelY);
 		NoteComponent noteComponent = new NoteComponent(note);
-		SpriteComponent normalSprite = new SpriteComponent(new Sprite(newNote(voiceNum)));
+		SpriteComponent normalSprite = new SpriteComponent(new Sprite(new Texture("sprites/note1blue.png")));
 		HitComponent hitComponent = new HitComponent();
-		entity.add(positionComponent).add(velocityComponent).add(noteComponent).add(normalSprite).add(hitComponent);
+		VoiceComponent voiceComponent = new VoiceComponent(voice);
+		entity.add(positionComponent).add(velocityComponent).add(noteComponent).add(normalSprite).add(hitComponent).add(voiceComponent);
 		return entity;
 	}
 	//TODO remove?

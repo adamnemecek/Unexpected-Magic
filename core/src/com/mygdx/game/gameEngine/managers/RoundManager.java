@@ -2,6 +2,8 @@ package com.mygdx.game.gameEngine.managers;
 
 import com.mygdx.game.model.Score;
 import com.mygdx.game.model.Ticker;
+import com.badlogic.ashley.core.Engine;
+import com.mygdx.game.gameEngine.systems.HitSystem;
 import com.mygdx.game.model.NoteLanes;
 import com.mygdx.game.model.Round;
 
@@ -19,12 +21,14 @@ public class RoundManager {
 	private HitManager hitManager;
 	private SoundManager soundManager;
 
-	public RoundManager(Round round, EntityManager entityManager, Ticker ticker){
+	public RoundManager(Round round, EntityManager entityManager, Ticker ticker, Engine engine){
 		this.round = round;
 		this.entityManager = entityManager;
 		this.ticker = ticker;
 		this.soundManager = new SoundManager();
-		this.hitManager = new HitManager(ticker, round.getPlayers(), soundManager);
+		HitSystem hitSystem = new HitSystem();
+		engine.addSystem(hitSystem);
+		this.hitManager = new HitManager(ticker, round.getPlayers(), soundManager, hitSystem);
 	}
 	
 	public void notePlayStart(int lane){

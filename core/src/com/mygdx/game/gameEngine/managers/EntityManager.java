@@ -31,6 +31,7 @@ public class EntityManager {
 		//Create all the systems
 		MovementSystem movementSystem = new MovementSystem();
 		SoundSystem soundSystem = new SoundSystem(new SoundManager());
+		
 		//Add all the systems to the engine
 		this.engine.addSystem(movementSystem);
 		this.engine.addSystem(soundSystem);
@@ -54,7 +55,7 @@ public class EntityManager {
 					noteEntityQueue.add(null);
 					continue;
 				}
-				Entity newNoteEntity = EntityFactory.createNoteEntity(note, voice.voiceNumber());
+				Entity newNoteEntity = EntityFactory.createNoteEntity(note, voice);
 				engine.addEntity(newNoteEntity);
 				noteEntityQueue.add(newNoteEntity);
 			}
