@@ -51,9 +51,13 @@ public class HitManager implements ScoreLineListener{
 	
 	public void passedScoreLine(Entity noteEntity){
 		for (Player p: players){
+			
 			if(activeNotes.get(p) != null){
+				
 				if(activeNotes.get(p).equals(noteEntity)){
+					
 					activeNotes.put(p, null);
+					
 					if (!noteEntity.getComponent(HitComponent.class).isHit()){
 						p.getScore().missedNote();
 					}
