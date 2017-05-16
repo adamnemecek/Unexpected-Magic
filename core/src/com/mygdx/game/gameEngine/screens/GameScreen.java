@@ -29,12 +29,7 @@ import com.mygdx.game.utilities.file.Constants;
 * Screen that contains the game (in-game).
 */
 public class GameScreen extends AbstractScreen{
-	
-	
-	Engine engine;
-
 	private boolean running;
-	SpriteBatch batch;
 	Texture backgroundTexture;
 	private RoundManager roundManager;
 	private final NoteLanes noteLanes;
@@ -45,8 +40,6 @@ public class GameScreen extends AbstractScreen{
 	
 	public GameScreen(final Engine engine, final SpriteBatch batch, ISong song, List<Player> players) {
 		super(engine, batch);
-		this.engine = engine;
-		this.batch = batch;
 		noteLanes = new NoteLanes();
 		running = false;
 		backgroundTexture = new Texture("images/lanes/Purple.png");
