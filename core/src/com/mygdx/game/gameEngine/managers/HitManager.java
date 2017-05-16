@@ -110,7 +110,10 @@ public class HitManager implements ScoreLineListener{
 	}
 	
 	public void notePlayStop(int lane){
-		soundManager.noteOff(pitchAtLane[lane]);
+		//soundManager.noteOff(pitchAtLane[lane]);
+		for (int i = lane; i <= 127; i +=12){
+			soundManager.noteOff(i);//TODO this is overkill
+		}
 	}
 
 	

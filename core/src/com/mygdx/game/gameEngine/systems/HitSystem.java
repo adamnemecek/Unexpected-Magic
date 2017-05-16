@@ -47,11 +47,11 @@ public class HitSystem extends IteratingSystem {
     	 PositionComponent pos = pm.get(entity);
          VelocityComponent vel = vm.get(entity);
          
-         if(pos.getY() >= Constants.SCORE_BOUNDS_UPPER && pos.getY() < Constants.SCORE_BOUNDS_UPPER + 3){
+         if(pos.getY() >= Constants.SCORE_BOUNDS_UPPER && pos.getY() < Constants.SCORE_BOUNDS_UPPER + 5){
          	alertReached(entity);
          }
          
-         else if(pos.getY() >= Constants.SCORE_BOUNDS_LOWER){
+         else if(pos.getY() < Constants.SCORE_BOUNDS_LOWER){
         	 alertPassed(entity);
          }
 		
