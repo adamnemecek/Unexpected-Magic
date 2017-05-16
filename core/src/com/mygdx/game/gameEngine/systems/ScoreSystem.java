@@ -28,7 +28,8 @@ public class ScoreSystem extends IteratingSystem {
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
     private ComponentMapper<NoteComponent> nm = ComponentMapper.getFor(NoteComponent.class);
     private ComponentMapper<HitComponent> hm = ComponentMapper.getFor(HitComponent.class);
-
+    
+    @Deprecated
     public ScoreSystem(Score s, NoteLanes n, SoundManager sm) {
         super(Family.all(PositionComponent.class, NoteComponent.class).get());
         this.score = s;
