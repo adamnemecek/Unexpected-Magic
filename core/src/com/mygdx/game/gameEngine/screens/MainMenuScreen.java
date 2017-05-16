@@ -22,6 +22,7 @@ public class MainMenuScreen extends AbstractScreen {
 
 
 	private AnimationManager feffeAnim;
+	private AnimationManager batmanAnim;
 
 	// BUTTONS
 	private ButtonGroup<TextButton> buttongroup;
@@ -37,6 +38,8 @@ public class MainMenuScreen extends AbstractScreen {
 		menuItems = new String[] { "New game", "Options", "Animation", "Exit" };
 		feffeAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/feffe.png")),
 				batch, 1, 6, 240, -20, 200, 200, 0.1f );
+		batmanAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/batman.png")),
+				batch, 1, 7, -25, -20, 200, 200, 0.12f );
 	}
 
 	@Override
@@ -172,6 +175,7 @@ public class MainMenuScreen extends AbstractScreen {
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
+		batmanAnim.render();
 		feffeAnim.render(); // render animation TODO should perhaps be automated
 		batch.end();
 
