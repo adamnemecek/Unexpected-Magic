@@ -27,6 +27,14 @@ public class RoundManager {
 		this.hitManager = new HitManager(ticker, round.getPlayers(), soundManager);
 	}
 	
+	public void notePlayStart(int lane){
+		hitManager.notePlayStart(lane);
+	}
+	
+	public void notePlayStop(int lane){
+		hitManager.notePlayStop(lane);
+	}
+	
 	public int getTick(){
 		return ticker.getTick();
 	}

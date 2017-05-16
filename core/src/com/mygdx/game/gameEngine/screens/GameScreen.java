@@ -61,8 +61,8 @@ public class GameScreen extends AbstractScreen{
 		soundmanager.setInstrument(40); //
 		soundmanager.setSongTimeSignaure(song.getTime()[1],song.getBpm()); //TODO, soundmanger should perhaps only be in one class
 
-		ScoreSystem scoreSystem = new ScoreSystem(score, noteLanes, soundmanager); //TODO SHOULD BE SOMEWHERE ELSE
-        engine.addSystem(scoreSystem);
+		//ScoreSystem scoreSystem = new ScoreSystem(score, noteLanes, soundmanager); //TODO SHOULD BE SOMEWHERE ELSE
+        //engine.addSystem(scoreSystem);
         
         initInput();
 
@@ -78,7 +78,7 @@ public class GameScreen extends AbstractScreen{
 	
 	private void initInput(){
 		
-		final InputAction ia = new InputAction(hud);
+		final InputAction ia = new InputAction(hud, roundManager);
 		final KeyboardControllerAdapter  kca= new KeyboardControllerAdapter(ia);
 		
 		this.keyboardInputManager = new KeyboardInputManager(kca);

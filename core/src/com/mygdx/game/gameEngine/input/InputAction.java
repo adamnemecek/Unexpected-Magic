@@ -11,20 +11,22 @@ import com.mygdx.game.utilities.file.Constants;
  * Created by rasmus on 2017-05-09.
  */
 public class InputAction implements IInputController{
-
-	private SoundManager soundManager;
+	
+	private RoundManager roundManager;
+	//SoundManager soundManager;
 	private Hud hud;
 	
-	public InputAction(Hud hud){
-		soundManager = new SoundManager(); //TODO would make sense if this was created somewhere else
+	public InputAction(Hud hud, RoundManager roundManager){
+		this.roundManager = roundManager;
+		//soundManager = new SoundManager(); //TODO would make sense if this was created somewhere else
 		this.hud = hud;
 	}
 	
 	@Override
 	public void noteKeyPressed(Action note) {
 		if(!note.isNote()) throw new IllegalArgumentException("Cannot play non-note action");
-		soundManager.noteOn(note.noteValue());
-		System.out.println(note.noteValue()); //TODO remove debug print
+		//soundManager.noteOn(note.noteValue());
+		roundManager.notePlayStart(note.noteValue()%12);
 		hud.activateLane(note.noteValue()%12);
 		
 	}
@@ -32,7 +34,8 @@ public class InputAction implements IInputController{
 	@Override
 	public void noteKeyReleased(Action note) {
 		if(!note.isNote()) throw new IllegalArgumentException("Cannot play non-note action");
-		soundManager.noteOff(note.noteValue());
+		roundManager.notePlayStop(note.noteValue()%12);
+		//soundManager.noteOff(note.noteValue());
 		hud.deactivateLane(note.noteValue()%12);
 		
 		
@@ -50,35 +53,6 @@ public class InputAction implements IInputController{
 		
 	}
 	
-	/*private int getNoteLane(Action note){
-		switch(note){
-		
-		case NOTE_C: return 0;
-		
-		case NOTE_C_SHARP: return 1;
-		
-		case NOTE_D: return 2;
-		
-		case NOTE_D_SHARP: return 3;
-		
-		case NOTE_E: return 4;
-		
-		case NOTE_F: return 5;
-		
-		case NOTE_F_SHARP: return 6;
-		
-		case NOTE_G: return 7;
-		
-		case NOTE_G_SHARP: return 8;
-		
-		case NOTE_A: return 9;
-		
-		case NOTE_A_SHARP: return 10;
-		
-		case NOTE_B: return 11;
-		
-		default: return 0;
-		}
-	}*/
+
 
 }

@@ -16,11 +16,13 @@ public class HitManager {
 	private List<Player> players;
 	private SoundManager soundManager;
 	private boolean hasHit = false;
+	private int[] pitchAtLane; //keeps track of active pitch per lane
 	
 	public HitManager(Ticker ticker, List<Player> players, SoundManager soundManager){
 		this.ticker = ticker;
 		this.players = players;
 		this.soundManager = soundManager;
+		this.pitchAtLane = new int[12];
 	}
 	
 	public void notePlayStart(int lane){
@@ -30,18 +32,19 @@ public class HitManager {
 			if (lane == activePitch%12 && activePitch != -1){ 
 				p.getScore().hitNote(false);
 				soundManager.noteOn(activePitch);
+				pitchAtLane[lane] = activePitch;
 				hasHit = true;
 			}
 		}
 		if (!hasHit){
-			soundManager.noteOn(lane);
+			soundManager.noteOn(lane +3*12); //TODO should be another pitch
+			pitchAtLane[lane] = lane +3*12; 
 		}
+		hasHit = false;
 	}
 	
 	public void notePlayStop(int lane){
-		for (int i = lane%12; i <= 127; i += 12){ //goes through all notes associated with that key and turns them off
-			soundManager.noteOff(i);
-		}
+		soundManager.noteOff(pitchAtLane[lane]);
 	}
 
 }
