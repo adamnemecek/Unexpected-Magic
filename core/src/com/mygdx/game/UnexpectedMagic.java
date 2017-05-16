@@ -24,9 +24,8 @@ public class UnexpectedMagic extends Game implements ScreenListener{
 		font = new BitmapFont();
 		engine = new PooledEngine(); 
 		
-		MainMenuScreen MMS = new MainMenuScreen(this.engine, this.batch);
-		MMS.addListener(this);
-		this.setScreen(MMS);
+		AbstractScreen.addListener(this);
+		this.setScreen(new MainMenuScreen(this.engine, this.batch));
 		//TODO
 		//init assets?
 		
