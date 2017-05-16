@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 
 import com.mygdx.game.model.song.ISong;
@@ -18,7 +20,7 @@ import com.mygdx.game.utilities.file.FileReader;
  */
 public class SongList {
 	
-	private final Map<String, String> map;
+	private final Map<String, Queue<String>> map;
 	
 	private ArrayList<String> retrieveFileNames(){
 		File folder = new File("songmaps");
@@ -46,13 +48,15 @@ public class SongList {
 		map = new HashMap<>();
 		for(String s : fList) {
 			String name;
+			LinkedList<String> ll;
 			try {
-				name = FileReader.readUXM(s).peek();
+				ll = FileReader.readUXM(s);
+				name = ll.peek();
 			} catch (IOException e) {
 				e.printStackTrace();
 				continue;
 			}
-			map.put(name, s);
+			map.put(name, ll);
 		}
 	}
 	public ISong getSong(String name) throws IOException {
@@ -60,5 +64,8 @@ public class SongList {
 	}
 	public Set<String> songs() {
 		return map.keySet();
+	}
+	public int voicesInSong(String name) {
+		return map.get(name).size() - 3;
 	}
 }

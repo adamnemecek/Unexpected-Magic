@@ -14,15 +14,18 @@ public class Song implements ISong {
 	private final int bpm;
 	private final int[] time;
 	private final IVoice[] voices;
+	@Deprecated
 	public Song(String path) throws IOException {
-		Queue<String> sList = FileReader.readUXM(path);
-		title = sList.poll();
-		String[] t = sList.poll().split("/", 2);
+		this(FileReader.readUXM(path));
+	}
+	public Song(Queue<String> uxm) throws IOException {
+		title = uxm.poll();
+		String[] t = uxm.poll().split("/", 2);
 		time = new int[]{Integer.parseInt(t[0]), Integer.parseInt(t[1])};
-		bpm = Integer.parseInt(sList.poll());
-		voices = new Voice[sList.size()];
+		bpm = Integer.parseInt(uxm.poll());
+		voices = new Voice[uxm.size()];
 		int i = 0;
-		for(String s : sList) {
+		for(String s : uxm) {
 			voices[i++] = new Voice(s);
 		}
 	}

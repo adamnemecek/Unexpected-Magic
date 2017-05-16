@@ -8,7 +8,6 @@ import java.util.Set;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -18,7 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
-import com.mygdx.game.UnexpectedMagic;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.SongList;
 import com.mygdx.game.model.song.ISong;
@@ -47,23 +46,6 @@ public class NewgameScreen extends AbstractScreen {
 		table.setDebug(true, true);
 		stage.addActor(table);
 		
-		// selecting song
-		Label selectSongLabel = new Label("Select song: ", skin);
-		SelectBox<SongEntry> songSelector = new SelectBox<>(skin);
-		{
-			Set<String> ss = songList.songs();
-			SongEntry[] a = new SongEntry[ss.size()];
-			int i = 0;
-			for(String str : ss) {
-				a[i] = new SongEntry(str);
-				i++;
-			}
-			Arrays.sort(a);
-			songSelector.setItems(a);
-			songSelector.setSelected(a[1]);
-			System.out.println(Arrays.toString(a));
-		}
-		
 		// selecting number of players
 		Label selectPlayerNumLabel = new Label("Select number \nof players: ", skin);
 		String[] playerNumItems = new String[] {"0", "1", "2", "3", "4"};
@@ -80,7 +62,10 @@ public class NewgameScreen extends AbstractScreen {
 				if(!super.canCheck(button, newState)) return false;
 				if(!newState) return true;
 				for(int j = 0; j < playerNumButtons.length-1; j++){
-					playerNames[j].setDisabled(j > playerNumButtongroup.getCheckedIndex()-1);
+					boolean enabled = j <= playerNumButtongroup.getCheckedIndex()-1;
+					TextField f = playerNames[j];
+					f.setDisabled(!enabled);
+					f.setVisible(enabled);
 				}
 				return true;
 			}
@@ -88,6 +73,42 @@ public class NewgameScreen extends AbstractScreen {
 		playerNumButtongroup.setMaxCheckCount(1);
 		playerNumButtongroup.setMinCheckCount(1);
 		
+		// selecting song
+		Label selectSongLabel = new Label("Select song: ", skin);
+		SelectBox<SongEntry> songSelector = new SelectBox<>(skin);
+		{
+			Set<String> ss = songList.songs();
+			SongEntry[] a = new SongEntry[ss.size()];
+			{
+				int i = 0;
+				for(String str : ss) {
+					a[i] = new SongEntry(str);
+					i++;
+				}
+			}
+			Arrays.sort(a);
+			songSelector.setItems(a);
+			songSelector.addListener(
+				(Event event) -> {
+					if(!(event instanceof ChangeEvent)) return false;
+					//TODO
+					int voiceNum = songList.voicesInSong(songSelector.getSelected().title);
+//					System.out.println(((Arrays.toString(playerNumButtons).replaceAll("\n", "\\\\n"))
+//							+ "\n" + Math.min(voiceNum, 4)
+//							+ "\n" + (playerNumButtons[Math.min(voiceNum, 4)]).toString().replaceAll("\n", "\\\\n")));
+					playerNumButtons[Math.min(voiceNum, playerNumButtongroup.getCheckedIndex())].setChecked(true);
+					for(int i = 0; i < 5; i++) {
+						TextButton b = playerNumButtons[i];
+						b.setDisabled(i > voiceNum);
+						//b.setVisible(i <= voiceNum);
+					}
+					return true;
+				}
+			);
+			System.out.println(Arrays.toString(a));
+			//songSelector.setSelected(a[1]);
+		}
+
 		// naming players
 		Label namePlayers = new Label("Name players: ", skin);
 		playerNames = new TextField[] {
@@ -105,7 +126,7 @@ public class NewgameScreen extends AbstractScreen {
 				if(!(event instanceof InputEvent)) return false;
 				InputEvent evt = (InputEvent) event;
 				if(evt.getType() != InputEvent.Type.touchDown) return false;
-				System.out.println(songSelector.getSelected());
+				//System.out.println(songSelector.getSelected());
 				ISong song;
 				try {
 					song = songList.getSong(songSelector.getSelected().title);
