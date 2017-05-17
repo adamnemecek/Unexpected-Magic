@@ -51,7 +51,7 @@ public class PianoRoll {
 	}
 	
 	public void draw(float delta){
-		viewport.apply();
+		viewport.apply(true);
 		drawEntities(delta);
 	}
 	
