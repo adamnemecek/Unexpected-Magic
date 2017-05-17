@@ -24,7 +24,7 @@ public class PianoRoll {
 	private Engine engine;
 	private SpriteBatch batch;
 	public OrthographicCamera camera;
-	public Viewport viewport;
+	private Viewport viewport;
 	ComponentMapper<PositionComponent> positionComponentMapper; //TODO Should this class draw all notes?
 	ComponentMapper<SpriteComponent> spriteComponentMapper;	
 
@@ -51,6 +51,7 @@ public class PianoRoll {
 	}
 	
 	public void draw(float delta){
+		viewport.apply();
 		drawEntities(delta);
 	}
 	

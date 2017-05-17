@@ -35,7 +35,6 @@ public class Hud {
 	private Label songBPMLabel;
 	private Label scoreLabel;
 	
-	
 	private TextButton menuButton;
 	
 	private NoteLanes noteLanes;
@@ -47,31 +46,41 @@ public class Hud {
 		atlas = new TextureAtlas("skins/commodore64/skin/uiskin.atlas");
 		//skin = new Skin(Gdx.files.internal("skins/Mother_Skin/terramotherui/terra-mother-ui.json"),atlas);
 		skin = new Skin(Gdx.files.internal("skins/commodore64/skin/uiskin.json"),atlas);
+		
 		camera = new OrthographicCamera();
 		viewport = new ScalingViewport(Scaling.fit, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y, camera);
 		stage = new Stage(viewport, batch);
 		this.batch = batch;
 		this.score = score;
-		Table table = new Table();
-		table.top();
-		table.setFillParent(true);
+		
 		songNameLabel = new Label("songNameLabel", skin);
+		songNameLabel.setFontScale(0.5f);
+		
 		songBPMLabel = new Label("songBPMLabel", skin);
-		scoreLabel = new Label("SCORE " + score, skin); //TODO dynamic score
+		songBPMLabel.setFontScale(0.5f);
+		
+		scoreLabel = new Label("SCORE " + score, skin);
+		scoreLabel.setFontScale(0.5f);
+		
 		menuButton = new TextButton("Menu", skin);
+		menuButton.setTransform(true);
+		menuButton.setScale(0.5f);
 		//("%03d, someNumberVariable") for displaying 3 digits of it in a label or something
+        
+		//table layout
+        Table table = new Table();
+        table.setDebug(true, true);
+		table.setFillParent(true);
+		table.top();
+        table.add(menuButton).fillX();
+		table.add(songNameLabel).fillX();//.expandX();
+		table.add(songBPMLabel).fillX();//.expandX();
+		//table.add(scoreLabel).expandX();
+		stage.addActor(table);
 		
 		this.noteLanes = noteLanes;
 		this.activeTexture = new Texture("images/lanes/Blue.png");
         this.inactiveTexture = new Texture("images/lanes/Red.png");
-        
-		//table layout
-        table.add(menuButton).expandX();
-		table.add(songNameLabel).expandX();//.padTop(5);
-		table.add(songBPMLabel).expandX();//.padTop(5);
-		table.add(scoreLabel).expandX();//.padTop(5);
-		stage.addActor(table);
-		
 	}
 
 	public void draw(){
