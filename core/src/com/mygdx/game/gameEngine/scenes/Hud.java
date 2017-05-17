@@ -1,5 +1,7 @@
 package com.mygdx.game.gameEngine.scenes;
 
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -10,10 +12,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.model.NoteLanes;
+import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Score;
 import com.mygdx.game.utilities.file.Constants;
 
@@ -31,7 +35,7 @@ public class Hud {
 	private TextureAtlas atlas;
 	private Skin skin;
 	
-	private Label songNameLabel;
+	private Label songTitleLabel;
 	private Label songBPMLabel;
 	private Label scoreLabel;
 	
@@ -41,10 +45,24 @@ public class Hud {
 	private Texture activeTexture;
 	private Texture inactiveTexture;
 	
-	public Hud(SpriteBatch batch, Score score, NoteLanes noteLanes){
-		//atlas = new TextureAtlas("skins/Mother_Skin/terramotherui/terra-mother-ui.atlas");
+	//player boxes at the bottom of the screen
+	private PlayerBox[] playerBoxes;
+	// player1Box = {player1.name; player1.score;
+	
+	private class PlayerBox extends Table{
+		private Label playerNameLabel;
+		private Label playerScoreLabel;
+		PlayerBox(Player player) {
+			super(skin);
+			playerNameLabel = new Label(player.getName(), skin);
+			playerScoreLabel =  new Label("0", skin);
+			this.add(playerNameLabel).row();
+			this.add(playerScoreLabel);
+		}
+	}
+	
+	public Hud(SpriteBatch batch, Score score, NoteLanes noteLanes, String songTitle, String bpm, List<Player> players){
 		atlas = new TextureAtlas("skins/commodore64/skin/uiskin.atlas");
-		//skin = new Skin(Gdx.files.internal("skins/Mother_Skin/terramotherui/terra-mother-ui.json"),atlas);
 		skin = new Skin(Gdx.files.internal("skins/commodore64/skin/uiskin.json"),atlas);
 		
 		camera = new OrthographicCamera();
@@ -53,34 +71,50 @@ public class Hud {
 		this.batch = batch;
 		this.score = score;
 		
-		songNameLabel = new Label("songNameLabel", skin);
-		songNameLabel.setFontScale(0.5f);
+		songTitleLabel = new Label(songTitle, skin);
+		songTitleLabel.setFontScale(0.8f);
 		
-		songBPMLabel = new Label("songBPMLabel", skin);
-		songBPMLabel.setFontScale(0.5f);
+		songBPMLabel = new Label("BPM: " + bpm, skin);
+		songBPMLabel.setFontScale(0.8f);
 		
 		scoreLabel = new Label("SCORE " + score, skin);
-		scoreLabel.setFontScale(0.5f);
+		scoreLabel.setFontScale(0.8f);
 		
 		menuButton = new TextButton("Menu", skin);
-		menuButton.setTransform(true);
-		menuButton.setScale(0.5f);
+		menuButton.getLabel().setFontScale(0.5f);
+//		menuButton.setTransform(true);
+//		menuButton.setScale(0.5f);
 		//("%03d, someNumberVariable") for displaying 3 digits of it in a label or something
         
-		//table layout
-        Table table = new Table();
-        table.setDebug(true, true);
-		table.setFillParent(true);
-		table.top();
-        table.add(menuButton).fillX();
-		table.add(songNameLabel).fillX();//.expandX();
-		table.add(songBPMLabel).fillX();//.expandX();
-		//table.add(scoreLabel).expandX();
-		stage.addActor(table);
+	 	// top table layout with song title, menu button, etc.
+        Table topTable = new Table();
+        stage.addActor(topTable);
+        topTable.setDebug(true, true);
+		topTable.setFillParent(true);
+		topTable.top();
+		topTable.left();
 		
+        topTable.add(menuButton).width(Value.percentWidth(.15f, topTable)).height(Value.percentHeight(.1f, topTable)).padRight(5);
+		topTable.add().expandX();
+        topTable.add(songTitleLabel).fillX().padLeft(5).padRight(5);
+		topTable.add(songBPMLabel).fillX().padLeft(5).padRight(5);
+		
+		//note lanes
 		this.noteLanes = noteLanes;
 		this.activeTexture = new Texture("images/lanes/Blue.png");
         this.inactiveTexture = new Texture("images/lanes/Red.png");
+        
+        // bot table layout with player boxes.
+        Table botTable = new Table();
+        stage.addActor(botTable);
+        botTable.setDebug(true, true);
+        botTable.setFillParent(true);
+        botTable.bottom();
+        playerBoxes = new PlayerBox[players.size()];
+        for(int i = 0; i < players.size(); i++){
+        	playerBoxes[i] = new PlayerBox(players.get(i));
+        	botTable.add(playerBoxes[i]).fillX().expandX();
+        }
 	}
 
 	public void draw(){

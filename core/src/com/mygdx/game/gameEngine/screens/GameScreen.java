@@ -16,7 +16,6 @@ import com.mygdx.game.gameEngine.managers.RoundManager;
 import com.mygdx.game.gameEngine.managers.SoundManager;
 import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
-import com.mygdx.game.gameEngine.systems.ScoreSystem;
 import com.mygdx.game.model.NoteLanes;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Round;
@@ -49,7 +48,7 @@ public class GameScreen extends AbstractScreen{
 		
 		Score score = new Score(); //TODO Should be somewhere else, probably RoundManager
 
-        hud = new Hud(batch, score, noteLanes);
+        hud = new Hud(batch, score, noteLanes, song.getTitle(), Integer.toString(song.getBpm()), players);
 		pianoRoll = new PianoRoll(engine, batch);
 		initRound(song, players, engine, batch); //TODO catch exceptions?
 
