@@ -99,9 +99,6 @@ public class GameScreen extends AbstractScreen{
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-		//Set the gl viewport bounds for drawing.
-		//Gdx.gl.glViewport(0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight()); //TODO
-		
 		//Draw things on the gamescreen
 		batch.setProjectionMatrix(camera.combined);
 		viewport.apply(true);
@@ -109,15 +106,14 @@ public class GameScreen extends AbstractScreen{
 		batch.draw(backgroundTexture, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_X, 0, 10, 10, 0);
 		batch.end();
 		
-		//Gdx.gl.glViewport((int)Constants.PIANOROLL_POS_X,(int)Constants.PIANOROLL_POS_Y,(int)Constants.PIANOROLL_DIM_X,(int)Constants.PIANOROLL_DIM_Y);
 		//draw pianoroll
 		batch.setProjectionMatrix(pianoRoll.camera.combined);
 		pianoRoll.viewport.apply(true);
 		pianoRoll.draw(delta);
+		
 		//update systems
-		//batch.setProjectionMatrix(camera.combined);
-		//viewport.apply(true);
 		update(delta);
+		
 		//Draw HUD
 		batch.setProjectionMatrix(hud.stage.getCamera().combined);
 		hud.draw();
@@ -128,6 +124,7 @@ public class GameScreen extends AbstractScreen{
 	public void resize(int width, int height){
 		super.resize(width, height);
 		pianoRoll.resize(viewport.getScreenWidth(), viewport.getScreenHeight(), viewport.getScreenX(), viewport.getScreenY());
+		hud.resize(width, height);
 		
 	}
 }

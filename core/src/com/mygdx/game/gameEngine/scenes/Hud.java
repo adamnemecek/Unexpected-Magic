@@ -35,6 +35,7 @@ public class Hud {
 	private Label songBPMLabel;
 	private Label scoreLabel;
 	
+	
 	private TextButton menuButton;
 	
 	private NoteLanes noteLanes;
@@ -42,8 +43,10 @@ public class Hud {
 	private Texture inactiveTexture;
 	
 	public Hud(SpriteBatch batch, Score score, NoteLanes noteLanes){
-		atlas = new TextureAtlas("skins/Mother_Skin/terramotherui/terra-mother-ui.atlas");
-		skin = new Skin(Gdx.files.internal("skins/Mother_Skin/terramotherui/terra-mother-ui.json"),atlas);
+		//atlas = new TextureAtlas("skins/Mother_Skin/terramotherui/terra-mother-ui.atlas");
+		atlas = new TextureAtlas("skins/commodore64/skin/uiskin.atlas");
+		//skin = new Skin(Gdx.files.internal("skins/Mother_Skin/terramotherui/terra-mother-ui.json"),atlas);
+		skin = new Skin(Gdx.files.internal("skins/commodore64/skin/uiskin.json"),atlas);
 		camera = new OrthographicCamera();
 		viewport = new ScalingViewport(Scaling.fit, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y, camera);
 		stage = new Stage(viewport, batch);
@@ -52,8 +55,8 @@ public class Hud {
 		Table table = new Table();
 		table.top();
 		table.setFillParent(true);
-		//songNameLabel = new Label("songNameLabel", skin);
-		//songBPMLabel = new Label("songBPMLabel", skin);
+		songNameLabel = new Label("songNameLabel", skin);
+		songBPMLabel = new Label("songBPMLabel", skin);
 		scoreLabel = new Label("SCORE " + score, skin); //TODO dynamic score
 		menuButton = new TextButton("Menu", skin);
 		//("%03d, someNumberVariable") for displaying 3 digits of it in a label or something
@@ -63,14 +66,16 @@ public class Hud {
         this.inactiveTexture = new Texture("images/lanes/Red.png");
         
 		//table layout
-		table.add(songNameLabel).expandX().padTop(5);
-		table.add(songBPMLabel).expandX().padTop(5);
-		table.add(scoreLabel).expandX().padTop(5);
+        table.add(menuButton).expandX();
+		table.add(songNameLabel).expandX();//.padTop(5);
+		table.add(songBPMLabel).expandX();//.padTop(5);
+		table.add(scoreLabel).expandX();//.padTop(5);
 		stage.addActor(table);
 		
 	}
 
 	public void draw(){
+		viewport.apply();
 		stage.draw();
 		drawLanes();
 	}
@@ -102,5 +107,7 @@ public class Hud {
     public NoteLanes getNoteLanes(){
 	    return noteLanes;
     }
-    //drawLanes();
+    public void resize(int width, int height){
+		viewport.update(width, height);
+	}
 }
