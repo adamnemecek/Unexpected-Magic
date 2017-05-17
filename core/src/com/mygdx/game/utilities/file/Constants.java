@@ -19,7 +19,7 @@ public final class Constants {
 	*/
 	//The piano roll
 	public static final float PIANOROLL_TOP_PADDING = 25;
-	public static final float PIANOROLL_BOT_PADDING = 42;
+	public static final float PIANOROLL_BOT_PADDING = 35;
 	public static final float PIANOROLL_DIM_X = VIEWPORT_DIM_X;
 	public static final float PIANOROLL_DIM_Y = VIEWPORT_DIM_Y - (PIANOROLL_TOP_PADDING + PIANOROLL_BOT_PADDING );
 	public static final float PIANOROLL_POS_X = 0;
@@ -27,5 +27,5 @@ public final class Constants {
 	public static final int NUMBER_OF_LANES = 12;
     public static final float LANE_WIDTH = VIEWPORT_DIM_X/NUMBER_OF_LANES;
 	public static final float SCORE_BOUNDS_UPPER= PIANOROLL_BOT_PADDING;
-    public static final float SCORE_BOUNDS_LOWER= 36;
+    public static final float SCORE_BOUNDS_LOWER= 25;
 }

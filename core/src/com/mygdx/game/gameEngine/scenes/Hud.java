@@ -55,7 +55,9 @@ public class Hud {
 		PlayerBox(Player player) {
 			super(skin);
 			playerNameLabel = new Label(player.getName(), skin);
+			playerNameLabel.setFontScale(0.7f);
 			playerScoreLabel =  new Label("0", skin);
+			playerScoreLabel.setFontScale(0.7f);
 			this.add(playerNameLabel).row();
 			this.add(playerScoreLabel);
 		}
@@ -113,7 +115,7 @@ public class Hud {
         playerBoxes = new PlayerBox[players.size()];
         for(int i = 0; i < players.size(); i++){
         	playerBoxes[i] = new PlayerBox(players.get(i));
-        	botTable.add(playerBoxes[i]).fillX().expandX();
+        	botTable.add(playerBoxes[i]).fillX().expandX().uniform();
         }
 	}
 
