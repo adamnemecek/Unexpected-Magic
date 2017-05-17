@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.gameEngine.screens.AbstractScreen;
 import com.mygdx.game.gameEngine.screens.MainMenuScreen;
 import com.mygdx.game.gameEngine.screens.ScreenListener;
+import com.mygdx.game.gameEngine.screens.TitleScreen;
 
 /**
  * The game class.
@@ -23,7 +24,7 @@ public class UnexpectedMagic extends Game implements ScreenListener{
 		font = new BitmapFont();
 		
 		AbstractScreen.addListener(this);
-		this.setScreen(new MainMenuScreen(this.batch));
+		this.setScreen(new TitleScreen(this.batch));
 		//TODO
 		//init assets?
 		
