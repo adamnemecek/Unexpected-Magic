@@ -45,7 +45,7 @@ public class PianoRoll {
 		for(Entity entity : entities){
 			PositionComponent pos = positionComponentMapper.get(entity);
 	        SpriteComponent spr = spriteComponentMapper.get(entity);
-	        batch.draw(spr.sprite.getTexture(), (float)Math.floor(pos.getX()), (float)Math.floor(pos.getY()));
+			spr.sprite.draw(batch, pos.getX(), pos.getY());
 		}
 		batch.end();
 	}

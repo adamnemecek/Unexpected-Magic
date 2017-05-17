@@ -32,10 +32,18 @@ public class EntityFactory {
 		PositionComponent positionComponent = new PositionComponent(posX, NoteOrigPosY);
 		VelocityComponent velocityComponent = new VelocityComponent(0, NoteVelY);
 		NoteComponent noteComponent = new NoteComponent(note);
-		SpriteComponent normalSprite = new SpriteComponent(new Sprite(new Texture("sprites/note1blue.png")));
+
+		SpriteComponent test = new SpriteComponent();
+		test.sprite.addSprite(new Sprite(new Texture("sprites/note-top.png")),50,60,10,10);
+		test.sprite.addSprite(new Sprite(new Texture("sprites/note-mid.png")),50,50,10,10);
+		test.sprite.addSprite(new Sprite(new Texture("sprites/note-mid.png")),50,40,10,10);
+		test.sprite.addSprite(new Sprite(new Texture("sprites/note-bot.png")),50,30,10,10);
+
+
 		HitComponent hitComponent = new HitComponent();
 		VoiceComponent voiceComponent = new VoiceComponent(voice);
-		entity.add(positionComponent).add(velocityComponent).add(noteComponent).add(normalSprite).add(hitComponent).add(voiceComponent);
+		entity.add(positionComponent).add(velocityComponent).add(noteComponent).add(hitComponent).add(voiceComponent);
+		entity.add(test);
 		return entity;
 	}
 	//TODO remove?
