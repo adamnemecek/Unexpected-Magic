@@ -11,8 +11,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.gameEngine.components.CompositeSpriteComponent;
 import com.mygdx.game.gameEngine.components.PositionComponent;
-import com.mygdx.game.gameEngine.components.SpriteComponent;
+import com.mygdx.game.gameEngine.managers.CompositeSprite;
 import com.mygdx.game.utilities.file.Constants;
 
 /**
@@ -26,7 +27,7 @@ public class PianoRoll {
 	public OrthographicCamera camera;
 	private Viewport viewport;
 	ComponentMapper<PositionComponent> positionComponentMapper; //TODO Should this class draw all notes?
-	ComponentMapper<SpriteComponent> spriteComponentMapper;	
+	ComponentMapper<CompositeSpriteComponent> spriteComponentMapper;
 
 	
 	public PianoRoll(Engine engine, SpriteBatch spriteBatch) {
@@ -36,15 +37,15 @@ public class PianoRoll {
         viewport = new ScalingViewport(Scaling.fit, Constants.PIANOROLL_DIM_X, Constants.PIANOROLL_DIM_Y, camera);
         viewport.setScreenBounds((int) Constants.PIANOROLL_POS_X, (int) Constants.PIANOROLL_POS_Y, (int) Constants.PIANOROLL_DIM_X, (int) Constants.PIANOROLL_DIM_Y);
         positionComponentMapper = ComponentMapper.getFor(PositionComponent.class);
-        spriteComponentMapper = ComponentMapper.getFor(SpriteComponent.class);
+        spriteComponentMapper = ComponentMapper.getFor(CompositeSpriteComponent.class);
     }
 
 	private void drawEntities(float delta){
-		ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(PositionComponent.class, SpriteComponent.class).get());
+		ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(PositionComponent.class, CompositeSpriteComponent.class).get());
 		batch.begin(); 
 		for(Entity entity : entities){
 			PositionComponent pos = positionComponentMapper.get(entity);
-	        SpriteComponent spr = spriteComponentMapper.get(entity);
+	        CompositeSpriteComponent spr = spriteComponentMapper.get(entity);
 			spr.sprite.draw(batch, pos.getX(), pos.getY());
 		}
 		batch.end();

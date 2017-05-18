@@ -14,7 +14,7 @@ public class SoundManager {
 	private Soundbank soundbank;
 	private Instrument[] instr;
 	private int bpm = 155;
-	private int timeSignature = 4; //TODO read from song
+	private int timeSignature = 4;
 
 	
 	 private final NoteThread notethread;

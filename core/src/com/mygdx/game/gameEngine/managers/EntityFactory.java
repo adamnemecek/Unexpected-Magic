@@ -5,12 +5,7 @@ import java.util.List;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.mygdx.game.gameEngine.components.HitComponent;
-import com.mygdx.game.gameEngine.components.NoteComponent;
-import com.mygdx.game.gameEngine.components.PositionComponent;
-import com.mygdx.game.gameEngine.components.SpriteComponent;
-import com.mygdx.game.gameEngine.components.VelocityComponent;
-import com.mygdx.game.gameEngine.components.VoiceComponent;
+import com.mygdx.game.gameEngine.components.*;
 import com.mygdx.game.model.song.INote;
 import com.mygdx.game.model.song.IVoice;
 import com.mygdx.game.utilities.file.Constants;
@@ -25,20 +20,16 @@ public class EntityFactory {
 	private static final int NoteVelY = -64;
 	private static int nextColor =0;
 	private static final SpriteFactory spriteFactory = new SpriteFactory();
-	private static final int noteWidth = 0;
 
 	
 	public static Entity createNoteEntity(INote note, IVoice voice){
+
 		Entity entity = new Entity();
-
-		SpriteComponent spriteComponent = new SpriteComponent();
-		spriteFactory.createSprites(note.getDuration(), spriteComponent.sprite);
-
-		float posX = (note.getPitch() % Constants.NUMBER_OF_LANES)*Constants.LANE_WIDTH + (Constants.LANE_WIDTH/2) - 5; //TODO should be spritewidth/2
+		float posX = (note.getPitch() % Constants.NUMBER_OF_LANES)*Constants.LANE_WIDTH + (Constants.LANE_WIDTH/2) - 6; //TODO should be spritewidth/2
 		PositionComponent positionComponent = new PositionComponent(posX, NoteOrigPosY);
 		VelocityComponent velocityComponent = new VelocityComponent(0, NoteVelY);
 		NoteComponent noteComponent = new NoteComponent(note);
-
+		CompositeSpriteComponent spriteComponent = new CompositeSpriteComponent(spriteFactory.createSprites(note.getDuration()));
 		HitComponent hitComponent = new HitComponent();
 		VoiceComponent voiceComponent = new VoiceComponent(voice);
 		entity.add(positionComponent).add(velocityComponent).add(noteComponent).add(hitComponent).add(voiceComponent);
