@@ -9,6 +9,7 @@ import com.mygdx.game.gameEngine.managers.SpriteFactory;
 * Component that represents the sprite.
 */
 public class SpriteComponent implements Component{
+
 	public CompositeSprite sprite;
 	
 	public SpriteComponent(){

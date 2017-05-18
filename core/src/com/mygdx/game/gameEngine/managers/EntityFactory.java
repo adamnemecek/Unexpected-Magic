@@ -24,26 +24,25 @@ public class EntityFactory {
 	private static final float NoteOrigPosY = Constants.VIEWPORT_DIM_Y;
 	private static final int NoteVelY = -64;
 	private static int nextColor =0;
+	private static final SpriteFactory spriteFactory = new SpriteFactory();
+	private static final int noteWidth = 0;
 
 	
 	public static Entity createNoteEntity(INote note, IVoice voice){
 		Entity entity = new Entity();
-		float posX = (note.getPitch() % Constants.NUMBER_OF_LANES)*Constants.LANE_WIDTH +(Constants.LANE_WIDTH/2)-10;
+
+		SpriteComponent spriteComponent = new SpriteComponent();
+		spriteFactory.createSprites(note.getDuration(), spriteComponent.sprite);
+
+		float posX = (note.getPitch() % Constants.NUMBER_OF_LANES)*Constants.LANE_WIDTH + (Constants.LANE_WIDTH/2) - 5; //TODO should be spritewidth/2
 		PositionComponent positionComponent = new PositionComponent(posX, NoteOrigPosY);
 		VelocityComponent velocityComponent = new VelocityComponent(0, NoteVelY);
 		NoteComponent noteComponent = new NoteComponent(note);
 
-		SpriteComponent test = new SpriteComponent();
-		test.sprite.addSprite(new Sprite(new Texture("sprites/note-top.png")),50,60,10,10);
-		test.sprite.addSprite(new Sprite(new Texture("sprites/note-mid.png")),50,50,10,10);
-		test.sprite.addSprite(new Sprite(new Texture("sprites/note-mid.png")),50,40,10,10);
-		test.sprite.addSprite(new Sprite(new Texture("sprites/note-bot.png")),50,30,10,10);
-
-
 		HitComponent hitComponent = new HitComponent();
 		VoiceComponent voiceComponent = new VoiceComponent(voice);
 		entity.add(positionComponent).add(velocityComponent).add(noteComponent).add(hitComponent).add(voiceComponent);
-		entity.add(test);
+		entity.add(spriteComponent);
 		return entity;
 	}
 	//TODO remove?
