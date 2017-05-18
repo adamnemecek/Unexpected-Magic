@@ -16,7 +16,7 @@ public class ScoreTest {
 	@Before
 	public void before() throws IOException{
 		score = new Score();
-		n = Note.getNote("A1:1/1");
+		
 	}
 
 	@Test
@@ -35,14 +35,14 @@ public class ScoreTest {
 		
 	}
 	
-	/*
+	
 	public void testScore(){
 		for	(int i = 0; i < 100; i++){
-			score.hitNote();
+			score.hitNote(false);
 		}
 		
-		assertEquals(score.getScore(), n.duration*100);
+		assertEquals(score.getScore(), 100);
 		System.out.println(score.getScore());
 	}
-*/
+
 }
