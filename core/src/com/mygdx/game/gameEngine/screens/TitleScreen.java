@@ -22,7 +22,7 @@ public class TitleScreen extends AbstractScreen{
 		
 		Texture bg = new Texture("images/UnexpectedMagicBackground5.png");
 		Texture logo = new Texture("images/uxm-logo148x32.png");
-		Texture cred = new Texture("images/uxm-lcred-124x42.png");
+		Texture cred = new Texture("images/uxm-lcred-125x43-shad.png");
 		
 		batch.begin();
 		batch.draw(bg, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y);
