@@ -1,6 +1,5 @@
 package com.mygdx.game.gameEngine.managers;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -14,6 +13,7 @@ import com.badlogic.ashley.core.Entity;
 import com.mygdx.game.gameEngine.components.HitComponent;
 import com.mygdx.game.gameEngine.components.NoteComponent;
 import com.mygdx.game.gameEngine.components.VoiceComponent;
+import com.mygdx.game.gameEngine.sound.Synth;
 import com.mygdx.game.gameEngine.systems.HitSystem;
 import com.mygdx.game.gameEngine.systems.ScoreLineListener;
 import com.mygdx.game.model.Player;

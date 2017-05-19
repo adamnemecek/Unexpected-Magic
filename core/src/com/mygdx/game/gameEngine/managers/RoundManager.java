@@ -1,10 +1,9 @@
 package com.mygdx.game.gameEngine.managers;
 
-import com.mygdx.game.model.Score;
+import com.mygdx.game.gameEngine.sound.Synth;
 import com.mygdx.game.model.Ticker;
 import com.badlogic.ashley.core.Engine;
 import com.mygdx.game.gameEngine.systems.HitSystem;
-import com.mygdx.game.model.NoteLanes;
 import com.mygdx.game.model.Round;
 
 /**

@@ -1,4 +1,4 @@
-package com.mygdx.game.gameEngine.managers;
+package com.mygdx.game.gameEngine.gdxUtils;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

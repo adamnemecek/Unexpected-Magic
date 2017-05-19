@@ -1,6 +1,7 @@
 package com.mygdx.game.gameEngine.managers;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.mygdx.game.gameEngine.gdxUtils.CompositeSprite;
 
 /**
  * Created by rasmus on 2017-05-17.

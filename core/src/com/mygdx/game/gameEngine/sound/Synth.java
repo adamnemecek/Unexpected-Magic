@@ -1,7 +1,8 @@
-package com.mygdx.game.gameEngine.managers;
+package com.mygdx.game.gameEngine.sound;
 
 import javax.sound.midi.*;
 
+import com.mygdx.game.gameEngine.managers.NoteThread;
 import com.mygdx.game.model.song.INote;
 
 public class Synth {

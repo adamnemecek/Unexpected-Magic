@@ -13,7 +13,6 @@ import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.gameEngine.components.CompositeSpriteComponent;
 import com.mygdx.game.gameEngine.components.PositionComponent;
-import com.mygdx.game.gameEngine.managers.CompositeSprite;
 import com.mygdx.game.utilities.file.Constants;
 
 /**

@@ -1,4 +1,5 @@
-package com.mygdx.game.gameEngine.managers;
+package com.mygdx.game.gameEngine.sound;
+
 /**
  * Created by rasmus on 2017-05-18.
  */
