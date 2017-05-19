@@ -14,7 +14,7 @@ public class ScoreTest {
 	Note n;
 	Score score;
 	@Before
-	public void before() throws IOException{
+	public void before(){
 		score = new Score();
 		
 	}
@@ -35,14 +35,26 @@ public class ScoreTest {
 		
 	}
 	
-	
+	@Test
 	public void testScore(){
 		for	(int i = 0; i < 100; i++){
-			score.hitNote(false);
+			score.hitNote(true);
 		}
 		
 		assertEquals(score.getScore(), 100);
-		System.out.println(score.getScore());
+		
+	}
+	
+	@Test
+	public void testMultiplier(){
+		for(int i = 0; i < 100; i++){
+			score.hitNote(false);
+		}
+		assertEquals(3, score.getMultiplier());
+		for(int i = 0; i < 100; i++){
+			score.hitNote(true);
+		}
+		assertEquals(3, score.getMultiplier());
 	}
 
 }
