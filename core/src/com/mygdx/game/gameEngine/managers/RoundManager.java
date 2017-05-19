@@ -1,5 +1,6 @@
 package com.mygdx.game.gameEngine.managers;
 
+import com.mygdx.game.gameEngine.sound.Metronome;
 import com.mygdx.game.gameEngine.sound.Synth;
 import com.mygdx.game.model.Ticker;
 import com.badlogic.ashley.core.Engine;
@@ -19,15 +20,22 @@ public class RoundManager {
 	private Ticker ticker;
 	private HitManager hitManager;
 	private Synth synth;
+	private Metronome metronome;
 
 	public RoundManager(Round round, EntityManager entityManager, Ticker ticker, Engine engine){
 		this.round = round;
 		this.entityManager = entityManager;
 		this.ticker = ticker;
+		this.metronome = new Metronome(new Synth(),round.song.getBpm());
+		this.metronome.start();
 		initSynth();
 		HitSystem hitSystem = new HitSystem();
 		engine.addSystem(hitSystem);
-		this.hitManager = new HitManager(ticker, round.getPlayers(), synth, hitSystem);
+		this.hitManager = new HitManager(ticker, round.getPlayers(), this.synth, hitSystem);
+	}
+
+	public void endRound(){
+		this.metronome.stopMetronome();
 	}
 	
 	public void notePlayStart(int lane){
@@ -54,7 +62,7 @@ public class RoundManager {
 	}
 	private void initSynth(){
 		this.synth = new Synth();
-		synth.setInstrument(40);
+		synth.setInstrument(1);
 		synth.setSongTimeSignaure(round.song.getTime()[1],round.song.getBpm());
 	}
 }

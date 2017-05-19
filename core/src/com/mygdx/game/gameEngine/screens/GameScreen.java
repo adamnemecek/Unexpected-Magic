@@ -80,7 +80,10 @@ public class GameScreen extends AbstractScreen{
 
 	@Override
 	public void render(float delta){
+
 		if(roundManager.gameOver()){
+			roundManager.endRound();
+			this.dispose();
 			notifyScreenChange(new ScoreScreen(batch));
 		}
 		//Wipe screen (don't use super because super clears with blue)
