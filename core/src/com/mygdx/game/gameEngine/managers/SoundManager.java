@@ -101,5 +101,14 @@ public class SoundManager {
 		System.out.println(i);
 		return (int)i;
 	}
+
+	public void changeChannel(int channel){
+		this.channel = channels[channel];
+
+	}
+
+	public void setVolume(int v){
+		this.volume = v;
+	}
 	
 }

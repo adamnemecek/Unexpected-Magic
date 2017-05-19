@@ -12,6 +12,7 @@ import com.mygdx.game.gameEngine.input.InputAction;
 import com.mygdx.game.gameEngine.input.KeyboardControllerAdapter;
 import com.mygdx.game.gameEngine.input.KeyboardInputManager;
 import com.mygdx.game.gameEngine.managers.EntityManager;
+import com.mygdx.game.gameEngine.managers.Metronome;
 import com.mygdx.game.gameEngine.managers.RoundManager;
 import com.mygdx.game.gameEngine.managers.SoundManager;
 import com.mygdx.game.gameEngine.scenes.Hud;
@@ -36,6 +37,7 @@ public class GameScreen extends AbstractScreen{
 	private Hud hud;
 	private PianoRoll pianoRoll;
 	private final SoundManager soundmanager;
+	private final Metronome metronome;
 	private KeyboardInputManager keyboardInputManager;
 	private Engine engine;
 	
