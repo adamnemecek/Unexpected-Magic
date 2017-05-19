@@ -25,7 +25,7 @@ public class RoundManager {
 		this.round = round;
 		this.entityManager = entityManager;
 		this.ticker = ticker;
-		this.synth = new Synth();
+		initSynth();
 		HitSystem hitSystem = new HitSystem();
 		engine.addSystem(hitSystem);
 		this.hitManager = new HitManager(ticker, round.getPlayers(), synth, hitSystem);
@@ -52,5 +52,10 @@ public class RoundManager {
 	public void update(float delta){
 		ticker.updateTick(delta);
 		entityManager.update(getTick());
+	}
+	private void initSynth(){
+		this.synth = new Synth();
+		synth.setInstrument(40);
+		synth.setSongTimeSignaure(round.song.getTime()[1],round.song.getBpm());
 	}
 }

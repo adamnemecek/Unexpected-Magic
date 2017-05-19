@@ -26,7 +26,7 @@ public class Metronome extends Thread {
 			this.synth.noteOn(80);
 
 			try {
-				NoteThread.sleep(this.tickInterval);
+				Metronome.sleep(this.tickInterval);
 			} catch (InterruptedException e) {
 				interrupted = true;
 			}
