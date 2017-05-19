@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
+import com.mygdx.game.gameEngine.managers.MusicPlayer;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.SongList;
 import com.mygdx.game.model.song.ISong;
@@ -144,6 +145,7 @@ public class NewgameScreen extends AbstractScreen {
 				}
 				//game.setScreen(new GameScreen(game, song, players));
 				notifyScreenChange(new GameScreen(/*engine,*/ batch, song, players));
+				MusicPlayer.getInstance().stop();
 				return true;
 			}
 		);

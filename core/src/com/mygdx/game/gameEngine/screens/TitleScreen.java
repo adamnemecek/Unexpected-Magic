@@ -3,15 +3,18 @@ package com.mygdx.game.gameEngine.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.gameEngine.managers.MusicPlayer;
 import com.mygdx.game.utilities.file.Constants;
 
 public class TitleScreen extends AbstractScreen{
 
+	private final Texture bg = new Texture("images/UnexpectedMagicBackground5.png");
+	private final Texture logo = new Texture("images/uxm-logo148x32.png");
+	private final Texture cred = new Texture("images/uxm-lcred-124x42.png");
 	public TitleScreen(SpriteBatch batch) {
 		super(batch);
-		
+		MusicPlayer.getInstance().play("main-theme");
 		// TODO Auto-generated constructor stub
 	}
 	@Override
@@ -19,10 +22,6 @@ public class TitleScreen extends AbstractScreen{
 		update(delta);
 		viewport.apply(true);
 		batch.setProjectionMatrix(camera.combined);
-		
-		Texture bg = new Texture("images/UnexpectedMagicBackground5.png");
-		Texture logo = new Texture("images/uxm-logo148x32.png");
-		Texture cred = new Texture("images/uxm-lcred-124x42.png");
 		
 		batch.begin();
 		batch.draw(bg, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y);
@@ -41,5 +40,12 @@ public class TitleScreen extends AbstractScreen{
 			notifyScreenChange(new MainMenuScreen(batch));
 			dispose();
 		}
+	}
+	@Override
+	public void dispose() {
+		super.dispose();
+		bg.dispose();
+		logo.dispose();
+		cred.dispose();
 	}
 }
