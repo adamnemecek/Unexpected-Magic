@@ -9,9 +9,10 @@ public class MusicPlayer implements IMusicPlayer{
 	private final Music mainMenu = Gdx.audio.newMusic(Gdx.files.internal("music/Unexpected_Magic_Theme_by_Isaskar.mp3"));
 
 	@Override
-	public void play() {
-		// TODO Auto-generated method stub
-		
+	public void play(Music music) {
+		music.setLooping(true);
+		music.setVolume(0.5f);
+		music.
 	}
 
 	@Override
