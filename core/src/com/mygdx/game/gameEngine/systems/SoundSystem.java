@@ -9,7 +9,7 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.mygdx.game.gameEngine.components.HitComponent;
 import com.mygdx.game.gameEngine.components.NoteComponent;
 import com.mygdx.game.gameEngine.components.PositionComponent;
-import com.mygdx.game.gameEngine.managers.SoundManager;
+import com.mygdx.game.gameEngine.managers.Synth;
 import com.mygdx.game.model.song.IVoice;
 import com.mygdx.game.utilities.file.Constants;
 
@@ -22,12 +22,12 @@ public class SoundSystem extends IteratingSystem {
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
     private ComponentMapper<NoteComponent> nm = ComponentMapper.getFor(NoteComponent.class);
     private ComponentMapper<HitComponent> hm = ComponentMapper.getFor(HitComponent.class);
-    private SoundManager soundManager;
+    private Synth synth;
     private List<IVoice> autoVoices;
 
-    public SoundSystem(SoundManager s) {
+    public SoundSystem(Synth s) {
         super(Family.all(PositionComponent.class, NoteComponent.class).get()); //grekiska
-        this.soundManager = s;
+        this.synth = s;
     }
 
 

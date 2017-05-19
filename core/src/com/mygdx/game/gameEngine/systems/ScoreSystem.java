@@ -7,7 +7,8 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.mygdx.game.gameEngine.components.HitComponent;
 import com.mygdx.game.gameEngine.components.NoteComponent;
 import com.mygdx.game.gameEngine.components.PositionComponent;
-import com.mygdx.game.gameEngine.managers.SoundManager;
+import com.mygdx.game.gameEngine.managers.Synth;
+import com.mygdx.game.gameEngine.managers.Synth;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
 import com.mygdx.game.model.NoteLanes;
 import com.mygdx.game.model.Score;
@@ -23,19 +24,19 @@ public class ScoreSystem extends IteratingSystem {
 
     private final Score score;
     private final NoteLanes noteLanes;
-    private final SoundManager soundManager; //TODO
+    private final Synth synth; //TODO
 
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
     private ComponentMapper<NoteComponent> nm = ComponentMapper.getFor(NoteComponent.class);
     private ComponentMapper<HitComponent> hm = ComponentMapper.getFor(HitComponent.class);
     
     @Deprecated
-    public ScoreSystem(Score s, NoteLanes n, SoundManager sm) {
+    public ScoreSystem(Score s, NoteLanes n, Synth sm) {
         super(Family.all(PositionComponent.class, NoteComponent.class).get());
         this.score = s;
         this.noteLanes = n;
-        this.soundManager = sm;
-        soundManager.setInstrument(45);
+        this.synth = sm;
+        synth.setInstrument(45);
     }
 
 
@@ -51,7 +52,7 @@ public class ScoreSystem extends IteratingSystem {
         	if(pos.getY() < Constants.SCORE_BOUNDS_UPPER && pos.getY() > Constants.SCORE_BOUNDS_LOWER) { //checks if the note is in the playable area TODO THIS MAY NOT BE ACCURATE
         		score.hitNote(hit.isHit());
         		if(!hit.isHit()){
-        			soundManager.play(not.getNote().getPitch(),not.getNote().getDuration());
+        			synth.play(not.getNote().getPitch(),not.getNote().getDuration());
         			getEngine().removeEntity(entity);
         		}
         	}

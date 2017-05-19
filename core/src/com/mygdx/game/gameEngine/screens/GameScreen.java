@@ -12,9 +12,8 @@ import com.mygdx.game.gameEngine.input.InputAction;
 import com.mygdx.game.gameEngine.input.KeyboardControllerAdapter;
 import com.mygdx.game.gameEngine.input.KeyboardInputManager;
 import com.mygdx.game.gameEngine.managers.EntityManager;
-import com.mygdx.game.gameEngine.managers.Metronome;
 import com.mygdx.game.gameEngine.managers.RoundManager;
-import com.mygdx.game.gameEngine.managers.SoundManager;
+import com.mygdx.game.gameEngine.managers.Synth;
 import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
 import com.mygdx.game.model.NoteLanes;
@@ -36,7 +35,7 @@ public class GameScreen extends AbstractScreen{
 	private final NoteLanes noteLanes;
 	private Hud hud;
 	private PianoRoll pianoRoll;
-	private final SoundManager soundmanager;
+	private final Synth synth;
 	private KeyboardInputManager keyboardInputManager;
 	private Engine engine;
 	
@@ -53,13 +52,9 @@ public class GameScreen extends AbstractScreen{
 		pianoRoll = new PianoRoll(engine, batch);
 		initRound(song, players, engine, batch); //TODO catch exceptions?
 
-		soundmanager = new SoundManager();
-		soundmanager.setInstrument(40); //
-		soundmanager.setSongTimeSignaure(song.getTime()[1],song.getBpm()); //TODO, soundmanger should perhaps only be in one class
-
-		//ScoreSystem scoreSystem = new ScoreSystem(score, noteLanes, soundmanager); //TODO SHOULD BE SOMEWHERE ELSE
-        //engine.addSystem(scoreSystem);
-        
+		synth = new Synth();
+		synth.setInstrument(40); //
+		synth.setSongTimeSignaure(song.getTime()[1],song.getBpm()); //TODO, soundmanger should perhaps only be in one class
         initInput();
 
 	}

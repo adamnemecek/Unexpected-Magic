@@ -4,7 +4,7 @@ import javax.sound.midi.*;
 
 import com.mygdx.game.model.song.INote;
 
-public class SoundManager {
+public class Synth {
 
 	private int volume = 1000;
 	private int nChannelNumber = 1;
@@ -19,7 +19,7 @@ public class SoundManager {
 	
 	 private final NoteThread notethread;
 	
-	public SoundManager(){
+	public Synth(){
 		
 		try
 		{

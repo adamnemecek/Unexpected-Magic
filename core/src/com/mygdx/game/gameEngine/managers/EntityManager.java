@@ -30,7 +30,7 @@ public class EntityManager {
 
 		//Create all the systems
 		MovementSystem movementSystem = new MovementSystem();
-		SoundSystem soundSystem = new SoundSystem(new SoundManager());
+		SoundSystem soundSystem = new SoundSystem(new Synth());
 		
 		//Add all the systems to the engine
 		this.engine.addSystem(movementSystem);

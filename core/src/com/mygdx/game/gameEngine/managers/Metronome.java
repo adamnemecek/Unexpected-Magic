@@ -7,14 +7,14 @@ package com.mygdx.game.gameEngine.managers;
 
 public class Metronome extends Thread {
 	private int tickInterval;
-	private SoundManager soundManager;
+	private Synth synth;
 
-	public Metronome(SoundManager s, int tickInterval) {
-		this.soundManager = s;
+	public Metronome(Synth s, int tickInterval) {
+		this.synth = s;
 		this.tickInterval = tickInterval;
-		this.soundManager.setInstrument(17);
-		this.soundManager.changeChannel(9); //in order for drum, channel must be 9
-		this.soundManager.setVolume(40);
+		this.synth.setInstrument(17);
+		this.synth.changeChannel(9); //in order for drum, channel must be 9
+		this.synth.setVolume(40);
 	}
 
 	@Override
@@ -23,14 +23,14 @@ public class Metronome extends Thread {
 
 		while (!interrupted) {
 
-			this.soundManager.noteOn(80);
+			this.synth.noteOn(80);
 
 			try {
 				NoteThread.sleep(this.tickInterval);
 			} catch (InterruptedException e) {
 				interrupted = true;
 			}
-			this.soundManager.noteOff(80);
+			this.synth.noteOff(80);
 
 		}
 

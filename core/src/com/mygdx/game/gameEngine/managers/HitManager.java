@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.mygdx.game.gameEngine.components.HitComponent;
 import com.mygdx.game.gameEngine.components.NoteComponent;
@@ -20,21 +19,20 @@ import com.mygdx.game.gameEngine.systems.ScoreLineListener;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Ticker;
 import com.mygdx.game.model.song.INote;
-import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.model.song.IVoice;
 import com.mygdx.game.utilities.file.Constants;
 
 public class HitManager implements ScoreLineListener{
 	private List<Player> players;
-	private SoundManager soundManager;
+	private Synth synth;
 	private Map<Player, Entity> activeNotes;
 	private int [] pitchAtLane;
 	
 	
-	public HitManager(Ticker ticker, List<Player> players, SoundManager soundManager, HitSystem hitSystem){
+	public HitManager(Ticker ticker, List<Player> players, Synth synth, HitSystem hitSystem){
 		this.players = players;
 		this.pitchAtLane = new int [Constants.NUMBER_OF_LANES];
-		this.soundManager = soundManager;
+		this.synth = synth;
 		this.activeNotes = new HashMap<Player, Entity>();
 		hitSystem.addObserver(this);
 	}
@@ -76,7 +74,7 @@ public class HitManager implements ScoreLineListener{
 				if (n.getOctave() == lane ){
 					p.getScore().hitNote(noteEntity.getComponent(HitComponent.class).isHit());
 					noteEntity.getComponent(HitComponent.class).hit();
-					soundManager.noteOn(n.getPitch());
+					synth.noteOn(n.getPitch());
 					this.pitchAtLane [lane] = n.getPitch();
 					hasHit = true;
 					
@@ -86,7 +84,7 @@ public class HitManager implements ScoreLineListener{
 			
 		}
 		if (!hasHit){
-			soundManager.noteOn(lane +5*12); //TODO should be another pitch
+			synth.noteOn(lane +5*12); //TODO should be another pitch
 			pitchAtLane[lane] = lane +5*12; 
 		}
 		
@@ -112,7 +110,7 @@ public class HitManager implements ScoreLineListener{
 	public void notePlayStop(int lane){
 		//soundManager.noteOff(pitchAtLane[lane]);
 		for (int i = lane; i <= 127; i +=12){
-			soundManager.noteOff(i);//TODO this is overkill
+			synth.noteOff(i);//TODO this is overkill
 		}
 	}
 

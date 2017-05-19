@@ -19,16 +19,16 @@ public class RoundManager {
 	private EntityManager entityManager;
 	private Ticker ticker;
 	private HitManager hitManager;
-	private SoundManager soundManager;
+	private Synth synth;
 
 	public RoundManager(Round round, EntityManager entityManager, Ticker ticker, Engine engine){
 		this.round = round;
 		this.entityManager = entityManager;
 		this.ticker = ticker;
-		this.soundManager = new SoundManager();
+		this.synth = new Synth();
 		HitSystem hitSystem = new HitSystem();
 		engine.addSystem(hitSystem);
-		this.hitManager = new HitManager(ticker, round.getPlayers(), soundManager, hitSystem);
+		this.hitManager = new HitManager(ticker, round.getPlayers(), synth, hitSystem);
 	}
 	
 	public void notePlayStart(int lane){
