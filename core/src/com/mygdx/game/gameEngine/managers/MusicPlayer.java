@@ -29,6 +29,7 @@ public class MusicPlayer implements IMusicPlayer {
 		songs.put(name, music);
 	}
 	private void setSong(String name) {
+		if(name != null && name.equals(songName)) return;
 		if(song != null) song.stop();
 		Music s = songs.get(name);
 		if(s == null) throw new IllegalArgumentException("Unknown song: " + name);
@@ -42,7 +43,7 @@ public class MusicPlayer implements IMusicPlayer {
 	}
 	@Override
 	public void play() {
-		song.play();
+		if(!song.isPlaying()) song.play();
 	}
 	@Override
 	public void pause() {
