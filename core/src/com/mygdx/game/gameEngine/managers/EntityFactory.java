@@ -1,7 +1,5 @@
 package com.mygdx.game.gameEngine.managers;
 
-import java.util.List;
-
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;

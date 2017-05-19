@@ -1,14 +1,14 @@
-package com.mygdx.game.gameEngine.managers;
+package com.mygdx.game.gameEngine.sound;
 
 import java.util.concurrent.ConcurrentHashMap;
-
 import javax.sound.midi.MidiChannel;
-
 import java.util.Map;
 
 public class NoteThread extends Thread{
 
 	private final MidiChannel channel;
+	//thread will check between every sleep time if the note is over and then remove
+	//sleepTime adjust accuracy
 	private final int sleepTime = 1;
 	private final int noteVolume = 1000;
 	

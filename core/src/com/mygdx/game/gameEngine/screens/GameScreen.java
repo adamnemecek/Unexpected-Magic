@@ -1,7 +1,6 @@
 package com.mygdx.game.gameEngine.screens;
 
 import java.util.List;
-
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
@@ -13,7 +12,6 @@ import com.mygdx.game.gameEngine.input.KeyboardControllerAdapter;
 import com.mygdx.game.gameEngine.input.KeyboardInputManager;
 import com.mygdx.game.gameEngine.managers.EntityManager;
 import com.mygdx.game.gameEngine.managers.RoundManager;
-import com.mygdx.game.gameEngine.managers.SoundManager;
 import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
 import com.mygdx.game.model.NoteLanes;
@@ -35,7 +33,6 @@ public class GameScreen extends AbstractScreen{
 	private final NoteLanes noteLanes;
 	private Hud hud;
 	private PianoRoll pianoRoll;
-	private final SoundManager soundmanager;
 	private KeyboardInputManager keyboardInputManager;
 	private Engine engine;
 	
@@ -51,14 +48,6 @@ public class GameScreen extends AbstractScreen{
         hud = new Hud(batch, score, noteLanes, song.getTitle(), Integer.toString(song.getBpm()), players);
 		pianoRoll = new PianoRoll(engine, batch);
 		initRound(song, players, engine, batch); //TODO catch exceptions?
-
-		soundmanager = new SoundManager();
-		soundmanager.setInstrument(40); //
-		soundmanager.setSongTimeSignaure(song.getTime()[1],song.getBpm()); //TODO, soundmanger should perhaps only be in one class
-
-		//ScoreSystem scoreSystem = new ScoreSystem(score, noteLanes, soundmanager); //TODO SHOULD BE SOMEWHERE ELSE
-        //engine.addSystem(scoreSystem);
-        
         initInput();
 
 	}

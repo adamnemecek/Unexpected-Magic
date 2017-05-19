@@ -1,10 +1,8 @@
-package com.mygdx.game.gameEngine.managers;
+package com.mygdx.game.gameEngine.gdxUtils;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
-
-import java.util.Iterator;
 
 /**
  * Created by rasmus on 2017-05-17.

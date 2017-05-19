@@ -6,6 +6,7 @@ import java.util.Queue;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.gameEngine.sound.Synth;
 import com.mygdx.game.gameEngine.systems.MovementSystem;
 import com.mygdx.game.gameEngine.systems.SoundSystem;
 import com.mygdx.game.model.song.INote;
@@ -30,7 +31,7 @@ public class EntityManager {
 
 		//Create all the systems
 		MovementSystem movementSystem = new MovementSystem();
-		SoundSystem soundSystem = new SoundSystem(new SoundManager());
+		SoundSystem soundSystem = new SoundSystem(new Synth());
 		
 		//Add all the systems to the engine
 		this.engine.addSystem(movementSystem);

@@ -1,10 +1,10 @@
-package com.mygdx.game.gameEngine.managers;
+package com.mygdx.game.gameEngine.sound;
 
 import javax.sound.midi.*;
 
 import com.mygdx.game.model.song.INote;
 
-public class SoundManager {
+public class Synth {
 
 	private int volume = 1000;
 	private int nChannelNumber = 1;
@@ -19,7 +19,7 @@ public class SoundManager {
 	
 	 private final NoteThread notethread;
 	
-	public SoundManager(){
+	public Synth(){
 		
 		try
 		{
@@ -100,6 +100,15 @@ public class SoundManager {
 		double i = mspm/(songSignature*(1/(noteSignature))*bpm);
 		System.out.println(i);
 		return (int)i;
+	}
+
+	public void changeChannel(int channel){
+		this.channel = channels[channel];
+
+	}
+
+	public void setVolume(int v){
+		this.volume = v;
 	}
 	
 }
