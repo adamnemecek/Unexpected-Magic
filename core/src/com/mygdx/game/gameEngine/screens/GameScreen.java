@@ -37,7 +37,6 @@ public class GameScreen extends AbstractScreen{
 	private Hud hud;
 	private PianoRoll pianoRoll;
 	private final SoundManager soundmanager;
-	private final Metronome metronome;
 	private KeyboardInputManager keyboardInputManager;
 	private Engine engine;
 	
