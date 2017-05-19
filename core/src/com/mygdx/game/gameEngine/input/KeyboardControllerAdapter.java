@@ -13,14 +13,12 @@ public class KeyboardControllerAdapter {
 	}
 	public void keyPressed(int keyCode) {
 		Action action = ConfigService.keyAction(keyCode);
-		System.out.println(action); //TODO remove debug print
 		if(action == null) return;
 		if(action.isNote()) inputAction.noteKeyPressed(action);
 		else if(action == Action.PAUSE_GAME); // TODO something with pause
 	}
 	public void keyReleased(int keyCode) {
 		Action action = ConfigService.keyAction(keyCode);
-		System.out.println(action); //TODO remove debug print
 		if(action == null) return;
 		if(action.isNote()) inputAction.noteKeyReleased(action);
 		else if(action == Action.PAUSE_GAME); // TODO something with pause

@@ -20,7 +20,6 @@ public class CompositeSprite{
 
 			for (int i = 0; i < componentSprites.size; i ++){
 					Sprite sprite = componentSprites.get(i);
-
 					sprite.setPosition(posX,posY+(sprite.getRegionHeight()*(componentSprites.size-1-i)));
 					sprite.draw(batch);
 			}

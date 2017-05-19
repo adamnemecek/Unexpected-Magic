@@ -4,7 +4,6 @@ public class ConfigService {
 	public static Action keyAction(int keyCode){
 		// I really would prefer to use Keys.ESCAPE and such, but that causes "circular dependencies" and "isn't good structure".
 		// This whole project structure thing forces us to reimplement half the things GDX can do a lot better than we can.
-		System.out.println(keyCode);
 		/*
 		if(keyCode == 131) return Action.PAUSE_GAME; //Esc
 		if(keyCode == 54) return Action.NOTE_C; //Z

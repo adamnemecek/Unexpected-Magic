@@ -17,7 +17,6 @@ import com.mygdx.game.gameEngine.sound.Synth;
 import com.mygdx.game.gameEngine.systems.HitSystem;
 import com.mygdx.game.gameEngine.systems.ScoreLineListener;
 import com.mygdx.game.model.Player;
-import com.mygdx.game.model.Ticker;
 import com.mygdx.game.model.song.INote;
 import com.mygdx.game.model.song.IVoice;
 import com.mygdx.game.utilities.file.Constants;
@@ -29,7 +28,7 @@ public class HitManager implements ScoreLineListener{
 	private int [] pitchAtLane;
 	
 	
-	public HitManager(Ticker ticker, List<Player> players, Synth synth, HitSystem hitSystem){
+	public HitManager(List<Player> players, Synth synth, HitSystem hitSystem){
 		this.players = players;
 		this.pitchAtLane = new int [Constants.NUMBER_OF_LANES];
 		this.synth = synth;
@@ -38,9 +37,11 @@ public class HitManager implements ScoreLineListener{
 	}
 	
 	public void reachedScoreLine(Entity noteEntity){
+
+		IVoice voice = noteEntity.getComponent(VoiceComponent.class).getVoice();
+
 		for (Player p : players){
 			
-			IVoice voice = noteEntity.getComponent(VoiceComponent.class).getVoice();
 			if(p.getVoice().equals(voice) && activeNotes.get(p) == null){
 				activeNotes.put(p, noteEntity);
 			}
@@ -53,12 +54,13 @@ public class HitManager implements ScoreLineListener{
 			if(activeNotes.get(p) != null){
 				
 				if(activeNotes.get(p).equals(noteEntity)){
-					
+
 					activeNotes.put(p, null);
 					
 					if (!noteEntity.getComponent(HitComponent.class).isHit()){
 						p.getScore().missedNote();
 					}
+					break;
 				}
 			}
 			
@@ -77,7 +79,7 @@ public class HitManager implements ScoreLineListener{
 					synth.noteOn(n.getPitch());
 					this.pitchAtLane [lane] = n.getPitch();
 					hasHit = true;
-					
+					System.out.println(p.getName() + ": " + p.getScore().getScore());
 				}
 			}
 			
@@ -87,31 +89,14 @@ public class HitManager implements ScoreLineListener{
 			synth.noteOn(lane +5*12); //TODO should be another pitch
 			pitchAtLane[lane] = lane +5*12; 
 		}
-		
-		/*for (Player p : players){
-			//compares the note being played with the notes each player is currently supposed to play
-			int activePitch = p.getVoice().pitchAtTick(ticker.getTick()); 
-			if (lane == activePitch%12 && activePitch != -1){ 
-				p.getScore().hitNote(false);
-				soundManager.noteOn(activePitch);
-				pitchAtLane[lane] = activePitch;
-				hasHit = true;
-			}
-		}
-		if (!hasHit){
-			soundManager.noteOn(lane +3*12); //TODO should be another pitch
-			pitchAtLane[lane] = lane +3*12; 
-		}
-		hasHit = false;*/
-		
-		
+
 	}
 	
 	public void notePlayStop(int lane){
-		//soundManager.noteOff(pitchAtLane[lane]);
-		for (int i = lane; i <= 127; i +=12){
-			synth.noteOff(i);//TODO this is overkill
-		}
+		synth.noteOff(pitchAtLane[lane]);
+		//for (int i = lane; i <= 127; i +=12){
+		//	synth.noteOff(i);//TODO this is overkill
+		//}
 	}
 
 	

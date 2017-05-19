@@ -8,15 +8,13 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.mygdx.game.gameEngine.components.PositionComponent;
-import com.mygdx.game.gameEngine.components.VelocityComponent;
 import com.mygdx.game.utilities.file.Constants;
 
 public class HitSystem extends IteratingSystem {
 	private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
-    private ComponentMapper<VelocityComponent> vm = ComponentMapper.getFor(VelocityComponent.class);
     private List<ScoreLineListener> listeners;
     public HitSystem() {
-        super(Family.all(PositionComponent.class, VelocityComponent.class).get());
+        super(Family.all(PositionComponent.class).get());
         listeners = new ArrayList();
  
 	 }
@@ -45,8 +43,7 @@ public class HitSystem extends IteratingSystem {
 	protected void processEntity(Entity entity, float deltaTime) {
     	//TODO this is extremely unforgiving
     	 PositionComponent pos = pm.get(entity);
-         VelocityComponent vel = vm.get(entity);
-         
+
          if(pos.getY() >= Constants.SCORE_BOUNDS_UPPER && pos.getY() < Constants.SCORE_BOUNDS_UPPER + 5){
          	alertReached(entity);
          }

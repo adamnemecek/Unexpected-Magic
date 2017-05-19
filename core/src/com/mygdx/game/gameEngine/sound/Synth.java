@@ -98,7 +98,7 @@ public class Synth {
 
 		double mspm = 60*1000;
 		double i = mspm/(songSignature*(1/(noteSignature))*bpm);
-		System.out.println(i);
+		//System.out.println(i);
 		return (int)i;
 	}
 

@@ -31,7 +31,7 @@ public class RoundManager {
 		initSynth();
 		HitSystem hitSystem = new HitSystem();
 		engine.addSystem(hitSystem);
-		this.hitManager = new HitManager(ticker, round.getPlayers(), this.synth, hitSystem);
+		this.hitManager = new HitManager(round.getPlayers(), this.synth, hitSystem);
 	}
 
 	public void endRound(){
