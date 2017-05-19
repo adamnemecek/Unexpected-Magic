@@ -1,4 +1,4 @@
-package com.mygdx.game.gameEngine.managers;
+package com.mygdx.game.gameEngine.sound;
 
 import java.util.concurrent.ConcurrentHashMap;
 import javax.sound.midi.MidiChannel;
