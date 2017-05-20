@@ -12,6 +12,7 @@ import com.mygdx.game.gameEngine.systems.SoundSystem;
 import com.mygdx.game.model.song.INote;
 import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.model.song.IVoice;
+import com.mygdx.game.model.song.Voice;
 
 /**
  * Class for managing entities.
@@ -56,7 +57,8 @@ public class EntityManager {
 					noteEntityQueue.add(null);
 					continue;
 				}
-				Entity newNoteEntity = EntityFactory.createNoteEntity(note, voice);
+
+				Entity newNoteEntity = EntityFactory.createNoteEntity(note, voice, calculateVoiceIndex(song, voice));
 				engine.addEntity(newNoteEntity);
 				noteEntityQueue.add(newNoteEntity);
 			}
@@ -69,6 +71,15 @@ public class EntityManager {
 			}
 		}
 		prevTick = tick;
+	}
+
+	private int calculateVoiceIndex(ISong song, IVoice voice){
+		for(int i = 0; i < song.getVoices().length; i++){
+			if(song.getVoices()[i] == voice){
+				return i;
+			}
+		}
+		return 0;
 	}
 
 }

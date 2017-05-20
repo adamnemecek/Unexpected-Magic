@@ -1,9 +1,7 @@
 package com.mygdx.game.gameEngine.managers;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.gameEngine.gdxUtils.CompositeSprite;
-import com.mygdx.game.model.song.IVoice;
 
 
 /**
@@ -12,24 +10,10 @@ import com.mygdx.game.model.song.IVoice;
 public class SpriteFactory {
 
 	private String color = "";
-	private Array<IVoice> voices = new Array<>();
-	private boolean added;
 
+	public CompositeSprite createSprites(int duration, int VoiceNumber){
 
-	public CompositeSprite createSprites(int duration, IVoice voice){
-
-		added = false;
-
-		for(int i = 0; i < voice.length(); i ++){
-			if(voices.size > i && voices.get(i).equals(voice)){
-				added = true;
-			}
-		}
-		if(!added){
-			voices.add(voice);
-		}
-
-		switch (voices.indexOf(voice,true)){
+		switch (VoiceNumber){
 			case(0) : this.color = "-green";
 				break;
 
