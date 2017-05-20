@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.gameEngine.managers.AnimationManager;
+import com.mygdx.game.gameEngine.managers.MusicPlayer;
 
 /**
  * Screen that contains the main menu.
@@ -32,8 +33,7 @@ public class MainMenuScreen extends AbstractScreen {
 
 	public MainMenuScreen(final SpriteBatch batch) {
 		super(batch);
-		
-
+		MusicPlayer.getInstance().play("main-theme");
 		menuItemSelected = 0;
 		menuItems = new String[] { "New game", "Options", "Animation", "Exit" };
 		feffeAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/feffe.png")),
