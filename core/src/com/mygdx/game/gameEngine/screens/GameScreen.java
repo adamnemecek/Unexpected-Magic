@@ -54,7 +54,6 @@ public class GameScreen extends AbstractScreen{
 	
 	public void initRound(ISong song, List<Player> players, Engine engine, SpriteBatch batch) {
 		roundManager = new RoundManager(new Round(song, players), new EntityManager(engine, batch, song), new Ticker(song), engine);
-		
 		//System.out.println("Number of voices: "+ round.song.getVoices().length);
 		//wait for player input here before running?
 		running = true;
