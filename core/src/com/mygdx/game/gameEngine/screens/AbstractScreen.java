@@ -73,11 +73,11 @@ public abstract class AbstractScreen extends ScreenAdapter {
 	public static void removeListener(ScreenListener listener){
 		listeners.remove(listener);
 	}
-	protected static void notifyScreenChange(AbstractScreen screen){
+	protected void notifyScreenChange(AbstractScreen screen){
 		for(ScreenListener sl : listeners){
 			sl.screenChanged(screen);
 		}
-		
+		dispose();
 	}
 	 
 }
