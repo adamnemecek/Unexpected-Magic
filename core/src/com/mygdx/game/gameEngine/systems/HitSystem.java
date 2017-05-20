@@ -7,12 +7,15 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
+import com.mygdx.game.gameEngine.components.CompositeSpriteComponent;
 import com.mygdx.game.gameEngine.components.PositionComponent;
 import com.mygdx.game.utilities.file.Constants;
 
 public class HitSystem extends IteratingSystem {
 	private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
-    private List<ScoreLineListener> listeners;
+	private ComponentMapper<CompositeSpriteComponent> cm = ComponentMapper.getFor(CompositeSpriteComponent.class);
+
+	private List<ScoreLineListener> listeners;
     public HitSystem() {
         super(Family.all(PositionComponent.class).get());
         listeners = new ArrayList();
@@ -42,13 +45,15 @@ public class HitSystem extends IteratingSystem {
     @Override
 	protected void processEntity(Entity entity, float deltaTime) {
     	//TODO this is extremely unforgiving
-    	 PositionComponent pos = pm.get(entity);
+		PositionComponent pos = pm.get(entity);
+		CompositeSpriteComponent cpc = cm.get(entity);
 
-         if(pos.getY() >= Constants.SCORE_BOUNDS_UPPER && pos.getY() < Constants.SCORE_BOUNDS_UPPER + 5){
+
+         if(pos.getY() <= 0 && pos.getY() > - 5){
          	alertReached(entity);
          }
          
-         else if(pos.getY() < Constants.SCORE_BOUNDS_LOWER){
+         else if(pos.getY() + cpc.getCompositeSprite().getLength() < -15){
         	 alertPassed(entity);
          }
 		

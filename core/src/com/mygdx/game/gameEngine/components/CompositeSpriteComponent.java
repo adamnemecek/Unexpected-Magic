@@ -8,10 +8,14 @@ import com.mygdx.game.gameEngine.gdxUtils.CompositeSprite;
 */
 public class CompositeSpriteComponent implements Component{
 
-	public CompositeSprite sprite;
+	private CompositeSprite sprite;
 	
 	public CompositeSpriteComponent(CompositeSprite sprite){
 		this.sprite = sprite;
+	}
+
+	public CompositeSprite getCompositeSprite(){
+		return this.sprite;
 	}
 
 }

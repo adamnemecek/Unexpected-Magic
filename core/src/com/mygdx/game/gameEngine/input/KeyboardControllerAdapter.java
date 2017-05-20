@@ -1,5 +1,4 @@
 package com.mygdx.game.gameEngine.input;
-
 import com.mygdx.game.utilities.file.Action;
 import com.mygdx.game.utilities.file.ConfigService;
 

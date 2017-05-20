@@ -1,5 +1,6 @@
 package com.mygdx.game.gameEngine.gdxUtils;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
@@ -28,6 +29,10 @@ public class CompositeSprite{
 
 	public void addSprite(Sprite sprite){
 		this.componentSprites.add(sprite);
+	}
+
+	public int getLength(){
+		return (componentSprites.size-1)*(componentSprites.get(1).getRegionHeight());
 	}
 
 }

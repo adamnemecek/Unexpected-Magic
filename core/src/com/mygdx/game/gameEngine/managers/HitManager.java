@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.badlogic.ashley.core.Entity;
+import com.mygdx.game.gameEngine.components.CompositeSpriteComponent;
 import com.mygdx.game.gameEngine.components.HitComponent;
 import com.mygdx.game.gameEngine.components.NoteComponent;
 import com.mygdx.game.gameEngine.components.VoiceComponent;
+import com.mygdx.game.gameEngine.gdxUtils.CompositeSprite;
 import com.mygdx.game.gameEngine.sound.Synth;
 import com.mygdx.game.gameEngine.systems.HitSystem;
 import com.mygdx.game.gameEngine.systems.ScoreLineListener;
@@ -42,7 +44,7 @@ public class HitManager implements ScoreLineListener{
 
 		for (Player p : players){
 			
-			if(p.getVoice().equals(voice) && activeNotes.get(p) == null){
+			if(p.getVoice().equals(voice)){
 				activeNotes.put(p, noteEntity);
 			}
 		}
@@ -56,7 +58,6 @@ public class HitManager implements ScoreLineListener{
 				if(activeNotes.get(p).equals(noteEntity)){
 
 					activeNotes.put(p, null);
-					
 					if (!noteEntity.getComponent(HitComponent.class).isHit()){
 						p.getScore().missedNote();
 					}
@@ -80,14 +81,15 @@ public class HitManager implements ScoreLineListener{
 					this.pitchAtLane [lane] = n.getPitch();
 					hasHit = true;
 					System.out.println(p.getName() + ": " + p.getScore().getScore());
+					break;
 				}
 			}
 			
 			
 		}
 		if (!hasHit){
-			synth.noteOn(lane +5*12); //TODO should be another pitch
-			pitchAtLane[lane] = lane +5*12; 
+			//synth.noteOn(lane +5*12); //TODO should be another pitch
+			//pitchAtLane[lane] = lane +5*12;
 		}
 
 	}

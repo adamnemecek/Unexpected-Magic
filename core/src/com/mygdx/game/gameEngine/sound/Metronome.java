@@ -16,7 +16,7 @@ public class Metronome extends Thread {
 		this.tickInterval = calculate_msPB(bpm);
 		this.synth.setInstrument(17);
 		this.synth.changeChannel(9); //in order for drum, channel must be 9
-		this.synth.setVolume(50);
+		this.synth.setVolume(505);
 		this.interrupted = false;
 	}
 

@@ -7,6 +7,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
@@ -41,11 +42,11 @@ public class PianoRoll {
 
 	private void drawEntities(float delta){
 		ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(PositionComponent.class, CompositeSpriteComponent.class).get());
-		batch.begin(); 
+		batch.begin();
 		for(Entity entity : entities){
 			PositionComponent pos = positionComponentMapper.get(entity);
 	        CompositeSpriteComponent spr = spriteComponentMapper.get(entity);
-			spr.sprite.draw(batch, pos.getX(), pos.getY());
+			spr.getCompositeSprite().draw(batch, pos.getX(), pos.getY());
 		}
 		batch.end();
 	}
