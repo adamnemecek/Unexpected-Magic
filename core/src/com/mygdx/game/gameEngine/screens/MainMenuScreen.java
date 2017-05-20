@@ -3,6 +3,7 @@ package com.mygdx.game.gameEngine.screens;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -15,13 +16,15 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.gameEngine.managers.AnimationManager;
 import com.mygdx.game.gameEngine.managers.MusicPlayer;
+import com.mygdx.game.utilities.file.Constants;
 
 /**
  * Screen that contains the main menu.
  */
 public class MainMenuScreen extends AbstractScreen {
 
-
+	Texture background = new Texture("images/UnexpectedMagicBackground6.png");
+	
 	private AnimationManager feffeAnim;
 	private AnimationManager frodoAnim;
 
@@ -172,9 +175,12 @@ public class MainMenuScreen extends AbstractScreen {
 	@Override
 	public void render(float delta) {
 		super.render(delta);
+		Gdx.gl.glClearColor(0,0,0,1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
+		batch.draw(background, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y);
 		feffeAnim.render(); // render animation TODO should perhaps be automated
 		frodoAnim.render();
 		batch.end();

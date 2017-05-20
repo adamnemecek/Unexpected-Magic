@@ -28,7 +28,7 @@ import com.mygdx.game.utilities.file.Constants;
 */
 public class GameScreen extends AbstractScreen{
 	private boolean running;
-	Texture backgroundTexture;
+	//Texture backgroundTexture;
 	private RoundManager roundManager;
 	private final NoteLanes noteLanes;
 	private Hud hud;
@@ -36,12 +36,14 @@ public class GameScreen extends AbstractScreen{
 	private KeyboardInputManager keyboardInputManager;
 	private Engine engine;
 	
+	Texture background = new Texture("images/UnexpectedMagicBackground5.png");
+	
 	public GameScreen(final SpriteBatch batch, ISong song, List<Player> players) {
 		super(batch);
 		this.engine = new PooledEngine();
 		noteLanes = new NoteLanes();
 		running = false;
-		backgroundTexture = new Texture("images/lanes/Purple.png");
+		//backgroundTexture = new Texture("images/lanes/Purple.png");
 		
 		Score score = new Score(); //TODO Should be somewhere else, probably RoundManager
 
@@ -93,7 +95,8 @@ public class GameScreen extends AbstractScreen{
 		batch.setProjectionMatrix(camera.combined);
 		viewport.apply(true);
 		batch.begin();
-		batch.draw(backgroundTexture, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_X, 0, 10, 10, 0);
+		//batch.draw(backgroundTexture, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_X, 0, 10, 10, 0);
+		batch.draw(background, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y);
 		batch.end();
 		
 		//draw pianoroll
