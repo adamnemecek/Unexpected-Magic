@@ -33,7 +33,7 @@ public class ScoreScreen extends AbstractScreen{
 				if(!(event instanceof InputEvent)) return false;
 				InputEvent evt = (InputEvent) event;
 				if(evt.getType() != InputEvent.Type.touchDown) return false;
-				notifyScreenChange(new MainMenuScreen(batch));
+				changeToScreen(new MainMenuScreen(batch));
 				return true;
 				
 			}

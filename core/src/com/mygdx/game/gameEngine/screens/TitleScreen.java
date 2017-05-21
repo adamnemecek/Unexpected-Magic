@@ -41,7 +41,7 @@ public class TitleScreen extends AbstractScreen{
 	}
 	public void update(float delta) {
 		if(Gdx.input.isKeyPressed(Keys.ANY_KEY)){
-			notifyScreenChange(new MainMenuScreen(batch));
+			changeToScreen(new MainMenuScreen(batch));
 			dispose();
 		}
 	}

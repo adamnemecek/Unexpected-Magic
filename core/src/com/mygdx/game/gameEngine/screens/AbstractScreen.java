@@ -2,6 +2,7 @@ package com.mygdx.game.gameEngine.screens;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
@@ -24,11 +25,12 @@ import com.mygdx.game.utilities.file.Constants;
  */
 
 public abstract class AbstractScreen extends ScreenAdapter {
+	private static Stack<AbstractScreen> prevScreens = new Stack<AbstractScreen>();
+	
 	protected OrthographicCamera camera;
 	protected Viewport viewport;
 	protected Stage stage;
 	protected SpriteBatch batch;
-	
 
 	protected TextureAtlas atlas;
 	protected Skin skin;
@@ -46,11 +48,19 @@ public abstract class AbstractScreen extends ScreenAdapter {
 		skin = new Skin(Gdx.files.internal("skins/commodore64/skin/uiskin.json"), atlas);
 	}
 	@Override
+	public void show(){
+		super.show();
+		Gdx.input.setInputProcessor(stage);
+		System.out.println("abstractscreen. show");
+	}
+	@Override
 	public void dispose() {
 		stage.dispose();
 		atlas.dispose();
 		skin.dispose();
+		System.out.println("abstractscreen dispose");
 	}
+	
 	@Override
 	public void resize(int width, int height) {
 		viewport.update(width, height);
@@ -73,11 +83,18 @@ public abstract class AbstractScreen extends ScreenAdapter {
 	public static void removeListener(ScreenListener listener){
 		listeners.remove(listener);
 	}
-	protected void notifyScreenChange(AbstractScreen screen){
+	protected void changeToPreviousScreen(){
+		for(ScreenListener sl : listeners){
+			sl.screenChanged(prevScreens.pop());
+		}
+		dispose();
+	}
+	protected void changeToScreen(AbstractScreen screen){
+		prevScreens.push(this);
 		for(ScreenListener sl : listeners){
 			sl.screenChanged(screen);
 		}
-		dispose();
+		//dispose();
 	}
 	 
 }

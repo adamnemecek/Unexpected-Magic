@@ -43,10 +43,10 @@ public class MainMenuScreen extends AbstractScreen {
 				batch, 1, 6, 275, -32, 200, 200, 0.1f );
 		frodoAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/frodo.png")),
 				batch, 1, 6, 210, -10, 200, 200, 0.12f );
-	}
+//	}
 
-	@Override
-	public void show() {
+//	@Override
+//	public void show() {
 		// Create Table
 		Table table = new Table();
 		table.setFillParent(true);
@@ -190,11 +190,11 @@ public class MainMenuScreen extends AbstractScreen {
 	}
 
 	public void newgameButtonPushed() {
-		notifyScreenChange(new NewgameScreen(batch));
+		changeToScreen(new NewgameScreen(batch));
 	}
 
 	public void optionButtonPushed() {
-		notifyScreenChange(new OptionsScreen(batch));
+		changeToScreen(new OptionsScreen(batch));
 	}
 
 	public void animationButtonPushed() {

@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
+import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.gameEngine.managers.MusicPlayer;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.SongList;
@@ -45,6 +46,18 @@ public class NewgameScreen extends AbstractScreen {
 		table.setFillParent(true);
 		table.setDebug(true, true);
 		stage.addActor(table);
+		
+		//back button
+		TextButton backButton = new TextButton("Back", skin);
+		backButton.addListener(
+				(Event event) -> {
+					if(!(event instanceof InputEvent)) return false;
+					InputEvent evt = (InputEvent) event;
+					if(evt.getType() != InputEvent.Type.touchDown) return false;
+					changeToPreviousScreen();
+					return true;
+				}
+			);
 		
 		// selecting number of players
 		Label selectPlayerNumLabel = new Label("Select number \nof players: ", skin);
@@ -144,7 +157,7 @@ public class NewgameScreen extends AbstractScreen {
 					players.add(new Player(playerNames[i].getText(), voices[i]));
 				}
 				//game.setScreen(new GameScreen(game, song, players));
-				notifyScreenChange(new GameScreen(/*engine,*/ batch, song, players));
+				changeToScreen(new GameScreen(/*engine,*/ batch, song, players));
 				MusicPlayer.getInstance().stop();
 				return true;
 			}
@@ -152,6 +165,8 @@ public class NewgameScreen extends AbstractScreen {
 		
 		// table layout
 		int totalColumns = playerNumItems.length;
+		table.add(backButton).colspan(totalColumns).align(Align.left);
+		table.row();
 		table.add(selectSongLabel).left().colspan(totalColumns);
 		table.row();
 		table.add(songSelector).colspan(totalColumns);

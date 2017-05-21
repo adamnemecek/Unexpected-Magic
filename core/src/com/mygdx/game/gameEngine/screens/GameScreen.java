@@ -85,7 +85,7 @@ public class GameScreen extends AbstractScreen{
 		if(roundManager.gameOver()){
 			roundManager.endRound();
 			this.dispose();
-			notifyScreenChange(new ScoreScreen(batch));
+			changeToScreen(new ScoreScreen(batch));
 		}
 		//Wipe screen (don't use super because super clears with blue)
 		Gdx.gl.glClearColor(0,0,0,1);
