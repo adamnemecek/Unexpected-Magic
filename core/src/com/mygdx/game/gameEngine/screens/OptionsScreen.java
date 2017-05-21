@@ -6,7 +6,12 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.utilities.file.Constants;
 
@@ -14,6 +19,27 @@ public class OptionsScreen extends AbstractScreen {
 
 	public OptionsScreen(/*final Engine engine,*/ SpriteBatch batch) {
 		super(/*engine,*/ batch);
+		
+		// table
+		Table table = new Table();
+		table.setFillParent(true);
+		table.setDebug(true, true);
+		table.top();
+		table.left();
+		stage.addActor(table);
+				
+		//back button
+				TextButton backButton = new TextButton("Back", skin);
+				backButton.addListener(
+						(Event event) -> {
+							if(!(event instanceof InputEvent)) return false;
+							InputEvent evt = (InputEvent) event;
+							if(evt.getType() != InputEvent.Type.touchDown) return false;
+							changeToPreviousScreen();
+							return true;
+						}
+						);
+		table.add(backButton);
 	}
 
 	@Override
