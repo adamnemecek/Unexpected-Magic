@@ -54,7 +54,11 @@ public class Song implements ISong {
 		return sb.toString();
 	}
 	public int length() {
+		int max = 0;
 		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
+		for(IVoice voice : getVoices()) {
+			max = Math.max(max, voice.length());
+		}
+		return max;
 	}
 }
