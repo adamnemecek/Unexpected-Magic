@@ -5,6 +5,7 @@ package com.mygdx.game.model.song;
  * @author car0b1nius
  */
 public interface ISong {
+	int length();
 	String getTitle();
 	int getBpm();
 	IVoice[] getVoices();

@@ -29,9 +29,11 @@ public class Song implements ISong {
 			voices[i++] = new Voice(s);
 		}
 	}
+	@Override
 	public IVoice[] getVoices() {
 		return voices.clone();
 	}
+	@Override
 	public int[] getTime() {
 		return time.clone();
 	}
@@ -50,5 +52,9 @@ public class Song implements ISong {
 			sb.append("[").append(v.toString()).append("]");
 		}
 		return sb.toString();
+	}
+	public int length() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
 	}
 }
