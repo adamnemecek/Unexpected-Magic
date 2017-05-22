@@ -30,9 +30,9 @@ public class Ticker {
 	}
 	
 	public void updateTick(float delta){
-		if(!ticking) return;
+		if(!isTicking()) return;
 		time += delta;
-		tick = (int)(time * tickFreq);
+		tick = (int)(tickWithDecimals());
 		/*trueTick += tickFreq * delta;
 		if(trueTick > 1) {
 			trueTick %= 1;
@@ -40,7 +40,9 @@ public class Ticker {
 		}*/
 		if(tick >= songTotalTicks){ ticking = false; }
 	}
-	
+	public double tickWithDecimals() {
+		return time * tickFreq;
+	}
 	private double calculateTickFreq(ISong song){
 		int bpm = song.getBpm();
 		int timeBeatSize = song.getTime()[1]; //the denominator of the time signature
