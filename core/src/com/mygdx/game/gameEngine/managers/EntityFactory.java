@@ -19,12 +19,10 @@ import java.util.List;
  */
 public class EntityFactory {
 
-	private static final float NoteOrigPosY = Constants.VIEWPORT_DIM_Y;
-	private static final int NoteVelY = -64;
-	private static int nextColor =0;
 	private static final SpriteFactory spriteFactory = new SpriteFactory();
 
-	public static List<Entity> createNoteEntity(List<Player> players){
+	//TODO, returns a List, currently not used
+	public static List<Entity> createNoteEntities(List<Player> players){
 		for (int playerIndex = 0; playerIndex < players.size(); playerIndex ++){
 			Player player = players.get(playerIndex);
 
@@ -34,7 +32,6 @@ public class EntityFactory {
 				if (note == null || note.isRest()) continue;
 
 				createNoteEntity(note,voice,playerIndex, tick);
-
 			}
 		}
 		return null;

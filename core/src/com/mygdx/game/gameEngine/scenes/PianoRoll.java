@@ -14,7 +14,11 @@ import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.gameEngine.components.CompositeSpriteComponent;
 import com.mygdx.game.gameEngine.components.PositionComponent;
+import com.mygdx.game.gameEngine.managers.EntityFactory;
+import com.mygdx.game.model.Player;
 import com.mygdx.game.utilities.file.Constants;
+
+import java.util.List;
 
 /**
  * A class that defines the properties of the piano roll (the area where the notes are drawn).
@@ -29,10 +33,15 @@ public class PianoRoll {
 	ComponentMapper<PositionComponent> positionComponentMapper; //TODO Should this class draw all notes?
 	ComponentMapper<CompositeSpriteComponent> spriteComponentMapper;
 	private float cameraVelocity;
+
+	private EntityFactory entityFactory;	//TODO, should this be here?
+
 	
-	public PianoRoll(Engine engine, SpriteBatch spriteBatch) {
+	public PianoRoll(Engine engine, SpriteBatch spriteBatch, List<Player> players) {
         this.engine = engine;
         batch = spriteBatch;
+        this.entityFactory = new EntityFactory();
+        entityFactory.createNoteEntities(players);
         camera = new OrthographicCamera();
         
         viewport = new ScalingViewport(Scaling.fit, Constants.PIANOROLL_DIM_X, Constants.PIANOROLL_DIM_Y, camera);
@@ -55,7 +64,7 @@ public class PianoRoll {
 		for(Entity entity : entities){
 			PositionComponent pos = positionComponentMapper.get(entity);
 	        CompositeSpriteComponent spr = spriteComponentMapper.get(entity);
-			spr.getCompositeSprite().draw(batch, pos.getX(), pos.getY());
+			spr.getCompositeSprite().draw(batch, pos.x, pos.y);
 		}
 		batch.end();
 	}

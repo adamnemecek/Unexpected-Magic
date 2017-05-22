@@ -33,8 +33,8 @@ public class MovementSystem extends IteratingSystem{
         
         
         //System.out.println("MovementSystem. DELTA:" + delta);
-        pos.setX((float)pos.getX() + delta*vel.getX());//TODO
-        pos.setY((float)pos.getY() + delta*vel.getY());//TODO
+        pos.x = pos.x + (int)delta*vel.getX();//TODO
+        pos.y = pos.y + (int)delta*vel.getY();//TODO
 
         //System.out.println("MovementSystem. NEW POS. x = " + pos.x + ", y = " + pos.y);
     }

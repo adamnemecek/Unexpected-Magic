@@ -48,7 +48,7 @@ public class GameScreen extends AbstractScreen{
 		Score score = new Score(); //TODO Should be somewhere else, probably RoundManager
 
         hud = new Hud(batch, score, noteLanes, song.getTitle(), Integer.toString(song.getBpm()), players);
-		pianoRoll = new PianoRoll(engine, batch);
+		pianoRoll = new PianoRoll(engine, batch, players); //TODO should pianoroll create the "pianoroll"?
 		initRound(song, players, engine, batch); //TODO catch exceptions?
         initInput();
 

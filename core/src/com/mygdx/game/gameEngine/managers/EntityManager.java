@@ -21,6 +21,8 @@ import com.mygdx.game.model.song.Voice;
  * @author soflarb
  * Revised by car0b1nius
  */
+
+@Deprecated
 public class EntityManager {
 	private Engine engine;
 	private SpriteBatch batch;
@@ -66,9 +68,9 @@ public class EntityManager {
 						continue;
 					}
 
-					Entity newNoteEntity = EntityFactory.createNoteEntity(note, voice, players.indexOf(player));
-					engine.addEntity(newNoteEntity);
-					noteEntityQueue.add(newNoteEntity);
+					//Entity newNoteEntity = EntityFactory.createNoteEntity(note, voice, playe);
+					//engine.addEntity(newNoteEntity);
+					//noteEntityQueue.add(newNoteEntity);
 				}
 				//while there are more than 20 notes/voice, ...
 				while (noteEntityQueue.size() > song.getVoices().length * 150) { // TODO tick length

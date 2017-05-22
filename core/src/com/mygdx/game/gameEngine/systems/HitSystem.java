@@ -49,11 +49,11 @@ public class HitSystem extends IteratingSystem {
 		CompositeSpriteComponent cpc = cm.get(entity);
 
 
-         if(pos.getY() <= 0 && pos.getY() > - 5){
+         if(pos.y <= 0 && pos.y > - 5){
          	alertReached(entity);
          }
          
-         else if(pos.getY() + cpc.getCompositeSprite().getLength() < -15){
+         else if(pos.y + cpc.getCompositeSprite().getLength() < -15){
         	 alertPassed(entity);
          }
 		

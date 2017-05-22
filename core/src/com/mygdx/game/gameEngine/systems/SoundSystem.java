@@ -38,7 +38,7 @@ public class SoundSystem extends IteratingSystem {
         NoteComponent not = nm.get(entity);
         HitComponent hit = hm.get(entity);
 
-        if ((int) pos.getY() <= Constants.SCORE_BOUNDS_UPPER && !hit.isHit()) { //TODO Is this accurate
+        if ((int) pos.y <= Constants.SCORE_BOUNDS_UPPER && !hit.isHit()) { //TODO Is this accurate
             
         	//soundManager.play(not.getNote());
             hit.hit();
