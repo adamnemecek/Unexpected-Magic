@@ -48,6 +48,7 @@ public class EntityManager {
 	}
 	int prevTick = -1;
 	Queue<Entity> noteEntityQueue = new LinkedList<>();
+
 	private void manageNoteEntities(int tick) {
 		//check each voice if create new note should be created and create it
 		for(int i = prevTick+1; i <= tick; i++) {

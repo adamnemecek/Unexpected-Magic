@@ -4,6 +4,11 @@ import javax.sound.midi.*;
 
 import com.mygdx.game.model.song.INote;
 
+/**
+ * Class for playing sound.
+ * @author rastom
+ */
+
 public class Synth {
 
 	private int volume = 1000;

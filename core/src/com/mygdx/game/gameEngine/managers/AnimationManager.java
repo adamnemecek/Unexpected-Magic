@@ -7,10 +7,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 
 /**
- * Created by rasmus on 2017-05-10.
+ * Class for playing gif animations in mainmenu screen.
+ * @author rastom
  */
 
-//Animation manager responsible for animating an animation. Takes a spritesheet and spritebatch and draws animation
 public class AnimationManager {
 
 	private int FRAME_ROWS;

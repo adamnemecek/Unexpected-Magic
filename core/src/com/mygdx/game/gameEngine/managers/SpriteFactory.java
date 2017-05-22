@@ -3,10 +3,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.gameEngine.gdxUtils.CompositeSprite;
 
-
 /**
- * Created by rasmus on 2017-05-17.
+ * Class for adding sprites ot a note entity, knows which color to pick.
+ * @author rastom
  */
+
 public class SpriteFactory {
 
 	private String color = "";

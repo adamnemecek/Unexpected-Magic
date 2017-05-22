@@ -4,10 +4,11 @@ import com.mygdx.game.gameEngine.managers.RoundManager;
 import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.utilities.file.Action;
 
-
 /**
- * Created by rasmus on 2017-05-09.
+ * Class for handling input, last layer, actually does stuff.
+ * @author rastom
  */
+
 public class InputAction implements IInputController{
 	
 	private RoundManager roundManager;

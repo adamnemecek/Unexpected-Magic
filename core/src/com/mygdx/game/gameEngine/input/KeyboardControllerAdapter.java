@@ -3,8 +3,10 @@ import com.mygdx.game.utilities.file.Action;
 import com.mygdx.game.utilities.file.ConfigService;
 
 /**
- * Created by rasmus on 2017-05-09.
+ * Class for Input, adapter layer.
+ * @author rastom
  */
+
 public class KeyboardControllerAdapter {
 	private InputAction inputAction;
 	public KeyboardControllerAdapter(InputAction inputAction){

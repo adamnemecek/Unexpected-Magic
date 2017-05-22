@@ -3,8 +3,10 @@ package com.mygdx.game.gameEngine.input;
 import com.mygdx.game.utilities.file.Action;
 
 /**
- * Created by rasmus on 2017-05-09.
+ * Interface for a Inputcontroller .
+ * @author rastom
  */
+
 public interface IInputController {
 
 	void noteKeyPressed(Action note);

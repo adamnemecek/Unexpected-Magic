@@ -1,8 +1,10 @@
 package com.mygdx.game.utilities.file;
 
 /**
- * Created by rasmus on 2017-05-09.
+ * Enum for different input actions.
+ * @author rastom
  */
+
 public enum Action {
 	NOTE_C (0),
 	NOTE_C_SHARP (1),

@@ -6,8 +6,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
 /**
- * Created by rasmus on 2017-05-17.
+ * Class for playing sound.
+ * @author rastom
  */
+
 public class CompositeSprite{
 
 	//sprites needs to be added, top, mid, mid... , bot

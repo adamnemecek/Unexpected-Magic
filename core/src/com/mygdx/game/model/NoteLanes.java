@@ -4,7 +4,7 @@ import com.mygdx.game.utilities.file.Constants;
 
 /**
  * A class that represents all the note lanes
- * @author ???
+ * @author rastom
  */
 
 public class NoteLanes {

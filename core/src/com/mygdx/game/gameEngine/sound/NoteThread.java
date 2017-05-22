@@ -4,9 +4,15 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.sound.midi.MidiChannel;
 import java.util.Map;
 
+/**
+ * Class for playing specific notes, during a specified time.
+ * @author rastom
+ */
+
 public class NoteThread extends Thread{
 
 	private final MidiChannel channel;
+
 	//thread will check between every sleep time if the note is over and then remove
 	//sleepTime adjust accuracy
 	private final int sleepTime = 1;

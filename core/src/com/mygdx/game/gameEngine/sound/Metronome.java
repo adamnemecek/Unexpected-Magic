@@ -1,7 +1,9 @@
 package com.mygdx.game.gameEngine.sound;
 
 /**
- * Created by rasmus on 2017-05-18.
+ * Class for that works as a metronome
+ * takes bpm and plays a beat according to it
+ * @author rastom
  */
 
 //TODO, generally make better, less hardcoding..
@@ -11,8 +13,8 @@ public class Metronome extends Thread {
 	private Synth synth;
 	private boolean interrupted;
 
-	public Metronome(Synth s, int bpm) {
-		this.synth = s;
+	public Metronome(int bpm) {
+		this.synth = new Synth();
 		this.tickInterval = calculate_msPB(bpm);
 		this.synth.setInstrument(17);
 		this.synth.changeChannel(9); //in order for drum, channel must be 9

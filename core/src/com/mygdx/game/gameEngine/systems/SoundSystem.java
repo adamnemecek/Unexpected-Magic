@@ -14,8 +14,9 @@ import com.mygdx.game.model.song.IVoice;
 import com.mygdx.game.utilities.file.Constants;
 
 /**
- * Created by rasmus on 2017-05-05.
- * Revised by Arvid
+ * Class for playing sound, possible non-player voices, possible useless and should be disregarded.
+ * @author rastom
+ * revised by Arvid
  */
 public class SoundSystem extends IteratingSystem {
 

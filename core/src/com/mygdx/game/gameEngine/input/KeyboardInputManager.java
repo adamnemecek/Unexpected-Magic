@@ -3,8 +3,10 @@ package com.mygdx.game.gameEngine.input;
 import com.badlogic.gdx.InputProcessor;
 
 /**
- * Created by rasmus on 2017-05-05.
+ * Class Input, litens for keyboard input.
+ * @author rastom
  */
+
 public class KeyboardInputManager implements InputProcessor {
 
     private final KeyboardControllerAdapter keyboardControllerAdapter;

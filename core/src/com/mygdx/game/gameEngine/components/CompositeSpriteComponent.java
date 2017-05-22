@@ -4,8 +4,10 @@ import com.badlogic.ashley.core.Component;
 import com.mygdx.game.gameEngine.gdxUtils.CompositeSprite;
 
 /**
-* Component that represents the sprite.
-*/
+ * Component that represents the sprite.
+ * @author rastom
+ */
+
 public class CompositeSpriteComponent implements Component{
 
 	private CompositeSprite sprite;

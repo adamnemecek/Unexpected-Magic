@@ -26,7 +26,7 @@ public class RoundManager {
 		this.round = round;
 		this.entityManager = entityManager;
 		this.ticker = ticker;
-		this.metronome = new Metronome(new Synth(),round.song.getBpm());
+		this.metronome = new Metronome(round.song.getBpm());
 		this.metronome.start();
 		initSynth();
 		HitSystem hitSystem = new HitSystem();
