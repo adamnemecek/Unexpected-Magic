@@ -43,7 +43,7 @@ public abstract class AbstractScreen extends ScreenAdapter {
 		viewport = new ScalingViewport(Scaling.fit, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y, camera);
 		viewport.apply();
 		stage = new Stage(viewport, batch);
-		Gdx.input.setInputProcessor(stage);
+		//Gdx.input.setInputProcessor(stage);
 		atlas = new TextureAtlas("skins/commodore64/skin/uiskin.atlas");
 		skin = new Skin(Gdx.files.internal("skins/commodore64/skin/uiskin.json"), atlas);
 	}

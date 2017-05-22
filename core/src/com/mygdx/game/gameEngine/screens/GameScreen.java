@@ -67,7 +67,7 @@ public class GameScreen extends AbstractScreen{
 		final KeyboardControllerAdapter  kca= new KeyboardControllerAdapter(ia);
 		
 		this.keyboardInputManager = new KeyboardInputManager(kca);
-	    Gdx.input.setInputProcessor(keyboardInputManager);
+//	    Gdx.input.setInputProcessor(keyboardInputManager);
 		
 	}
 	
@@ -110,6 +110,12 @@ public class GameScreen extends AbstractScreen{
 		batch.setProjectionMatrix(hud.stage.getCamera().combined);
 		hud.draw();
 		
+	}
+	
+	@Override
+	public void show() {
+		super.show();
+		Gdx.input.setInputProcessor(keyboardInputManager);
 	}
 		
 	@Override
