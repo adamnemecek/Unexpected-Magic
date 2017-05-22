@@ -104,7 +104,7 @@ public class Hud {
 		//note lanes
 		this.noteLanes = noteLanes;
 		this.activeTexture = new Texture("images/lanes/lane-white-bordered-33x10.png");
-        this.inactiveTexture = new Texture("images/lanes/lane-black-bordered-33x10mx.png");
+        this.inactiveTexture = new Texture("images/lanes/lane-black-bordered-33x10.png");
         
         // bot table layout with player boxes.
         Table botTable = new Table();
