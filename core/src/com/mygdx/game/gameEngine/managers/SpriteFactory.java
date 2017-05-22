@@ -11,9 +11,9 @@ public class SpriteFactory {
 
 	private String color = "";
 
-	public CompositeSprite createSprites(int duration, int VoiceNumber){
+	public CompositeSprite createSprites(int duration, int playerNumber){
 
-		switch (VoiceNumber){
+		switch (playerNumber){
 			case(0) : this.color = "-green";
 				break;
 
@@ -25,6 +25,7 @@ public class SpriteFactory {
 
 			case(3) : this.color = "-yellow";
 				break;
+
 		}
 
 		CompositeSprite sprite = new CompositeSprite();

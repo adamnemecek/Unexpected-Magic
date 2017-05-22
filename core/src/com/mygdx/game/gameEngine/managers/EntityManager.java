@@ -1,6 +1,7 @@
 package com.mygdx.game.gameEngine.managers;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 import com.badlogic.ashley.core.Engine;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.gameEngine.sound.Synth;
 import com.mygdx.game.gameEngine.systems.MovementSystem;
 import com.mygdx.game.gameEngine.systems.SoundSystem;
+import com.mygdx.game.model.Player;
 import com.mygdx.game.model.song.INote;
 import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.model.song.IVoice;
@@ -23,12 +25,14 @@ public class EntityManager {
 	private Engine engine;
 	private SpriteBatch batch;
 	private ISong song;
+	private List<Player> players;
 
 
-	public EntityManager(Engine engine, SpriteBatch batch, ISong song){
+	public EntityManager(Engine engine, SpriteBatch batch, ISong song, List<Player> players){
 		this.engine = engine;
 		this.batch = batch;
 		this.song = song;
+		this.players = players;
 
 		//Create all the systems
 		MovementSystem movementSystem = new MovementSystem();
@@ -47,39 +51,34 @@ public class EntityManager {
 	private void manageNoteEntities(int tick) {
 		//check each voice if create new note should be created and create it
 		for(int i = prevTick+1; i <= tick; i++) {
-			for(IVoice voice : song.getVoices()){
-				if(i >= voice.length())  {
-					noteEntityQueue.add(null);
-					continue;
-				}
-				INote note = voice.noteAtTick(i);
-				if(note == null || note.isRest()) {
-					noteEntityQueue.add(null);
-					continue;
-				}
+			for (Player player : players) {
 
-				Entity newNoteEntity = EntityFactory.createNoteEntity(note, voice, calculateVoiceIndex(song, voice));
-				engine.addEntity(newNoteEntity);
-				noteEntityQueue.add(newNoteEntity);
+				IVoice voice = player.getVoice();
+
+					if (i >= voice.length()) {
+						noteEntityQueue.add(null);
+						continue;
+					}
+					INote note = voice.noteAtTick(i);
+					if (note == null || note.isRest()) {
+						noteEntityQueue.add(null);
+						continue;
+					}
+
+					Entity newNoteEntity = EntityFactory.createNoteEntity(note, voice, players.indexOf(player));
+					engine.addEntity(newNoteEntity);
+					noteEntityQueue.add(newNoteEntity);
+				}
+				//while there are more than 20 notes/voice, ...
+				while (noteEntityQueue.size() > song.getVoices().length * 150) { // TODO tick length
+					//remove the oldest one from both queue and engine.
+					Entity e = noteEntityQueue.poll();
+					if (e == null) continue;
+					engine.removeEntity(e);
+				}
 			}
-			//while there are more than 20 notes/voice, ...
-			while(noteEntityQueue.size() > song.getVoices().length * 150) { // TODO tick length
-				//remove the oldest one from both queue and engine.
-				Entity e = noteEntityQueue.poll();
-				if(e == null) continue;
-				engine.removeEntity(e);
-			}
-		}
 		prevTick = tick;
 	}
 
-	private int calculateVoiceIndex(ISong song, IVoice voice){
-		for(int i = 0; i < song.getVoices().length; i++){
-			if(song.getVoices()[i] == voice){
-				return i;
-			}
-		}
-		return 0;
-	}
 
 }

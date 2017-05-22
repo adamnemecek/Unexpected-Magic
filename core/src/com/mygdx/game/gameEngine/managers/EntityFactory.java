@@ -20,14 +20,14 @@ public class EntityFactory {
 	private static final SpriteFactory spriteFactory = new SpriteFactory();
 
 	
-	public static Entity createNoteEntity(INote note, IVoice voice, int voiceNumber){
+	public static Entity createNoteEntity(INote note, IVoice voice, int playerNumber){
 
 		Entity entity = new Entity();
 		float posX = (note.getPitch() % Constants.NUMBER_OF_LANES)*Constants.LANE_WIDTH + (Constants.LANE_WIDTH/2) - 6; //TODO should be spritewidth/2
 		PositionComponent positionComponent = new PositionComponent(posX, NoteOrigPosY);
 		VelocityComponent velocityComponent = new VelocityComponent(0, NoteVelY);
 		NoteComponent noteComponent = new NoteComponent(note);
-		CompositeSpriteComponent spriteComponent = new CompositeSpriteComponent(spriteFactory.createSprites(note.getDuration(),voiceNumber));
+		CompositeSpriteComponent spriteComponent = new CompositeSpriteComponent(spriteFactory.createSprites(note.getDuration(),playerNumber));
 		HitComponent hitComponent = new HitComponent();
 		VoiceComponent voiceComponent = new VoiceComponent(voice);
 		entity.add(positionComponent).add(velocityComponent).add(noteComponent).add(hitComponent).add(voiceComponent);
