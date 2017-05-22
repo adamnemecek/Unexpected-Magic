@@ -28,4 +28,5 @@ public final class Constants {
     public static final float LANE_WIDTH = VIEWPORT_DIM_X/NUMBER_OF_LANES;
 	public static final float SCORE_BOUNDS_UPPER= PIANOROLL_BOT_PADDING;
     public static final float SCORE_BOUNDS_LOWER= 25;
+    public static final int NOTESPRITE_LENGTH = 12; //TODO hardcoding is =(
 }
