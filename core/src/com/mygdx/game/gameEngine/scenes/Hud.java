@@ -44,6 +44,9 @@ public class Hud {
 	private NoteLanes noteLanes;
 	private Texture activeTexture;
 	private Texture inactiveTexture;
+	private Texture backgroundTop;
+	private Texture backgroundBot;
+
 	
 	//player boxes at the bottom of the screen
 	private PlayerBox[] playerBoxes;
@@ -106,6 +109,10 @@ public class Hud {
 		this.activeTexture = new Texture("images/lanes/lane-white-bordered-33x10.png");
         this.inactiveTexture = new Texture("images/lanes/lane-black-bordered-33x10.png");
         
+        //background
+        this.backgroundTop = new Texture("images/hud-background-390x25.png");
+        this.backgroundBot = new Texture("images/hud-background-390x35.png");
+        
         // bot table layout with player boxes.
         Table botTable = new Table();
         stage.addActor(botTable);
@@ -121,6 +128,7 @@ public class Hud {
 
 	public void draw(){
 		viewport.apply();
+		drawBackground();
 		stage.draw();
 		drawLanes();
 	}
@@ -140,6 +148,12 @@ public class Hud {
 		for(int i  = 0; i < Constants.NUMBER_OF_LANES; i ++){
 			batch.draw(getLaneTexture(i),Constants.LANE_WIDTH*i,Constants.SCORE_BOUNDS_LOWER,Constants.LANE_WIDTH,Constants.SCORE_BOUNDS_UPPER-Constants.SCORE_BOUNDS_LOWER);
 		}
+		batch.end();
+	}
+	private void drawBackground(){
+		batch.begin();
+		batch.draw(backgroundTop, 0, Constants.VIEWPORT_DIM_Y-Constants.PIANOROLL_TOP_PADDING, Constants.VIEWPORT_DIM_X, Constants.PIANOROLL_TOP_PADDING);
+		batch.draw(backgroundBot, 0, 0, Constants.VIEWPORT_DIM_X, Constants.PIANOROLL_TOP_PADDING);
 		batch.end();
 	}
 	public Texture getLaneTexture(int i){
