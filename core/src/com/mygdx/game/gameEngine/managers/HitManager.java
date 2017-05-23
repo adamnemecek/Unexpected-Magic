@@ -10,11 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.badlogic.ashley.core.Entity;
-import com.mygdx.game.gameEngine.components.CompositeSpriteComponent;
 import com.mygdx.game.gameEngine.components.HitComponent;
 import com.mygdx.game.gameEngine.components.NoteComponent;
-import com.mygdx.game.gameEngine.components.VoiceComponent;
-import com.mygdx.game.gameEngine.gdxUtils.CompositeSprite;
 import com.mygdx.game.gameEngine.sound.Synth;
 import com.mygdx.game.gameEngine.systems.HitSystem;
 import com.mygdx.game.gameEngine.systems.ScoreLineListener;
@@ -26,7 +23,8 @@ import com.mygdx.game.utilities.file.Constants;
 public class HitManager implements ScoreLineListener{
 	private List<Player> players;
 	private Synth synth;
-	private Map<Player, Entity> activeNotes;
+	private Map<IPlayer, INote> activeNotes;
+	//private Map<Player, Entity> activeNotes;
 	private int [] pitchAtLane;
 	
 	
@@ -34,20 +32,20 @@ public class HitManager implements ScoreLineListener{
 		this.players = players;
 		this.pitchAtLane = new int [Constants.NUMBER_OF_LANES];
 		this.synth = synth;
-		this.activeNotes = new HashMap<Player, Entity>();
+		//this.activeNotes = new HashMap<Player, Entity>();
 		hitSystem.addObserver(this);
 	}
 	
 	public void reachedScoreLine(Entity noteEntity){
 
-		IVoice voice = noteEntity.getComponent(VoiceComponent.class).getVoice();
+		/*IVoice voice = noteEntity.getComponent(VoiceComponent.class).getVoice();
 
 		for (Player p : players){
 			
 			if(p.getVoice().equals(voice)){
 				activeNotes.put(p, noteEntity);
 			}
-		}
+		}*/
 	}
 	
 	public void passedScoreLine(Entity noteEntity){
@@ -96,9 +94,7 @@ public class HitManager implements ScoreLineListener{
 	
 	public void notePlayStop(int lane){
 		synth.noteOff(pitchAtLane[lane]);
-		//for (int i = lane; i <= 127; i +=12){
-		//	synth.noteOff(i);//TODO this is overkill
-		//}
+		
 	}
 
 	
