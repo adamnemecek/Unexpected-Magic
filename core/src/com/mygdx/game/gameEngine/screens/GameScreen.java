@@ -19,6 +19,7 @@ import com.mygdx.game.model.Round;
 import com.mygdx.game.model.Score;
 import com.mygdx.game.model.Ticker;
 import com.mygdx.game.model.song.ISong;
+import com.mygdx.game.model.song.IVoice;
 import com.mygdx.game.utilities.file.Constants;
 
 
@@ -38,26 +39,22 @@ public class GameScreen extends AbstractScreen{
 
 	Texture background = new Texture("images/UnexpectedMagicBackground5.png");
 	
-	public GameScreen(final SpriteBatch batch, ISong song, List<Player> players) {
+	public GameScreen(final SpriteBatch batch, ISong song, List<Player> players, List<IVoice> nonPlayerVoices) {
 		super(batch);
 		this.engine = new PooledEngine();
 		this.noteLanes = new NoteLanes();
 		this.ticker = new Ticker(song);
 		running = false;
-		//backgroundTexture = new Texture("images/lanes/Purple.png");
-		
 		Score score = new Score(); //TODO Should be somewhere else, probably RoundManager
-
         hud = new Hud(batch, score, noteLanes, song.getTitle(), Integer.toString(song.getBpm()), players);
 		pianoRoll = new PianoRoll(engine, batch, players, song); //TODO should pianoroll create the "pianoroll"?
-		initRound(song, players, engine, batch); //TODO catch exceptions?
+		initRound(song, players, engine, batch,nonPlayerVoices); //TODO catch exceptions?
         initInput();
 
 	}
 	
-	public void initRound(ISong song, List<Player> players, Engine engine, SpriteBatch batch) {
-		roundManager = new RoundManager(new Round(song, players), ticker, engine);
-		//System.out.println("Number of voices: "+ round.song.getVoices().length);
+	public void initRound(ISong song, List<Player> players, Engine engine, SpriteBatch batch,List<IVoice> nonPlayerVoices) {
+		roundManager = new RoundManager(new Round(song, players, nonPlayerVoices), ticker, engine);
 		//wait for player input here before running?
 		running = true;
 	}

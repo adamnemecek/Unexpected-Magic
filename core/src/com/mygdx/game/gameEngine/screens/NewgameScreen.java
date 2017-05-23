@@ -156,8 +156,11 @@ public class NewgameScreen extends AbstractScreen {
 				for(int i = 0; i < pl; i++) {
 					players.add(new Player(playerNames[i].getText(), voices[i]));
 				}
-				//game.setScreen(new GameScreen(game, song, players));
-				changeToScreen(new GameScreen(/*engine,*/ batch, song, players));
+				List<IVoice> nonPlayerVoices = new ArrayList<>(voices.length-pl);
+				for(int i = pl; i < voices.length; i++) {
+					nonPlayerVoices.add(voices[i]);
+				}
+				changeToScreen(new GameScreen(batch, song, players, nonPlayerVoices));
 				MusicPlayer.getInstance().stop();
 				return true;
 			}
