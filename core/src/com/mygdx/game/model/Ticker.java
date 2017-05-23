@@ -44,7 +44,7 @@ public class Ticker {
 		}*/
 		if (tick > oldTick){
 			oldTick = tick;
-			ObserverHandler.notifyTickListeners();
+			ObserverHandler.notifyTickListeners(tick);
 		}
 		if(tick >= songTotalTicks){ ticking = false; }
 	}
