@@ -10,6 +10,7 @@ import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.model.song.IVoice;
 import com.mygdx.game.utilities.file.Constants;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -23,18 +24,17 @@ public class EntityFactory {
 
 	//TODO, returns a List, currently not used
 	public static List<Entity> createNoteEntities(List<Player> players){
+		List<Entity> entities = new LinkedList<>();
 		for (int playerIndex = 0; playerIndex < players.size(); playerIndex ++){
 			Player player = players.get(playerIndex);
-
 			IVoice voice = player.getVoice();
 			for (int tick = 0; tick < voice.length(); tick ++){
 				INote note = voice.noteAtTick(tick);
 				if (note == null || note.isRest()) continue;
-
-				createNoteEntity(note,voice,playerIndex, tick);
+				entities.add(createNoteEntity(note,voice,playerIndex, tick));
 			}
 		}
-		return null;
+		return entities;
 	}
 
 	public static Entity createNoteEntity(INote note, IVoice voice, int playerNumber, int tick){

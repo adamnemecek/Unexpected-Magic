@@ -34,14 +34,13 @@ public class PianoRoll {
 	ComponentMapper<CompositeSpriteComponent> spriteComponentMapper;
 	private float cameraVelocity;
 
-	private EntityFactory entityFactory;	//TODO, should this be here?
-
 	
 	public PianoRoll(Engine engine, SpriteBatch spriteBatch, List<Player> players) {
         this.engine = engine;
         batch = spriteBatch;
-        this.entityFactory = new EntityFactory();
-        entityFactory.createNoteEntities(players);
+        for(Entity entity : EntityFactory.createNoteEntities(players)) {
+        	engine.addEntity(entity);
+        }
         camera = new OrthographicCamera();
         
         viewport = new ScalingViewport(Scaling.fit, Constants.PIANOROLL_DIM_X, Constants.PIANOROLL_DIM_Y, camera);
