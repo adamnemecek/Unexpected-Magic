@@ -54,7 +54,7 @@ public class GameScreen extends AbstractScreen{
 	}
 	
 	public void initRound(ISong song, List<Player> players, Engine engine, SpriteBatch batch, List<IVoice> nonPlayerVoices) {
-		roundManager = new RoundManager(new Round(song, players), ticker, engine, nonPlayerVoices);
+		roundManager = new RoundManager(new Round(song, players), ticker, nonPlayerVoices);
 		//wait for player input here before running?
 		running = true;
 	}
