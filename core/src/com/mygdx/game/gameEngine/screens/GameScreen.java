@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.gameEngine.input.InputAction;
 import com.mygdx.game.gameEngine.input.KeyboardControllerAdapter;
 import com.mygdx.game.gameEngine.input.KeyboardInputManager;
-import com.mygdx.game.gameEngine.managers.EntityManager;
 import com.mygdx.game.gameEngine.managers.RoundManager;
 import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
@@ -57,7 +56,7 @@ public class GameScreen extends AbstractScreen{
 	}
 	
 	public void initRound(ISong song, List<Player> players, Engine engine, SpriteBatch batch) {
-		roundManager = new RoundManager(new Round(song, players), new EntityManager(engine, batch, song, players), ticker, engine);
+		roundManager = new RoundManager(new Round(song, players), ticker, engine);
 		//System.out.println("Number of voices: "+ round.song.getVoices().length);
 		//wait for player input here before running?
 		running = true;

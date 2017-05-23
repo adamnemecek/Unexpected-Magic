@@ -16,15 +16,13 @@ import com.mygdx.game.model.Round;
 
 public class RoundManager {
 	private Round round;
-	private EntityManager entityManager;
 	private Ticker ticker;
 	private HitManager hitManager;
 	private Synth synth;
 	private Metronome metronome;
 
-	public RoundManager(Round round, EntityManager entityManager, Ticker ticker, Engine engine){
+	public RoundManager(Round round, Ticker ticker, Engine engine){
 		this.round = round;
-		this.entityManager = entityManager;
 		this.ticker = ticker;
 		this.metronome = new Metronome(round.song.getBpm());
 		this.metronome.start();
@@ -58,7 +56,6 @@ public class RoundManager {
 	
 	public void update(float delta){
 		ticker.updateTick(delta);
-		entityManager.update(getTick());
 	}
 	private void initSynth(){
 		this.synth = new Synth();
