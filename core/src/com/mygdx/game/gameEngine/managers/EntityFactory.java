@@ -8,14 +8,13 @@ import com.mygdx.game.model.song.INote;
 import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.model.song.IVoice;
 import com.mygdx.game.utilities.file.Constants;
-
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * A factory class that handles creation of entities.
  * @author soflarb
- * Revised by 
+ * Revised by rastom & car0b1nius
  */
 public class EntityFactory {
 

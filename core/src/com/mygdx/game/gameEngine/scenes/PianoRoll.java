@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.gameEngine.components.CompositeSpriteComponent;
 import com.mygdx.game.gameEngine.managers.EntityFactory;
 import com.mygdx.game.model.Player;
+import com.mygdx.game.model.Ticker;
 import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.utilities.file.Constants;
 
@@ -29,13 +30,14 @@ public class PianoRoll {
 	private final SpriteBatch batch;
 	public final OrthographicCamera camera;
 	private final Viewport viewport;
-	//TODO Should this class draw all notes?
 	private final ComponentMapper<CompositeSpriteComponent> spriteComponentMapper;
+	private Ticker ticker;
 
 	
-	public PianoRoll(Engine engine, SpriteBatch spriteBatch, List<Player> players, ISong song) {
+	public PianoRoll(Engine engine, SpriteBatch spriteBatch, List<Player> players, ISong song, Ticker ticker) {
         this.engine = engine;
         batch = spriteBatch;
+        this.ticker = ticker;
 
         if(players.isEmpty()){
         	for(Entity entity : EntityFactory.createNoteEntities(song)){
@@ -55,23 +57,18 @@ public class PianoRoll {
         spriteComponentMapper = ComponentMapper.getFor(CompositeSpriteComponent.class);
     }
 
-	public void placeCamera(float destY){
-		camera.position.y = destY;
+	public void placeCamera(){
+		camera.position.y = (float)ticker.tickWithDecimals()*Constants.NOTESPRITE_HEIGHT;
 		camera.update();
 	}
-	
-	@Deprecated //is it really depecated?
-	private void drawEntities(){
+
+	public void draw() {
+		viewport.apply(false);//TODO centercamera thing is not applied
 		ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(CompositeSpriteComponent.class).get());
-		for(Entity entity : entities){
-	        CompositeSpriteComponent spr = spriteComponentMapper.get(entity);
+		for (Entity entity : entities) {
+			CompositeSpriteComponent spr = spriteComponentMapper.get(entity);
 			spr.getCompositeSprite().draw(batch);
 		}
-	}
-	
-	public void draw(){
-		viewport.apply(false);//TODO centercamera thing is not applied
-		drawEntities();
 	}
 	
 	public void resize(int width, int height, int screenX, int screenY){

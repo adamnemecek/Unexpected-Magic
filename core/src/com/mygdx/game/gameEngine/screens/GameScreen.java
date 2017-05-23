@@ -13,11 +13,8 @@ import com.mygdx.game.gameEngine.input.KeyboardInputManager;
 import com.mygdx.game.gameEngine.managers.RoundManager;
 import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
-import com.mygdx.game.gameEngine.sound.SongPlayback;
-import com.mygdx.game.model.NoteLanes;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Round;
-import com.mygdx.game.model.Score;
 import com.mygdx.game.model.Ticker;
 import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.model.song.IVoice;
@@ -31,30 +28,28 @@ public class GameScreen extends AbstractScreen{
 	private boolean running;
 	//Texture backgroundTexture;
 	private RoundManager roundManager;
-	private final NoteLanes noteLanes;
 	private Hud hud;
 	private PianoRoll pianoRoll;
-	private Ticker ticker;
 	private KeyboardInputManager keyboardInputManager;
 	private Engine engine;
+	private Ticker ticker;
 
-	Texture background = new Texture("images/UnexpectedMagicBackground5.png");
+	private Texture background = new Texture("images/UnexpectedMagicBackground5.png");
 	
 	public GameScreen(final SpriteBatch batch, ISong song, List<Player> players, List<IVoice> nonPlayerVoices) {
 		super(batch);
 		this.engine = new PooledEngine();
-		this.noteLanes = new NoteLanes();
 		this.ticker = new Ticker(song);
 		running = false;
-		Score score = new Score(); //TODO Should be somewhere else, probably RoundManager
-        hud = new Hud(batch, score, noteLanes, song.getTitle(), Integer.toString(song.getBpm()), players);
-		pianoRoll = new PianoRoll(engine, batch, players, song); //TODO should pianoroll create the "pianoroll"?
-		initRound(song, players, engine, batch, nonPlayerVoices); //TODO catch exceptions?
+        hud = new Hud(batch, song.getTitle(), Integer.toString(song.getBpm()), players);
+		pianoRoll = new PianoRoll(engine, batch, players, song, ticker);
+		initRound(song, players, nonPlayerVoices);
         initInput();
 	}
 	
-	public void initRound(ISong song, List<Player> players, Engine engine, SpriteBatch batch, List<IVoice> nonPlayerVoices) {
-		roundManager = new RoundManager(new Round(song, players), ticker, nonPlayerVoices);
+
+	public void initRound(ISong song, List<Player> players, List<IVoice> nonPlayerVoices) {
+		roundManager = new RoundManager(new Round(song, players), nonPlayerVoices);
 		//wait for player input here before running?
 		running = true;
 	}
@@ -71,7 +66,7 @@ public class GameScreen extends AbstractScreen{
 	
 	public void update (float delta) {
 		if(running){
-			roundManager.update(delta);
+			ticker.updateTick(delta);
 			engine.update(delta);
             hud.setScoreLabel();
 		}
@@ -80,7 +75,7 @@ public class GameScreen extends AbstractScreen{
 	@Override
 	public void render(float delta){
 
-		if(roundManager.gameOver()){
+		if(ticker.isTicking()){
 			roundManager.endRound();
 			this.dispose();
 			changeToScreen(new ScoreScreen(batch));
@@ -101,7 +96,7 @@ public class GameScreen extends AbstractScreen{
 		batch.begin();
 		batch.setProjectionMatrix(pianoRoll.camera.combined);
 		pianoRoll.draw();//TODO how to move pianoroll camera, should move according to tick
-		pianoRoll.placeCamera((float)ticker.tickWithDecimals()*Constants.NOTESPRITE_HEIGHT);
+		pianoRoll.placeCamera();
 		//update systems
 		update(delta);
 		batch.end();

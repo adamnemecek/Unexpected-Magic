@@ -51,6 +51,7 @@ public class Ticker {
 	public double tickWithDecimals() {
 		return time * tickFreq;
 	}
+
 	private double calculateTickFreq(ISong song){
 		int bpm = song.getBpm();
 		int timeBeatSize = song.getTime()[1]; //the denominator of the time signature

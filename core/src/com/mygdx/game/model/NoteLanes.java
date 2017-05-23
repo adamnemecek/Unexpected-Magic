@@ -9,6 +9,10 @@ import com.mygdx.game.utilities.file.Constants;
 
 public class NoteLanes {
 
+	private NoteLanes(){
+
+	}
+
 	private static boolean[] laneStates = new boolean[Constants.NUMBER_OF_LANES]; //false = inactive, true = active
 
 	public static int xCoordinate(int lane, int playerIndex){

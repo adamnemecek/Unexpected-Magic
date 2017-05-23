@@ -2,7 +2,8 @@ package com.mygdx.game.gameEngine.gdxUtils;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class for playing sound.
@@ -12,15 +13,16 @@ import com.badlogic.gdx.utils.Array;
 public class CompositeSprite{
 
 	//sprites needs to be added, top, mid, mid... , bot
-	private Array<Sprite> componentSprites;
+
+	private List<Sprite> componentSprites;
 
 	public CompositeSprite(){
-		componentSprites = new Array<Sprite>();
+		componentSprites = new ArrayList<>();
 	}
 
 	public void draw(SpriteBatch batch){
 
-			for (int i = 0; i < componentSprites.size; i ++){
+			for (int i = 0; i < componentSprites.size(); i ++){
 					Sprite sprite = componentSprites.get(i);
 					sprite.draw(batch);
 			}
@@ -33,7 +35,7 @@ public class CompositeSprite{
 	}
 
 	public int getLength(){
-		return (componentSprites.size)*(componentSprites.get(0).getRegionHeight());
+		return (componentSprites.size())*(componentSprites.get(0).getRegionHeight());
 	}
 
 }

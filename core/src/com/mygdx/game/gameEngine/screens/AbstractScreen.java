@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
@@ -43,7 +42,6 @@ public abstract class AbstractScreen extends ScreenAdapter {
 		viewport = new ScalingViewport(Scaling.fit, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y, camera);
 		viewport.apply();
 		stage = new Stage(viewport, batch);
-		//Gdx.input.setInputProcessor(stage);
 		atlas = new TextureAtlas("skins/commodore64/skin/uiskin.atlas");
 		skin = new Skin(Gdx.files.internal("skins/commodore64/skin/uiskin.json"), atlas);
 	}
@@ -64,12 +62,11 @@ public abstract class AbstractScreen extends ScreenAdapter {
 	@Override
 	public void resize(int width, int height) {
 		viewport.update(width, height);
-		//camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
-		//camera.update();
 	}
+
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(0.25882354f,0.25882354f,0.90588236f,1);
+		Gdx.gl.glClearColor(0.55882354f,0.25882354f,0.90588236f,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 	}
 	
@@ -80,6 +77,7 @@ public abstract class AbstractScreen extends ScreenAdapter {
 			listeners.add(listener);
 			}
 	}
+
 	public static void removeListener(ScreenListener listener){
 		listeners.remove(listener);
 	}
@@ -94,7 +92,5 @@ public abstract class AbstractScreen extends ScreenAdapter {
 		for(ScreenListener sl : listeners){
 			sl.screenChanged(screen);
 		}
-		//dispose();
 	}
-	 
 }
