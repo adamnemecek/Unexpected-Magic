@@ -1,21 +1,27 @@
 package com.mygdx.game.Observers;
 
+/**
+ * Class for handling observers
+ * @author Arvid
+ */
+
+
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ObserverHandler {
 	
-	private List<TickListener> tickListeners = new ArrayList();
+	private static List<TickListener> tickListeners = new ArrayList();
 	
-	public void addTickListener(TickListener listener){
+	public static void addTickListener(TickListener listener){
 		tickListeners.add(listener);
 	}
 	
-	public void removeTickListener(TickListener listener){
+	public static void removeTickListener(TickListener listener){
 		tickListeners.remove(listener);
 	}
 	
-	public void notifyTickListeners(){
+	public static void notifyTickListeners(){
 		for (TickListener tl : tickListeners){
 			tl.newTick();
 		}

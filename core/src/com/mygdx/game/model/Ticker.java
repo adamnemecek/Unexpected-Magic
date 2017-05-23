@@ -1,5 +1,6 @@
 package com.mygdx.game.model;
 
+import com.mygdx.game.Observers.ObserverHandler;
 import com.mygdx.game.model.song.ISong;
 
 /**
@@ -8,6 +9,7 @@ import com.mygdx.game.model.song.ISong;
 */
 public class Ticker {
 	private int tick;
+	private int oldTick;
 	private float time;
 	private final int songTotalTicks;
 	private final double tickFreq;
@@ -15,6 +17,7 @@ public class Ticker {
 
 	public Ticker(ISong song){
 		time = -2;
+		oldTick = -1;
 		tickFreq = calculateTickFreq(song); //ticks/sec
 		tick = (int)tickWithDecimals();
 		songTotalTicks = song.getVoices()[0].length(); //TODO voice length is in number of 64 notes, every tick is a 64 note
@@ -39,6 +42,10 @@ public class Ticker {
 			trueTick %= 1;
 			tick++;
 		}*/
+		if (tick > oldTick){
+			oldTick = tick;
+			ObserverHandler.notifyTickListeners();
+		}
 		if(tick >= songTotalTicks){ ticking = false; }
 	}
 	public double tickWithDecimals() {
