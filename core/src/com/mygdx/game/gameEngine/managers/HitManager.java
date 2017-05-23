@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.badlogic.ashley.core.Entity;
+import com.mygdx.game.Observers.ObserverHandler;
 import com.mygdx.game.Observers.TickListener;
 import com.mygdx.game.gameEngine.components.HitComponent;
 import com.mygdx.game.gameEngine.components.NoteComponent;
@@ -37,7 +38,9 @@ public class HitManager implements TickListener{
 		this.players = players;
 		this.pitchAtLane = new int [Constants.NUMBER_OF_LANES];
 		this.synth = synth;
-		//this.activeNotes = new HashMap<Player, Entity>();
+		ObserverHandler.addTickListener(this);
+		activeNotes = new HashMap<>();
+		//this.activeNotes = new HashMap<Player, Entity>(c);
 		//hitSystem.addObserver(this);
 		
 	}
@@ -88,20 +91,23 @@ public class HitManager implements TickListener{
 	}
 	
 	private void handleNoteChange(Player p, ITrackableNote note){
-		ITrackableNote old = activeNotes.get(p);
-		try {
+		try{
+			ITrackableNote old = activeNotes.get(p);
 			if (!old.isHit()){
 				p.getScore().missedNote();
 			}
+			
 		}
 		catch (java.lang.NullPointerException np){
 			
 		}
+		System.out.println("gets here");
 		if (note.isRest()){
 			activeNotes.put(p, null);
 		}
 		else{
 			activeNotes.put(p, note);
+			
 		}
 	}
 
