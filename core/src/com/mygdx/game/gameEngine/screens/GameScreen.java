@@ -13,6 +13,7 @@ import com.mygdx.game.gameEngine.input.KeyboardInputManager;
 import com.mygdx.game.gameEngine.managers.RoundManager;
 import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
+import com.mygdx.game.gameEngine.sound.SongPlayback;
 import com.mygdx.game.model.NoteLanes;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Round;
@@ -48,13 +49,12 @@ public class GameScreen extends AbstractScreen{
 		Score score = new Score(); //TODO Should be somewhere else, probably RoundManager
         hud = new Hud(batch, score, noteLanes, song.getTitle(), Integer.toString(song.getBpm()), players);
 		pianoRoll = new PianoRoll(engine, batch, players, song); //TODO should pianoroll create the "pianoroll"?
-		initRound(song, players, engine, batch,nonPlayerVoices); //TODO catch exceptions?
+		initRound(song, players, engine, batch, nonPlayerVoices); //TODO catch exceptions?
         initInput();
-
 	}
 	
-	public void initRound(ISong song, List<Player> players, Engine engine, SpriteBatch batch,List<IVoice> nonPlayerVoices) {
-		roundManager = new RoundManager(new Round(song, players, nonPlayerVoices), ticker, engine);
+	public void initRound(ISong song, List<Player> players, Engine engine, SpriteBatch batch, List<IVoice> nonPlayerVoices) {
+		roundManager = new RoundManager(new Round(song, players), ticker, engine, nonPlayerVoices);
 		//wait for player input here before running?
 		running = true;
 	}

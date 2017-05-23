@@ -7,6 +7,9 @@ import com.mygdx.game.model.Ticker;
 import com.badlogic.ashley.core.Engine;
 import com.mygdx.game.gameEngine.systems.HitSystem;
 import com.mygdx.game.model.Round;
+import com.mygdx.game.model.song.IVoice;
+
+import java.util.List;
 
 /**
  * 
@@ -21,9 +24,8 @@ public class RoundManager {
 	private HitManager hitManager;
 	private Synth synth;
 	private Metronome metronome;
-	private SongPlayback songPlayback;
 
-	public RoundManager(Round round, Ticker ticker, Engine engine){
+	public RoundManager(Round round, Ticker ticker, Engine engine, List<IVoice> nonPlayerVoices){
 		this.round = round;
 		this.ticker = ticker;
 		this.metronome = new Metronome(round.song.getBpm());
@@ -32,7 +34,7 @@ public class RoundManager {
 		HitSystem hitSystem = new HitSystem();
 		engine.addSystem(hitSystem);
 		this.hitManager = new HitManager(round.getPlayers(), this.synth, hitSystem);
-		this.songPlayback = new SongPlayback(this.synth,round.nonPlayerVoices);
+		SongPlayback.setSong(this.synth,nonPlayerVoices);
 	}
 
 	public void endRound(){
