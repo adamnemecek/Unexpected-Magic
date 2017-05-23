@@ -1,6 +1,7 @@
 package com.mygdx.game.gameEngine.managers;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.gameEngine.gdxUtils.CompositeSprite;
 
 /**
@@ -9,9 +10,12 @@ import com.mygdx.game.gameEngine.gdxUtils.CompositeSprite;
  */
 
 public class SpriteFactory {
-
+	private static int noteSectionHeight = new TextureRegion(new Texture("sprites/note-64th12x4.png")).getRegionHeight();
+	public static int yCoordinate(int tick){
+		return tick*noteSectionHeight;
+	}
 	private String color = "";
-
+	
 	public CompositeSprite createSprites(int duration, int playerNumber){
 
 		switch (playerNumber){

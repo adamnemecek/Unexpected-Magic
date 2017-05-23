@@ -9,30 +9,21 @@ import com.mygdx.game.utilities.file.Constants;
 
 public class NoteLanes {
 
-	private boolean[] laneStates; //false = inactive, true = active
+	private static boolean[] laneStates = new boolean[Constants.NUMBER_OF_LANES]; //false = inactive, true = active
 
-    public NoteLanes(){
+	public static int xCoordinate(int lane, int playerIndex){
+		return (int) (lane*Constants.LANE_WIDTH+(Constants.LANE_WIDTH/4)*playerIndex);
+	}
+	
+	public static boolean getLaneState(int i){
+		return laneStates[i];
+	}
 
-        laneStates = new boolean[Constants.NUMBER_OF_LANES];
+	public static void activateLane(int i){
+		laneStates[i] = true;
+	}
 
-        //init all lanes inactive
-        for(int i = 0; i < Constants.NUMBER_OF_LANES; i++){
-            this.laneStates[i] = false;
-        }
-
-    }
-
-
-
-    public boolean getLaneState(int i){
-	    return this.laneStates[i];
-    }
-
-    public void activateLane(int i){
-	    this.laneStates[i] = true;
-    }
-
-    public void deactivateLane(int i){
-        this.laneStates[i] = false;
-    }
+	public static void deactivateLane(int i){
+		laneStates[i] = false;
+	}
 }

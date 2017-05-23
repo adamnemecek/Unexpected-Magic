@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.gameEngine.components.*;
+import com.mygdx.game.model.NoteLanes;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.song.INote;
 import com.mygdx.game.model.song.ISong;
@@ -37,13 +38,15 @@ public class EntityFactory {
 		return entities;
 	}
 
-	public static Entity createNoteEntity(INote note, IVoice voice, int playerNumber, int tick){
+	public static Entity createNoteEntity(INote note, IVoice voice, int playerIndex, int tick){
 
 		Entity entity = new Entity();
-		int posX = (note.getPitch() % Constants.NUMBER_OF_LANES);
-		PositionComponent positionComponent = new PositionComponent(posX, tick);
+		int lane = (note.getPitch() % Constants.NUMBER_OF_LANES);
+		int posX = NoteLanes.xCoordinate(lane, playerIndex);
+		int posY = SpriteFactory.yCoordinate(tick);
+		PositionComponent positionComponent = new PositionComponent(posX, posY);
 		NoteComponent noteComponent = new NoteComponent(note);
-		CompositeSpriteComponent spriteComponent = new CompositeSpriteComponent(spriteFactory.createSprites(note.getDuration(),playerNumber));
+		CompositeSpriteComponent spriteComponent = new CompositeSpriteComponent(spriteFactory.createSprites(note.getDuration(),playerIndex));
 		HitComponent hitComponent = new HitComponent();
 		VoiceComponent voiceComponent = new VoiceComponent(voice);
 		entity.add(positionComponent).add(noteComponent).add(hitComponent).add(voiceComponent);
