@@ -29,16 +29,17 @@ public class MainMenuScreen extends AbstractScreen {
 	private AnimationManager frodoAnim;
 
 	// BUTTONS
-	private ButtonGroup<TextButton> buttongroup;
+	private ButtonGroup<TextButton> buttonGroup;
 	private String[] menuItems;
 	private int menuItemSelected;
-	
 
 	public MainMenuScreen(final SpriteBatch batch) {
 		super(batch);
 		MusicPlayer.getInstance().play("main-theme");
+		
 		menuItemSelected = 0;
-		menuItems = new String[] { "New game", "Options", "Animation", "Exit" };
+		menuItems = new String[] { "New game", "Options", "Exit" };
+		
 		feffeAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/feffe.png")),
 				batch, 1, 6, 275, -32, 200, 200, 0.1f );
 		frodoAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/frodo.png")),
@@ -65,29 +66,21 @@ public class MainMenuScreen extends AbstractScreen {
 
 		TextButton newgameButton = new TextButton(menuItems[0], skin);
 		TextButton optionButton = new TextButton(menuItems[1], skin);
-		TextButton animationButton = new TextButton(menuItems[2], skin);
-		TextButton exitButton = new TextButton(menuItems[3], skin);
+		TextButton exitButton = new TextButton(menuItems[2], skin);
 		
 		// Add buttons to table
-		/*
-		mainTable.add(newgameButton).size(width, height).row();
-		mainTable.add(optionButton).size(width, height).row();
-		mainTable.add(animationButton).size(width, height).row();
-		mainTable.add(exitButton).size(width, height);
-		*/
+		
 		table.add(newgameButton).fillX().uniformX();
-		table.row();//.pad(-30,0,-30,0);
-		table.add(optionButton).fillX().uniformX();
 		table.row();
-		table.add(animationButton).fillX().uniformX();
+		table.add(optionButton).fillX().uniformX();
 		table.row();
 		table.add(exitButton).fillX().uniformX();
 		
 		// BUTTON GROUP
-		buttongroup = new ButtonGroup<TextButton>(newgameButton, optionButton, animationButton, exitButton);
-		buttongroup.setMaxCheckCount(1);
-		buttongroup.setMinCheckCount(0);
-		buttongroup.setChecked(menuItems[0]);
+		buttonGroup = new ButtonGroup<TextButton>(newgameButton, optionButton, exitButton);
+		buttonGroup.setMaxCheckCount(1);
+		buttonGroup.setMinCheckCount(0);
+		buttonGroup.setChecked(menuItems[0]);
 		
 		/*for(TextButton btn : buttongroup.getButtons()) {
 			btn.setTransform(true);
@@ -118,13 +111,6 @@ public class MainMenuScreen extends AbstractScreen {
 
 		});
 
-		animationButton.addListener(new ClickListener() {
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				animationButtonPushed();
-			}
-		});
-
 		optionButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
@@ -138,10 +124,10 @@ public class MainMenuScreen extends AbstractScreen {
 			public boolean keyDown(InputEvent event, int keycode) {
 				if (keycode == Input.Keys.UP) {
 					menuItemSelected = (menuItemSelected + 3) % 4;
-					buttongroup.setChecked(menuItems[menuItemSelected]);
+					buttonGroup.setChecked(menuItems[menuItemSelected]);
 				} else if (keycode == Input.Keys.DOWN) {
 					menuItemSelected = (menuItemSelected + 1) % 4;
-					buttongroup.setChecked(menuItems[menuItemSelected]);
+					buttonGroup.setChecked(menuItems[menuItemSelected]);
 				}
 
 				else if (keycode == Input.Keys.ENTER) {
@@ -155,16 +141,13 @@ public class MainMenuScreen extends AbstractScreen {
 			public boolean mouseMoved(InputEvent event, float x, float y) {
 				if (newgameButton.isOver()) {
 					menuItemSelected = 0;
-					buttongroup.setChecked(menuItems[menuItemSelected]);
+					buttonGroup.setChecked(menuItems[menuItemSelected]);
 				} else if (optionButton.isOver()) {
 					menuItemSelected = 1;
-					buttongroup.setChecked(menuItems[menuItemSelected]);
-				} else if (animationButton.isOver()) {
-					menuItemSelected = 2;
-					buttongroup.setChecked(menuItems[menuItemSelected]);
+					buttonGroup.setChecked(menuItems[menuItemSelected]);
 				} else if (exitButton.isOver()) {
-					menuItemSelected = 3;
-					buttongroup.setChecked(menuItems[menuItemSelected]);
+					menuItemSelected = 2;
+					buttonGroup.setChecked(menuItems[menuItemSelected]);
 				}
 				return false;
 			}
@@ -197,10 +180,6 @@ public class MainMenuScreen extends AbstractScreen {
 		changeToScreen(new OptionsScreen(batch));
 	}
 
-	public void animationButtonPushed() {
-
-	}
-
 	public void exitButtonPushed() {
 		Gdx.app.exit();
 	}
@@ -214,10 +193,6 @@ public class MainMenuScreen extends AbstractScreen {
 
 		case 1:
 			optionButtonPushed();
-			break;
-
-		case 2:
-			animationButtonPushed();
 			break;
 
 		case 3:
