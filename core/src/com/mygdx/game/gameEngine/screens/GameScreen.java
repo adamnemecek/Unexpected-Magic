@@ -33,15 +33,17 @@ public class GameScreen extends AbstractScreen{
 	private final NoteLanes noteLanes;
 	private Hud hud;
 	private PianoRoll pianoRoll;
+	private Ticker ticker;
 	private KeyboardInputManager keyboardInputManager;
 	private Engine engine;
-	
+
 	Texture background = new Texture("images/UnexpectedMagicBackground5.png");
 	
 	public GameScreen(final SpriteBatch batch, ISong song, List<Player> players) {
 		super(batch);
 		this.engine = new PooledEngine();
-		noteLanes = new NoteLanes();
+		this.noteLanes = new NoteLanes();
+		this.ticker = new Ticker(song);
 		running = false;
 		//backgroundTexture = new Texture("images/lanes/Purple.png");
 		
@@ -55,7 +57,7 @@ public class GameScreen extends AbstractScreen{
 	}
 	
 	public void initRound(ISong song, List<Player> players, Engine engine, SpriteBatch batch) {
-		roundManager = new RoundManager(new Round(song, players), new EntityManager(engine, batch, song, players), new Ticker(song), engine);
+		roundManager = new RoundManager(new Round(song, players), new EntityManager(engine, batch, song, players), ticker, engine);
 		//System.out.println("Number of voices: "+ round.song.getVoices().length);
 		//wait for player input here before running?
 		running = true;
@@ -102,8 +104,8 @@ public class GameScreen extends AbstractScreen{
 		//draw pianoroll
 		batch.begin();
 		batch.setProjectionMatrix(pianoRoll.camera.combined);
-		pianoRoll.draw(delta);//TODO how to move pianoroll camera
-		pianoRoll.placeCamera(1);
+		pianoRoll.draw(delta);//TODO how to move pianoroll camera, should move according to tick
+		pianoRoll.placeCamera((float)ticker.tickWithDecimals()*Constants.NOTESPRITE_HEIGHT);
 		//update systems
 		update(delta);
 		batch.end();
@@ -111,7 +113,6 @@ public class GameScreen extends AbstractScreen{
 		//Draw HUD
 		batch.setProjectionMatrix(hud.stage.getCamera().combined);
 		hud.draw();
-
 	}
 	
 	@Override

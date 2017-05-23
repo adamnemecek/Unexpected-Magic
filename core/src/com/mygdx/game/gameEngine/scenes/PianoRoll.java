@@ -16,6 +16,7 @@ import com.mygdx.game.gameEngine.components.CompositeSpriteComponent;
 import com.mygdx.game.gameEngine.components.PositionComponent;
 import com.mygdx.game.gameEngine.managers.EntityFactory;
 import com.mygdx.game.model.Player;
+import com.mygdx.game.model.Ticker;
 import com.mygdx.game.utilities.file.Constants;
 
 import java.util.List;
@@ -26,13 +27,12 @@ import java.util.List;
  * 
  */
 public class PianoRoll {
-	private Engine engine;
-	private SpriteBatch batch;
-	public OrthographicCamera camera;
-	private Viewport viewport;
-	ComponentMapper<PositionComponent> positionComponentMapper; //TODO Should this class draw all notes?
-	ComponentMapper<CompositeSpriteComponent> spriteComponentMapper;
-	private float cameraVelocity;
+	private final Engine engine;
+	private final SpriteBatch batch;
+	public final OrthographicCamera camera;
+	private final Viewport viewport;
+	//TODO Should this class draw all notes?
+	private final ComponentMapper<CompositeSpriteComponent> spriteComponentMapper;
 
 	
 	public PianoRoll(Engine engine, SpriteBatch spriteBatch, List<Player> players) {
@@ -46,21 +46,18 @@ public class PianoRoll {
         viewport = new ScalingViewport(Scaling.fit, Constants.PIANOROLL_DIM_X, Constants.PIANOROLL_DIM_Y, camera);
         viewport.apply(true);
         viewport.setScreenBounds((int) Constants.PIANOROLL_POS_X, (int) Constants.PIANOROLL_POS_Y, (int) Constants.PIANOROLL_DIM_X, (int) Constants.PIANOROLL_DIM_Y);
-        positionComponentMapper = ComponentMapper.getFor(PositionComponent.class);
         spriteComponentMapper = ComponentMapper.getFor(CompositeSpriteComponent.class);
     }
 
-	public void placeCamera(int deltaY){
-		camera.translate(0,deltaY);
+	public void placeCamera(float destY){
+		camera.position.y = destY;
 		camera.update();
-		System.out.println("pianoroll. moveCamera(): x= "+camera.position.x + " y= "+camera.position.y);
 	}
 	
 	@Deprecated
 	private void drawEntities(float delta){
-		ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(PositionComponent.class, CompositeSpriteComponent.class).get());
+		ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(CompositeSpriteComponent.class).get());
 		for(Entity entity : entities){
-			PositionComponent pos = positionComponentMapper.get(entity);
 	        CompositeSpriteComponent spr = spriteComponentMapper.get(entity);
 			spr.getCompositeSprite().draw(batch);
 		}

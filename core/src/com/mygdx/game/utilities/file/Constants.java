@@ -29,4 +29,5 @@ public final class Constants {
 	public static final float SCORE_BOUNDS_UPPER= PIANOROLL_BOT_PADDING;
     public static final float SCORE_BOUNDS_LOWER= 25;
     public static final int NOTESPRITE_LENGTH = 12; //TODO hardcoding is =(
+	public static final int NOTESPRITE_HEIGHT = 4;
 }
