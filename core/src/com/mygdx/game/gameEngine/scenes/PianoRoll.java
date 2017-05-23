@@ -50,8 +50,8 @@ public class PianoRoll {
         spriteComponentMapper = ComponentMapper.getFor(CompositeSpriteComponent.class);
     }
 
-	public void placeCamera(int yDest){
-		camera.position.y = yDest;
+	public void placeCamera(int deltaY){
+		camera.translate(0,deltaY);
 		camera.update();
 		System.out.println("pianoroll. moveCamera(): x= "+camera.position.x + " y= "+camera.position.y);
 	}
@@ -63,7 +63,7 @@ public class PianoRoll {
 		for(Entity entity : entities){
 			PositionComponent pos = positionComponentMapper.get(entity);
 	        CompositeSpriteComponent spr = spriteComponentMapper.get(entity);
-			spr.getCompositeSprite().draw(batch, pos.x, pos.y);
+			spr.getCompositeSprite().draw(batch);
 		}
 		batch.end();
 	}

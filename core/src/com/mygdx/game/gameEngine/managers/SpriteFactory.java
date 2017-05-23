@@ -16,7 +16,7 @@ public class SpriteFactory {
 	}
 	private String color = "";
 	
-	public CompositeSprite createSprites(int duration, int playerNumber){
+	public CompositeSprite createSprites(int duration, int playerNumber, int posX, int posY){
 
 		switch (playerNumber){
 			case(0) : this.color = "-green";
@@ -33,24 +33,31 @@ public class SpriteFactory {
 
 		}
 
-		CompositeSprite sprite = new CompositeSprite();
+		CompositeSprite sprites = new CompositeSprite();
 
 			if(duration == 1) {
-				sprite.addSprite(new Sprite(new Texture("sprites/note-64th12x4"+ this.color + ".png")));
+				Sprite sprite = new Sprite(new Texture("sprites/note-64th12x4"+ this.color + ".png"));
+				sprite.setPosition(posX,posY);
+				sprites.addSprite(sprite);
 			}
 
 			else{
-				sprite.addSprite(new Sprite(new Texture("sprites/note-top12x4"+ this.color + ".png")));
+				Sprite sprite = new Sprite(new Texture("sprites/note-top12x4"+ this.color + ".png"));
+				sprite.setPosition(posX,posY + sprite.getRegionHeight()*(duration-1));
+				sprites.addSprite(sprite);
 
 				for (int i = 0; i < duration-2; i++){
-					sprite.addSprite(new Sprite(new Texture("sprites/note-mid12x4"+ this.color + ".png")));
-
+					sprite = new Sprite(new Texture("sprites/note-mid12x4"+ this.color + ".png"));
+					sprite.setPosition(posX,posY + sprite.getRegionHeight()*(i+1));
+					sprites.addSprite(sprite);
 				}
-				sprite.addSprite(new Sprite(new Texture("sprites/note-bot12x4"+ this.color + ".png")));
+				sprite = new Sprite(new Texture("sprites/note-bot12x4"+ this.color + ".png"));
+				sprite.setPosition(posX,posY);
+				sprites.addSprite(sprite);
+
 
 		}
-		return sprite;
-
+		return sprites;
 	}
 
 }
