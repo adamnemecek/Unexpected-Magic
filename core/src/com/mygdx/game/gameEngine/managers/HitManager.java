@@ -15,6 +15,7 @@ import com.mygdx.game.gameEngine.components.NoteComponent;
 import com.mygdx.game.gameEngine.sound.Synth;
 import com.mygdx.game.gameEngine.systems.HitSystem;
 import com.mygdx.game.gameEngine.systems.ScoreLineListener;
+import com.mygdx.game.model.ITrackableNote;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.song.INote;
 import com.mygdx.game.model.song.IVoice;
@@ -23,7 +24,7 @@ import com.mygdx.game.utilities.file.Constants;
 public class HitManager implements ScoreLineListener{
 	private List<Player> players;
 	private Synth synth;
-	private Map<IPlayer, INote> activeNotes;
+	private Map<Player, ITrackableNote> activeNotes;
 	//private Map<Player, Entity> activeNotes;
 	private int [] pitchAtLane;
 	
@@ -49,7 +50,7 @@ public class HitManager implements ScoreLineListener{
 	}
 	
 	public void passedScoreLine(Entity noteEntity){
-		for (Player p: players){
+		/*for (Player p: players){
 			
 			if(activeNotes.get(p) != null){
 				
@@ -63,11 +64,17 @@ public class HitManager implements ScoreLineListener{
 				}
 			}
 			
-		}
+		}*/
 	}
 	
 	public synchronized void notePlayStart(int lane){
 		boolean hasHit = false;
+		for (Player p : players){
+			
+		}
+		
+		
+		/*boolean hasHit = false;
 		for (Player p : players){
 			if (this.activeNotes.get(p)!=null){
 				Entity noteEntity = this.activeNotes.get(p);
@@ -79,7 +86,7 @@ public class HitManager implements ScoreLineListener{
 					this.pitchAtLane [lane] = n.getPitch();
 					hasHit = true;
 					System.out.println(p.getName() + ": " + p.getScore().getScore());
-					break;
+					
 				}
 			}
 			
@@ -88,7 +95,7 @@ public class HitManager implements ScoreLineListener{
 		if (!hasHit){
 			//synth.noteOn(lane +5*12); //TODO should be another pitch
 			//pitchAtLane[lane] = lane +5*12;
-		}
+		}*/
 
 	}
 	
