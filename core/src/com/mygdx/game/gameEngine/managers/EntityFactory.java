@@ -1,8 +1,6 @@
 package com.mygdx.game.gameEngine.managers;
 
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.gameEngine.components.*;
 import com.mygdx.game.model.NoteLanes;
 import com.mygdx.game.model.Player;
@@ -23,7 +21,6 @@ public class EntityFactory {
 
 	private static final SpriteFactory spriteFactory = new SpriteFactory();
 
-	//TODO, returns a List, currently not used
 	public static List<Entity> createNoteEntities(List<Player> players){
 		List<Entity> entities = new LinkedList<>();
 		for (int playerIndex = 0; playerIndex < players.size(); playerIndex ++){
@@ -37,6 +34,19 @@ public class EntityFactory {
 		}
 		return entities;
 	}
+
+	public static List<Entity> createNoteEntities(ISong song) {
+		List<Entity> entities = new LinkedList<>();
+		for (IVoice voice : song.getVoices()){
+			for (int tick = 0; tick < voice.length(); tick++) {
+				INote note = voice.noteAtTick(tick);
+				if (note == null || note.isRest()) continue;
+				entities.add(createNoteEntity(note, voice, 0, tick));
+			}
+		}
+		return entities;
+	}
+
 
 	public static Entity createNoteEntity(INote note, IVoice voice, int playerIndex, int tick){
 

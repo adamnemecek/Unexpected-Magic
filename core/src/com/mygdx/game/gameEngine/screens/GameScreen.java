@@ -49,7 +49,7 @@ public class GameScreen extends AbstractScreen{
 		Score score = new Score(); //TODO Should be somewhere else, probably RoundManager
 
         hud = new Hud(batch, score, noteLanes, song.getTitle(), Integer.toString(song.getBpm()), players);
-		pianoRoll = new PianoRoll(engine, batch, players); //TODO should pianoroll create the "pianoroll"?
+		pianoRoll = new PianoRoll(engine, batch, players, song); //TODO should pianoroll create the "pianoroll"?
 		initRound(song, players, engine, batch); //TODO catch exceptions?
         initInput();
 
@@ -103,7 +103,7 @@ public class GameScreen extends AbstractScreen{
 		//draw pianoroll
 		batch.begin();
 		batch.setProjectionMatrix(pianoRoll.camera.combined);
-		pianoRoll.draw(delta);//TODO how to move pianoroll camera, should move according to tick
+		pianoRoll.draw();//TODO how to move pianoroll camera, should move according to tick
 		pianoRoll.placeCamera((float)ticker.tickWithDecimals()*Constants.NOTESPRITE_HEIGHT);
 		//update systems
 		update(delta);
