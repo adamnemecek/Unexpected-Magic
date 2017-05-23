@@ -59,13 +59,11 @@ public class PianoRoll {
 	@Deprecated
 	private void drawEntities(float delta){
 		ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(PositionComponent.class, CompositeSpriteComponent.class).get());
-		batch.begin();
 		for(Entity entity : entities){
 			PositionComponent pos = positionComponentMapper.get(entity);
 	        CompositeSpriteComponent spr = spriteComponentMapper.get(entity);
 			spr.getCompositeSprite().draw(batch);
 		}
-		batch.end();
 	}
 	
 	public void draw(float delta){

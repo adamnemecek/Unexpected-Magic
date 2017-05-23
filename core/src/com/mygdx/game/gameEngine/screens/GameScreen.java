@@ -98,18 +98,20 @@ public class GameScreen extends AbstractScreen{
 		//batch.draw(backgroundTexture, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_X, 0, 10, 10, 0);
 		batch.draw(background, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y);
 		batch.end();
-		
+
 		//draw pianoroll
+		batch.begin();
 		batch.setProjectionMatrix(pianoRoll.camera.combined);
 		pianoRoll.draw(delta);//TODO how to move pianoroll camera
-		
+		pianoRoll.placeCamera(1);
 		//update systems
 		update(delta);
-		
+		batch.end();
+
 		//Draw HUD
 		batch.setProjectionMatrix(hud.stage.getCamera().combined);
 		hud.draw();
-		
+
 	}
 	
 	@Override
