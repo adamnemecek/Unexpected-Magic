@@ -76,7 +76,6 @@ public class GameScreen extends AbstractScreen{
 	public void render(float delta){
 
 		if(!ticker.isTicking()){
-			roundManager.endRound();
 			this.dispose();
 			changeToScreen(new ScoreScreen(batch));
 		}

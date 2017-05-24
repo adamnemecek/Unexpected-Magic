@@ -24,8 +24,7 @@ public class RoundManager {
 
 	public RoundManager(Round round, List<IVoice> nonPlayerVoices){
 		this.round = round;
-		this.metronome = new Metronome(round.song.getBpm());
-		this.metronome.start();
+		this.metronome = new Metronome(round.song.getTime()[1]);
 		initSynth();
 
 		this.hitManager = new HitManager(round.getPlayers(), this.synth);
@@ -33,10 +32,6 @@ public class RoundManager {
 		SongPlayback.setSong(this.synth,nonPlayerVoices);
 	}
 
-	public void endRound(){
-		this.metronome.stopMetronome();
-	}
-	
 	public void notePlayStart(int lane){
 		hitManager.notePlayStart(lane);
 	}

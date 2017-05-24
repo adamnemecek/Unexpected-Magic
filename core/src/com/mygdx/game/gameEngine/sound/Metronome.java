@@ -1,51 +1,38 @@
 package com.mygdx.game.gameEngine.sound;
 
+import com.mygdx.game.Observers.ObserverHandler;
+import com.mygdx.game.Observers.TickListener;
+
 /**
  * Class for that works as a metronome
  * takes bpm and plays a beat according to it
  * @author rastom
  */
 
-//TODO, generally make better, less hardcoding..
+public class Metronome implements TickListener {
 
-public class Metronome extends Thread {
-	private int tickInterval;
 	private Synth synth;
-	private boolean interrupted;
+	private int timeSignature;
 
-	public Metronome(int bpm) {
+	public Metronome(int timeSignature) {
 		this.synth = new Synth();
-		this.tickInterval = calculate_msPB(bpm);
-		this.synth.setInstrument(17);
+		this.synth.setInstrument(30);
 		this.synth.changeChannel(9); //in order for drum, channel must be 9
 		this.synth.setVolume(505);
-		this.interrupted = false;
-	}
+		this.timeSignature = timeSignature;
 
-	private int calculate_msPB(int bpm){
-		return (60*1000)/bpm;
+		ObserverHandler.addTickListener(this);
 	}
 
 	@Override
-	public void run() {
+	public void updateTick(int tick) {
+		int beatFreq = tick%(64/timeSignature);
 
-
-		while (!interrupted) {
-
-			this.synth.noteOn(80);
-
-			try {
-				Metronome.sleep(this.tickInterval);
-			} catch (InterruptedException e) {
-				interrupted = true;
-			}
-			this.synth.noteOff(80);
-
+		if(beatFreq == 0){
+			this.synth.noteOn(35);
 		}
-
-	}
-
-	public void stopMetronome(){
-		this.interrupted = true;
+		else if(beatFreq == 2){
+			this.synth.noteOff(35);
+		}
 	}
 }
