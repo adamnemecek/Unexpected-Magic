@@ -1,7 +1,6 @@
 package com.mygdx.game.model;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.mygdx.game.gameEngine.managers.SpriteFactory;
 import com.mygdx.game.utilities.file.Constants;
 
 /**
@@ -11,18 +10,11 @@ import com.mygdx.game.utilities.file.Constants;
 
 public class NoteLanes {
 
-	private static int noteSectionWidth = new TextureRegion(new Texture("sprites/note-64th12x4.png")).getRegionWidth();
-
 	private NoteLanes(){
-
 	}
 
 	private static boolean[] laneStates = new boolean[Constants.NUMBER_OF_LANES]; //false = inactive, true = active
 
-	public static int xCoordinate(int lane, int playerIndex, int numberOfPlayers){
-		return (int) (lane*Constants.LANE_WIDTH+(((Constants.LANE_WIDTH-noteSectionWidth)/(numberOfPlayers-1)*playerIndex)));
-	}
-	
 	public static boolean getLaneState(int i){
 		return laneStates[i];
 	}

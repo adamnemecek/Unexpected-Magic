@@ -10,10 +10,9 @@ import com.mygdx.game.gameEngine.gdxUtils.CompositeSprite;
  */
 
 public class SpriteFactory {
-	private static int noteSectionHeight = new TextureRegion(new Texture("sprites/note-64th12x4.png")).getRegionHeight();
-	public static int yCoordinate(int tick){
-		return tick*noteSectionHeight;
-	}
+	public static final int noteSectionHeight = new TextureRegion(new Texture("sprites/note-64th12x4.png")).getRegionHeight();
+	public static final int noteSectionWidth = new TextureRegion(new Texture("sprites/note-64th12x4.png")).getRegionWidth();
+
 	private String color = "";
 	
 	public CompositeSprite createSprites(int duration, int playerNumber, int posX, int posY){

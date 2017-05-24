@@ -52,10 +52,12 @@ public class EntityFactory {
 	public static Entity createNoteEntity(INote note, IVoice voice, int playerIndex, int tick){
 
 		Entity entity = new Entity();
-		int lane = (note.getPitch() % Constants.NUMBER_OF_LANES);
-		int posX = NoteLanes.xCoordinate(lane, playerIndex, numberOfPlayers);
-
-		int posY = SpriteFactory.yCoordinate(tick);
+		int laneIndex = (note.getPitch() % Constants.NUMBER_OF_LANES);
+		//int posX = NoteLanes.xCoordinate(lane, playerIndex, numberOfPlayers);
+		//int posX = (int) (laneIndex*Constants.LANE_WIDTH+(((Constants.LANE_WIDTH-SpriteFactory.noteSectionWidth)/(numberOfPlayers-1)*playerIndex)));
+		int posX = (int) (laneIndex*Constants.LANE_WIDTH+(((Constants.LANE_WIDTH-SpriteFactory.noteSectionWidth)/(numberOfPlayers)*playerIndex))); //TODO fix x coord
+		
+		int posY = tick*SpriteFactory.noteSectionHeight;
 		PositionComponent positionComponent = new PositionComponent(posX, posY);
 		NoteComponent noteComponent = new NoteComponent(note);
 		CompositeSpriteComponent spriteComponent = new CompositeSpriteComponent(spriteFactory.createSprites(note.getDuration(),playerIndex,posX,posY));
