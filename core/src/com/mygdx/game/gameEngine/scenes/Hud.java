@@ -68,10 +68,10 @@ public class Hud {
 		this.score = new Score();
 		
 		Label songTitleLabel = new Label(songTitle, skin);
-		songTitleLabel.setFontScale(0.8f);
+		songTitleLabel.setFontScale(0.5f);
 		
 		Label songBPMLabel = new Label("BPM: " + bpm, skin);
-		songBPMLabel.setFontScale(0.8f);
+		songBPMLabel.setFontScale(0.5f);
 		
 		scoreLabel = new Label("SCORE " + score, skin);
 		scoreLabel.setFontScale(0.8f);
