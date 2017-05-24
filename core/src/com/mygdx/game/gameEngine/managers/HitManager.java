@@ -1,5 +1,6 @@
 package com.mygdx.game.gameEngine.managers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -27,45 +28,43 @@ public class HitManager implements TickListener{
 	private List<Player> players;
 	private Synth synth;
 	private Map<Player, ITrackableNote> activeNotes;
-	//private Map<Player, Entity> activeNotes;
-	private int [] pitchAtLane;
+	private Map<Integer, List<Integer>> pitchesAtLane;
 	private int tick;
 	
 	
 	public HitManager(List<Player> players, Synth synth){
 		this.players = players;
-		this.pitchAtLane = new int [Constants.NUMBER_OF_LANES];
+		
 		this.synth = synth;
 		ObserverHandler.addTickListener(this);
 		activeNotes = new HashMap<>();
-		//this.activeNotes = new HashMap<Player, Entity>(c);
-		//hitSystem.addObserver(this);
-		
+		pitchesAtLane = new HashMap<>();
 	}
 	
 	
 	public synchronized void notePlayStart(int lane){
-		boolean hasHit = false;
+
+		List<Integer> activePitches = new ArrayList<>();
 		for (Player p : players){
 			try{
 				ITrackableNote note = activeNotes.get(p);
 				if (note.getOctave() == lane){
-					note.hit();
 					p.getScore().hitNote(note.isHit());
-					if (!hasHit){
-						synth.noteOn(note.getPitch());
-						pitchAtLane[lane] = note.getPitch();
-						hasHit = true;
-					}	
+					note.hit();
+					activePitches.add(note.getPitch());
+					synth.noteOn(note.getPitch());
+					
+					
 				}
 			}
 			catch (java.lang.NullPointerException np){
 				
 			}	
 		}
-		if (!hasHit){
-			synth.noteOn(lane + 3*12);
-			pitchAtLane[lane] = lane + 3*12;
+		
+		
+		if (!activePitches.isEmpty()){
+			pitchesAtLane.put(lane, activePitches);
 		}
 		
 		
@@ -73,7 +72,12 @@ public class HitManager implements TickListener{
 	}
 	
 	public void notePlayStop(int lane){
-		synth.noteOff(pitchAtLane[lane]);
+		if (pitchesAtLane.get(lane) != null){
+			for (int pitch : pitchesAtLane.get(lane)){
+				synth.noteOff(pitch);
+			}
+			pitchesAtLane.put(lane, null);
+		}
 		
 	}
 
@@ -94,6 +98,18 @@ public class HitManager implements TickListener{
 			if (!old.isHit()){
 				p.getScore().missedNote();
 			}
+			else {
+				if(pitchesAtLane.get(old.getOctave()) != null){
+					List<Integer> list = pitchesAtLane.get(old.getOctave());
+					list.remove(list.indexOf(old.getPitch()));
+					if (list.isEmpty()){
+						pitchesAtLane.put(old.getOctave(), null);
+					}
+
+					synth.noteOff(old.getPitch());
+				}
+				
+			}
 			
 		}
 		catch (java.lang.NullPointerException np){
@@ -105,6 +121,11 @@ public class HitManager implements TickListener{
 		}
 		else{
 			activeNotes.put(p, note);
+			if (pitchesAtLane.get(note.getOctave()) != null){
+				pitchesAtLane.get(note.getOctave()).add(note.getPitch());
+				synth.noteOn(note.getPitch());
+				activeNotes.get(p).hit();
+			}
 			
 		}
 	}
