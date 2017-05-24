@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.gameEngine.components.CompositeSpriteComponent;
+import com.mygdx.game.gameEngine.components.PositionComponent;
 import com.mygdx.game.gameEngine.managers.EntityFactory;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Ticker;
@@ -30,6 +31,7 @@ public class PianoRoll {
 	private final SpriteBatch batch;
 	public final OrthographicCamera camera;
 	private final Viewport viewport;
+	private final ComponentMapper<PositionComponent> positionComponentMapper;
 	private final ComponentMapper<CompositeSpriteComponent> spriteComponentMapper;
 	private Ticker ticker;
 
@@ -38,24 +40,27 @@ public class PianoRoll {
         this.engine = engine;
         batch = spriteBatch;
         this.ticker = ticker;
-
-        if(players.isEmpty()){
-        	for(Entity entity : EntityFactory.createNoteEntities(song)){
-        		engine.addEntity(entity);
-			}
-		}
-        else {
-			for (Entity entity : EntityFactory.createNoteEntities(players)) {
-				engine.addEntity(entity);
-			}
-		}
+		createNoteEntities(players,song);
         camera = new OrthographicCamera();
-        
         viewport = new ScalingViewport(Scaling.fit, Constants.PIANOROLL_DIM_X, Constants.PIANOROLL_DIM_Y, camera);
         viewport.apply(true);
         viewport.setScreenBounds((int) Constants.PIANOROLL_POS_X, (int) Constants.PIANOROLL_POS_Y, (int) Constants.PIANOROLL_DIM_X, (int) Constants.PIANOROLL_DIM_Y);
         spriteComponentMapper = ComponentMapper.getFor(CompositeSpriteComponent.class);
+        positionComponentMapper = ComponentMapper.getFor(PositionComponent.class);
     }
+
+    private void createNoteEntities(List<Player> players, ISong song){
+		if(players.isEmpty()){
+			for(Entity entity : EntityFactory.createNoteEntities(song)){
+				engine.addEntity(entity);
+			}
+		}
+		else {
+			for (Entity entity : EntityFactory.createNoteEntities(players)) {
+				engine.addEntity(entity);
+			}
+		}
+	}
 
 	public void placeCamera(){
 		camera.position.y = (float)ticker.tickWithDecimals()*Constants.NOTESPRITE_HEIGHT + camera.viewportHeight/2;
@@ -64,10 +69,13 @@ public class PianoRoll {
 
 	public void draw() {
 		viewport.apply(false);//TODO centercamera thing is not applied
-		ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(CompositeSpriteComponent.class).get());
+		ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(CompositeSpriteComponent.class,PositionComponent.class).get());
 		for (Entity entity : entities) {
+			PositionComponent pos = positionComponentMapper.get(entity);
 			CompositeSpriteComponent spr = spriteComponentMapper.get(entity);
-			spr.getCompositeSprite().draw(batch);
+			if (pos.y > camera.position.y - (viewport.getScreenHeight()/2) - spr.getCompositeSprite().getLength() && pos.y < camera.position.y + (viewport.getScreenHeight()/2)) {
+				spr.getCompositeSprite().draw(batch);
+			}
 		}
 	}
 	
