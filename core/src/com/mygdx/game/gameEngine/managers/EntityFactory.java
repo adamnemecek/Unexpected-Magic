@@ -19,8 +19,10 @@ import java.util.List;
 public class EntityFactory {
 
 	private static final SpriteFactory spriteFactory = new SpriteFactory();
+	private static int numberOfPlayers;
 
 	public static List<Entity> createNoteEntities(List<Player> players){
+		numberOfPlayers = players.size();
 		List<Entity> entities = new LinkedList<>();
 		for (int playerIndex = 0; playerIndex < players.size(); playerIndex ++){
 			Player player = players.get(playerIndex);
@@ -51,7 +53,8 @@ public class EntityFactory {
 
 		Entity entity = new Entity();
 		int lane = (note.getPitch() % Constants.NUMBER_OF_LANES);
-		int posX = NoteLanes.xCoordinate(lane, playerIndex);
+		int posX = NoteLanes.xCoordinate(lane, playerIndex, numberOfPlayers);
+
 		int posY = SpriteFactory.yCoordinate(tick);
 		PositionComponent positionComponent = new PositionComponent(posX, posY);
 		NoteComponent noteComponent = new NoteComponent(note);
