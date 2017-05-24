@@ -154,11 +154,12 @@ public class NewgameScreen extends AbstractScreen {
 				int pl = playerNumButtongroup.getCheckedIndex();
 				List<Player> players = new ArrayList<>(pl);
 				for(int i = 0; i < pl; i++) {
-					String playerName = playerNames[i].getText();
-					if(playerName.isEmpty()){
+					String playerName = playerNames[i].getText().trim();
+					if(playerName.equals("")){
 						playerName = playerNames[i].getMessageText();
 						}
 					players.add(new Player(playerName, voices[i]));
+					System.out.println("playername: " + playerName);
 				}
 				List<IVoice> nonPlayerVoices = new ArrayList<>(voices.length-pl);
 				for(int i = pl; i < voices.length; i++) {
