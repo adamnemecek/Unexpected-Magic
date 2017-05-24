@@ -47,9 +47,10 @@ public class Hud {
 		PlayerBox(Player player) {
 			super(skin);
 			playerNameLabel = new Label(player.getName(), skin);
-			playerNameLabel.setFontScale(0.7f);
+			float scale = 0.5f;
+			playerNameLabel.setFontScale(scale);
 			playerScoreLabel =  new Label("0", skin);
-			playerScoreLabel.setFontScale(0.7f);
+			playerScoreLabel.setFontScale(scale);
 			this.add(playerNameLabel).row();
 			this.add(playerScoreLabel);
 		}
@@ -109,7 +110,7 @@ public class Hud {
 		PlayerBox[] playerBoxes = new PlayerBox[players.size()];
         for(int i = 0; i < players.size(); i++){
         	playerBoxes[i] = new PlayerBox(players.get(i));
-        	botTable.add(playerBoxes[i]).fillX().expandX().uniform();
+        	botTable.add(playerBoxes[i]).fillX().expandX().uniform().padBottom(2f);
         }
 	}
 
