@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -73,12 +75,20 @@ public class Hud {
 		
 		scoreLabel = new Label("SCORE " + score, skin);
 		scoreLabel.setFontScale(0.8f);
-		
-		TextButton menuButton = new TextButton("Menu", skin);
-		menuButton.getLabel().setFontScale(0.5f);
-//		menuButton.setTransform(true);
-//		menuButton.setScale(0.5f);
-		//("%03d, someNumberVariable") for displaying 3 digits of it in a label or something
+
+		TextButton pauseButton = new TextButton("Menu", skin);
+		pauseButton.getLabel().setFontScale(0.5f);
+		pauseButton.addListener((Event event) -> {
+			if(!(event instanceof InputEvent)) return false;
+			InputEvent evt = (InputEvent) event;
+			if(evt.getType() != InputEvent.Type.touchDown) return false;
+			//TODO implement pause
+			//notify listeners? In this case I think gamescreen should be listening,
+			// and it should run it's method pauseGame() when it knows used clicked this hud button
+			System.out.println("Player clicked pause"); //TODO doesn't work?
+			return true;
+		}
+				);
         
 	 	// top table layout with song title, menu button, etc.
         Table topTable = new Table();
@@ -88,7 +98,7 @@ public class Hud {
 		topTable.top();
 		topTable.left();
 		
-        topTable.add(menuButton).width(Value.percentWidth(.15f, topTable)).height(Value.percentHeight(.1f, topTable)).padRight(5);
+        topTable.add(pauseButton).width(Value.percentWidth(.15f, topTable)).height(Value.percentHeight(.1f, topTable)).padRight(5);
 		topTable.add().expandX();
         topTable.add(songTitleLabel).fillX().padLeft(5).padRight(5);
 		topTable.add(songBPMLabel).fillX().padLeft(5).padRight(5);

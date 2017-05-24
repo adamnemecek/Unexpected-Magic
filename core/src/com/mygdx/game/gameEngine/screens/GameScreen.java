@@ -65,6 +65,17 @@ public class GameScreen extends AbstractScreen{
 		
 	}
 	
+	private void pauseGame(){ 
+		//TODO implement pause
+		//The pause event happens in hud, so this thing need to listen to hud or something.
+		// the pause event should happen when player pushes the pause button in hud. 
+		//This method should also be called when player pushes "esc" (or maybe another button?) on the keyboard.
+		
+		//Pause ticker probably?
+		// does anything else need to be paused, that is not depending on whether ticker is running or not?
+	}
+	private void unpauseGame(){}
+	
 	public void update (float delta) {
 		if(running){
 			ticker.updateTick(delta);
