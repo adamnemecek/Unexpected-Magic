@@ -19,17 +19,14 @@ public class RoundManager {
 	private Round round;
 	private HitManager hitManager;
 	private Synth synth;
-	private Metronome metronome;
 
 
 	public RoundManager(Round round, List<IVoice> nonPlayerVoices){
 		this.round = round;
-		this.metronome = new Metronome(round.song.getTime()[1]);
+		new Metronome(round.song.getTime()[1]);
 		initSynth();
-
 		this.hitManager = new HitManager(round.getPlayers(), this.synth);
-
-		SongPlayback.setSong(this.synth,nonPlayerVoices);
+		new SongPlayback(this.synth,nonPlayerVoices);
 	}
 
 	public void notePlayStart(int lane){

@@ -11,8 +11,8 @@ import com.mygdx.game.Observers.TickListener;
 
 public class Metronome implements TickListener {
 
-	private Synth synth;
-	private int timeSignature;
+	private final Synth synth;
+	private final int timeSignature;
 
 	public Metronome(int timeSignature) {
 		this.synth = new Synth();
