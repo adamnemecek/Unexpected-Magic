@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Observers.ObserverHandler;
 import com.mygdx.game.gameEngine.input.InputAction;
 import com.mygdx.game.gameEngine.input.KeyboardControllerAdapter;
 import com.mygdx.game.gameEngine.input.KeyboardInputManager;
@@ -77,6 +78,7 @@ public class GameScreen extends AbstractScreen{
 
 		if(!ticker.isTicking()){
 			this.dispose();
+			ObserverHandler.clearTickListeners();
 			changeToScreen(new ScoreScreen(batch));
 		}
 		//Wipe screen (don't use super because super clears with blue)

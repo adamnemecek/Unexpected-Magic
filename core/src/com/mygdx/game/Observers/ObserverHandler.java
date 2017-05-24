@@ -21,6 +21,10 @@ public abstract class ObserverHandler {
 		tickListeners.remove(listener);
 	}
 	
+	public static void clearTickListeners(){
+		tickListeners.clear();
+	}
+	
 	public static void notifyTickListeners(int tick){
 		for (TickListener tl : tickListeners){
 			tl.updateTick(tick);
