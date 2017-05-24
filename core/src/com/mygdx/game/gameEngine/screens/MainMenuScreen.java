@@ -123,10 +123,10 @@ public class MainMenuScreen extends AbstractScreen {
 			@Override
 			public boolean keyDown(InputEvent event, int keycode) {
 				if (keycode == Input.Keys.UP) {
-					menuItemSelected = (menuItemSelected + 3) % 4;
+					menuItemSelected = (menuItemSelected + 2) % 3;
 					buttonGroup.setChecked(menuItems[menuItemSelected]);
 				} else if (keycode == Input.Keys.DOWN) {
-					menuItemSelected = (menuItemSelected + 1) % 4;
+					menuItemSelected = (menuItemSelected + 1) % 3;
 					buttonGroup.setChecked(menuItems[menuItemSelected]);
 				}
 
