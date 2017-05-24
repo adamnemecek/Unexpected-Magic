@@ -58,7 +58,7 @@ public class PianoRoll {
     }
 
 	public void placeCamera(){
-		camera.position.y = (float)ticker.tickWithDecimals()*Constants.NOTESPRITE_HEIGHT;
+		camera.position.y = (float)ticker.tickWithDecimals()*Constants.NOTESPRITE_HEIGHT + camera.viewportHeight/2;
 		camera.update();
 	}
 
