@@ -64,7 +64,7 @@ public class ConfigService {
 			default:
 				action = null;
 		}
-				return new ActionObject(playerIndex,action); //TODO different players
+				return new ActionObject(playerIndex, action); //TODO different players
 	}
 	public static class ActionObject{
 		public final int playerIndex;
@@ -72,6 +72,9 @@ public class ConfigService {
 		private ActionObject(int playerIndex, Action action){
 			this.playerIndex = playerIndex;
 			this.action = action;
+		}
+		public boolean hasPlayer(){
+			return playerIndex >= 0;
 		}
 	}
 }

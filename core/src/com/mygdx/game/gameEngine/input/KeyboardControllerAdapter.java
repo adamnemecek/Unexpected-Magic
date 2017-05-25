@@ -17,10 +17,11 @@ public class KeyboardControllerAdapter {
 		Action action = actionObject.action;
 		int playerIndex = actionObject.playerIndex;
 		if(action == null) return;
-		if(action.isNote()) inputAction.noteKeyPressed(action, playerIndex);
+		if(action.isNote() && actionObject.hasPlayer()) inputAction.noteKeyPressed(action, playerIndex);
 		else if(action == Action.PAUSE_GAME){
 			inputAction.uiKeyPressed(Action.PAUSE_GAME);
 		}
+		else{System.out.println("Error in keyPressed(), could not call call inputAction properly.");}
 	}
 	public void keyReleased(int keyCode) {
 		ConfigService.ActionObject actionObject = ConfigService.keyAction(keyCode);
