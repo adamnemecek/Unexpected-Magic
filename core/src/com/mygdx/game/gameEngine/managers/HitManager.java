@@ -24,6 +24,7 @@ import com.mygdx.game.utilities.file.Constants;
  * class that evaluates whether the player's input is correct 
  * and handles score and noteplaying accordingly
  * @author Arvid
+ * Revised By Arvid & 
  *
  */
 

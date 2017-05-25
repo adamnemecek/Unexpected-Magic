@@ -2,8 +2,9 @@ package com.mygdx.game.gameEngine.managers;
 
 import com.badlogic.ashley.core.Entity;
 import com.mygdx.game.gameEngine.components.*;
-import com.mygdx.game.model.NoteLanes;
-import com.mygdx.game.model.Player;
+import com.mygdx.game.model.IPlayer;
+
+
 import com.mygdx.game.model.song.INote;
 import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.model.song.IVoice;
@@ -15,17 +16,18 @@ import java.util.List;
  * A factory class that handles creation of entities.
  * @author soflarb
  * Revised by rastom & car0b1nius
+ * 
  */
 public class EntityFactory {
 
 	private static final SpriteFactory spriteFactory = new SpriteFactory();
 	private static int numberOfPlayers;
 
-	public static List<Entity> createNoteEntities(List<Player> players){
+	public static List<Entity> createNoteEntities(List<? extends IPlayer> players){
 		numberOfPlayers = players.size();
 		List<Entity> entities = new LinkedList<>();
 		for (int playerIndex = 0; playerIndex < players.size(); playerIndex ++){
-			Player player = players.get(playerIndex);
+			IPlayer player = players.get(playerIndex);
 			IVoice voice = player.getVoice();
 			for (int tick = 0; tick < voice.length(); tick ++){
 				INote note = voice.noteAtTick(tick);
@@ -37,6 +39,7 @@ public class EntityFactory {
 	}
 
 	public static List<Entity> createNoteEntities(ISong song) {
+		numberOfPlayers = 0;
 		List<Entity> entities = new LinkedList<>();
 		int iteration = 0;
 		for (IVoice voice : song.getVoices()){
