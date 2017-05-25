@@ -62,7 +62,7 @@ public class EntityFactory {
 			posX = Math.round( (laneIndex*Constants.LANE_WIDTH+(((Constants.LANE_WIDTH-SpriteFactory.noteSectionWidth)/3)*playerIndex)));
 		}
 		else if (numberOfPlayers == 1){
-			posX = Math.round( (laneIndex*Constants.LANE_WIDTH+(((Constants.LANE_WIDTH-SpriteFactory.noteSectionWidth)/(numberOfPlayers))*playerIndex)));
+			posX = Math.round( laneIndex*Constants.LANE_WIDTH);
 		}
 		else{
 			posX = Math.round( (laneIndex*Constants.LANE_WIDTH+(((Constants.LANE_WIDTH-SpriteFactory.noteSectionWidth)/(numberOfPlayers-1))*playerIndex))); 
