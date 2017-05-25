@@ -38,12 +38,14 @@ public class EntityFactory {
 
 	public static List<Entity> createNoteEntities(ISong song) {
 		List<Entity> entities = new LinkedList<>();
+		int iteration = 0;
 		for (IVoice voice : song.getVoices()){
 			for (int tick = 0; tick < voice.length(); tick++) {
 				INote note = voice.noteAtTick(tick);
 				if (note == null || note.isRest()) continue;
-				entities.add(createNoteEntity(note, voice, 0, tick));
+				entities.add(createNoteEntity(note, voice, iteration % 4, tick));
 			}
+			iteration++;
 		}
 		return entities;
 	}
@@ -55,7 +57,14 @@ public class EntityFactory {
 		int laneIndex = (note.getPitch() % Constants.NUMBER_OF_LANES);
 		//int posX = NoteLanes.xCoordinate(lane, playerIndex, numberOfPlayers);
 		//int posX = (int) (laneIndex*Constants.LANE_WIDTH+(((Constants.LANE_WIDTH-SpriteFactory.noteSectionWidth)/(numberOfPlayers-1)*playerIndex)));
-		int posX = (int) (laneIndex*Constants.LANE_WIDTH+(((Constants.LANE_WIDTH-SpriteFactory.noteSectionWidth)/(numberOfPlayers)*playerIndex))); //TODO fix x coord
+		int posX;
+		if (numberOfPlayers == 0){
+			posX = Math.round( (laneIndex*Constants.LANE_WIDTH+(((Constants.LANE_WIDTH-SpriteFactory.noteSectionWidth)/3)*playerIndex)));
+		}
+		else{
+			posX = Math.round( (laneIndex*Constants.LANE_WIDTH+(((Constants.LANE_WIDTH-SpriteFactory.noteSectionWidth)/(numberOfPlayers-1))*playerIndex))); 
+		}
+	
 		
 		int posY = tick*SpriteFactory.noteSectionHeight;
 		PositionComponent positionComponent = new PositionComponent(posX, posY);
