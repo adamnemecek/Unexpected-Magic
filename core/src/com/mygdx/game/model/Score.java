@@ -14,22 +14,27 @@ public class Score {
 	//TODO if score is only part of model should it calculate things?
 	private double score;
 	private int streak;
+	private int bestStreak;
 	private int multiplier; //higher score if higher streak¨
 	private final ListenerHandler listenerHandler;
 
 	public Score(){
 		score = 0;
 		streak = 0;
+		bestStreak = 0;
 		multiplier = 1; //TODO this could perhaps work
 		listenerHandler = new ListenerHandler();
 		
 	}
 	//first draft, score calculation? Keep track of percentage of note hit?
 	public void hitNote(boolean previouslyHit){
-		score +=1*multiplier;
+		score += 1*multiplier;
 		if(!previouslyHit){
 			streak++;
-			multiplier = 1 + streak/50;
+			if (streak > bestStreak){
+				bestStreak = streak;
+			}
+			multiplier = 1 + streak/25;
 		}
 		listenerHandler.NotifyListeners((int)score);
 	}
