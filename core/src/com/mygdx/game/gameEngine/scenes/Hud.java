@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -84,20 +85,6 @@ public class Hud {
 		scoreLabel = new Label("SCORE " + score, skin);
 		scoreLabel.setFontScale(0.8f);
 
-		TextButton pauseButton = new TextButton("Menu", skin);
-		pauseButton.getLabel().setFontScale(0.5f);
-		pauseButton.addListener((Event event) -> {
-			if(!(event instanceof InputEvent)) return false;
-			InputEvent evt = (InputEvent) event;
-			if(evt.getType() != InputEvent.Type.touchDown) return false;
-			//TODO implement pause
-			//notify listeners? In this case I think gamescreen should be listening,
-			// and it should run it's method pauseGame() when it knows used clicked this hud button
-			System.out.println("Player clicked pause"); //TODO doesn't work?
-			return true;
-		}
-				);
-        
 	 	// top table layout with song title, menu button, etc.
         Table topTable = new Table();
         stage.addActor(topTable);
@@ -105,11 +92,10 @@ public class Hud {
 		topTable.setFillParent(true);
 		topTable.top();
 		topTable.left();
-		
-        topTable.add(pauseButton).width(Value.percentWidth(.15f, topTable)).height(Value.percentHeight(.1f, topTable)).padRight(5);
+
 		topTable.add().expandX();
-        topTable.add(songTitleLabel).fillX().padLeft(5).padRight(5);
-		topTable.add(songBPMLabel).fillX().padLeft(5).padRight(5);
+        topTable.add(songTitleLabel).fillX().padLeft(5).padRight(5).padTop(7);
+		topTable.add(songBPMLabel).fillX().padLeft(5).padRight(5).padTop(7);
 		
 		//note lanes
 		this.activeTexture = new Texture("images/lanes/lane-white-bordered-33x10.png");
@@ -130,6 +116,7 @@ public class Hud {
         	playerBoxes[i] = new PlayerBox(players.get(i));
         	botTable.add(playerBoxes[i]).fillX().expandX().uniform().padBottom(2f);
         }
+		Gdx.input.setInputProcessor(stage);
 	}
 
 	public void draw(){
@@ -157,6 +144,7 @@ public class Hud {
 			batch.draw(getLaneTexture(i),Constants.LANE_WIDTH*i,Constants.SCORE_BOUNDS_LOWER,Constants.LANE_WIDTH,Constants.SCORE_BOUNDS_UPPER-Constants.SCORE_BOUNDS_LOWER);
 		}
 		batch.end();
+
 	}
 	private void drawBackground(){
 		batch.begin();
