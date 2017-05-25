@@ -20,7 +20,7 @@ public class ScoreScreen extends AbstractScreen{
 		// table
 		Table table = new Table();
 		table.setFillParent(true);
-		table.setDebug(true, true);
+		//table.setDebug(true, true);
 		stage.addActor(table);
 		
 		//text

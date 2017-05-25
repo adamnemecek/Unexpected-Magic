@@ -23,7 +23,7 @@ public class OptionsScreen extends AbstractScreen {
 		// table
 		Table table = new Table();
 		table.setFillParent(true);
-		table.setDebug(true, true);
+		//able.setDebug(true, true);
 		table.top();
 		table.left();
 		stage.addActor(table);
