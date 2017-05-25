@@ -35,6 +35,7 @@ public class GameScreen extends AbstractScreen{
 	private KeyboardInputManager keyboardInputManager;
 	private Engine engine;
 	private Ticker ticker;
+	private final List<IPlayer> players;
 
 	private Texture background = new Texture("images/UnexpectedMagicBackground5.png");
 	
@@ -42,6 +43,7 @@ public class GameScreen extends AbstractScreen{
 		super(batch);
 		this.engine = new PooledEngine();
 		this.ticker = new Ticker(song);
+		this.players = players;
 		running = false;
         hud = new Hud(batch, song.getTitle(), Integer.toString(song.getBpm()), players);
 		pianoRoll = new PianoRoll(engine, batch, players, song, ticker);
@@ -90,7 +92,7 @@ public class GameScreen extends AbstractScreen{
 		if(!ticker.isTicking()){
 			this.dispose();
 			ObserverHandler.clearTickListeners();
-			changeToScreen(new ScoreScreen(batch));
+			changeToScreen(new ScoreScreen(batch, players));
 		}
 		//Wipe screen (don't use super because super clears with blue)
 		Gdx.gl.glClearColor(0,0,0,1);
