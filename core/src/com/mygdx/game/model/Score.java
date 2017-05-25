@@ -28,14 +28,17 @@ public class Score implements IScore{
 	}
 	//first draft, score calculation? Keep track of percentage of note hit?
 	public void hitNote(boolean previouslyHit){
-		score += 0.2*multiplier;
+		
 		if(!previouslyHit){
 			streak++;
 			if (streak > bestStreak){
 				bestStreak = streak;
 			}
-			multiplier = 1 + streak/25;
+			if (multiplier < 10){
+				multiplier = 1 + streak/10;
+			}
 		}
+		score += 0.3*multiplier;
 		listenerHandler.NotifyListeners((int)score);
 	}
 
@@ -47,7 +50,7 @@ public class Score implements IScore{
 	
 	public void wrongNote(){
 		if (score > 0){
-			score -= 1;
+			score -= 0.2;
 			listenerHandler.NotifyListeners((int)score);
 		}
 		
