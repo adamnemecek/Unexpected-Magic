@@ -21,7 +21,7 @@ import com.mygdx.game.utilities.file.Constants;
 public class MainMenuScreen extends AbstractScreen {
 
 	Texture background = new Texture("images/UnexpectedMagicBackground6.png");
-	
+	private AnimationManager djblookAnim;
 	private AnimationManager feffeAnim;
 	private AnimationManager frodoAnim;
 	private AnimationManager nekkiAnim;
@@ -39,12 +39,14 @@ public class MainMenuScreen extends AbstractScreen {
 		menuItems = new String[] { "New game", "Options", "Exit" };
 		
 	// ANIMATIONS
+		djblookAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/napstablook.png")), 
+				batch, 1, 4, Math.round(Constants.VIEWPORT_DIM_X/2 - 52), Math.round(Constants.VIEWPORT_DIM_Y - 105), 110, 104, 0.1f);
 		feffeAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/feffe.png")),
 				batch, 1, 6, 275, -32, 200, 200, 0.1f );
 		frodoAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/frodo.png")),
 				batch, 1, 6, 210, -10, 200, 200, 0.12f );
 		nekkiAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/nekki.png")),
-				batch, 1, 1, 0, -10, 200, 200, 0.1f );
+				batch, 1, 1, 0, -30, 200, 200, 0.1f );
 //	}
 
 //	@Override
@@ -166,6 +168,7 @@ public class MainMenuScreen extends AbstractScreen {
 		batch.begin();
 		batch.draw(background, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y);
 		batch.end();
+		djblookAnim.draw();
 		feffeAnim.draw(); // render animation TODO should perhaps be automated
 		frodoAnim.draw();
 		nekkiAnim.draw();
