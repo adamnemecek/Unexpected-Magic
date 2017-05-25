@@ -9,9 +9,9 @@ import com.mygdx.game.utilities.file.Action;
 
 public interface IInputController {
 
-	void noteKeyPressed(Action note);
+	void noteKeyPressed(Action note, int playerIndex);
 	
-	void noteKeyReleased(Action note);
+	void noteKeyReleased(Action note, int playerIndex);
 
 	void uiKeyPressed();
 	

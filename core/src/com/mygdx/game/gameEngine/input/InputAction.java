@@ -20,17 +20,17 @@ public class InputAction implements IInputController{
 	}
 	
 	@Override
-	public void noteKeyPressed(Action note) {
+	public void noteKeyPressed(Action note, int playerIndex) {
 		if(!note.isNote()) throw new IllegalArgumentException("Cannot play non-note action");
-		roundManager.notePlayStart(note.noteValue()%12);
+		roundManager.notePlayStart(note.noteValue()%12, playerIndex);
 		hud.activateLane(note.noteValue()%12);
 		
 	}
 
 	@Override
-	public void noteKeyReleased(Action note) {
+	public void noteKeyReleased(Action note, int playerIndex) {
 		if(!note.isNote()) throw new IllegalArgumentException("Cannot play non-note action");
-		roundManager.notePlayStop(note.noteValue()%12);
+		roundManager.notePlayStop(note.noteValue()%12, playerIndex);
 		hud.deactivateLane(note.noteValue()%12);
 		
 		

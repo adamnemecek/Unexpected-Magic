@@ -13,15 +13,19 @@ public class KeyboardControllerAdapter {
 		this.inputAction = inputAction;
 	}
 	public void keyPressed(int keyCode) {
-		Action action = ConfigService.keyAction(keyCode);
+		ConfigService.ActionObject actionObject = ConfigService.keyAction(keyCode);
+		Action action = actionObject.action;
+		int playerIndex = actionObject.playerIndex;
 		if(action == null) return;
-		if(action.isNote()) inputAction.noteKeyPressed(action);
+		if(action.isNote()) inputAction.noteKeyPressed(action, playerIndex);
 		else if(action == Action.PAUSE_GAME); // TODO something with pause
 	}
 	public void keyReleased(int keyCode) {
-		Action action = ConfigService.keyAction(keyCode);
+		ConfigService.ActionObject actionObject = ConfigService.keyAction(keyCode);
+		Action action = actionObject.action;
+		int playerIndex = actionObject.playerIndex;
 		if(action == null) return;
-		if(action.isNote()) inputAction.noteKeyReleased(action);
+		if(action.isNote()) inputAction.noteKeyReleased(action,playerIndex);
 		else if(action == Action.PAUSE_GAME); // TODO something with pause
 		
 	}

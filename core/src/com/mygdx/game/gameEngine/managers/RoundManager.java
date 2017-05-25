@@ -29,12 +29,12 @@ public class RoundManager {
 		new SongPlayback(this.synth,nonPlayerVoices);
 	}
 
-	public void notePlayStart(int lane){
-		hitManager.notePlayStart(lane);
+	public void notePlayStart(int lane,int player){
+		hitManager.notePlayStart(lane, player);
 	}
 	
-	public void notePlayStop(int lane){
-		hitManager.notePlayStop(lane);
+	public void notePlayStop(int lane, int player){
+		hitManager.notePlayStop(lane, player);
 	}
 
 	private void initSynth(){

@@ -42,7 +42,7 @@ public class HitManager implements TickListener{
 	}
 	
 	
-	public synchronized void notePlayStart(int lane){
+	public synchronized void notePlayStart(int lane, int player){
 
 		List<Integer> activePitches = new ArrayList<>();
 		for (Player p : players){
@@ -71,7 +71,8 @@ public class HitManager implements TickListener{
 
 	}
 	
-	public void notePlayStop(int lane){
+	public void notePlayStop(int lane, int player){
+		System.out.println(player);
 		if (pitchesAtLane.get(lane) != null){
 			for (int pitch : pitchesAtLane.get(lane)){
 				synth.noteOff(pitch);
