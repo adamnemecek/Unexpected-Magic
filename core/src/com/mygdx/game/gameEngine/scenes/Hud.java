@@ -34,11 +34,10 @@ public class Hud {
 	private SpriteBatch batch;
 	public Stage stage;
 	private Viewport viewport;
-	private Score score;
 	private Skin skin;
 	private PlayerBox[] playerBoxes;
 	
-	private Label scoreLabel;
+	
 	
 
 	private Texture activeTexture;
@@ -74,7 +73,6 @@ public class Hud {
 		viewport = new ScalingViewport(Scaling.fit, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y, new OrthographicCamera());
 		stage = new Stage(viewport, batch);
 		this.batch = batch;
-		this.score = new Score();
 		
 		Label songTitleLabel = new Label(songTitle, skin);
 		songTitleLabel.setFontScale(0.5f);
@@ -82,8 +80,7 @@ public class Hud {
 		Label songBPMLabel = new Label("BPM: " + bpm, skin);
 		songBPMLabel.setFontScale(0.5f);
 		
-		scoreLabel = new Label("SCORE " + score, skin);
-		scoreLabel.setFontScale(0.8f);
+		
 
 	 	// top table layout with song title, menu button, etc.
         Table topTable = new Table();
@@ -126,9 +123,7 @@ public class Hud {
 		drawLanes();
 		
 	}
-	public void setScoreLabel(){
-	    this.scoreLabel.setText("SCORE " + score.getScore());
-    }
+	
 	
 	public void activateLane(int lane){
 		NoteLanes.activateLane(lane);

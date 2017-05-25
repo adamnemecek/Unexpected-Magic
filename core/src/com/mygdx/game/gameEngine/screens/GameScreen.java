@@ -80,7 +80,6 @@ public class GameScreen extends AbstractScreen{
 		if(running){
 			ticker.updateTick(delta);
 			engine.update(delta);
-            hud.setScoreLabel();
 		}
 	}
 
