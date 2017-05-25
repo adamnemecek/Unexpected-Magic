@@ -9,7 +9,7 @@ import com.mygdx.game.model.song.INote;
  * @author rastom
  */
 
-public class Synth {
+public class Synth implements ISynth{
 
 	private int volume = 1000;
 	private int nChannelNumber = 1;

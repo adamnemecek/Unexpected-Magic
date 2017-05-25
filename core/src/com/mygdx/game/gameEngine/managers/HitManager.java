@@ -137,8 +137,6 @@ public class HitManager implements TickListener{
 		}
 		else{
 			activeNotes.put(p, note);
-	
-			
 		}
 	}
 
