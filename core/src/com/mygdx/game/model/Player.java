@@ -5,9 +5,11 @@ import com.mygdx.game.model.song.IVoice;
 /**
  * A class that represents an in-game player.
  * @author soflarb
+ * Revised by Arvid
+ *
  */
 
-public class Player{
+public class Player implements IPlayer{
 	private final String name;
 	private final IVoice voice;
 	private final Score score;
@@ -24,7 +26,7 @@ public class Player{
 	public IVoice getVoice(){
 		return voice;
 	}
-	public Score getScore(){
+	public IScore getScore(){
 		return score;
 	}
 	public String getName(){

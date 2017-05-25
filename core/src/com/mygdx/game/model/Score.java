@@ -3,7 +3,7 @@ package com.mygdx.game.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Score {
+public class Score implements IScore{
 
 	/**
 	 * A class that holds score.
@@ -28,7 +28,7 @@ public class Score {
 	}
 	//first draft, score calculation? Keep track of percentage of note hit?
 	public void hitNote(boolean previouslyHit){
-		score += 1*multiplier;
+		score += 0.2*multiplier;
 		if(!previouslyHit){
 			streak++;
 			if (streak > bestStreak){
@@ -60,7 +60,7 @@ public class Score {
 		return streak;
 	}
 	public int getScore(){
-		return (int)score;
+		return (int)Math.round(score);
 	}
 	public void addListener(ScoreListener sl){
 		listenerHandler.addListener(sl);
