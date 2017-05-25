@@ -1,7 +1,4 @@
 package com.mygdx.game.utilities.file;
-
-import java.util.Random;
-
 public class ConfigService {
 	public static ActionObject keyAction(int keyCode) {
 		// I really would prefer to use Keys.ESCAPE and such, but that causes "circular dependencies" and "isn't good structure".
@@ -22,40 +19,52 @@ public class ConfigService {
 		if(keyCode == 41) return Action.NOTE_B; //M
 		*/
 		Action action;
-		int playerIndex;
+		int playerIndex = 0; //TODO
 		//works on mac
 		switch (keyCode) {
-			case (131):
-				action = Action.PAUSE_GAME; //Esc
-				
-			case (59):
+			case 131:
+				action =  Action.PAUSE_GAME; //Esc
+				break;
+			case 59:
 				action = Action.NOTE_C; //left shift
-			case (68):
+				break;
+			case 68:
 				action = Action.NOTE_C_SHARP; //<
-			case (54):
+				break;
+			case 54:
 				action = Action.NOTE_D; //z
-			case (52):
+				break;
+			case 52:
 				action = Action.NOTE_D_SHARP; //x
-			case (31):
+				break;
+			case 31:
 				action = Action.NOTE_E; //c
-			case (50):
+				break;
+			case 50:
 				action = Action.NOTE_F; //v
-			case (30):
+				break;
+			case 30:
 				action = Action.NOTE_F_SHARP; //b
-			case (42):
+				break;
+			case 42:
 				action = Action.NOTE_G; //n
-			case (41):
+				break;
+			case 41:
 				action = Action.NOTE_G_SHARP; //m
-			case (55):
+				break;
+			case 55:
 				action = Action.NOTE_A; //,
-			case (56):
+				break;
+			case 56:
 				action = Action.NOTE_A_SHARP; //.
-			case (76):
+				break;
+			case 76:
 				action = Action.NOTE_B; //-
+				break;
 			default:
 				action = null;
-				return new ActionObject(new Random().nextInt(10), action); //TODO different players
 		}
+				return new ActionObject(playerIndex,action); //TODO different players
 	}
 	public static class ActionObject{
 		public final int playerIndex;

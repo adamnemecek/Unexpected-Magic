@@ -72,7 +72,6 @@ public class HitManager implements TickListener{
 	}
 	
 	public void notePlayStop(int lane, int player){
-		System.out.println(player);
 		if (pitchesAtLane.get(lane) != null){
 			for (int pitch : pitchesAtLane.get(lane)){
 				synth.noteOff(pitch);
