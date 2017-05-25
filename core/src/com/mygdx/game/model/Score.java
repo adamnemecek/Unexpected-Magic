@@ -1,5 +1,8 @@
 package com.mygdx.game.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Score {
 
 	/**
@@ -11,12 +14,15 @@ public class Score {
 	//TODO if score is only part of model should it calculate things?
 	private double score;
 	private int streak;
-	private int multiplier; //higher score if higher streak
+	private int multiplier; //higher score if higher streak¨
+	private final ListenerHandler listenerHandler;
 
 	public Score(){
 		score = 0;
 		streak = 0;
 		multiplier = 1; //TODO this could perhaps work
+		listenerHandler = new ListenerHandler();
+		
 	}
 	//first draft, score calculation? Keep track of percentage of note hit?
 	public void hitNote(boolean previouslyHit){
@@ -25,6 +31,7 @@ public class Score {
 			streak++;
 			multiplier = 1 + streak/50;
 		}
+		listenerHandler.NotifyListeners((int)score);
 	}
 
 
@@ -41,6 +48,32 @@ public class Score {
 	}
 	public int getScore(){
 		return (int)score;
+	}
+	public void addListener(ScoreListener sl){
+		listenerHandler.addListener(sl);
+	}
+	public void removeListener(ScoreListener sl){
+		listenerHandler.removeListener(sl);
+	}
+	
+	private class ListenerHandler{
+		private  final List<ScoreListener> listeners;
+		public ListenerHandler(){
+			listeners = new ArrayList<>();
+		}
+		public void addListener(ScoreListener sl){
+			if (!listeners.contains(sl)){
+				listeners.add(sl);
+			}
+		}
+		public void removeListener(ScoreListener sl){
+			listeners.remove(sl);
+		}
+		public void NotifyListeners(int newScore){
+			for (ScoreListener sl : listeners){
+				sl.newScore(newScore);
+			}
+		}
 	}
 
 }

@@ -21,6 +21,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.model.NoteLanes;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Score;
+import com.mygdx.game.model.ScoreListener;
 import com.mygdx.game.utilities.file.Constants;
 
 /**
@@ -34,6 +35,7 @@ public class Hud {
 	private Viewport viewport;
 	private Score score;
 	private Skin skin;
+	private PlayerBox[] playerBoxes;
 	
 	private Label scoreLabel;
 	
@@ -43,18 +45,24 @@ public class Hud {
 	private Texture backgroundTop;
 	private Texture backgroundBot;
 
-	private class PlayerBox extends Table{
+	private class PlayerBox extends Table implements ScoreListener{
 		private Label playerNameLabel;
 		private Label playerScoreLabel;
+		private Player player;
 		PlayerBox(Player player) {
 			super(skin);
 			playerNameLabel = new Label(player.getName(), skin);
 			float scale = 0.5f;
+			this.player = player;
+			player.getScore().addListener(this);
 			playerNameLabel.setFontScale(scale);
 			playerScoreLabel =  new Label("0", skin);
 			playerScoreLabel.setFontScale(scale);
 			this.add(playerNameLabel).row();
 			this.add(playerScoreLabel);
+		}
+		public void newScore(int score){
+			playerScoreLabel.setText(Integer.toString(score));
 		}
 	}
 	
@@ -117,7 +125,7 @@ public class Hud {
         botTable.setDebug(true, true);
         botTable.setFillParent(true);
         botTable.bottom();
-		PlayerBox[] playerBoxes = new PlayerBox[players.size()];
+		playerBoxes = new PlayerBox[players.size()];
         for(int i = 0; i < players.size(); i++){
         	playerBoxes[i] = new PlayerBox(players.get(i));
         	botTable.add(playerBoxes[i]).fillX().expandX().uniform().padBottom(2f);
@@ -129,6 +137,7 @@ public class Hud {
 		drawBackground();
 		stage.draw();
 		drawLanes();
+		
 	}
 	public void setScoreLabel(){
 	    this.scoreLabel.setText("SCORE " + score.getScore());
