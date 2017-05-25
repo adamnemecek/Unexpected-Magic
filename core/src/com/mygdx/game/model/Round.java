@@ -11,14 +11,14 @@ import com.mygdx.game.model.song.IVoice;
  */
 public class Round {
 	public final ISong song;
-	public final List<Player> players;
+	public final List<IPlayer> players;
 
-	public Round(ISong song, List<Player> players){
+	public Round(ISong song, List<IPlayer> players2){
 		this.song = song;
-		this.players = players;
+		this.players = players2;
 
 	}
-	public List<Player> getPlayers(){
+	public List<IPlayer> getPlayers(){
 		return players;
 	}
 }

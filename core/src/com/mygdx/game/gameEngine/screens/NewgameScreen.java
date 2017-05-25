@@ -20,6 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.gameEngine.managers.MusicPlayer;
+import com.mygdx.game.model.IPlayer;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.SongList;
 import com.mygdx.game.model.song.ISong;
@@ -152,7 +153,7 @@ public class NewgameScreen extends AbstractScreen {
 				}
 				IVoice[] voices = song.getVoices();
 				int pl = playerNumButtongroup.getCheckedIndex();
-				List<Player> players = new ArrayList<>(pl);
+				List<IPlayer> players = new ArrayList<>(pl);
 				for(int i = 0; i < pl; i++) {
 					String playerName = playerNames[i].getText().trim();
 					if(playerName.equals("")){

@@ -14,6 +14,7 @@ import com.mygdx.game.gameEngine.input.KeyboardInputManager;
 import com.mygdx.game.gameEngine.managers.RoundManager;
 import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
+import com.mygdx.game.model.IPlayer;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Round;
 import com.mygdx.game.model.Ticker;
@@ -37,7 +38,7 @@ public class GameScreen extends AbstractScreen{
 
 	private Texture background = new Texture("images/UnexpectedMagicBackground5.png");
 	
-	public GameScreen(final SpriteBatch batch, ISong song, List<Player> players, List<IVoice> nonPlayerVoices) {
+	public GameScreen(final SpriteBatch batch, ISong song, List<IPlayer> players, List<IVoice> nonPlayerVoices) {
 		super(batch);
 		this.engine = new PooledEngine();
 		this.ticker = new Ticker(song);
@@ -49,7 +50,7 @@ public class GameScreen extends AbstractScreen{
 	}
 	
 
-	public void initRound(ISong song, List<Player> players, List<IVoice> nonPlayerVoices) {
+	public void initRound(ISong song, List<IPlayer> players, List<IVoice> nonPlayerVoices) {
 		roundManager = new RoundManager(new Round(song, players), nonPlayerVoices, ticker);
 		//wait for player input here before running?
 		running = true;
