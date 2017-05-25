@@ -7,11 +7,10 @@ public class Score implements IScore{
 
 	/**
 	 * A class that holds score.
-	 * Revised by Arunvik
-	 * Primitive, mostly made for me to test testing
+	 * Revised by Arvid
+	 * 
 	 */
 
-	//TODO if score is only part of model should it calculate things?
 	private double score;
 	private int streak;
 	private int bestStreak;
@@ -22,11 +21,11 @@ public class Score implements IScore{
 		score = 0;
 		streak = 0;
 		bestStreak = 0;
-		multiplier = 1; //TODO this could perhaps work
+		multiplier = 1; 
 		listenerHandler = new ListenerHandler();
 		
 	}
-	//first draft, score calculation? Keep track of percentage of note hit?
+	
 	public void hitNote(boolean previouslyHit){
 		
 		if(!previouslyHit){
@@ -39,7 +38,7 @@ public class Score implements IScore{
 			}
 		}
 		score += 0.3*multiplier;
-		listenerHandler.NotifyListeners((int)score);
+		listenerHandler.NotifyListeners((int)Math.round(score));
 	}
 
 
@@ -51,7 +50,7 @@ public class Score implements IScore{
 	public void wrongNote(){
 		if (score > 0){
 			score -= 0.2;
-			listenerHandler.NotifyListeners((int)score);
+			listenerHandler.NotifyListeners((int)Math.round(score));
 		}
 		
 	}

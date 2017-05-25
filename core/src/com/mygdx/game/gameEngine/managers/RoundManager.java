@@ -20,7 +20,7 @@ import java.util.List;
 public class RoundManager {
 	private Round round;
 	private HitManager hitManager;
-	private Synth synth;
+	private ISynth synth;
 	private Ticker ticker;
 
 

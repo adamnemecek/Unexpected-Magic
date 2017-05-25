@@ -13,11 +13,11 @@ import java.util.List;
  */
 public class SongPlayback implements TickListener{
 
-	private final Synth synth;
+	private final ISynth synth;
 	private final List<IVoice> voices;
 
-	public SongPlayback(Synth s, List<IVoice> v){
-		synth = s;
+	public SongPlayback(ISynth synth2, List<IVoice> v){
+		synth = synth2;
 		voices = v;
 		ObserverHandler.addTickListener(this);
 	}
