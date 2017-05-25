@@ -3,10 +3,6 @@ package com.mygdx.game.gameEngine.managers;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * @author Arvid
- *
- */
 
 import java.util.List;
 import java.util.Map;
@@ -23,6 +19,13 @@ import com.mygdx.game.model.TrackableNote;
 
 import com.mygdx.game.model.song.IVoice;
 import com.mygdx.game.utilities.file.Constants;
+
+/**
+ * class that evaluates whether the player's input is correct 
+ * and handles score and noteplaying accordingly
+ * @author Arvid
+ *
+ */
 
 public class HitManager implements TickListener{
 	private List<Player> players;
@@ -67,31 +70,7 @@ public class HitManager implements TickListener{
 			synth.noteOn(pitch);
 			activePitches.get(p).add(pitch);
 		}
-		
-
-		/*List<Integer> activePitches = new ArrayList<>();
-		for (Player p : players){
-			try{
-				ITrackableNote note = activeNotes.get(p);
-				if (note.getOctave() == lane){
-					p.getScore().hitNote(note.isHit());
-					note.hit();
-					activePitches.add(note.getPitch());
-					synth.noteOn(note.getPitch());
-					
-					
-				}
-			}
-			catch (java.lang.NullPointerException np){
-				
-			}	
-		}
-		
-		
-		if (!activePitches.isEmpty()){
-			pitchesAtLane.put(lane, activePitches);
-		}
-		*/
+	
 		
 
 	}
@@ -110,14 +89,7 @@ public class HitManager implements TickListener{
 			}
 		}
 		
-		/*
-		if (pitchesAtLane.get(lane) != null){
-			for (int pitch : pitchesAtLane.get(lane)){
-				synth.noteOff(pitch);
-			}
-			pitchesAtLane.put(lane, null);
-		}
-		*/
+		
 	}
 
 	@Override
@@ -140,11 +112,11 @@ public class HitManager implements TickListener{
 				if ((int)pitch == note.getPitch()){ //compares the notes being played to the note that should be played
 					p.getScore().hitNote(note.isHit());
 					note.hit();
-					//System.out.println("gained score: " + p.getScore().getScore());//TODO remove
+					
 				}
 				else{
 					p.getScore().wrongNote();
-					//System.out.println("lost score: " + p.getScore().getScore());//TODO remove
+					
 				}
 			}
 		}
@@ -157,19 +129,6 @@ public class HitManager implements TickListener{
 				p.getScore().missedNote();
 			}
 			
-			
-			/*else {
-				if(pitchesAtLane.get(old.getOctave()) != null){
-					List<Integer> list = pitchesAtLane.get(old.getOctave());
-					list.remove(list.indexOf(old.getPitch()));
-					if (list.isEmpty()){
-						pitchesAtLane.put(old.getOctave(), null);
-					}
-
-					synth.noteOff(old.getPitch());
-				}
-				
-			}*/
 			
 		}
 		
