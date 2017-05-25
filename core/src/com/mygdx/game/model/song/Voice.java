@@ -47,7 +47,7 @@ public class Voice implements IVoice {
 	}
 	@Override
 	public int octaveAtTick(int tick) {
-		return noteClosestToTick(tick).getOctave();
+		return noteBelowTick(tick).getOctave();
 	}
 	@Override
 	public int pitchAtTick(int tick) {
