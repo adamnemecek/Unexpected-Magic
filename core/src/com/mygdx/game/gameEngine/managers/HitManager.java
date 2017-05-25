@@ -36,6 +36,7 @@ public class HitManager implements TickListener{
 		this.players = players;
 		
 		this.synth = synth;
+		synth.setVolume(1200);
 		ObserverHandler.addTickListener(this);
 		activeNotes = new HashMap<>();
 		pitchesAtLane = new HashMap<>();
