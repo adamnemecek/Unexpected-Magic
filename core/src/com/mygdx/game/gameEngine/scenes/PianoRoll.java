@@ -14,7 +14,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.gameEngine.components.CompositeSpriteComponent;
 import com.mygdx.game.gameEngine.components.PositionComponent;
 import com.mygdx.game.gameEngine.managers.EntityFactory;
-import com.mygdx.game.model.Player;
+import com.mygdx.game.model.IPlayer;
 import com.mygdx.game.model.Ticker;
 import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.utilities.file.Constants;
@@ -36,7 +36,7 @@ public class PianoRoll {
 	private Ticker ticker;
 
 	
-	public PianoRoll(Engine engine, SpriteBatch spriteBatch, List<Player> players, ISong song, Ticker ticker) {
+	public PianoRoll(Engine engine, SpriteBatch spriteBatch, List<? extends IPlayer> players, ISong song, Ticker ticker) {
         this.engine = engine;
         batch = spriteBatch;
         this.ticker = ticker;
@@ -49,7 +49,7 @@ public class PianoRoll {
         positionComponentMapper = ComponentMapper.getFor(PositionComponent.class);
     }
 
-    private void createNoteEntities(List<Player> players, ISong song){
+    private void createNoteEntities(List<? extends IPlayer> players, ISong song){
 		if(players.isEmpty()){
 			for(Entity entity : EntityFactory.createNoteEntities(song)){
 				engine.addEntity(entity);
