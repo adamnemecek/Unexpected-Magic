@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -54,7 +55,7 @@ public class MainMenuScreen extends AbstractScreen {
 		// Create Table
 		Table table = new Table();
 		table.setFillParent(true);
-		table.setDebug(true, true);
+		//table.setDebug(true, true);
 		// Add table to stage
 		stage.addActor(table);
 
@@ -65,14 +66,25 @@ public class MainMenuScreen extends AbstractScreen {
 		//textButtonStyle.down = skin.getDrawable("window-player");
 
 		//float fontScale = 1f;
-		//float buttonScale = 1f;
 
 		TextButton newgameButton = new TextButton(menuItems[0], skin);
+//		newgameButton.setTransform(true);
+//		newgameButton.scaleBy(buttonScale);
 		TextButton optionButton = new TextButton(menuItems[1], skin);
+//		optionButton.setTransform(true);
+//		optionButton.scaleBy(buttonScale);
 		TextButton exitButton = new TextButton(menuItems[2], skin);
+//		exitButton.setTransform(true);
+//		exitButton.scaleBy(buttonScale);
 		
-		// Add buttons to table
-		
+		// table layout
+		float tableScaleX = 0.9f;
+		float tableScaleY = 0.8f;
+		table.setTransform(true);
+		table.setOrigin(Constants.VIEWPORT_DIM_X / 2, Constants.VIEWPORT_DIM_Y / 2);
+		table.setScale(tableScaleX, tableScaleY);
+		table.add(new Label(" \n ",skin)); //this is called silvertejp
+		table.row();
 		table.add(newgameButton).fillX().uniformX();
 		table.row();
 		table.add(optionButton).fillX().uniformX();
