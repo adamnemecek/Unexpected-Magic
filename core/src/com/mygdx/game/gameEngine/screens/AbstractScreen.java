@@ -66,7 +66,7 @@ public abstract class AbstractScreen extends ScreenAdapter {
 
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(0.55882354f,0.25882354f,0.90588236f,1);
+		Gdx.gl.glClearColor(0.26274509f,0.80784313f,0.90588235f,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 	}
 	

@@ -4,10 +4,10 @@ com.badlogic.gdx.graphics.Color: {
 	light_grey: { r: 0.8, g: 0.8, b: 0.8, a: 1 },
 	white: { r: 1, g: 1, b: 1, a: 1 },
 	red: { r: 1, a: 1 },
-	light_blue: { r: 0.64705884, g: 0.64705884, b: 1, a: 1 },
+	light_blue: { r: 0.65098039, g: 0.94509803, b: 0.99607843, a: 1 },
 	grey: { r: 0.7, g: 0.7, b: 0.7, a: 1 },
 	dark_grey: { r: 0.4, g: 0.4, b: 0.4, a: 1 },
-	blue: { r: 0.25882354, g: 0.25882354, b: 0.90588236, a: 1 },
+	blue: { r: 0.26274509, g: 0.80784313, b: 0.90588235, a: 1, a: 1 },
 	black: { a: 1 }
 },
 com.badlogic.gdx.graphics.g2d.BitmapFont: {
@@ -26,17 +26,17 @@ com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
 com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 	default: {
 		font: commodore-64,
-		fontColor: { a: 1, b: 1, g: 0.64705884, r: 0.64705884 },
-		downFontColor: { a: 1, b: 0.90588236, g: 0.25882354, r: 0.25882354 },
+		fontColor: { a: 1, b: 1, g: 0.949019607, r: 0.67843137 },
+		downFontColor: { a: 1, b: 0.45882352, g: 0.90196078, r: 0.26666666 },
 		disabledFontColor: { a: 1, b: 0.8, g: 0.8, r: 0.8 },
 		up: button,
 		down: button-down
 	},
 	toggle: {
 		font: commodore-64,
-		fontColor: { a: 1, b: 1, g: 0.64705884, r: 0.64705884 },
-		downFontColor: { a: 1, b: 0.90588236, g: 0.25882354, r: 0.25882354 },
-		checkedFontColor: { a: 1, b: 0.90588236, g: 0.25882354, r: 0.25882354 },
+		fontColor: { a: 1, b: 1, g: 0.949019607, r: 0.67843137 },
+		downFontColor: { a: 1, b: 0.45882352, g: 0.90196078, r: 0.26666666 },
+		checkedFontColor: { a: 1, b: 0.45882352, g: 0.90196078, r: 0.26666666 },
 		up: button,
 		down: button-down,
 		checked: button-down
@@ -62,12 +62,12 @@ com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
 	default: {
 		background: window,
 		titleFont: commodore-64,
-		titleFontColor: { a: 1, b: 1, g: 0.64705884, r: 0.64705884 }
+		titleFontColor: { a: 1, b: 1, g: 0.949019607, r: 0.67843137 }
 	},
 	dialog: {
 		background: dialog,
 		titleFont: commodore-64,
-		titleFontColor: { a: 1, b: 1, g: 0.64705884, r: 0.64705884 }
+		titleFontColor: { a: 1, b: 1, g: 0.949019607, r: 0.67843137 }
 	},
 	dialog-modal: {
 		background: dialog,
@@ -88,7 +88,7 @@ com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
 	},
 	nobg: {
 		font: commodore-64,
-		fontColor: { a: 1, b: 1, g: 0.64705884, r: 0.64705884 },
+		fontColor: { a: 1, b: 1, g: 0.949019607, r: 0.67843137 },
 		cursor: cursor,
 		selection: white,
 		messageFont: commodore-64,
@@ -111,7 +111,7 @@ com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	},
 	default: {
 		font: commodore-64,
-		fontColor: { a: 1, b: 1, g: 0.64705884, r: 0.64705884 }
+		fontColor: { a: 1, b: 1, g: 0.949019607, r: 0.67843137 }
 	},
 	error: {
 		font: commodore-64,
@@ -119,21 +119,21 @@ com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	},
 	title: {
 		font: commodore-64,
-		fontColor: { a: 1, b: 1, g: 0.64705884, r: 0.64705884 },
+		fontColor: { a: 1, b: 1, g: 0.949019607, r: 0.67843137 },
 		background: button
 	}
 },
 com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
 	default: {
 		font: commodore-64,
-		fontColorSelected: { a: 1, b: 0.90588236, g: 0.25882354, r: 0.25882354 },
-		fontColorUnselected: { a: 1, b: 1, g: 0.64705884, r: 0.64705884 },
+		fontColorSelected: { a: 1, b: 0.45882352, g: 0.90196078, r: 0.26666666 },
+		fontColorUnselected: { a: 1, b: 1, g: 0.949019607, r: 0.67843137 },
 		selection: white
 	},
 	dimmed: {
 		font: commodore-64,
-		fontColorSelected: { a: 1, b: 0.90588236, g: 0.25882354, r: 0.25882354 },
-		fontColorUnselected: { a: 1, b: 0.90588236, g: 0.25882354, r: 0.25882354 },
+		fontColorSelected: { a: 1, b: 0.45882352, g: 0.90196078, r: 0.26666666 },
+		fontColorUnselected: { a: 1, b: 0.45882352, g: 0.90196078, r: 0.26666666 },
 		selection: light-blue,
 		background: white
 	}
@@ -143,13 +143,13 @@ com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
 		checkboxOn: check-box,
 		checkboxOff: check-box-off,
 		font: commodore-64,
-		fontColor: { a: 1, b: 1, g: 0.64705884, r: 0.64705884 }
+		fontColor: { a: 1, b: 1, g: 0.949019607, r: 0.67843137 }
 	},
 	radio: {
 		checkboxOn: radio-button,
 		checkboxOff: radio-button-off,
 		font: commodore-64,
-		fontColor: { a: 1, b: 1, g: 0.64705884, r: 0.64705884 },
+		fontColor: { a: 1, b: 1, g: 0.949019607, r: 0.67843137 },
 		checkedFontColor: { a: 1, b: 1, g: 1, r: 1 }
 	}
 },
@@ -163,7 +163,7 @@ com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {
 com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle: {
 	default: {
 		font: commodore-64,
-		fontColor: { a: 1, b: 1, g: 0.64705884, r: 0.64705884 },
+		fontColor: { a: 1, b: 1, g: 0.949019607, r: 0.67843137 },
 		background: list,
 		scrollStyle: default,
 		listStyle: dimmed
