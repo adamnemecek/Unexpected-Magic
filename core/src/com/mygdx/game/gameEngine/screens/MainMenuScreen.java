@@ -1,11 +1,9 @@
 package com.mygdx.game.gameEngine.screens;
 
-import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -13,7 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.gameEngine.managers.AnimationManager;
 import com.mygdx.game.gameEngine.managers.MusicPlayer;
 import com.mygdx.game.utilities.file.Constants;
@@ -27,6 +24,7 @@ public class MainMenuScreen extends AbstractScreen {
 	
 	private AnimationManager feffeAnim;
 	private AnimationManager frodoAnim;
+	private AnimationManager nekkiAnim;
 
 	// BUTTONS
 	private ButtonGroup<TextButton> buttonGroup;
@@ -40,10 +38,13 @@ public class MainMenuScreen extends AbstractScreen {
 		menuItemSelected = 0;
 		menuItems = new String[] { "New game", "Options", "Exit" };
 		
+	// ANIMATIONS
 		feffeAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/feffe.png")),
 				batch, 1, 6, 275, -32, 200, 200, 0.1f );
 		frodoAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/frodo.png")),
 				batch, 1, 6, 210, -10, 200, 200, 0.12f );
+		nekkiAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/nekki.png")),
+				batch, 1, 1, 0, -10, 200, 200, 0.1f );
 //	}
 
 //	@Override
@@ -164,9 +165,10 @@ public class MainMenuScreen extends AbstractScreen {
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		batch.draw(background, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y);
-		feffeAnim.render(); // render animation TODO should perhaps be automated
-		frodoAnim.render();
 		batch.end();
+		feffeAnim.draw(); // render animation TODO should perhaps be automated
+		frodoAnim.draw();
+		nekkiAnim.draw();
 
 		stage.act();
 		stage.draw();

@@ -61,10 +61,12 @@ public class AnimationManager {
 
 
 
-	public void render() {
+	public void draw() {
 		stateTime += Gdx.graphics.getDeltaTime();
 		TextureRegion currentFrame = animation.getKeyFrame(stateTime, true);
+		spriteBatch.begin();
 		spriteBatch.draw(currentFrame, this.posX, this.posY,this.width,this.height);
+		spriteBatch.end();
 	}
 }
 
