@@ -7,21 +7,15 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.Event;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Value;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.model.IPlayer;
 import com.mygdx.game.model.NoteLanes;
-import com.mygdx.game.model.Player;
-import com.mygdx.game.model.Score;
 import com.mygdx.game.model.ScoreListener;
 import com.mygdx.game.utilities.file.Constants;
 
@@ -48,8 +42,8 @@ public class Hud {
 	private class PlayerBox extends Table implements ScoreListener{
 		private Label playerNameLabel;
 		private Label playerScoreLabel;
-		private Player player;
-		PlayerBox(Player player) {
+		private IPlayer player;
+		PlayerBox(IPlayer player) {
 			super(skin);
 			playerNameLabel = new Label(player.getName(), skin);
 			float scale = 0.5f;
@@ -66,7 +60,7 @@ public class Hud {
 		}
 	}
 	
-	public Hud(SpriteBatch batch, String songTitle, String bpm, List<Player> players){
+	public Hud(SpriteBatch batch, String songTitle, String bpm, List<? extends IPlayer> players){
 		TextureAtlas atlas = new TextureAtlas("skins/commodore64/skin/uiskin.atlas");
 		skin = new Skin(Gdx.files.internal("skins/commodore64/skin/uiskin.json"),atlas);
 
