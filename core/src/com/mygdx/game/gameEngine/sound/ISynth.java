@@ -16,5 +16,7 @@ public interface ISynth {
 	public void setInstrument(int instrument);
 	
 	public void changeChannel(int channel);
+	
+	public void setVolume(int v);
 
 }

@@ -10,9 +10,8 @@ import java.util.Map;
 
 import com.mygdx.game.Observers.ObserverHandler;
 import com.mygdx.game.Observers.TickListener;
-
+import com.mygdx.game.gameEngine.sound.ISynth;
 import com.mygdx.game.gameEngine.sound.Synth;
-
 import com.mygdx.game.model.ITrackableNote;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.TrackableNote;
@@ -29,21 +28,19 @@ import com.mygdx.game.utilities.file.Constants;
 
 public class HitManager implements TickListener{
 	private List<Player> players;
-	private Synth synth;
+	private ISynth synth;
 	private Map<Player, ITrackableNote> activeNotes;
-	private Map<Integer, List<Integer>> pitchesAtLane;
 	private Map<Player, List<Integer>> activePitches;
 	private int tick;
 	
 	
-	public HitManager(List<Player> players, Synth synth){
+	public HitManager(List<Player> players, ISynth synth){
 		this.players = players;
 		
 		this.synth = synth;
 		synth.setVolume(1200);
 		ObserverHandler.addTickListener(this);
 		activeNotes = new HashMap<>();
-		//pitchesAtLane = new HashMap<>();
 		activePitches = new HashMap<>();
 		for (Player p : players){
 			activePitches.put(p, new ArrayList<Integer>());
@@ -85,7 +82,7 @@ public class HitManager implements TickListener{
 			if (pitch % Constants.NUMBER_OF_LANES == lane){
 				synth.noteOff(pitch);
 				activePitches.get(p).remove(pitch);
-				System.out.println("gets here");
+			
 			}
 		}
 		

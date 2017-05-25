@@ -3,6 +3,7 @@ package com.mygdx.game.gameEngine.managers;
 import com.mygdx.game.gameEngine.sound.Metronome;
 import com.mygdx.game.gameEngine.sound.SongPlayback;
 import com.mygdx.game.gameEngine.sound.Synth;
+import com.mygdx.game.gameEngine.sound.ISynth;
 import com.mygdx.game.model.Round;
 import com.mygdx.game.model.Ticker;
 import com.mygdx.game.model.song.IVoice;

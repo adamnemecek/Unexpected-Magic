@@ -7,7 +7,7 @@ import com.mygdx.game.model.song.IVoice;
  * @author soflarb
  */
 
-public class Player {
+public class Player{
 	private final String name;
 	private final IVoice voice;
 	private final Score score;
