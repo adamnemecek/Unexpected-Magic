@@ -26,12 +26,10 @@ public class ScoreTest {
 			score.hitNote(false);
 		}
 		assertEquals(100, score.getStreak());
-		assertEquals(150, score.getScore());
 		
 		score.missedNote();
 		
 		assertEquals(0, score.getStreak());
-		assertEquals(150, score.getScore());
 		
 	}
 	
@@ -41,20 +39,23 @@ public class ScoreTest {
 			score.hitNote(true);
 		}
 		
-		assertEquals(score.getScore(), 100);
+		assertEquals(score.getScore(), 30);
 		
 	}
 	
 	@Test
 	public void testMultiplier(){
-		for(int i = 0; i < 100; i++){
+		for(int i = 0; i < 49; i++){
 			score.hitNote(false);
 		}
-		assertEquals(3, score.getMultiplier());
+		assertEquals(5, score.getMultiplier());
 		for(int i = 0; i < 100; i++){
 			score.hitNote(true);
 		}
-		assertEquals(3, score.getMultiplier());
+		assertEquals(5, score.getMultiplier());
+		
+		score.missedNote();
+		assertEquals(1, score.getMultiplier());
 	}
 
 }

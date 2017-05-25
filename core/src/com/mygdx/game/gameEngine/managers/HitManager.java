@@ -24,19 +24,19 @@ import com.mygdx.game.utilities.file.Constants;
  * class that evaluates whether the player's input is correct 
  * and handles score and noteplaying accordingly
  * @author Arvid
- * Revised By Arvid & 
+ * Revised By Arvid & Arvid again
  *
  */
 
 public class HitManager implements TickListener{
-	private List<? extends IPlayer> players;
+	private List<IPlayer> players;
 	private ISynth synth;
 	private Map<IPlayer, ITrackableNote> activeNotes; //keeps track of the notes each player is supposed to play
 	private Map<IPlayer, List<Integer>> activePitches; //keeps track of the notes each player is currently playing
 	private int tick;
 	
 	
-	public HitManager(List<? extends IPlayer> players, ISynth synth){
+	public HitManager(List<IPlayer> players, ISynth synth){
 		this.players = players;
 		
 		this.synth = synth;

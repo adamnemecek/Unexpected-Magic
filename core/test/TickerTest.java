@@ -47,8 +47,8 @@ public class TickerTest {
 		int tick = 0;
 		int oldtick = -1;
 		while(ticker.isTicking()){
-			ticker.updateTick(1);
 			assertTrue(tick>oldtick);
+			ticker.updateTick(5);
 			oldtick=tick;
 			tick=ticker.getTick();
 		}
