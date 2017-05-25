@@ -13,7 +13,8 @@ public interface IInputController {
 	
 	void noteKeyReleased(Action note, int playerIndex);
 
-	void uiKeyPressed();
+	void uiKeyPressed(Action action);
 	
-	void uiKeyReleased();
+	void uiKeyReleased(Action action);
+
 }

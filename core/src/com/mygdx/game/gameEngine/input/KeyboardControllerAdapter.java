@@ -18,7 +18,9 @@ public class KeyboardControllerAdapter {
 		int playerIndex = actionObject.playerIndex;
 		if(action == null) return;
 		if(action.isNote()) inputAction.noteKeyPressed(action, playerIndex);
-		else if(action == Action.PAUSE_GAME); // TODO something with pause
+		else if(action == Action.PAUSE_GAME){
+			inputAction.uiKeyPressed(Action.PAUSE_GAME);
+		}
 	}
 	public void keyReleased(int keyCode) {
 		ConfigService.ActionObject actionObject = ConfigService.keyAction(keyCode);
@@ -26,7 +28,9 @@ public class KeyboardControllerAdapter {
 		int playerIndex = actionObject.playerIndex;
 		if(action == null) return;
 		if(action.isNote()) inputAction.noteKeyReleased(action,playerIndex);
-		else if(action == Action.PAUSE_GAME); // TODO something with pause
+		else if(action == Action.PAUSE_GAME){
+			inputAction.uiKeyReleased(Action.PAUSE_GAME);
+		}
 		
 	}
 }

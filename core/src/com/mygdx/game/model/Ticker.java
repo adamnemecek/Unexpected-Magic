@@ -14,6 +14,8 @@ public class Ticker {
 	private final int songTotalTicks;
 	private final double tickFreq;
 	private boolean ticking;
+	private boolean paused = false;
+
 
 	public Ticker(ISong song){
 		time = -2;
@@ -34,6 +36,7 @@ public class Ticker {
 	}
 	
 	public void updateTick(float delta){
+		if(!this.paused){
 		if(!isTicking()) return;
 		time += delta;
 		tick = (int)(tickWithDecimals());
@@ -47,7 +50,10 @@ public class Ticker {
 			ObserverHandler.notifyTickListeners(tick);
 		}
 		if(tick >= songTotalTicks){ ticking = false; }
+		}
 	}
+
+
 	public double tickWithDecimals() {
 		return time * tickFreq;
 	}
@@ -60,5 +66,9 @@ public class Ticker {
 	}
 	public boolean isTicking(){
 		return ticking;
+	}
+
+	public void togglePauseTicker(){
+		this.paused = !this.paused;
 	}
 }

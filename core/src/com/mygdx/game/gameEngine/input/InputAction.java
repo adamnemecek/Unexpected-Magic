@@ -36,16 +36,19 @@ public class InputAction implements IInputController{
 		
 	}
 
+
 	@Override
-	public void uiKeyPressed() {
-		// TODO Auto-generated method stub
-		
+	public void uiKeyPressed(Action action) {
+		if(action == Action.PAUSE_GAME){
+			roundManager.pauseGame();
+		}
 	}
 
 	@Override
-	public void uiKeyReleased() {
-		// TODO Auto-generated method stub
-		
+	public void uiKeyReleased(Action action) {
+		if(action == Action.PAUSE_GAME){
+			//NOTHING NOTHING NOTHING
+		}
 	}
 	
 
