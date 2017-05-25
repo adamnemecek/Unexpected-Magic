@@ -17,6 +17,7 @@ public class KeyboardInputManager implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
+    	
         keyboardControllerAdapter.keyPressed(keycode);
         return true;
     }

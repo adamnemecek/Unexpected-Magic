@@ -39,6 +39,14 @@ public class Score {
 		streak=0;
 		multiplier = 1;
 	}
+	
+	public void wrongNote(){
+		if (score > 0){
+			score -= 1;
+			listenerHandler.NotifyListeners((int)score);
+		}
+		
+	}
 	public int getMultiplier(){
 		return multiplier;
 	}
