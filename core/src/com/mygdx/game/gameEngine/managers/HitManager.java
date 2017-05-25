@@ -49,6 +49,7 @@ public class HitManager implements TickListener{
 	
 	
 	public synchronized void notePlayStart(int lane, int player){
+		if(player >= players.size()) return; //TODO remove when multiplayer is properly implemented
 		Player p = players.get(player);
 		if (activeNotes.get(p) != null){
 			ITrackableNote note = activeNotes.get(p);
@@ -73,6 +74,7 @@ public class HitManager implements TickListener{
 	}
 	
 	public synchronized void notePlayStop(int lane, int player){
+		if(player >= players.size()) return; //TODO remove when multiplayer is properly implemented
 		Player p = players.get(player);
 		List<Integer> pitches = new ArrayList<>();
 		for(Integer pitch : activePitches.get(p)){

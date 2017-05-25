@@ -34,12 +34,10 @@ public class RoundManager {
 	}
 
 	public void notePlayStart(int lane,int player){
-		if(round.players.size() > 0) //TODO remove when multiplayer is properly implemented
 		hitManager.notePlayStart(lane, player);
 	}
 	
 	public void notePlayStop(int lane, int player){
-		if(round.players.size() > 0) //TODO remove when multiplayer is properly implemented
 		hitManager.notePlayStop(lane, player);
 	}
 
