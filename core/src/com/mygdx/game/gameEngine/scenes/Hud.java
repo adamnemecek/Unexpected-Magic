@@ -79,7 +79,7 @@ public class Hud {
 	 	// top table layout with song title, menu button, etc.
         Table topTable = new Table();
         stage.addActor(topTable);
-        topTable.setDebug(true, true);
+        //topTable.setDebug(true, true);
 		topTable.setFillParent(true);
 		topTable.top();
 		topTable.left();
@@ -99,7 +99,7 @@ public class Hud {
         // bot table layout with player boxes.
         Table botTable = new Table();
         stage.addActor(botTable);
-        botTable.setDebug(true, true);
+        //botTable.setDebug(true, true);
         botTable.setFillParent(true);
         botTable.bottom();
 		playerBoxes = new PlayerBox[players.size()];
