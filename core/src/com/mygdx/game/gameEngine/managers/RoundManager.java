@@ -11,9 +11,9 @@ import com.mygdx.game.model.song.IVoice;
 import java.util.List;
 
 /**
- * 
+ * Class that instantiates the classes needed to play a round
  * @author soflarb
- * Revised by Arvid
+ * Revised by rarvid
  *
  */
 
@@ -32,21 +32,21 @@ public class RoundManager {
 		this.hitManager = new HitManager(round.getPlayers(), this.synth);
 		new SongPlayback(this.synth,nonPlayerVoices);
 	}
-
+	// tells hitManager that a note key was pressed
 	public void notePlayStart(int lane,int player){
 		hitManager.notePlayStart(lane, player);
 	}
-	
+	//tells hitManager that a note key stopped being presssed
 	public void notePlayStop(int lane, int player){
 		hitManager.notePlayStop(lane, player);
 	}
-
+	//creates a Synth
 	private void initSynth(){
 		this.synth = new Synth();
 		synth.setInstrument(1);
 		synth.setSongTimeSignaure(round.song.getTime()[1],round.song.getBpm());
 	}
-
+	//tells ticker that the pause key was pressed
 	public void pauseGame(){
 		this.ticker.togglePauseTicker();
 	}

@@ -7,6 +7,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.gameEngine.managers.MusicPlayer;
 import com.mygdx.game.utils.Constants;
 
+/**
+ * 
+ * @author soflarb
+ *
+ */
+
 public class TitleScreen extends AbstractScreen{
 
 	private final Texture bg = new Texture("images/UnexpectedMagicBackground5.png");

@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * A factory class that handles creation of entities.
  * @author soflarb
- * Revised by rastom & car0b1nius
+ * Revised by rastom, car0b1nius and rarvid
  * 
  */
 public class EntityFactory {

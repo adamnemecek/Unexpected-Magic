@@ -15,6 +15,11 @@ import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.UnexpectedMagic;
 import com.mygdx.game.utils.Constants;
 
+/**
+ * 
+ * @author soflarb
+ *
+ */
 public class OptionsScreen extends AbstractScreen {
 
 	public OptionsScreen(/*final Engine engine,*/ SpriteBatch batch) {

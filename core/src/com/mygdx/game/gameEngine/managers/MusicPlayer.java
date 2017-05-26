@@ -7,6 +7,13 @@ import java.util.Set;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 
+/**
+ * 
+ * @author soflarb
+ * Revised by car0b1nius
+ *
+ */
+
 public class MusicPlayer implements IMusicPlayer {
 	//Singleton implementation
 	private static final MusicPlayer INSTANCE = new MusicPlayer();

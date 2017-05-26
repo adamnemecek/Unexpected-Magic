@@ -25,6 +25,8 @@ import com.mygdx.game.utils.Constants;
 
 /**
 * Screen that contains the game (in-game).
+* @author soflarb
+* Revised by car0b1nius, rastom and rarvid
 */
 public class GameScreen extends AbstractScreen{
 	private boolean running;

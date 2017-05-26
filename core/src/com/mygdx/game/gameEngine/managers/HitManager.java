@@ -21,8 +21,8 @@ import com.mygdx.game.model.song.IVoice;
 import com.mygdx.game.utils.Constants;
 
 /**
- * class that evaluates whether the player's input is correct 
- * and handles score and noteplaying accordingly
+ * class that evaluates whether the player's input corresponds with the note the player should be playing 
+ * and handles score and note playing accordingly
  * @author rarvid
  * Revised By rarvid & rastom and then rarvid again
  *
@@ -61,7 +61,7 @@ public class HitManager implements TickListener{
 				synth.noteOn(note.getPitch());
 				activePitches.get(p).add(note.getPitch());
 			}
-			//if not correct
+			//if not correct, play a note with the same octave as the closest note
 			else{
 				int pitch =lane + 12 * p.getVoice().octaveAtTick(tick);
 				synth.noteOn(pitch);
