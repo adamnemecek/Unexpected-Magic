@@ -9,7 +9,7 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "Unexpected Magic";
-		config.addIcon("images/Unexpected_Magic_Logo.png", Files.FileType.Internal);
+		config.addIcon("images/Unexpected_Magic_Logo2-sqr.png", Files.FileType.Internal);
 		new LwjglApplication(new UnexpectedMagic(), config);
 
 	}
