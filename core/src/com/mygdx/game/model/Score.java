@@ -2,19 +2,18 @@ package com.mygdx.game.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * A class that holds score.
+ * @author soflarb
+ * Revised by rarvid
+ */
 public class Score implements IScore{
 
-	/**
-	 * A class that holds score.
-	 * Revised by Arvid
-	 * 
-	 */
 
 	private double score;
 	private int streak;
 	private int bestStreak;
-	private int multiplier; //higher score if higher streak¨
+	private int multiplier; //higher score if higher streakï¿½
 	private final ListenerHandler listenerHandler;
 
 	public Score(){

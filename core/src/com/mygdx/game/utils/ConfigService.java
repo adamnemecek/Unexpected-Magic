@@ -1,4 +1,10 @@
 package com.mygdx.game.utils;
+
+/**
+ * Class that handles action to key mapping.
+ * @author car0b1nius
+ * Revised by rastom, soflarb
+ */
 public class ConfigService {
 	public static ActionObject keyAction(int keyCode) {
 		// I really would prefer to use Keys.ESCAPE and such, but that causes "circular dependencies" and "isn't good structure".
@@ -69,7 +75,8 @@ public class ConfigService {
 	
 	/**
 	 * Enum for different input actions.
-	 * @author rastom
+	 * @author car0b1nius
+	 * Revised by rastom, soflarb
 	 */
 
 	public static enum Action {
@@ -117,7 +124,11 @@ public class ConfigService {
 			return ret;
 		}
 	}
-	
+	/**
+	 * Class for packaging player action information.
+	 * @author soflarb
+	 * Revised by rastom, car0b1nius
+	 */
 	public static class ActionObject{
 		public final int playerIndex;
 		public final Action action;

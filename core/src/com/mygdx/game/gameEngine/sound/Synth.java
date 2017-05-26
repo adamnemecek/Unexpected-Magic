@@ -16,7 +16,7 @@ public class Synth implements ISynth{
 	private MidiChannel channel;
 	private MidiChannel[] channels;
 	private Synthesizer synth = null;
-	private Soundbank soundbank;
+	//private Soundbank soundbank;
 	private Instrument[] instr;
 	private int bpm = 155;
 	private int timeSignature = 4;
@@ -33,7 +33,7 @@ public class Synth implements ISynth{
 		catch (MidiUnavailableException e){
 		}
 
-		soundbank = synth.getDefaultSoundbank();
+		//soundbank = synth.getDefaultSoundbank();
 		instr = synth.getAvailableInstruments();
 		
 		try

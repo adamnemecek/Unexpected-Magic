@@ -4,9 +4,10 @@ import com.mygdx.game.Observers.ObserverHandler;
 import com.mygdx.game.Observers.TickListener;
 
 /**
- * Class for that works as a metronome
- * takes bpm and plays a beat according to it
+ * Class that represents a metronome.
+ * Takes bpm and plays a beat according to it.
  * @author rastom
+ * Revised by rarvid, car0b1nius
  */
 
 public class Metronome implements TickListener {

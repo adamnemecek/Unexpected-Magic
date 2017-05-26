@@ -5,7 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Scanner;
-
+/**
+ * Class for reading .uxm files.
+ * @author car0b1nius
+ */
 public class FileReader {
 	private FileReader(){}
 	public static String readFile(String path) throws FileNotFoundException {

@@ -8,8 +8,9 @@ import com.mygdx.game.model.song.IVoice;
 import java.util.List;
 
 /**
+ * Class for playing non-player voices
  * @author rastom
- * class for playing non-player voices
+ * Revised by car0b1nius
  */
 public class SongPlayback implements TickListener{
 

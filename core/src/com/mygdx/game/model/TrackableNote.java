@@ -4,8 +4,7 @@ import com.mygdx.game.model.song.INote;
 
 /**
  * Class for non-static parts of Notes
- * @author Arvid
- *
+ * @author rarvid
  */
 
 public class TrackableNote implements ITrackableNote {

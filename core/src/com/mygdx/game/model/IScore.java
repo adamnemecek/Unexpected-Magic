@@ -2,9 +2,8 @@ package com.mygdx.game.model;
 
 
 /**
- * 
+ * An interface for one player's score.
  * @author Arvid
- *
  */
 public interface IScore {
 	

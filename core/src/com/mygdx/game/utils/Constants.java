@@ -2,6 +2,8 @@ package com.mygdx.game.utils;
 
 /**
  * A class that holds global constants.
+ * @author soflarb
+ * Revised by car0b1nius, rastom, rarvid
  */
 
 public final class Constants {

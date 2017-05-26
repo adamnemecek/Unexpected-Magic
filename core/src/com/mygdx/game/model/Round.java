@@ -3,7 +3,6 @@ package com.mygdx.game.model;
 import java.util.List;
 
 import com.mygdx.game.model.song.ISong;
-import com.mygdx.game.model.song.IVoice;
 
 /**
  * A class that represents a game round.

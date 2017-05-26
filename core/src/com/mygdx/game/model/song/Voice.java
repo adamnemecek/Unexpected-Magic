@@ -53,12 +53,14 @@ public class Voice implements IVoice {
 	public int pitchAtTick(int tick) {
 		return noteBelowTick(tick).getPitch();
 	}
+	/*
 	private INote noteClosestToTick(int tick) {
 		if(notes.get(tick) != null) return notes.get(tick);
 		int lo = notes.lowerKey(tick);
 		int hi = notes.higherKey(tick);
 		return tick - lo <= hi - tick ? notes.get(lo) : notes.get(hi);
 	}
+	*/
 	private INote noteBelowTick(int tick) {
 		Entry<Integer, INote> r = notes.floorEntry(tick);
 		if(r == null) return null;

@@ -1,6 +1,5 @@
 package com.mygdx.game.model;
 
-import com.mygdx.game.gameEngine.managers.SpriteFactory;
 import com.mygdx.game.utils.Constants;
 
 /**

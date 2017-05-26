@@ -2,8 +2,7 @@ package com.mygdx.game.Observers;
 
 /**
  * Interface for objects that listen to ticks
- * @author Arvid
- *
+ * @author rarvid
  */
 
 public interface TickListener {

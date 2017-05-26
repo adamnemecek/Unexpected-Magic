@@ -3,9 +3,8 @@ package com.mygdx.game.model;
 import com.mygdx.game.model.song.IVoice;
 
 /**
- * 
- * @author Arvid
- *
+ * An interface for a player.
+ * @author rarvid
  */
 public interface IPlayer {
 	

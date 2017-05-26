@@ -1,7 +1,10 @@
 package com.mygdx.game.gameEngine.sound;
 
 import com.mygdx.game.model.song.INote;
-
+/**
+ * Interface for a synth.
+ * @author rarvid
+ */
 public interface ISynth {
 	public void setSongTimeSignaure(int timeSignature, int bpm);
 	
