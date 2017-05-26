@@ -19,7 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.utils.Align;
-import com.mygdx.game.gameEngine.managers.MusicPlayer;
+import com.mygdx.game.gameEngine.sound.MusicPlayer;
 import com.mygdx.game.model.IPlayer;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.SongList;

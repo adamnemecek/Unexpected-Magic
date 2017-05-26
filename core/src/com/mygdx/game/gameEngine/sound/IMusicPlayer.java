@@ -1,4 +1,4 @@
-package com.mygdx.game.gameEngine.managers;
+package com.mygdx.game.gameEngine.sound;
 
 import java.util.Set;
 import com.badlogic.gdx.utils.Disposable;
