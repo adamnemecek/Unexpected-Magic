@@ -1,5 +1,7 @@
 package com.mygdx.game.gameEngine.screens;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
@@ -23,6 +25,7 @@ import com.mygdx.game.utils.Constants;
 public class MainMenuScreen extends AbstractScreen {
 
 	Texture background = new Texture("images/UnexpectedMagicBackground6.png");
+	private ArrayList<AnimationManager> animations;
 	private AnimationManager djblookAnim;
 	private AnimationManager feffeAnim;
 	private AnimationManager frodoAnim;
@@ -49,6 +52,12 @@ public class MainMenuScreen extends AbstractScreen {
 				batch, 1, 6, 210, -10, 200, 200, 0.12f );
 		nekkiAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/nekki.png")),
 				batch, 1, 1, 0, -30, 200, 200, 0.1f );
+		animations = new ArrayList<>();
+		animations.add(djblookAnim);
+		animations.add(feffeAnim);
+		animations.add(frodoAnim);
+		animations.add(nekkiAnim);
+		
 //	}
 
 //	@Override
@@ -98,19 +107,6 @@ public class MainMenuScreen extends AbstractScreen {
 		buttonGroup.setMinCheckCount(0);
 		buttonGroup.setChecked(menuItems[0]);
 		
-		/*for(TextButton btn : buttongroup.getButtons()) {
-			btn.setTransform(true);
-			btn.getLabel().setFontScale(fontScale);
-			btn.setScale(buttonScale);
-		}*/
-		/*
-		addButtonListeners();
-
-	}
-
-	// TODO should be done in a more elegant way
-	private void addButtonListeners() {
-		*/
 		newgameButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
@@ -181,11 +177,9 @@ public class MainMenuScreen extends AbstractScreen {
 		batch.begin();
 		batch.draw(background, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y);
 		batch.end();
-		djblookAnim.draw();
-		feffeAnim.draw(); // render animation TODO should perhaps be automated
-		frodoAnim.draw();
-		nekkiAnim.draw();
-
+		for(AnimationManager animation : animations){ 
+			animation.draw();
+		}
 		stage.act();
 		stage.draw();
 	}

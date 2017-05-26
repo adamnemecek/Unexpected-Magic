@@ -104,7 +104,6 @@ public class NewgameScreen extends AbstractScreen {
 			songSelector.addListener(
 				(Event event) -> {
 					if(!(event instanceof ChangeEvent)) return false;
-					//TODO
 					int voiceNum = songList.voicesInSong(songSelector.getSelected().title);
 					playerNumButtons[Math.min(voiceNum, playerNumButtongroup.getCheckedIndex())].setChecked(true);
 					for(int i = 0; i < 5; i++) {
@@ -193,7 +192,7 @@ public class NewgameScreen extends AbstractScreen {
 	private TextField makePlayerNameField(String placeholder) {
 		TextField textField = new TextField(null, skin);
 		textField.setFocusTraversal(true);
-		textField.setMaxLength(10); //TODO appropriate maxlength of name
+		textField.setMaxLength(10);
 		textField.setMessageText(placeholder);
 		textField.setDisabled(true);
 		return textField;

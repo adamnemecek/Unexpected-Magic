@@ -25,7 +25,7 @@ public class ConfigService {
 		if(keyCode == 41) return Action.NOTE_B; //M
 		*/
 		Action action;
-		int playerIndex = 0; //TODO
+		int playerIndex = 0; //TODO implement multiplayer and give each player separate controls
 		//works on mac
 		switch (keyCode) {
 			case 131:
@@ -70,7 +70,7 @@ public class ConfigService {
 			default:
 				action = null;
 		}
-				return new ActionObject(playerIndex, action); //TODO different players
+				return new ActionObject(playerIndex, action);
 	}
 	
 	/**

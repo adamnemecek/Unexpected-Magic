@@ -12,7 +12,6 @@ public class Player implements IPlayer{
 	private final String name;
 	private final IVoice voice;
 	private final Score score;
-	//public Player(String name){} //TODO for testing
 	public Player(String name, IVoice voice) {
 		this(name, voice, new Score());
 	}

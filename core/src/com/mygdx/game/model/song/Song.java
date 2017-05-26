@@ -55,7 +55,6 @@ public class Song implements ISong {
 	}
 	public int length() {
 		int max = 0;
-		// TODO Auto-generated method stub
 		for(IVoice voice : getVoices()) {
 			max = Math.max(max, voice.length());
 		}

@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.gameEngine.components.CompositeSpriteComponent;
 import com.mygdx.game.gameEngine.components.PositionComponent;
 import com.mygdx.game.gameEngine.managers.EntityFactory;
+import com.mygdx.game.gameEngine.managers.SpriteFactory;
 import com.mygdx.game.model.IPlayer;
 import com.mygdx.game.model.Ticker;
 import com.mygdx.game.model.song.ISong;
@@ -63,12 +64,12 @@ public class PianoRoll {
 	}
 
 	public void placeCamera(){
-		camera.position.y = (float)ticker.tickWithDecimals()*Constants.NOTESPRITE_HEIGHT + camera.viewportHeight/2;
+		camera.position.y = (float)ticker.tickWithDecimals()*SpriteFactory.noteSectionHeight + camera.viewportHeight/2;
 		camera.update();
 	}
 
 	public void draw() {
-		viewport.apply(false);//TODO centercamera thing is not applied
+		viewport.apply(false);
 		ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(CompositeSpriteComponent.class,PositionComponent.class).get());
 		for (Entity entity : entities) {
 			PositionComponent pos = positionComponentMapper.get(entity);
@@ -80,7 +81,7 @@ public class PianoRoll {
 	}
 	
 	public void resize(int width, int height, int screenX, int screenY){
-		viewport.update(width, height, false);//TODO centercamera thing is not applied
+		viewport.update(width, height, false);
 		viewport.setScreenPosition(screenX, (int)(screenY + Constants.PIANOROLL_BOT_PADDING * (height/Constants.VIEWPORT_DIM_Y)));
 	}
 }

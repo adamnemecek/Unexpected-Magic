@@ -23,8 +23,7 @@ public class Ticker {
 		oldTick = -1;
 		tickFreq = calculateTickFreq(song); //ticks/sec
 		tick = (int)tickWithDecimals();
-		songTotalTicks = song.getVoices()[0].length(); //TODO voice length is in number of 64 notes, every tick is a 64 note
-		//System.out.println("songTotalTicks: " +songTotalTicks);
+		songTotalTicks = song.getVoices()[0].length();
 		ticking = true;
 	}
 	

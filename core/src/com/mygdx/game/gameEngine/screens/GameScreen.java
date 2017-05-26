@@ -101,7 +101,7 @@ public class GameScreen extends AbstractScreen{
 		//draw pianoroll
 		batch.begin();
 		batch.setProjectionMatrix(pianoRoll.camera.combined);
-		pianoRoll.draw();//TODO how to move pianoroll camera, should move according to tick
+		pianoRoll.draw();
 		pianoRoll.placeCamera();
 		//update systems
 		update(delta);

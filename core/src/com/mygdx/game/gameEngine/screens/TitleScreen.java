@@ -20,7 +20,6 @@ public class TitleScreen extends AbstractScreen{
 	public TitleScreen(SpriteBatch batch) {
 		super(batch);
 		MusicPlayer.getInstance().play("main-theme");
-		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public void render(float delta){
