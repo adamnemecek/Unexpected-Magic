@@ -17,6 +17,8 @@ public interface IScore {
 	
 	int getStreak();
 	
+	int getBestStreak();
+	
 	int getScore();
 	
 	void addListener(ScoreListener sl);

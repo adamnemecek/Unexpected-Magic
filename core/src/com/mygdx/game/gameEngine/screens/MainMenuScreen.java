@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -85,9 +84,9 @@ public class MainMenuScreen extends AbstractScreen {
 		table.setTransform(true);
 		table.setOrigin(Constants.VIEWPORT_DIM_X / 2, Constants.VIEWPORT_DIM_Y / 2);
 		table.setScale(tableScaleX, tableScaleY);
-		table.add(new Label(" \n ",skin)); //this is called silvertejp
+		//table.add(new Label(" \n ",skin)); //this is called silvertejp
 		table.row();
-		table.add(newgameButton).fillX().uniformX();
+		table.add(newgameButton).fillX().uniformX().padTop(30);
 		table.row();
 		table.add(optionButton).fillX().uniformX();
 		table.row();

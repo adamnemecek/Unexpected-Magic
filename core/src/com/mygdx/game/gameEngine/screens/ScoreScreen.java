@@ -2,6 +2,7 @@ package com.mygdx.game.gameEngine.screens;
 
 import java.util.List;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.model.IPlayer;
 import com.mygdx.game.utils.Constants;
 
@@ -18,26 +20,30 @@ import com.mygdx.game.utils.Constants;
  */
 public class ScoreScreen extends AbstractScreen{
 	private ScoreBox[] scoreBoxes;
+	Texture background = new Texture("images/UnexpectedMagicBackground-black-window.png");
 	
 	private class ScoreBox extends Table{
 		private Label playerNameLabel;
 		private Label playerScoreLabel;
-		private Label playerStreakLabel;
+		private Label playerBestStreakLabel;
 		ScoreBox(IPlayer player) {
-			this(player.getName(), Integer.toString(player.getScore().getScore()), Integer.toString(player.getScore().getStreak()), skin);
+			this(player.getName(), Integer.toString(player.getScore().getScore()), Integer.toString(player.getScore().getBestStreak()), false, skin);
 		}
-		public ScoreBox(String name, String score, String streak, Skin skin) {
+		public ScoreBox(String name, String score, String bestStreak, boolean alignRight, Skin skin) {
 			super(skin);
 			float scale = 0.5f;
 			playerNameLabel = new Label(name, skin);
 			playerNameLabel.setFontScale(scale);
 			playerScoreLabel =  new Label(score, skin);
 			playerScoreLabel.setFontScale(scale);
-			playerStreakLabel =  new Label(streak, skin);
-			playerStreakLabel.setFontScale(scale);
-			this.add(playerNameLabel).row();
-			this.add(playerScoreLabel).row();
-			this.add(playerStreakLabel);
+			playerBestStreakLabel =  new Label(bestStreak, skin);
+			playerBestStreakLabel.setFontScale(scale);
+			int align = (alignRight) ? Align.right : Align.left;
+			this.add(playerNameLabel).align(align);
+			this.row();
+			this.add(playerScoreLabel).align(align);
+			this.row();
+			this.add(playerBestStreakLabel).align(align);
 		}
 	}
 	
@@ -47,9 +53,8 @@ public class ScoreScreen extends AbstractScreen{
 		// table
 		Table table = new Table();
 		table.setFillParent(true);
-		table.setDebug(true);
 		float tableScaleX = 0.6f;
-		float tableScaleY = 0.6f;
+		float tableScaleY = 1f;
 		table.setTransform(true);
 		table.setOrigin(Constants.VIEWPORT_DIM_X / 2, Constants.VIEWPORT_DIM_Y / 2);
 		table.setScale(tableScaleX, tableScaleY);
@@ -73,16 +78,17 @@ public class ScoreScreen extends AbstractScreen{
 		// table layout
 		scoreBoxes = new ScoreBox[players.size()];
         Label titleLabel = new Label("Results: ", skin);
-		table.add(titleLabel).fillX().colspan(scoreBoxes.length);
+        int totalColumns = scoreBoxes.length + 1;
+		table.add(titleLabel).fillX().colspan(totalColumns).padBottom(30);
 		table.row();
-		ScoreBox labelBox = new ScoreBox("Name: ","Score: ","Streak: ",skin);
-		table.add(labelBox).fillX().expandX().uniform();
+		ScoreBox labelBox = new ScoreBox("Name: ","Score: ","Best Streak: ", true, skin);
+		table.add(labelBox).fillX().expandX().uniform().padLeft(2f);
         for(int i = 0; i < players.size(); i++){
         	scoreBoxes[i] = new ScoreBox(players.get(i));
-        	table.add(scoreBoxes[i]).uniform().padLeft(2f).padRight(2f);
+        	table.add(scoreBoxes[i]).fillX().expandX().uniform().padLeft(2f).padRight(2f);
         }
         table.row();
-		table.add(mainMenuButton).colspan(scoreBoxes.length).center();
+		table.add(mainMenuButton).colspan(totalColumns).center().padTop(20);
 	}
 	
 	@Override
@@ -90,6 +96,9 @@ public class ScoreScreen extends AbstractScreen{
 		super.render(delta);
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);
+		batch.begin();
+		batch.draw(background, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y);
+		batch.end();
 		stage.act();
 		stage.draw();
 		

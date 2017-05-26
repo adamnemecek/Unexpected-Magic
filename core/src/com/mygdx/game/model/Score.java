@@ -60,6 +60,9 @@ public class Score implements IScore{
 	public int getStreak(){
 		return streak;
 	}
+	public int getBestStreak(){
+		return bestStreak;
+	}
 	public int getScore(){
 		return (int)Math.round(score);
 	}
