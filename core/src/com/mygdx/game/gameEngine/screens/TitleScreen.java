@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.gameEngine.managers.MusicPlayer;
-import com.mygdx.game.utilities.file.Constants;
+import com.mygdx.game.utils.Constants;
 
 public class TitleScreen extends AbstractScreen{
 

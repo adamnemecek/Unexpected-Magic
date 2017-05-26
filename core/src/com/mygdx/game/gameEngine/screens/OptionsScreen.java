@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.UnexpectedMagic;
-import com.mygdx.game.utilities.file.Constants;
+import com.mygdx.game.utils.Constants;
 
 public class OptionsScreen extends AbstractScreen {
 

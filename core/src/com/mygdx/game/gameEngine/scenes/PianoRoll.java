@@ -17,7 +17,7 @@ import com.mygdx.game.gameEngine.managers.EntityFactory;
 import com.mygdx.game.model.IPlayer;
 import com.mygdx.game.model.Ticker;
 import com.mygdx.game.model.song.ISong;
-import com.mygdx.game.utilities.file.Constants;
+import com.mygdx.game.utils.Constants;
 
 import java.util.List;
 

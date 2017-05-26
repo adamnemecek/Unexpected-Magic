@@ -15,7 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.game.utilities.file.Constants;
+import com.mygdx.game.utils.Constants;
 
 /**
  * Screen superclass that defines behavior shared by all Unexpected Magic screens.

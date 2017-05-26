@@ -1,7 +1,7 @@
 package com.mygdx.game.model;
 
 import com.mygdx.game.gameEngine.managers.SpriteFactory;
-import com.mygdx.game.utilities.file.Constants;
+import com.mygdx.game.utils.Constants;
 
 /**
  * A class that represents all the note lanes

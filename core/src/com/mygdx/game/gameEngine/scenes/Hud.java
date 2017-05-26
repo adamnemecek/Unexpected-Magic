@@ -17,7 +17,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.model.IPlayer;
 import com.mygdx.game.model.NoteLanes;
 import com.mygdx.game.model.ScoreListener;
-import com.mygdx.game.utilities.file.Constants;
+import com.mygdx.game.utils.Constants;
 
 /**
  * A class that defines the properties of the heads-up display.

@@ -8,7 +8,8 @@ import com.mygdx.game.model.IPlayer;
 import com.mygdx.game.model.song.INote;
 import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.model.song.IVoice;
-import com.mygdx.game.utilities.file.Constants;
+import com.mygdx.game.utils.Constants;
+
 import java.util.LinkedList;
 import java.util.List;
 

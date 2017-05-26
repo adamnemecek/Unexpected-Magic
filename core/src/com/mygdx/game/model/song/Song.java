@@ -3,7 +3,7 @@ package com.mygdx.game.model.song;
 import java.io.IOException;
 import java.util.Queue;
 
-import com.mygdx.game.utilities.file.FileReader;
+import com.mygdx.game.utils.FileReader;
 
 /**
  * A class representing a single song.

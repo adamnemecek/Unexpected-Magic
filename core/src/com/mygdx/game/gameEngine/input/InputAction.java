@@ -2,7 +2,7 @@ package com.mygdx.game.gameEngine.input;
 
 import com.mygdx.game.gameEngine.managers.RoundManager;
 import com.mygdx.game.gameEngine.scenes.Hud;
-import com.mygdx.game.utilities.file.Action;
+import com.mygdx.game.utils.ConfigService.Action;
 
 /**
  * Class for handling input, last layer, actually does stuff.

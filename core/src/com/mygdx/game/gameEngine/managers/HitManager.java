@@ -18,7 +18,7 @@ import com.mygdx.game.model.ITrackableNote;
 import com.mygdx.game.model.TrackableNote;
 
 import com.mygdx.game.model.song.IVoice;
-import com.mygdx.game.utilities.file.Constants;
+import com.mygdx.game.utils.Constants;
 
 /**
  * class that evaluates whether the player's input is correct 

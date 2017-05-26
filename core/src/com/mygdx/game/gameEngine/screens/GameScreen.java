@@ -20,7 +20,7 @@ import com.mygdx.game.model.Round;
 import com.mygdx.game.model.Ticker;
 import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.model.song.IVoice;
-import com.mygdx.game.utilities.file.Constants;
+import com.mygdx.game.utils.Constants;
 
 
 /**

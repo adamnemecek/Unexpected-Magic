@@ -1,6 +1,6 @@
 package com.mygdx.game.gameEngine.input;
-import com.mygdx.game.utilities.file.Action;
-import com.mygdx.game.utilities.file.ConfigService;
+import com.mygdx.game.utils.ConfigService.Action;
+import com.mygdx.game.utils.ConfigService;
 
 /**
  * Class for Input, adapter layer.

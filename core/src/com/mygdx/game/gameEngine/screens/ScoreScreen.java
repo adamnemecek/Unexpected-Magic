@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.model.IPlayer;
 import com.mygdx.game.model.ScoreListener;
-import com.mygdx.game.utilities.file.Constants;
+import com.mygdx.game.utils.Constants;
 
 /**
  * Screen that shows score after a game.
