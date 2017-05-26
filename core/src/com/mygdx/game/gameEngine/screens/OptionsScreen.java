@@ -1,24 +1,14 @@
 package com.mygdx.game.gameEngine.screens;
 
-import com.badlogic.ashley.core.Engine;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.utils.Align;
-import com.mygdx.game.UnexpectedMagic;
-import com.mygdx.game.utils.Constants;
 
 /**
- * 
+ * Screen for viewing and changing preferences.
  * @author soflarb
- *
  */
 public class OptionsScreen extends AbstractScreen {
 

@@ -1,6 +1,7 @@
 package com.mygdx.game.gameEngine.screens;
 
 import java.util.List;
+
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
@@ -15,7 +16,6 @@ import com.mygdx.game.gameEngine.managers.RoundManager;
 import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
 import com.mygdx.game.model.IPlayer;
-import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Round;
 import com.mygdx.game.model.Ticker;
 import com.mygdx.game.model.song.ISong;
@@ -69,17 +69,7 @@ public class GameScreen extends AbstractScreen{
 //	    Gdx.input.setInputProcessor(keyboardInputManager);
 		
 	}
-	
-	private void pauseGame(){ 
-		//TODO implement pause
-		//The pause event happens in hud, so this thing need to listen to hud or something.
-		// the pause event should happen when player pushes the pause button in hud. 
-		//This method should also be called when player pushes "esc" (or maybe another button?) on the keyboard.
-		
-		//Pause ticker probably?
-		// does anything else need to be paused, that is not depending on whether ticker is running or not?
-	}
-	private void unpauseGame(){}
+
 	
 	public void update (float delta) {
 		if(running){

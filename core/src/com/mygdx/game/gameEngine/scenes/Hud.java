@@ -22,7 +22,7 @@ import com.mygdx.game.utils.Constants;
 /**
  * A class that defines the properties of the heads-up display.
  * @author soflarb
- * 
+ * Revised by rarvid
  */
 public class Hud {
 	private SpriteBatch batch;
@@ -30,9 +30,6 @@ public class Hud {
 	private Viewport viewport;
 	private Skin skin;
 	private PlayerBox[] playerBoxes;
-	
-	
-	
 
 	private Texture activeTexture;
 	private Texture inactiveTexture;
@@ -42,12 +39,10 @@ public class Hud {
 	private class PlayerBox extends Table implements ScoreListener{
 		private Label playerNameLabel;
 		private Label playerScoreLabel;
-		private IPlayer player;
 		PlayerBox(IPlayer player) {
 			super(skin);
 			playerNameLabel = new Label(player.getName(), skin);
 			float scale = 0.5f;
-			this.player = player;
 			player.getScore().addListener(this);
 			playerNameLabel.setFontScale(scale);
 			playerScoreLabel =  new Label("0", skin);

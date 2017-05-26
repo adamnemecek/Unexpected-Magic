@@ -18,7 +18,7 @@ import com.mygdx.game.utils.Constants;
 
 /**
  * Screen that contains the main menu.
- * @author solfarb
+ * @author soflarb
  * Revised by rastom and car0b1nius
  */
 public class MainMenuScreen extends AbstractScreen {

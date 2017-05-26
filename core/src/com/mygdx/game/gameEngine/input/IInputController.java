@@ -3,7 +3,7 @@ package com.mygdx.game.gameEngine.input;
 import com.mygdx.game.utils.ConfigService.Action;
 
 /**
- * Interface for a Inputcontroller .
+ * Interface for an Inputcontroller.
  * @author rastom
  */
 

@@ -21,11 +21,10 @@ import com.mygdx.game.model.song.IVoice;
 import com.mygdx.game.utils.Constants;
 
 /**
- * class that evaluates whether the player's input corresponds with the note the player should be playing 
+ * Class that handles hitting notes. Evaluates whether the player's input corresponds with the note the player should be playing 
  * and handles score and note playing accordingly
  * @author rarvid
- * Revised By rarvid & rastom and then rarvid again
- *
+ * Revised by rarvid & rastom and then rarvid again
  */
 
 public class HitManager implements TickListener{

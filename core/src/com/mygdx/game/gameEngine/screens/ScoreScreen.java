@@ -9,9 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.model.IPlayer;
-import com.mygdx.game.model.ScoreListener;
 import com.mygdx.game.utils.Constants;
 
 /**
@@ -19,14 +17,12 @@ import com.mygdx.game.utils.Constants;
  * @author soflarb
  */
 public class ScoreScreen extends AbstractScreen{
-	private final List<IPlayer> players;
 	private ScoreBox[] scoreBoxes;
 	
 	private class ScoreBox extends Table{
 		private Label playerNameLabel;
 		private Label playerScoreLabel;
 		private Label playerStreakLabel;
-		private IPlayer player;
 		ScoreBox(IPlayer player) {
 			this(player.getName(), Integer.toString(player.getScore().getScore()), Integer.toString(player.getScore().getStreak()), skin);
 		}
@@ -47,7 +43,7 @@ public class ScoreScreen extends AbstractScreen{
 	
 	protected ScoreScreen(SpriteBatch batch, List<IPlayer> players) {
 		super(batch);
-		this.players = players;
+		
 		// table
 		Table table = new Table();
 		table.setFillParent(true);

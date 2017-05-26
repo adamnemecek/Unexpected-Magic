@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Event;
@@ -107,9 +106,6 @@ public class NewgameScreen extends AbstractScreen {
 					if(!(event instanceof ChangeEvent)) return false;
 					//TODO
 					int voiceNum = songList.voicesInSong(songSelector.getSelected().title);
-//					System.out.println(((Arrays.toString(playerNumButtons).replaceAll("\n", "\\\\n"))
-//							+ "\n" + Math.min(voiceNum, 4)
-//							+ "\n" + (playerNumButtons[Math.min(voiceNum, 4)]).toString().replaceAll("\n", "\\\\n")));
 					playerNumButtons[Math.min(voiceNum, playerNumButtongroup.getCheckedIndex())].setChecked(true);
 					for(int i = 0; i < 5; i++) {
 						TextButton b = playerNumButtons[i];

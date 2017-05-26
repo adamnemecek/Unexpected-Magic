@@ -5,6 +5,8 @@ import com.mygdx.game.model.song.INote;
 
 /**
 * Component that holds the note.
+* @author soflarb
+* Revised by car0b1nius
 */
 public class NoteComponent implements Component{
 	private INote note;

@@ -5,8 +5,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.gameEngine.gdxUtils.CompositeSprite;
 
 /**
- * Class for adding sprites ot a note entity, knows which color to pick.
+ * Class creating sprites.
  * @author rastom
+ * Revised by soflarb
  */
 
 public class SpriteFactory {

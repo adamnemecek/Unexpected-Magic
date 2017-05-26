@@ -1,17 +1,16 @@
 package com.mygdx.game;
 
-import com.badlogic.ashley.core.Engine;
-import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.gameEngine.screens.AbstractScreen;
-import com.mygdx.game.gameEngine.screens.MainMenuScreen;
 import com.mygdx.game.gameEngine.screens.ScreenListener;
 import com.mygdx.game.gameEngine.screens.TitleScreen;
 
 /**
  * The game class.
+ * @author soflarb
+ * Revised by rarvid
  */
 
 public class UnexpectedMagic extends Game implements ScreenListener{
@@ -25,8 +24,6 @@ public class UnexpectedMagic extends Game implements ScreenListener{
 		
 		AbstractScreen.addListener(this);
 		this.setScreen(new TitleScreen(this.batch));
-		//TODO
-		//init assets?
 		
 	}
 

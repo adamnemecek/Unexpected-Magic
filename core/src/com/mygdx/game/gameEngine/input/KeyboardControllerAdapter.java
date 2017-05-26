@@ -3,8 +3,9 @@ import com.mygdx.game.utils.ConfigService.Action;
 import com.mygdx.game.utils.ConfigService;
 
 /**
- * Class for Input, adapter layer.
+ * Class for translating input to action, adapter layer.
  * @author rastom
+ * Revised by car0b1nius, soflarb
  */
 
 public class KeyboardControllerAdapter {

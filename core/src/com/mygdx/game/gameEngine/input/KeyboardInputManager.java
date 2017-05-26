@@ -3,8 +3,9 @@ package com.mygdx.game.gameEngine.input;
 import com.badlogic.gdx.InputProcessor;
 
 /**
- * Class Input, litens for keyboard input.
+ * Class for listening to player keyboard input.
  * @author rastom
+ * Revised by car0b1nius, soflarb
  */
 
 public class KeyboardInputManager implements InputProcessor {
@@ -17,7 +18,6 @@ public class KeyboardInputManager implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-    	
         keyboardControllerAdapter.keyPressed(keycode);
         return true;
     }

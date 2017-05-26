@@ -8,9 +8,8 @@ import com.mygdx.game.gameEngine.sound.MusicPlayer;
 import com.mygdx.game.utils.Constants;
 
 /**
- * 
+ * The logo screen, shown when the application launches.
  * @author soflarb
- *
  */
 
 public class TitleScreen extends AbstractScreen{

@@ -13,8 +13,7 @@ import java.util.List;
 /**
  * Class that instantiates the classes needed to play a round
  * @author soflarb
- * Revised by rarvid
- *
+ * Revised by rarvid, rastom, car0b1nius
  */
 
 public class RoundManager {

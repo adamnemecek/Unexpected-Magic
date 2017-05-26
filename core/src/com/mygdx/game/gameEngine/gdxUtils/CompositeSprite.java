@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class for playing sound.
+ * Class that defines a composite sprite, a sprite made up of multiple libGDX sprites.
  * @author rastom
  */
 
 public class CompositeSprite{
 
-	//sprites needs to be added, top, mid, mid... , bot
+	//sprites need to be added: top, mid, mid, ... , bot
 
 	private List<Sprite> componentSprites;
 

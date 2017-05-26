@@ -5,8 +5,9 @@ import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.utils.ConfigService.Action;
 
 /**
- * Class for handling input, last layer, actually does stuff.
+ * Class for handling input, the last layer in the porocess of handling input, actually does stuff.
  * @author rastom
+ * revised by soflarb, car0b1nius
  */
 
 public class InputAction implements IInputController{

@@ -16,8 +16,7 @@ import java.util.List;
 /**
  * A factory class that handles creation of entities.
  * @author soflarb
- * Revised by rastom, car0b1nius and rarvid
- * 
+ * Revised by rastom, car0b1nius, rarvid
  */
 public class EntityFactory {
 
@@ -78,8 +77,7 @@ public class EntityFactory {
 		NoteComponent noteComponent = new NoteComponent(note);
 		CompositeSpriteComponent spriteComponent = new CompositeSpriteComponent(spriteFactory.createSprites(note.getDuration(),playerIndex,posX,posY));
 	
-		VoiceComponent voiceComponent = new VoiceComponent(voice);
-		entity.add(positionComponent).add(noteComponent).add(voiceComponent);
+		entity.add(positionComponent).add(noteComponent);
 		entity.add(spriteComponent);
 		return entity;
 	}

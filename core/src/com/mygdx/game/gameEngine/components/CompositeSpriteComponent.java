@@ -4,8 +4,9 @@ import com.badlogic.ashley.core.Component;
 import com.mygdx.game.gameEngine.gdxUtils.CompositeSprite;
 
 /**
- * Component that represents the sprite.
+ * Component that holds the sprite.
  * @author rastom
+ * Revised by soflarb
  */
 
 public class CompositeSpriteComponent implements Component{
