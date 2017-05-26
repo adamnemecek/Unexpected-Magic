@@ -76,9 +76,9 @@ public class EntityFactory {
 		PositionComponent positionComponent = new PositionComponent(posX, posY);
 		NoteComponent noteComponent = new NoteComponent(note);
 		CompositeSpriteComponent spriteComponent = new CompositeSpriteComponent(spriteFactory.createSprites(note.getDuration(),playerIndex,posX,posY));
-		HitComponent hitComponent = new HitComponent();
+	
 		VoiceComponent voiceComponent = new VoiceComponent(voice);
-		entity.add(positionComponent).add(noteComponent).add(hitComponent).add(voiceComponent);
+		entity.add(positionComponent).add(noteComponent).add(voiceComponent);
 		entity.add(spriteComponent);
 		return entity;
 	}

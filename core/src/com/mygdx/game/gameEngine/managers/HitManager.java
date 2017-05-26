@@ -23,8 +23,8 @@ import com.mygdx.game.utilities.file.Constants;
 /**
  * class that evaluates whether the player's input is correct 
  * and handles score and noteplaying accordingly
- * @author Arvid
- * Revised By Arvid & Arvid again
+ * @author rarvid
+ * Revised By rarvid & rastom and then rarvid again
  *
  */
 
@@ -56,7 +56,7 @@ public class HitManager implements TickListener{
 
 		if (activeNotes.get(p) != null){
 			ITrackableNote note = activeNotes.get(p);
-			//check if correct
+			//check if the correct note is being played
 			if (note.getOctave() == lane){
 				synth.noteOn(note.getPitch());
 				activePitches.get(p).add(note.getPitch());
