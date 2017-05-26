@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.model.IPlayer;
+import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.utils.Constants;
 
 /**
@@ -22,8 +23,7 @@ import com.mygdx.game.utils.Constants;
  */
 public class ScoreScreen extends AbstractScreen{
 	private ScoreBox[] scoreBoxes;
-	Texture background = new Texture("images/UnexpectedMagicBackground-black-window.png");
-	
+	private Texture background = new Texture("images/UnexpectedMagicBackground-black-window.png");
 	private class ScoreBox extends Table{
 		private Label playerNameLabel;
 		private Label playerScoreLabel;
@@ -49,7 +49,7 @@ public class ScoreScreen extends AbstractScreen{
 		}
 	}
 	
-	protected ScoreScreen(SpriteBatch batch, List<IPlayer> players) {
+	protected ScoreScreen(SpriteBatch batch, List<IPlayer> players, ISong song) {
 		super(batch);
 		
 		// table
@@ -79,9 +79,12 @@ public class ScoreScreen extends AbstractScreen{
 		
 		// table layout
 		scoreBoxes = new ScoreBox[players.size()];
-        Label titleLabel = new Label("Results: ", skin);
+        Label resultsLabel = new Label("__Results_____ ", skin);
+        Label songTitleLabel = new Label(song.getTitle(), skin);
         int totalColumns = scoreBoxes.length + 1;
-		table.add(titleLabel).fillX().colspan(totalColumns).padBottom(30);
+		table.add(resultsLabel).fillX().colspan(totalColumns).padBottom(30);
+		table.row();
+		table.add(songTitleLabel).fillX().colspan(totalColumns).padBottom(10).align(Align.center);
 		table.row();
 		ScoreBox labelBox = new ScoreBox("Name: ","Score: ","Best Streak: ", true, skin);
 		table.add(labelBox).fillX().expandX().uniform().padLeft(2f);
