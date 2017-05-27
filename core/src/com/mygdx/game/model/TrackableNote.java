@@ -5,6 +5,10 @@ import com.mygdx.game.model.song.INote;
 /**
  * Class for non-static parts of Notes
  * @author rarvid
+ * 
+ * Uses: ISong, IVoice, ObserverHandler
+ * 
+ * Used By: RoundManager, PianoRoll, GameScreen, TickerTest
  */
 
 public class TrackableNote implements ITrackableNote {

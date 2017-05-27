@@ -7,6 +7,10 @@ import com.mygdx.game.model.song.INote;
 /**
  * Class for playing sound.
  * @author rastom
+ * 
+ * Uses: INote, ISynth, NoteThread
+ * 
+ * Used by: RoundManager, Metronome
  */
 
 public class Synth implements ISynth{

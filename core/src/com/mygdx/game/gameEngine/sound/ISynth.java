@@ -4,6 +4,10 @@ import com.mygdx.game.model.song.INote;
 /**
  * Interface for a synth.
  * @author rarvid
+ * 
+ * Uses: INote
+ * 
+ * Used By: Synth, HitManager, RoundManager, SongPlayBack
  */
 public interface ISynth {
 	public void setSongTimeSignaure(int timeSignature, int bpm);

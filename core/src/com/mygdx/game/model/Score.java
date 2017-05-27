@@ -6,6 +6,10 @@ import java.util.List;
  * A class that holds score.
  * @author soflarb
  * Revised by rarvid
+ * 
+ * Uses: IScore, ScoreListener
+ * 
+ * Used by: Player, ScoreTest
  */
 public class Score implements IScore{
 

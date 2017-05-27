@@ -4,6 +4,11 @@ package com.mygdx.game.model;
 /**
  * An interface for one player's score.
  * @author Arvid
+ * 
+ * Uses: ScoreListener
+ * 
+ * Used by: HitManager, Hud, ScoreScreen, IPlayer, Score, Player
+ *
  */
 public interface IScore {
 	

@@ -7,6 +7,9 @@ import java.util.Map;
 /**
  * Class for playing specific notes, during a specified time.
  * @author rastom
+ * 
+ * Uses: None
+ * Used by: Synth
  */
 
 public class NoteThread extends Thread{

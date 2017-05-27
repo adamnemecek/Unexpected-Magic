@@ -6,6 +6,10 @@ import com.badlogic.gdx.utils.Disposable;
 /**
  * 
  * @author car0b1nius
+ * 
+ * Uses: none
+ * 
+ * Used By: MusicPlayer
  *
  */
 public interface IMusicPlayer extends Disposable {

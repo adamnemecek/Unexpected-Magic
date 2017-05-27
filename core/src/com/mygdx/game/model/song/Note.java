@@ -6,6 +6,10 @@ import java.util.Map;
 /**
  * A class that represents a single note.
  * @author car0b1nius
+ * 
+ * Uses: INote
+ * 
+ * Used by: Voice, NoteTest, ScoreTest
  */
 public class Note implements INote {
 	//static

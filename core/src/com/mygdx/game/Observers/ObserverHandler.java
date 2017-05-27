@@ -1,13 +1,18 @@
 package com.mygdx.game.Observers;
 
-/**
- * Class for handling observers
- * @author rarvid
- */
+
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+* Class for handling observers
+* @author rarvid
+* 
+* Uses: TickListener
+* 
+* Used by: HitManager, GameScreen, Metronome, SongPlayback, Ticker
+*/
 public abstract class ObserverHandler {
 	
 	private static List<TickListener> tickListeners = new ArrayList<>();

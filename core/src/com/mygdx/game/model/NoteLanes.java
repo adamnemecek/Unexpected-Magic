@@ -5,6 +5,10 @@ import com.mygdx.game.utils.Constants;
 /**
  * A class that represents all the note lanes
  * @author rastom
+ * 
+ * Uses: None
+ * 
+ * Used by: Hud
  */
 
 public class NoteLanes {

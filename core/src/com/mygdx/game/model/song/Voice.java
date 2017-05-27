@@ -11,6 +11,10 @@ import java.util.TreeMap;
  * A class representing a single voice of a song.
  * @author car0b1nius
  * Revised by soflarb
+ * 
+ * Uses: INote, Note, IVoice
+ * 
+ * Used by: Song
  */
 public class Voice implements IVoice {
 	

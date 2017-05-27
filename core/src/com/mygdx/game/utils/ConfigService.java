@@ -4,6 +4,10 @@ package com.mygdx.game.utils;
  * Class that handles action to key mapping.
  * @author car0b1nius
  * Revised by rastom, soflarb
+ * 
+ * Uses: None
+ * 
+ * Used by: IInputController, InputAction, KeyboardControllerAdapter
  */
 public class ConfigService {
 	public static ActionObject keyAction(int keyCode) {

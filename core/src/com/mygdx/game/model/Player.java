@@ -6,6 +6,10 @@ import com.mygdx.game.model.song.IVoice;
  * A class that represents an in-game player.
  * @author soflarb
  * Revised by rarvid
+ * 
+ * Uses: IVoice, IPlayer, Score, IScore
+ * 
+ * Used by: None
  */
 
 public class Player implements IPlayer{

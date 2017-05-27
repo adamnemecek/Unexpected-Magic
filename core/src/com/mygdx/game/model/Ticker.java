@@ -7,6 +7,10 @@ import com.mygdx.game.model.song.ISong;
 * Class that handles ticking through the songmap in-game.
 * @author soflarb
 * Revised by rastom, rarvid, car0b1nius
+* 
+* Uses: ISong, IVoice, ObserverHandler
+* 
+* Used By: RoundManager, PianoRoll, GameScreen, TickerTest
 */
 public class Ticker {
 	private int tick;
