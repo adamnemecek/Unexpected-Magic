@@ -1,7 +1,7 @@
 package com.mygdx.game.gameEngine.components;
 
 import com.badlogic.ashley.core.Component;
-import com.mygdx.game.gameEngine.gdxUtils.CompositeSprite;
+import com.mygdx.game.gdxUtils.CompositeSprite;
 
 /**
  * Component that holds the sprite.

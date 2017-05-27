@@ -2,7 +2,7 @@ package com.mygdx.game.gameEngine.managers;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.mygdx.game.gameEngine.gdxUtils.CompositeSprite;
+import com.mygdx.game.gdxUtils.CompositeSprite;
 
 /**
  * Class creating sprites.
