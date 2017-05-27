@@ -20,6 +20,10 @@ import com.mygdx.game.utils.Constants;
 /**
  * Screen that shows score after a game.
  * @author soflarb
+ * 
+ * Uses: AbstractScreen, IPlayer, ISong, IScore
+ * 
+ * Used by: GameScreen
  */
 public class ScoreScreen extends AbstractScreen{
 	private ScoreBox[] scoreBoxes;

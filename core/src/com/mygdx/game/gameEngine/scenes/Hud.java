@@ -23,6 +23,9 @@ import com.mygdx.game.utils.Constants;
  * A class that defines the properties of the heads-up display.
  * @author soflarb
  * Revised by rarvid
+ * 
+ * Uses: IPlayer, NoteLanes, IPlayer, IScore, ScoreListener
+ * Used by: InputAction, GameScreen
  */
 public class Hud {
 	private SpriteBatch batch;

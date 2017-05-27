@@ -27,6 +27,11 @@ import com.mygdx.game.utils.Constants;
 * Screen that contains the game (in-game).
 * @author soflarb
 * Revised by car0b1nius, rastom and rarvid
+* 
+* Uses: AbstractScreen, ScoreScreen, InputAction, KeyboardControllerAdapter, KeyboardInputManager, 
+* IPlayer, Round, Ticker, ISong, IVoice, ObserverHandler, RoundManager, Hud, PianoRoll
+* 
+* Used By: None
 */
 public class GameScreen extends AbstractScreen{
 	private boolean running;

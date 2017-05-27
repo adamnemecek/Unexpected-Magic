@@ -11,6 +11,9 @@ import com.mygdx.game.gameEngine.screens.TitleScreen;
  * The game class.
  * @author soflarb
  * Revised by rarvid
+ * 
+ * Uses: AbstractScreen, ScreenListener, TitleScreen
+ * Used by: none
  */
 
 public class UnexpectedMagic extends Game implements ScreenListener{

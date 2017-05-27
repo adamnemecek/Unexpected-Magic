@@ -21,6 +21,10 @@ import com.mygdx.game.utils.Constants;
  * Screen superclass that defines behavior shared by all Unexpected Magic screens.
  * @author rarvid
  * Revised by rastom, soflarb, car0b1nius
+ * 
+ * Uses: ScreenListener
+ * 
+ * Used By: UnexpectedMagic, MainMenuScreen, GameScreen, OptionsScreen, NewGameScreen, TitleScreen, ScoreScreen, ScreenListener
  */
 
 public abstract class AbstractScreen extends ScreenAdapter {

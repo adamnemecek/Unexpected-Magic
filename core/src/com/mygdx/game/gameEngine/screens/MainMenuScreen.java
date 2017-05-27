@@ -21,6 +21,10 @@ import com.mygdx.game.utils.Constants;
  * Screen that contains the main menu.
  * @author soflarb
  * Revised by rastom and car0b1nius
+ * 
+ * Uses: OptionsScreen, NewGameScreen, AbstractScreen, AnimationManager, MusicPlayer
+ * 
+ * Used by: TitleScreen
  */
 public class MainMenuScreen extends AbstractScreen {
 

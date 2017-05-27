@@ -29,6 +29,10 @@ import com.mygdx.game.model.song.IVoice;
  * Screen for setting up a new game. 
  * @author car0b1nius
  * Revised by soflarb
+ * 
+ * Uses: AbstractScreen, SongList
+ * 
+ * Used by: NewGameScreen
  */
 public class NewgameScreen extends AbstractScreen {
 	// GAME STUFF

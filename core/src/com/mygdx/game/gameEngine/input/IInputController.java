@@ -5,6 +5,9 @@ import com.mygdx.game.utils.ConfigService.Action;
 /**
  * Interface for an Inputcontroller.
  * @author rastom
+ * 
+ * Uses: ConfigService
+ * Used By: InputAction
  */
 
 public interface IInputController {

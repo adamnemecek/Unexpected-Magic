@@ -25,6 +25,9 @@ import com.mygdx.game.utils.Constants;
  * and handles score and note playing accordingly
  * @author rarvid
  * Revised by rarvid & rastom and then rarvid again
+ * 
+ * Uses: ObserverHandler, TickListener, IPlayer, IScore, ITrackableNote, TrackableNote, INote, IVoice, ISynth
+ * Used By: RoundManager
  */
 
 public class HitManager implements TickListener{

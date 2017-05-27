@@ -6,6 +6,9 @@ import com.badlogic.ashley.core.Component;
 * Component that holds the position.
 * @author soflarb
 * Revised by rastom, car0b1nius
+* 
+* Uses: none
+* Used by: EntityFactoy, PianoRoll
 */
 public class PositionComponent implements Component{
 	public int x;

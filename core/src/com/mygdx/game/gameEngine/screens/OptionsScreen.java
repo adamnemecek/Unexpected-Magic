@@ -9,6 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 /**
  * Screen for viewing and changing preferences.
  * @author soflarb
+ * 
+ * Uses: AbstractScreen
+ * Used By: MainMenuScreen
  */
 public class OptionsScreen extends AbstractScreen {
 

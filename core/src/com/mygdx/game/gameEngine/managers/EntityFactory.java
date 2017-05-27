@@ -17,6 +17,9 @@ import java.util.List;
  * A factory class that handles creation of entities.
  * @author soflarb
  * Revised by rastom, car0b1nius, rarvid
+ * 
+ * Uses: CompositeSpriteComponent, PositionComponent, SpriteFactory, IPlayer, INote, IVoice, ISong
+ * Used By: PianoRoll
  */
 public class EntityFactory {
 
@@ -32,7 +35,7 @@ public class EntityFactory {
 			for (int tick = 0; tick < voice.length(); tick ++){
 				INote note = voice.noteAtTick(tick);
 				if (note == null || note.isRest()) continue;
-				entities.add(createNoteEntity(note,voice,playerIndex, tick));
+				entities.add(createNoteEntity(note,playerIndex, tick));
 			}
 		}
 		return entities;
@@ -46,7 +49,7 @@ public class EntityFactory {
 			for (int tick = 0; tick < voice.length(); tick++) {
 				INote note = voice.noteAtTick(tick);
 				if (note == null || note.isRest()) continue;
-				entities.add(createNoteEntity(note, voice, iteration % 4, tick));
+				entities.add(createNoteEntity(note, iteration % 4, tick));
 			}
 			iteration++;
 		}
@@ -54,7 +57,7 @@ public class EntityFactory {
 	}
 
 
-	public static Entity createNoteEntity(INote note, IVoice voice, int playerIndex, int tick){
+	public static Entity createNoteEntity( INote note, int playerIndex, int tick){
 
 		Entity entity = new Entity();
 		int laneIndex = (note.getPitch() % Constants.NUMBER_OF_LANES);
@@ -74,10 +77,10 @@ public class EntityFactory {
 		
 		int posY = tick*SpriteFactory.noteSectionHeight;
 		PositionComponent positionComponent = new PositionComponent(posX, posY);
-		NoteComponent noteComponent = new NoteComponent(note);
+	
 		CompositeSpriteComponent spriteComponent = new CompositeSpriteComponent(spriteFactory.createSprites(note.getDuration(),playerIndex,posX,posY));
 	
-		entity.add(positionComponent).add(noteComponent);
+		entity.add(positionComponent);
 		entity.add(spriteComponent);
 		return entity;
 	}

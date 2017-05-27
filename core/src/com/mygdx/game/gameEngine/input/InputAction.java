@@ -5,9 +5,12 @@ import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.utils.ConfigService.Action;
 
 /**
- * Class for handling input, the last layer in the porocess of handling input, actually does stuff.
+ * Class for handling input, the last layer in the process of handling input, actually does stuff.
  * @author rastom
- * revised by soflarb, car0b1nius
+ * revised by soflarb, car0b1nius, rarvid
+ * 
+ * Uses: Hud, RoundManager, IInputController, ConfigService
+ * Used by: GameScreen, KeyboardControllerAdapter
  */
 
 public class InputAction implements IInputController{

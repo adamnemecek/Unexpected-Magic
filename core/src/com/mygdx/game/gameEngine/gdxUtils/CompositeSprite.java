@@ -8,6 +8,9 @@ import java.util.List;
 /**
  * Class that defines a composite sprite, a sprite made up of multiple libGDX sprites.
  * @author rastom
+ * 
+ * Uses: none
+ * Used by: CompositeSpriteComponent, PianoRoll, SpriteFactory
  */
 
 public class CompositeSprite{

@@ -10,6 +10,10 @@ import com.mygdx.game.utils.Constants;
 /**
  * The logo screen, shown when the application launches.
  * @author soflarb
+ * 
+ * Uses: AbstractScreen, MainMenuScreen, MusicPlayer
+ * 
+ * Used by: UnexpectedMagic
  */
 
 public class TitleScreen extends AbstractScreen{
