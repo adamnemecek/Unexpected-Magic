@@ -9,7 +9,14 @@ import org.junit.Test;
 
 import com.mygdx.game.model.song.Note;
 import com.mygdx.game.model.Score;
-public class ScoreTest {
+import com.mygdx.game.model.ScoreListener;
+
+/**
+ * Tests various things in Score
+ * @author rarvid
+ *
+ */
+public class ScoreTest implements ScoreListener{
 	
 	Note n;
 	Score score;
@@ -57,5 +64,21 @@ public class ScoreTest {
 		score.missedNote();
 		assertEquals(1, score.getMultiplier());
 	}
+	
+	private boolean notified = false;
+	@Override
+	public void newScore(int score) {
+		notified = true;
+	}
+	
+	@Test
+	public void testObserver(){
+		score.addListener(this);
+		assertFalse(notified);
+		score.hitNote(true);
+		assertTrue(notified);
+	}
+
+	
 
 }
