@@ -11,7 +11,7 @@ import com.mygdx.game.model.song.Voice;
 
 
 /**
- * 
+ * Tests whether octaves and pitches are in the correct range
  * @author rarvid
  *
  */
@@ -37,9 +37,4 @@ public class VoiceTest {
 			assertEquals(voice.pitchAtTick(tick), 63.5 , 63.5); //checks that pitchAtTick Always is between 0 and 127		
 		}
 	}
-	
-
-	
-	
-
 }

@@ -1,17 +1,18 @@
 import static org.junit.Assert.*;
-
 import java.io.IOException;
-
 import org.junit.Test;
-
 import com.mygdx.game.model.SongList;
-
-import com.mygdx.game.model.song.Note;
 import com.mygdx.game.model.song.Song;
-import com.mygdx.game.model.song.Voice;
 import com.mygdx.game.model.song.INote;
 import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.model.song.IVoice;
+
+/**
+ * 
+ * @author car0b1nius
+ * Revised by rarvid
+ *
+ */
 
 public class SongTest {
 	@Test
