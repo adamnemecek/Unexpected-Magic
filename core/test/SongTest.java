@@ -9,13 +9,15 @@ import com.mygdx.game.model.SongList;
 import com.mygdx.game.model.song.Note;
 import com.mygdx.game.model.song.Song;
 import com.mygdx.game.model.song.Voice;
+import com.mygdx.game.model.song.INote;
 import com.mygdx.game.model.song.ISong;
+import com.mygdx.game.model.song.IVoice;
 
 public class SongTest {
 	@Test
 	public void testHisTheme() throws IOException {
 		//Song song = new Song("songmaps/his_theme.uxm");
-		/*SongList songList = new SongList();
+		SongList songList = new SongList();
 		ISong isong = songList.getSong("His Theme");
 		Song song = (Song) isong;
 		assertEquals("His Theme", song.getTitle());
@@ -24,9 +26,11 @@ public class SongTest {
 		assertEquals(4, time[1]);
 		assertEquals(2, time.length);
 		assertEquals(76, song.getBpm());
-		Voice[] voices = song.getVoices();
+		IVoice[] voices = song.getVoices();
 		assertEquals(4, voices.length);
-		Note[] notes = voices[0].getNotes();
-		assertNotNull(notes[0]);*/
+		INote note = voices[0].noteAtTick(0);
+		assertNotNull(note);
+		
+		
 	}
 }
