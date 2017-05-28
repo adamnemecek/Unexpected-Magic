@@ -65,14 +65,14 @@ public class HitManager implements TickListener{
 			}
 			//if not correct, play a note with the same octave as the closest note
 			else{
-				int pitch =lane + 12 * p.getVoice().octaveAtTick(tick);
+				int pitch =lane + 12*(int)(p.getVoice().pitchAtTick(tick)/12);
 				synth.noteOn(pitch);
 				activePitches.get(p).add(pitch);
 			}
 		}
 		//if not correct
 		else{
-			int pitch =lane + 12 * p.getVoice().octaveAtTick(tick);
+			int pitch =lane + 12*(int)(p.getVoice().pitchAtTick(tick)/12);
 			synth.noteOn(pitch);
 			activePitches.get(p).add(pitch);
 		}

@@ -18,7 +18,7 @@ public interface IVoice {
 	/**
 	 * The octave of the closest note.
 	 * @param tick
-	 * @return the octave as an int between 0-10 (inclusive)
+	 * @return the octave as an int between 0-11 (inclusive)
 	 */
 	int octaveAtTick(int tick);
 	/**
