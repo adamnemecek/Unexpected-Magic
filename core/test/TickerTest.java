@@ -14,9 +14,9 @@ import com.mygdx.game.model.song.Song;
 import com.mygdx.game.model.SongList;
 
 /**
+ * Tests Ticking and pause in ticker
+ * @author rarvid
  * 
- * @author Arvid
- *
  */
 
 public class TickerTest {
@@ -41,18 +41,19 @@ public class TickerTest {
 	}
 	
 	@Test
-	public void testTick(){
-		ticker.updateTick(0);
+	public void testPause(){
+		assertTrue(ticker.isTicking());
+		ticker.updateTick(5);
+		ticker.togglePauseTicker();
 		
-		int tick = 0;
-		int oldtick = -1;
-		while(ticker.isTicking()){
-			assertTrue(tick>oldtick);
-			ticker.updateTick(5);
-			oldtick=tick;
-			tick=ticker.getTick();
+		double d = ticker.tickWithDecimals();
+		for (int i = 0; i < 100; i++){
+			ticker.updateTick(1);
+			assertEquals(d, ticker.tickWithDecimals(), 0);
 		}
-		
+		ticker.togglePauseTicker();
+		ticker.updateTick(1);
+		assertNotEquals(d, ticker.tickWithDecimals(), 0);
 	}
 	
 
