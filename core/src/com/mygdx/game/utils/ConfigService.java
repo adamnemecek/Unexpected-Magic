@@ -97,7 +97,11 @@ public class ConfigService {
 		NOTE_A_SHARP (10),
 		NOTE_B (11),
 		PAUSE_GAME (12);
-
+		
+		private static int defaultOctave = 5;
+		private static int notesInOctave = 12;
+		private static int minNoteValue = 0;
+		private static int maxNoteValue = 127;
 		private final int value;
 		Action(int v){
 			value = v;
@@ -119,12 +123,12 @@ public class ConfigService {
 		}
 		public int noteValue() {
 			if(!isNote()) return -1;
-			return noteValueInOctave(5);
+			return noteValueInOctave(defaultOctave);
 		}
 		public int noteValueInOctave(int oct) {
 			if(!isNote()) return -1;
-			int ret = value + oct * 12;
-			if(ret < 0 || 127 < ret) throw new IllegalArgumentException();
+			int ret = value + oct * notesInOctave;
+			if(ret < minNoteValue || maxNoteValue < ret) throw new IllegalArgumentException();
 			return ret;
 		}
 	}
