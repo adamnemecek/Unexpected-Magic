@@ -21,8 +21,8 @@ public class SongPlayback implements TickListener{
 	private final ISynth synth;
 	private final List<IVoice> voices;
 
-	public SongPlayback(ISynth synth2, List<IVoice> v){
-		synth = synth2;
+	public SongPlayback(ISynth synth, List<IVoice> v){
+		this.synth = synth;
 		voices = v;
 		ObserverHandler.addTickListener(this);
 	}
