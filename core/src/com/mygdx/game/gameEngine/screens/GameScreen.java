@@ -115,7 +115,7 @@ public class GameScreen extends AbstractScreen{
 		batch.end();
 
 		//Draw HUD
-		batch.setProjectionMatrix(hud.stage.getCamera().combined);
+		batch.setProjectionMatrix(hud.getStage().getCamera().combined);
 		hud.draw();
 	}
 	
