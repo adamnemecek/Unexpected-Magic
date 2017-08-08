@@ -98,10 +98,11 @@ public class ConfigService {
 		NOTE_B (11),
 		PAUSE_GAME (12);
 		
-		private static int defaultOctave = 5;
-		private static int notesInOctave = 12;
-		private static int minNoteValue = 0;
-		private static int maxNoteValue = 127;
+		private static final int DEFAULT_OCTAVE = 5;
+		private static final int NOTES_IN_OCTAVE = 12;
+		private static final int MIN_NOTE_VALUE = 0;
+		private static final int MAX_NOTE_VALUE = 127;
+		private static final int PAUSE_VALUE = -1;
 		private final int value;
 		Action(int v){
 			value = v;
@@ -122,13 +123,13 @@ public class ConfigService {
 				this == NOTE_B;
 		}
 		public int noteValue() {
-			if(!isNote()) return -1;
-			return noteValueInOctave(defaultOctave);
+			if(!isNote()) return PAUSE_VALUE;
+			return noteValueInOctave(DEFAULT_OCTAVE);
 		}
 		public int noteValueInOctave(int oct) {
-			if(!isNote()) return -1;
-			int ret = value + oct * notesInOctave;
-			if(ret < minNoteValue || maxNoteValue < ret) throw new IllegalArgumentException();
+			if(!isNote()) return PAUSE_VALUE;
+			int ret = value + oct * NOTES_IN_OCTAVE;
+			if(ret < MIN_NOTE_VALUE || MAX_NOTE_VALUE < ret) throw new IllegalArgumentException();
 			return ret;
 		}
 	}
