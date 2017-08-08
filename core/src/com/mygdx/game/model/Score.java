@@ -17,7 +17,7 @@ public class Score implements IScore{
 	private double score;
 	private int streak;
 	private int bestStreak;
-	private int multiplier; //higher score if higher streak�
+	private int multiplier; //higher score if higher streak
 	private final ListenerHandler listenerHandler;
 
 	public Score(){
