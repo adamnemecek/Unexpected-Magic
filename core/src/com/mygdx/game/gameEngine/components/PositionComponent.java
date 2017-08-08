@@ -11,8 +11,21 @@ import com.badlogic.ashley.core.Component;
 * Used by: EntityFactoy, PianoRoll
 */
 public class PositionComponent implements Component{
-	public int x;
-	public int y;
+	private int x;
+	private int y;
+	
+	public int getX(){
+		return this.x;
+	}
+	public void setX(int newX){
+		this.x = newX;
+	}
+	public int getY(){
+		return this.y;
+	}
+	public void setY(int newY){
+		this.y = newY;
+	}
 	
 	public PositionComponent(int x, int y){
 		this.x = x;

@@ -77,7 +77,7 @@ public class PianoRoll {
 		for (Entity entity : entities) {
 			PositionComponent pos = positionComponentMapper.get(entity);
 			CompositeSpriteComponent spr = spriteComponentMapper.get(entity);
-			if (pos.y > camera.position.y - (viewport.getScreenHeight()/2) - spr.getCompositeSprite().getLength() && pos.y < camera.position.y + (viewport.getScreenHeight()/2)) {
+			if (pos.getY() > camera.position.y - (viewport.getScreenHeight()/2) - spr.getCompositeSprite().getLength() && pos.getY() < camera.position.y + (viewport.getScreenHeight()/2)) {
 				spr.getCompositeSprite().draw(batch);
 			}
 		}
