@@ -33,27 +33,27 @@ import java.util.List;
 public class PianoRoll {
 	private final Engine engine;
 	private final SpriteBatch batch;
-	public final OrthographicCamera camera;
+	private final OrthographicCamera camera;
 	private final Viewport viewport;
 	private final ComponentMapper<PositionComponent> positionComponentMapper;
 	private final ComponentMapper<CompositeSpriteComponent> spriteComponentMapper;
-	private Ticker ticker;
+	private final Ticker ticker;
 
-	
+
 	public PianoRoll(Engine engine, SpriteBatch spriteBatch, List<? extends IPlayer> players, ISong song, Ticker ticker) {
-        this.engine = engine;
-        batch = spriteBatch;
-        this.ticker = ticker;
+		this.engine = engine;
+		batch = spriteBatch;
+		this.ticker = ticker;
 		createNoteEntities(players,song);
-        camera = new OrthographicCamera();
-        viewport = new ScalingViewport(Scaling.fit, Constants.PIANOROLL_DIM_X, Constants.PIANOROLL_DIM_Y, camera);
-        viewport.apply(true);
-        viewport.setScreenBounds((int) Constants.PIANOROLL_POS_X, (int) Constants.PIANOROLL_POS_Y, (int) Constants.PIANOROLL_DIM_X, (int) Constants.PIANOROLL_DIM_Y);
-        spriteComponentMapper = ComponentMapper.getFor(CompositeSpriteComponent.class);
-        positionComponentMapper = ComponentMapper.getFor(PositionComponent.class);
-    }
+		camera = new OrthographicCamera();
+		viewport = new ScalingViewport(Scaling.fit, Constants.PIANOROLL_DIM_X, Constants.PIANOROLL_DIM_Y, camera);
+		viewport.apply(true);
+		viewport.setScreenBounds((int) Constants.PIANOROLL_POS_X, (int) Constants.PIANOROLL_POS_Y, (int) Constants.PIANOROLL_DIM_X, (int) Constants.PIANOROLL_DIM_Y);
+		spriteComponentMapper = ComponentMapper.getFor(CompositeSpriteComponent.class);
+		positionComponentMapper = ComponentMapper.getFor(PositionComponent.class);
+	}
 
-    private void createNoteEntities(List<? extends IPlayer> players, ISong song){
+	private void createNoteEntities(List<? extends IPlayer> players, ISong song){
 		if(players.isEmpty()){
 			for(Entity entity : EntityFactory.createNoteEntities(song)){
 				engine.addEntity(entity);
@@ -66,6 +66,9 @@ public class PianoRoll {
 		}
 	}
 
+	public OrthographicCamera getCamera(){
+		return camera;
+	}
 	public void placeCamera(){
 		camera.position.y = (float)ticker.tickWithDecimals()*SpriteFactory.noteSectionHeight + camera.viewportHeight/2;
 		camera.update();
@@ -82,7 +85,7 @@ public class PianoRoll {
 			}
 		}
 	}
-	
+
 	public void resize(int width, int height, int screenX, int screenY){
 		viewport.update(width, height, false);
 		viewport.setScreenPosition(screenX, (int)(screenY + Constants.PIANOROLL_BOT_PADDING * (height/Constants.VIEWPORT_DIM_Y)));

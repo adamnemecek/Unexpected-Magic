@@ -107,7 +107,7 @@ public class GameScreen extends AbstractScreen{
 
 		//draw pianoroll
 		batch.begin();
-		batch.setProjectionMatrix(pianoRoll.camera.combined);
+		batch.setProjectionMatrix(pianoRoll.getCamera().combined);
 		pianoRoll.draw();
 		pianoRoll.placeCamera();
 		//update systems
