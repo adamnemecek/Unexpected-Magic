@@ -17,8 +17,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class AnimationManager {
 
-	private int frameRows;
-	private int frameCols;
+	private final int frameRows;
+	private final int frameCols;
 	private int posX;
 	private int posY;
 	private int width;
@@ -26,8 +26,8 @@ public class AnimationManager {
 	private float speed;
 
 	private Animation<TextureRegion> animation;
-	private Texture animationSheet;
-	private SpriteBatch spriteBatch;
+	private final Texture animationSheet;
+	private final SpriteBatch spriteBatch;
 
 	private float stateTime;
 
