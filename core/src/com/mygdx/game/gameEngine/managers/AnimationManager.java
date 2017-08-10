@@ -35,7 +35,7 @@ public class AnimationManager {
 		this.animationSheet = t;
 		this.spriteBatch = spriteBatch;
 		this.frameRows = rows;
-		this. frameCols =columns;
+		this.frameCols = columns;
 		this.posX = x;
 		this.posY = y;
 		this.width = width;
