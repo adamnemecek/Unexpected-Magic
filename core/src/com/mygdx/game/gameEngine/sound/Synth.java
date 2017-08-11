@@ -25,33 +25,22 @@ public class Synth implements ISynth{
 	private int bpm = 155;
 	private int timeSignature = 4;
 
-	
-	 private final NoteThread notethread;
+	private final NoteThread notethread;
 	
 	public Synth(){
-		
-		try
-		{
-		this.synth = MidiSystem.getSynthesizer();
-		}
-		catch (MidiUnavailableException e){
+		try {
+			synth = MidiSystem.getSynthesizer();
+			synth.open();
+		} catch(MidiUnavailableException e) {
+			throw new RuntimeException(e);
 		}
 
 		//soundbank = synth.getDefaultSoundbank();
 		instr = synth.getAvailableInstruments();
 		
-		try
-		{
-			synth.open();
-		}
-			catch (MidiUnavailableException e){
-				
-		}
-					
 		setInstrument(90);
 		notethread = new NoteThread(channel);
 		notethread.start();
-		
 	}
 
 	public void setSongTimeSignaure(int timeSignature, int bpm){
@@ -77,7 +66,6 @@ public class Synth implements ISynth{
 	}
 	
 	public void setInstrument(int instrument){
-				
 		synth.loadInstrument(instr[instrument]);
 		channels = synth.getChannels();
 		channel = channels[nChannelNumber];
@@ -100,11 +88,9 @@ public class Synth implements ISynth{
 			e.printStackTrace();
 		}
 		track.add(new MidiEvent(sm,0));
-	
 	}
 
 	private int timeConvert(double noteSignature, double songSignature, double bpm){
-
 		double mspm = 60*1000;
 		double i = mspm/(songSignature*(1/(noteSignature))*bpm);
 		//System.out.println(i);
@@ -113,11 +99,9 @@ public class Synth implements ISynth{
 
 	public void changeChannel(int channel){
 		this.channel = channels[channel];
-
 	}
 
 	public void setVolume(int v){
 		this.volume = v;
 	}
-	
 }
