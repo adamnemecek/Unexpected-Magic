@@ -77,26 +77,25 @@ public class ScoreScreen extends AbstractScreen{
 				if(evt.getType() != InputEvent.Type.touchDown) return false;
 				changeToScreen(new MainMenuScreen(batch));
 				return true;
-				
 			}
 		);
 		
 		// table layout
 		scoreBoxes = new ScoreBox[players.size()];
-        Label resultsLabel = new Label("__Results_____ ", skin);
-        Label songTitleLabel = new Label(song.getTitle(), skin);
-        int totalColumns = scoreBoxes.length + 1;
+		Label resultsLabel = new Label("__Results_____ ", skin);
+		Label songTitleLabel = new Label(song.getTitle(), skin);
+		int totalColumns = scoreBoxes.length + 1;
 		table.add(resultsLabel).fillX().colspan(totalColumns).padBottom(30);
 		table.row();
 		table.add(songTitleLabel).fillX().colspan(totalColumns).padBottom(10).align(Align.center);
 		table.row();
 		ScoreBox labelBox = new ScoreBox("Name: ","Score: ","Best Streak: ", true, skin);
 		table.add(labelBox).fillX().expandX().uniform().padLeft(2f);
-        for(int i = 0; i < players.size(); i++){
-        	scoreBoxes[i] = new ScoreBox(players.get(i));
-        	table.add(scoreBoxes[i]).fillX().expandX().uniform().padLeft(2f).padRight(2f);
-        }
-        table.row();
+		for(int i = 0; i < players.size(); i++){
+			scoreBoxes[i] = new ScoreBox(players.get(i));
+			table.add(scoreBoxes[i]).fillX().expandX().uniform().padLeft(2f).padRight(2f);
+		}
+		table.row();
 		table.add(mainMenuButton).colspan(totalColumns).center().padTop(20);
 	}
 	
@@ -112,6 +111,5 @@ public class ScoreScreen extends AbstractScreen{
 		batch.end();
 		stage.act();
 		stage.draw();
-		
 	}
 }

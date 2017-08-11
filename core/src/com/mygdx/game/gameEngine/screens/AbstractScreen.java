@@ -79,7 +79,7 @@ public abstract class AbstractScreen extends ScreenAdapter {
 	public static void addListener(ScreenListener listener){	
 		if (!listeners.contains(listener)){
 			listeners.add(listener);
-			}
+		}
 	}
 
 	public static void removeListener(ScreenListener listener){

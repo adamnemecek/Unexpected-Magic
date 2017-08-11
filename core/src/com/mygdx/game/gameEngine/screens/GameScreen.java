@@ -33,7 +33,7 @@ import com.mygdx.game.utils.Constants;
 * 
 * Used By: None
 */
-public class GameScreen extends AbstractScreen{
+public class GameScreen extends AbstractScreen {
 	private boolean running;
 	//Texture backgroundTexture;
 	private RoundManager roundManager;
@@ -54,10 +54,10 @@ public class GameScreen extends AbstractScreen{
 		this.players = players;
 		this.song = song;
 		running = false;
-        hud = new Hud(batch, song.getTitle(), Integer.toString(song.getBpm()), players);
+		hud = new Hud(batch, song.getTitle(), Integer.toString(song.getBpm()), players);
 		pianoRoll = new PianoRoll(engine, batch, players, song, ticker);
 		initRound(song, players, nonPlayerVoices);
-        initInput();
+		initInput();
 	}
 	
 
@@ -68,13 +68,11 @@ public class GameScreen extends AbstractScreen{
 	}
 	
 	private void initInput(){
-		
 		final InputAction ia = new InputAction(hud, roundManager);
-		final KeyboardControllerAdapter  kca= new KeyboardControllerAdapter(ia);
+		final KeyboardControllerAdapter kca= new KeyboardControllerAdapter(ia);
 		
 		this.keyboardInputManager = new KeyboardInputManager(kca);
-//	    Gdx.input.setInputProcessor(keyboardInputManager);
-		
+		//Gdx.input.setInputProcessor(keyboardInputManager);
 	}
 
 	
@@ -87,7 +85,6 @@ public class GameScreen extends AbstractScreen{
 
 	@Override
 	public void render(float delta){
-
 		if(!ticker.isTicking()){
 			this.dispose();
 			ObserverHandler.clearTickListeners();
@@ -130,6 +127,5 @@ public class GameScreen extends AbstractScreen{
 		super.resize(width, height);
 		pianoRoll.resize(viewport.getScreenWidth(), viewport.getScreenHeight(), viewport.getScreenX(), viewport.getScreenY());
 		hud.resize(width, height);
-		
 	}
 }
