@@ -45,7 +45,7 @@ public class TrackableNote implements ITrackableNote {
 
 	@Override
 	public INote getNote() {
-		return note;
+		return this;
 	}
 
 }
