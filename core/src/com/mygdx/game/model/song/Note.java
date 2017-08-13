@@ -13,6 +13,11 @@ import java.util.Map;
  */
 public class Note implements INote {
 	//static
+	private static final int minPitch = 0;
+	private static final int maxPitch = 127;
+	private static final int octaveSize = 12;
+	private static final int minNoteDenom = 64;
+	
 	private static Map<String, Note> noteMap = new HashMap<>();
 	public static Note getNote(String note) throws IOException {
 		//sanity checking
@@ -59,15 +64,18 @@ public class Note implements INote {
 		}
 		//System.out.println(str+ ", " + str.substring(alt == 0 ? 1 : 2));
 		int oct = Integer.parseInt(str.replaceAll("[^\\d]", ""));
-		int num = MAJOR_SCALE["CDEFGAB".indexOf(pitch)] + alt + oct * 12;
-		if(num < 0 || 127 < num) throw new IOException("Invalid pitch: " + str + " (" + num + ")");
+		int num = MAJOR_SCALE["CDEFGAB".indexOf(pitch)] + alt + oct * octaveSize;
+		if(num < minPitch || maxPitch < num) throw new IOException("Invalid pitch: " + str + " (" + num + ")");
 		return num;
 	}
+	
+	/* takes in a string representing a Note duration (E.G. 3/4) and returns its length 
+	 as a factor of the programs' minimum note length*/
 	private static int getDur(String str) {
 		String[] sa = str.split("/");
 		int num = Integer.valueOf(sa[0]);
 		int denom = Integer.valueOf(sa[1]);
-		int factor = 64 / denom;
+		int factor = minNoteDenom / denom;
 		return num * factor;
 	}
 	//instance
