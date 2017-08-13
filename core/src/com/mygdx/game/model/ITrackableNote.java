@@ -14,7 +14,4 @@ public interface ITrackableNote extends INote {
 	boolean isHit();
 	
 	void hit();
-	
-	INote getNote();
-
 }

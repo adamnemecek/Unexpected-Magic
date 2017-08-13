@@ -42,10 +42,4 @@ public class TrackableNote implements ITrackableNote {
 		isHit = true;
 
 	}
-
-	@Override
-	public INote getNote() {
-		return this;
-	}
-
 }
