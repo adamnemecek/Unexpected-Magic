@@ -28,15 +28,15 @@ import com.mygdx.game.utils.Constants;
  */
 
 public abstract class AbstractScreen extends ScreenAdapter {
-	private static Stack<AbstractScreen> prevScreens = new Stack<AbstractScreen>();
+	private static final Stack<AbstractScreen> prevScreens = new Stack<AbstractScreen>();
 	
-	protected OrthographicCamera camera;
-	protected Viewport viewport;
-	protected Stage stage;
-	protected SpriteBatch batch;
+	protected final OrthographicCamera camera;
+	protected final Viewport viewport;
+	protected final Stage stage;
+	protected final SpriteBatch batch;
 
-	protected TextureAtlas atlas;
-	protected Skin skin;
+	protected final TextureAtlas atlas;
+	protected final Skin skin;
 	private static final List<ScreenListener> listeners = new ArrayList<>();
 
 	protected AbstractScreen(SpriteBatch batch) {
