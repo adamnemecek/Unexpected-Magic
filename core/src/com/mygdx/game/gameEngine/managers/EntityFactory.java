@@ -23,6 +23,10 @@ import java.util.List;
  */
 public class EntityFactory {
 
+	private EntityFactory(){
+
+	}
+
 	private static final SpriteFactory spriteFactory = new SpriteFactory();
 	private static int numberOfPlayers;
 
