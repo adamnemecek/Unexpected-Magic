@@ -28,12 +28,8 @@ import com.mygdx.game.utils.Constants;
  */
 public class MainMenuScreen extends AbstractScreen {
 
-	Texture background = new Texture("images/UnexpectedMagicBackground6.png");
+	private Texture background = new Texture("images/UnexpectedMagicBackground6.png");
 	private ArrayList<AnimationManager> animations;
-	private AnimationManager djblookAnim;
-	private AnimationManager feffeAnim;
-	private AnimationManager frodoAnim;
-	private AnimationManager nekkiAnim;
 
 	// BUTTONS
 	private ButtonGroup<TextButton> buttonGroup;
@@ -48,13 +44,13 @@ public class MainMenuScreen extends AbstractScreen {
 		menuItems = new String[] { "New game", "Options", "Exit" };
 		
 	// ANIMATIONS
-		djblookAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/napstablook.png")), 
+		AnimationManager djblookAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/napstablook.png")),
 				batch, 1, 4, Math.round(Constants.VIEWPORT_DIM_X/2 - 52), Math.round(Constants.VIEWPORT_DIM_Y - 105), 110, 104, 0.1f);
-		feffeAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/feffe.png")),
+		AnimationManager feffeAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/feffe.png")),
 				batch, 1, 6, 275, -32, 200, 200, 0.1f );
-		frodoAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/frodo.png")),
+		AnimationManager frodoAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/frodo.png")),
 				batch, 1, 6, 210, -10, 200, 200, 0.12f );
-		nekkiAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/nekki.png")),
+		AnimationManager nekkiAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/nekki.png")),
 				batch, 1, 1, 0, -30, 200, 200, 0.1f );
 		animations = new ArrayList<>();
 		animations.add(djblookAnim);
@@ -188,19 +184,19 @@ public class MainMenuScreen extends AbstractScreen {
 		stage.draw();
 	}
 
-	public void newgameButtonPushed() {
+	private void newgameButtonPushed() {
 		changeToScreen(new NewgameScreen(batch));
 	}
 
-	public void optionButtonPushed() {
+	private void optionButtonPushed() {
 		changeToScreen(new OptionsScreen(batch));
 	}
 
-	public void exitButtonPushed() {
+	private void exitButtonPushed() {
 		Gdx.app.exit();
 	}
 
-	public void buttonPushed() {
+	private void buttonPushed() {
 		switch (menuItemSelected) {
 
 		case 0:
