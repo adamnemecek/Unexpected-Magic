@@ -13,11 +13,11 @@ import com.mygdx.game.model.song.ISong;
  * 
  * Used by: RoundManager, GameScreen, RoundTest
  */
-public class Round {
+public class RoundData {
 	public final ISong song;
 	private final List<IPlayer> players;
 
-	public Round(ISong song, List<IPlayer> players2){
+	public RoundData(ISong song, List<IPlayer> players2){
 		this.song = song;
 		this.players = players2;
 
