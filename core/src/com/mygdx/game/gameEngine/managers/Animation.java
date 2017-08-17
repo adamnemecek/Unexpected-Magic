@@ -15,7 +15,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  * Used By: MainMenuScreen
  */
 
-public class AnimationManager {
+public class Animation {
 
 	private final int frameRows;
 	private final int frameCols;
@@ -25,13 +25,13 @@ public class AnimationManager {
 	private int height;
 	private float speed;
 
-	private Animation<TextureRegion> animation;
+	private com.badlogic.gdx.graphics.g2d.Animation<TextureRegion> animation;
 	private final Texture animationSheet;
 	private final SpriteBatch spriteBatch;
 
 	private float stateTime;
 
-	public AnimationManager(Texture t, SpriteBatch spriteBatch, int rows, int columns, int x, int y, int width, int height, float speed) {
+	public Animation(Texture t, SpriteBatch spriteBatch, int rows, int columns, int x, int y, int width, int height, float speed) {
 		this.animationSheet = t;
 		this.spriteBatch = spriteBatch;
 		this.frameRows = rows;
@@ -57,7 +57,7 @@ public class AnimationManager {
 				frames[index++] = tmp[i][j];
 			}
 		}
-		animation = new Animation<>(speed, frames);
+		animation = new com.badlogic.gdx.graphics.g2d.Animation<>(speed, frames);
 
 		stateTime = 0f;
 	}
