@@ -1,6 +1,6 @@
 package com.mygdx.game.gameEngine.input;
 
-import com.mygdx.game.gameEngine.managers.RoundManager;
+import com.mygdx.game.gameEngine.managers.Round;
 import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.utils.ConfigService.Action;
 
@@ -15,18 +15,18 @@ import com.mygdx.game.utils.ConfigService.Action;
 
 public class InputAction implements IInputController{
 	
-	private RoundManager roundManager;
+	private Round round;
 	private Hud hud;
 	
-	public InputAction(Hud hud, RoundManager roundManager){
-		this.roundManager = roundManager;
+	public InputAction(Hud hud, Round round){
+		this.round = round;
 		this.hud = hud;
 	}
 	
 	@Override
 	public void noteKeyPressed(Action note, int playerIndex) {
 		if(!note.isNote()) throw new IllegalArgumentException("Cannot play non-note action");
-		roundManager.notePlayStart(note.noteValue()%12, playerIndex);
+		round.notePlayStart(note.noteValue()%12, playerIndex);
 		hud.activateLane(note.noteValue()%12);
 		
 	}
@@ -34,7 +34,7 @@ public class InputAction implements IInputController{
 	@Override
 	public void noteKeyReleased(Action note, int playerIndex) {
 		if(!note.isNote()) throw new IllegalArgumentException("Cannot play non-note action");
-		roundManager.notePlayStop(note.noteValue()%12, playerIndex);
+		round.notePlayStop(note.noteValue()%12, playerIndex);
 		hud.deactivateLane(note.noteValue()%12);
 		
 		
@@ -44,7 +44,7 @@ public class InputAction implements IInputController{
 	@Override
 	public void uiKeyPressed(Action action) {
 		if(action == Action.PAUSE_GAME){
-			roundManager.pauseGame();
+			round.pauseGame();
 		}
 	}
 

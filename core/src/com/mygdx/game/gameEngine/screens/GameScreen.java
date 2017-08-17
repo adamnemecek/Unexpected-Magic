@@ -12,7 +12,7 @@ import com.mygdx.game.Observers.ObserverHandler;
 import com.mygdx.game.gameEngine.input.InputAction;
 import com.mygdx.game.gameEngine.input.KeyboardControllerAdapter;
 import com.mygdx.game.gameEngine.input.KeyboardInputManager;
-import com.mygdx.game.gameEngine.managers.RoundManager;
+import com.mygdx.game.gameEngine.managers.Round;
 import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
 import com.mygdx.game.model.IPlayer;
@@ -35,7 +35,7 @@ import com.mygdx.game.utils.Constants;
 public class GameScreen extends AbstractScreen {
 	private boolean running;
 	//Texture backgroundTexture;
-	private RoundManager roundManager;
+	private Round round;
 	private Hud hud;
 	private PianoRoll pianoRoll;
 	private KeyboardInputManager keyboardInputManager;
@@ -61,13 +61,13 @@ public class GameScreen extends AbstractScreen {
 	
 
 	public void initRound(ISong song, List<IPlayer> players, List<IVoice> nonPlayerVoices) {
-		roundManager = new RoundManager(song, nonPlayerVoices, ticker, players);
+		round = new Round(song, nonPlayerVoices, ticker, players);
 		//wait for player input here before running?
 		running = true;
 	}
 	
 	private void initInput(){
-		final InputAction ia = new InputAction(hud, roundManager);
+		final InputAction ia = new InputAction(hud, round);
 		final KeyboardControllerAdapter kca= new KeyboardControllerAdapter(ia);
 		
 		this.keyboardInputManager = new KeyboardInputManager(kca);

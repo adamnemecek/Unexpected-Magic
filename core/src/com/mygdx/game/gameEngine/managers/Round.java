@@ -20,14 +20,14 @@ import java.util.List;
  * Used by: InputAction, GameScreen
  */
 
-public class RoundManager {
+public class Round {
 	private HitManager hitManager;
 	private ISynth synth;
 	private Ticker ticker;
 	private ISong song;
 
 
-	public RoundManager(ISong song,List<IVoice> nonPlayerVoices, Ticker ticker, List<IPlayer> players){
+	public Round(ISong song,List<IVoice> nonPlayerVoices, Ticker ticker, List<IPlayer> players){
 		this.ticker = ticker;
 		this.song = song;
 		new Metronome(song.getTime()[1]);
