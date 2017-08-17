@@ -16,7 +16,6 @@ import com.mygdx.game.gameEngine.managers.RoundManager;
 import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
 import com.mygdx.game.model.IPlayer;
-import com.mygdx.game.model.RoundData;
 import com.mygdx.game.model.Ticker;
 import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.model.song.IVoice;
@@ -62,7 +61,7 @@ public class GameScreen extends AbstractScreen {
 	
 
 	public void initRound(ISong song, List<IPlayer> players, List<IVoice> nonPlayerVoices) {
-		roundManager = new RoundManager(new RoundData(song, players), nonPlayerVoices, ticker);
+		roundManager = new RoundManager(song, nonPlayerVoices, ticker, players);
 		//wait for player input here before running?
 		running = true;
 	}
