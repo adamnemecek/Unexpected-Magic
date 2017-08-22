@@ -4,9 +4,8 @@ import com.mygdx.game.gameEngine.sound.Metronome;
 import com.mygdx.game.gameEngine.sound.SongPlayback;
 import com.mygdx.game.gameEngine.sound.Synth;
 import com.mygdx.game.gameEngine.sound.ISynth;
-import com.mygdx.game.model.IPlayer;
+import com.mygdx.game.model.Round;
 import com.mygdx.game.model.Ticker;
-import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.model.song.IVoice;
 
 import java.util.List;
@@ -20,19 +19,19 @@ import java.util.List;
  * Used by: InputAction, GameScreen
  */
 
-public class Round {
+public class RoundManager {
+	private Round round;
 	private HitManager hitManager;
 	private ISynth synth;
 	private Ticker ticker;
-	private ISong song;
 
 
-	public Round(ISong song,List<IVoice> nonPlayerVoices, Ticker ticker, List<IPlayer> players){
+	public RoundManager(Round round, List<IVoice> nonPlayerVoices, Ticker ticker){
+		this.round = round;
 		this.ticker = ticker;
-		this.song = song;
-		new Metronome(song.getTime()[1]);
+		new Metronome(round.song.getTime()[1]);
 		initSynth();
-		this.hitManager = new HitManager(players, this.synth);
+		this.hitManager = new HitManager(round.getPlayers(), this.synth);
 		new SongPlayback(this.synth,nonPlayerVoices);
 	}
 	// tells hitManager that a note key was pressed
@@ -47,7 +46,7 @@ public class Round {
 	private void initSynth(){
 		this.synth = new Synth();
 		synth.setInstrument(1);
-		synth.setSongTimeSignaure(song.getTime()[1],song.getBpm());
+		synth.setSongTimeSignaure(round.song.getTime()[1],round.song.getBpm());
 	}
 	//tells ticker that the pause key was pressed
 	public void pauseGame(){
