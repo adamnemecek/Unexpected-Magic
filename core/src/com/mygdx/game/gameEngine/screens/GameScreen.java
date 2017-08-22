@@ -12,11 +12,11 @@ import com.mygdx.game.Observers.ObserverHandler;
 import com.mygdx.game.gameEngine.input.InputAction;
 import com.mygdx.game.gameEngine.input.KeyboardControllerAdapter;
 import com.mygdx.game.gameEngine.input.KeyboardInputManager;
-import com.mygdx.game.gameEngine.managers.RoundManager;
+import com.mygdx.game.gameEngine.managers.Round;
 import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.gameEngine.scenes.PianoRoll;
 import com.mygdx.game.model.IPlayer;
-import com.mygdx.game.model.Round;
+import com.mygdx.game.model.RoundData;
 import com.mygdx.game.model.Ticker;
 import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.model.song.IVoice;
@@ -36,7 +36,7 @@ import com.mygdx.game.utils.Constants;
 public class GameScreen extends AbstractScreen {
 	private boolean running;
 	//Texture backgroundTexture;
-	private RoundManager roundManager;
+	private Round roundManager;
 	private Hud hud;
 	private PianoRoll pianoRoll;
 	private KeyboardInputManager keyboardInputManager;
@@ -62,7 +62,7 @@ public class GameScreen extends AbstractScreen {
 	
 
 	public void initRound(ISong song, List<IPlayer> players, List<IVoice> nonPlayerVoices) {
-		roundManager = new RoundManager(new Round(song, players), nonPlayerVoices, ticker);
+		roundManager = new Round(new RoundData(song, players), nonPlayerVoices, ticker);
 		//wait for player input here before running?
 		running = true;
 	}

@@ -1,6 +1,6 @@
 package com.mygdx.game.gameEngine.input;
 
-import com.mygdx.game.gameEngine.managers.RoundManager;
+import com.mygdx.game.gameEngine.managers.Round;
 import com.mygdx.game.gameEngine.scenes.Hud;
 import com.mygdx.game.utils.ConfigService.Action;
 
@@ -15,10 +15,10 @@ import com.mygdx.game.utils.ConfigService.Action;
 
 public class InputAction implements IInputController{
 	
-	private RoundManager roundManager;
+	private Round roundManager;
 	private Hud hud;
 	
-	public InputAction(Hud hud, RoundManager roundManager){
+	public InputAction(Hud hud, Round roundManager){
 		this.roundManager = roundManager;
 		this.hud = hud;
 	}
