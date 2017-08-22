@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.mygdx.game.gameEngine.managers.AnimationManager;
+import com.mygdx.game.gameEngine.managers.AnimatedImage;
 import com.mygdx.game.gameEngine.sound.MusicPlayer;
 import com.mygdx.game.utils.Constants;
 
@@ -29,7 +29,7 @@ import com.mygdx.game.utils.Constants;
 public class MainMenuScreen extends AbstractScreen {
 
 	private Texture background = new Texture("images/UnexpectedMagicBackground6.png");
-	private ArrayList<AnimationManager> animations;
+	private ArrayList<AnimatedImage> animations;
 
 	// BUTTONS
 	private ButtonGroup<TextButton> buttonGroup;
@@ -44,13 +44,13 @@ public class MainMenuScreen extends AbstractScreen {
 		menuItems = new String[] { "New game", "Options", "Exit" };
 		
 	// ANIMATIONS
-		AnimationManager djblookAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/napstablook.png")),
+		AnimatedImage djblookAnim = new AnimatedImage(new Texture(Gdx.files.internal("animationSheets/napstablook.png")),
 				batch, 1, 4, Math.round(Constants.VIEWPORT_DIM_X/2 - 52), Math.round(Constants.VIEWPORT_DIM_Y - 105), 110, 104, 0.1f);
-		AnimationManager feffeAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/feffe.png")),
+		AnimatedImage feffeAnim = new AnimatedImage(new Texture(Gdx.files.internal("animationSheets/feffe.png")),
 				batch, 1, 6, 275, -32, 200, 200, 0.1f );
-		AnimationManager frodoAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/frodo.png")),
+		AnimatedImage frodoAnim = new AnimatedImage(new Texture(Gdx.files.internal("animationSheets/frodo.png")),
 				batch, 1, 6, 210, -10, 200, 200, 0.12f );
-		AnimationManager nekkiAnim = new AnimationManager(new Texture(Gdx.files.internal("animationSheets/nekki.png")),
+		AnimatedImage nekkiAnim = new AnimatedImage(new Texture(Gdx.files.internal("animationSheets/nekki.png")),
 				batch, 1, 1, 0, -30, 200, 200, 0.1f );
 		animations = new ArrayList<>();
 		animations.add(djblookAnim);
@@ -177,7 +177,7 @@ public class MainMenuScreen extends AbstractScreen {
 		batch.begin();
 		batch.draw(background, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y);
 		batch.end();
-		for(AnimationManager animation : animations){ 
+		for(AnimatedImage animation : animations){ 
 			animation.draw();
 		}
 		stage.act();
