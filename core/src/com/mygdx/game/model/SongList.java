@@ -17,15 +17,15 @@ import com.mygdx.game.utils.FileReader;
  * A class that holds a list of the available songmaps.
  * @author soflarb
  * Revised by car0b1nius
- * 
+ *
  * Uses: ISong, Song, FileReader
- * 
+ *
  * Used by: NewGameScrees, TickerTest
  */
 public class SongList {
-	
+
 	private final Map<String, Queue<String>> map;
-	
+
 	private ArrayList<String> retrieveFileNames(){
 		File folder = new File("songmaps");
 		File[] listOfFiles = folder.listFiles();

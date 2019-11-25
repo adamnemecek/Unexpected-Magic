@@ -8,27 +8,27 @@ import com.mygdx.game.utils.ConfigService.Action;
  * Class for handling input, the last layer in the process of handling input, actually does stuff.
  * @author rastom
  * revised by soflarb, car0b1nius, rarvid
- * 
+ *
  * Uses: Hud, RoundManager, IInputController, ConfigService
  * Used by: GameScreen, KeyboardControllerAdapter
  */
 
 public class InputAction implements IInputController{
-	
+
 	private Round roundManager;
 	private Hud hud;
-	
+
 	public InputAction(Hud hud, Round roundManager){
 		this.roundManager = roundManager;
 		this.hud = hud;
 	}
-	
+
 	@Override
 	public void noteKeyPressed(Action note, int playerIndex) {
 		if(!note.isNote()) throw new IllegalArgumentException("Cannot play non-note action");
 		roundManager.notePlayStart(note.noteValue()%12, playerIndex);
 		hud.activateLane(note.noteValue()%12);
-		
+
 	}
 
 	@Override
@@ -36,8 +36,8 @@ public class InputAction implements IInputController{
 		if(!note.isNote()) throw new IllegalArgumentException("Cannot play non-note action");
 		roundManager.notePlayStop(note.noteValue()%12, playerIndex);
 		hud.deactivateLane(note.noteValue()%12);
-		
-		
+
+
 	}
 
 
@@ -54,7 +54,7 @@ public class InputAction implements IInputController{
 			//NOTHING NOTHING NOTHING
 		}
 	}
-	
+
 
 
 }

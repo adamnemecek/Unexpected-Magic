@@ -27,10 +27,10 @@ import com.mygdx.game.utils.Constants;
 * Screen that contains the game (in-game).
 * @author soflarb
 * Revised by car0b1nius, rastom and rarvid
-* 
-* Uses: AbstractScreen, ScoreScreen, InputAction, KeyboardControllerAdapter, KeyboardInputManager, 
+*
+* Uses: AbstractScreen, ScoreScreen, InputAction, KeyboardControllerAdapter, KeyboardInputManager,
 * IPlayer, Round, Ticker, ISong, IVoice, ObserverHandler, RoundManager, Hud, PianoRoll
-* 
+*
 * Used By: None
 */
 public class GameScreen extends AbstractScreen {
@@ -46,7 +46,7 @@ public class GameScreen extends AbstractScreen {
 	private final ISong song;
 
 	private Texture background = new Texture("images/UnexpectedMagicBackground5.png");
-	
+
 	public GameScreen(final SpriteBatch batch, ISong song, List<IPlayer> players, List<IVoice> nonPlayerVoices) {
 		super(batch);
 		this.engine = new PooledEngine();
@@ -59,23 +59,23 @@ public class GameScreen extends AbstractScreen {
 		initRound(song, players, nonPlayerVoices);
 		initInput();
 	}
-	
+
 
 	public void initRound(ISong song, List<IPlayer> players, List<IVoice> nonPlayerVoices) {
 		roundManager = new Round(new RoundData(song, players), nonPlayerVoices, ticker);
 		//wait for player input here before running?
 		running = true;
 	}
-	
+
 	private void initInput(){
 		final InputAction ia = new InputAction(hud, roundManager);
 		final KeyboardControllerAdapter kca= new KeyboardControllerAdapter(ia);
-		
+
 		this.keyboardInputManager = new KeyboardInputManager(kca);
 		//Gdx.input.setInputProcessor(keyboardInputManager);
 	}
 
-	
+
 	public void update (float delta) {
 		if(running){
 			ticker.updateTick(delta);
@@ -93,7 +93,7 @@ public class GameScreen extends AbstractScreen {
 		//Wipe screen (don't use super because super clears with blue)
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
+
 		//Draw things on the gamescreen
 		batch.setProjectionMatrix(camera.combined);
 		viewport.apply(true);
@@ -115,13 +115,13 @@ public class GameScreen extends AbstractScreen {
 		batch.setProjectionMatrix(hud.getStage().getCamera().combined);
 		hud.draw();
 	}
-	
+
 	@Override
 	public void show() {
 		super.show();
 		Gdx.input.setInputProcessor(keyboardInputManager);
 	}
-		
+
 	@Override
 	public void resize(int width, int height){
 		super.resize(width, height);

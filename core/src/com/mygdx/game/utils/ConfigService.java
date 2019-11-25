@@ -4,9 +4,9 @@ package com.mygdx.game.utils;
  * Class that handles action to key mapping.
  * @author car0b1nius
  * Revised by rastom, soflarb
- * 
+ *
  * Uses: None
- * 
+ *
  * Used by: IInputController, InputAction, KeyboardControllerAdapter
  */
 public class ConfigService {
@@ -76,7 +76,7 @@ public class ConfigService {
 		}
 				return new ActionObject(playerIndex, action);
 	}
-	
+
 	/**
 	 * Enum for different input actions.
 	 * @author car0b1nius
@@ -97,7 +97,7 @@ public class ConfigService {
 		NOTE_A_SHARP (10),
 		NOTE_B (11),
 		PAUSE_GAME (12);
-		
+
 		private static final int DEFAULT_OCTAVE = 5;
 		private static final int NOTES_IN_OCTAVE = 12;
 		private static final int MIN_NOTE_VALUE = 0;

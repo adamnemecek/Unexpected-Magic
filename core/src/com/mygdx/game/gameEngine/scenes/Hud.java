@@ -23,7 +23,7 @@ import com.mygdx.game.utils.Constants;
  * A class that defines the properties of the heads-up display.
  * @author soflarb
  * Revised by rarvid
- * 
+ *
  * Uses: IPlayer, NoteLanes, IPlayer, IScore, ScoreListener
  * Used by: InputAction, GameScreen
  */
@@ -108,7 +108,7 @@ public class Hud {
 	public Stage getStage(){
 		return this.stage;
 	}
-	
+
 	public void draw(){
 		viewport.apply();
 		drawBackground();
@@ -131,14 +131,14 @@ public class Hud {
 		}
 		batch.end();
 	}
-	
+
 	private void drawBackground(){
 		batch.begin();
 		batch.draw(backgroundTop, 0, Constants.VIEWPORT_DIM_Y-Constants.PIANOROLL_TOP_PADDING, Constants.VIEWPORT_DIM_X, Constants.PIANOROLL_TOP_PADDING);
 		batch.draw(backgroundBot, 0, 0, Constants.VIEWPORT_DIM_X, Constants.PIANOROLL_TOP_PADDING);
 		batch.end();
 	}
-	
+
 	private Texture getLaneTexture(int i){
 		if(NoteLanes.getLaneState(i)){
 			return activeTexture;

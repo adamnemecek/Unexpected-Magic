@@ -6,9 +6,9 @@ import java.util.List;
  * A class that holds score.
  * @author soflarb
  * Revised by rarvid
- * 
+ *
  * Uses: IScore, ScoreListener
- * 
+ *
  * Used by: Player, ScoreTest
  */
 public class Score implements IScore{
@@ -24,13 +24,13 @@ public class Score implements IScore{
 		score = 0;
 		streak = 0;
 		bestStreak = 0;
-		multiplier = 1; 
+		multiplier = 1;
 		listenerHandler = new ListenerHandler();
-		
+
 	}
-	
+
 	public void hitNote(boolean previouslyHit){
-		
+
 		if(!previouslyHit){
 			streak++;
 			if (streak > bestStreak){
@@ -49,13 +49,13 @@ public class Score implements IScore{
 		streak=0;
 		multiplier = 1;
 	}
-	
+
 	public void wrongNote(){
 		if (score > 0){
 			score -= 0.2;
 			listenerHandler.NotifyListeners((int)Math.round(score));
 		}
-		
+
 	}
 	public int getMultiplier(){
 		return multiplier;
@@ -76,7 +76,7 @@ public class Score implements IScore{
 	public void removeListener(ScoreListener sl){
 		listenerHandler.removeListener(sl);
 	}
-	
+
 	private class ListenerHandler{
 		private  final List<ScoreListener> listeners;
 		public ListenerHandler(){

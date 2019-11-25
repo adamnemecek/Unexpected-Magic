@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 /**
  * Screen for viewing and changing preferences.
  * @author soflarb
- * 
+ *
  * Uses: AbstractScreen
  * Used By: MainMenuScreen
  */
@@ -17,7 +17,7 @@ public class OptionsScreen extends AbstractScreen {
 
 	public OptionsScreen(/*final Engine engine,*/ SpriteBatch batch) {
 		super(/*engine,*/ batch);
-		
+
 		// table
 		Table table = new Table();
 		table.setFillParent(true);
@@ -25,7 +25,7 @@ public class OptionsScreen extends AbstractScreen {
 		table.top();
 		table.left();
 		stage.addActor(table);
-				
+
 		//back button
 				TextButton backButton = new TextButton("Back", skin);
 				backButton.addListener(

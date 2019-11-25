@@ -17,7 +17,7 @@ import java.util.List;
  * A factory class that handles creation of entities.
  * @author soflarb
  * Revised by rastom, car0b1nius, rarvid
- * 
+ *
  * Uses: CompositeSpriteComponent, PositionComponent, SpriteFactory, IPlayer, INote, IVoice, ISong
  * Used By: PianoRoll
  */
@@ -75,15 +75,15 @@ public class EntityFactory {
 			posX = Math.round( laneIndex*Constants.LANE_WIDTH);
 		}
 		else{
-			posX = Math.round( (laneIndex*Constants.LANE_WIDTH+(((Constants.LANE_WIDTH-SpriteFactory.noteSectionWidth)/(numberOfPlayers-1))*playerIndex))); 
+			posX = Math.round( (laneIndex*Constants.LANE_WIDTH+(((Constants.LANE_WIDTH-SpriteFactory.noteSectionWidth)/(numberOfPlayers-1))*playerIndex)));
 		}
-	
-		
+
+
 		int posY = tick*SpriteFactory.noteSectionHeight;
 		PositionComponent positionComponent = new PositionComponent(posX, posY);
-	
+
 		CompositeSpriteComponent spriteComponent = new CompositeSpriteComponent(spriteFactory.createSprites(note.getDuration(),playerIndex,posX,posY));
-	
+
 		entity.add(positionComponent);
 		entity.add(spriteComponent);
 		return entity;

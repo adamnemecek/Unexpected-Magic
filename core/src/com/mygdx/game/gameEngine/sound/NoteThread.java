@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * Class for playing specific notes, during a specified time.
  * @author rastom
- * 
+ *
  * Uses: None
  * Used by: Synth
  */
@@ -20,24 +20,24 @@ public class NoteThread extends Thread{
 	//sleepTime adjust accuracy
 	private final int sleepTime = 1;
 	private final int noteVolume = 1000;
-	
+
 	Map<Integer, Integer> notes = new ConcurrentHashMap<Integer, Integer>();
-	
+
 	public NoteThread (MidiChannel channel){
 		this.channel = channel;
-	
+
 	}
-	
+
 	public void play(Integer noteNumber, Integer noteDuration){
 
 	    notes.put(noteNumber, noteDuration);
-		
+
 		channel.noteOn(noteNumber, noteVolume);
 	}
-	
+
 	@Override
-	public void run() {	
-		
+	public void run() {
+
 		boolean interrupted = false;
 
 
@@ -47,18 +47,18 @@ public class NoteThread extends Thread{
 			} catch (InterruptedException e) {
 				interrupted = true;
 			}
-			
+
 			for(Map.Entry<Integer, Integer> entry : notes.entrySet()){
 				Integer timeLeft = entry.getValue() - sleepTime;
 				if (timeLeft <= 0){
 					channel.noteOff(entry.getKey());
 					notes.remove(entry.getKey());
-					
+
 				}
 				else{
 					entry.setValue(timeLeft);
 				}
-				
+
 			}
 		}
 	}

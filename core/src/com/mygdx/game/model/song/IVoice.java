@@ -3,9 +3,9 @@ package com.mygdx.game.model.song;
 /**
  * A collection of <code>INote</code>s.
  * @author car0b1nius
- * 
+ *
  * Uses: INote
- * 
+ *
  * Used by: Voice, Song, ISong, EntityFactory, HitManager, RoundManager, GameScreen, SongPlayback, IPlayer, Player, Ticker
  */
 public interface IVoice {

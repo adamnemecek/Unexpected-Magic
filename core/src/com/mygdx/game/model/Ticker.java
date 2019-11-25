@@ -7,9 +7,9 @@ import com.mygdx.game.model.song.ISong;
 * Class that handles ticking through the songmap in-game.
 * @author soflarb
 * Revised by rastom, rarvid, car0b1nius
-* 
+*
 * Uses: ISong, IVoice, ObserverHandler
-* 
+*
 * Used By: RoundManager, PianoRoll, GameScreen, TickerTest
 */
 public class Ticker {
@@ -30,7 +30,7 @@ public class Ticker {
 		songTotalTicks = song.getVoices()[0].length();
 		ticking = true;
 	}
-	
+
 	public int getTick(){
 		return tick;
 	}
@@ -38,7 +38,7 @@ public class Ticker {
 	public double getTickLength(){
 		return 1000/tickFreq;
 	}
-	
+
 	public void updateTick(float delta){
 		if(!this.paused){
 		if(!isTicking()) return;

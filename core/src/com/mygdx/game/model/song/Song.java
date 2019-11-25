@@ -8,9 +8,9 @@ import com.mygdx.game.utils.FileReader;
 /**
  * A class representing a single song.
  * @author car0b1nius
- * 
+ *
  * Uses: ISong, IVoice, Voice, FileReader
- * 
+ *
  * Used By: SongList, RoundTest
  */
 public class Song implements ISong {

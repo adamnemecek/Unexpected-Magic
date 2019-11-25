@@ -8,9 +8,9 @@ import com.mygdx.game.model.song.ISong;
 /**
  * A class that represents a game round.
  * @author soflarb
- * 
+ *
  * Uses: ISong, IPlayer
- * 
+ *
  * Used by: RoundManager, GameScreen, RoundTest
  */
 public class RoundData {

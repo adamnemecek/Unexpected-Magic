@@ -8,12 +8,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 
 /**
- * 
+ *
  * @author soflarb
  * Revised by car0b1nius
  *
  * Uses: IMusicPlayer
- * 
+ *
  * Used by: MainMenuScreen, TitleScreen
  */
 

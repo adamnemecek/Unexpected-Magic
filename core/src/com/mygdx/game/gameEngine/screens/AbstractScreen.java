@@ -21,15 +21,15 @@ import com.mygdx.game.utils.Constants;
  * Screen superclass that defines behavior shared by all Unexpected Magic screens.
  * @author rarvid
  * Revised by rastom, soflarb, car0b1nius
- * 
+ *
  * Uses: ScreenListener
- * 
+ *
  * Used By: UnexpectedMagic, MainMenuScreen, GameScreen, OptionsScreen, NewGameScreen, TitleScreen, ScoreScreen, ScreenListener
  */
 
 public abstract class AbstractScreen extends ScreenAdapter {
 	private static final Stack<AbstractScreen> prevScreens = new Stack<AbstractScreen>();
-	
+
 	protected final OrthographicCamera camera;
 	protected final Viewport viewport;
 	protected final Stage stage;
@@ -62,7 +62,7 @@ public abstract class AbstractScreen extends ScreenAdapter {
 		skin.dispose();
 		System.out.println("abstractscreen dispose");
 	}
-	
+
 	@Override
 	public void resize(int width, int height) {
 		viewport.update(width, height);
@@ -73,10 +73,10 @@ public abstract class AbstractScreen extends ScreenAdapter {
 		Gdx.gl.glClearColor(0.26274509f,0.80784313f,0.90588235f,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 	}
-	
-	
-		
-	public static void addListener(ScreenListener listener){	
+
+
+
+	public static void addListener(ScreenListener listener){
 		if (!listeners.contains(listener)){
 			listeners.add(listener);
 		}

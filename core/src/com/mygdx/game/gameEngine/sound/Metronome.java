@@ -8,9 +8,9 @@ import com.mygdx.game.Observers.TickListener;
  * Takes bpm and plays a beat according to it.
  * @author rastom
  * Revised by rarvid, car0b1nius
- * 
+ *
  * Uses: ObserverHandler, TickListener, Synth
- * 
+ *
  * Used By: RoundManager
  */
 

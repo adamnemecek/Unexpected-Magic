@@ -7,9 +7,9 @@ import com.mygdx.game.model.song.INote;
 /**
  * Class for playing sound.
  * @author rastom
- * 
+ *
  * Uses: INote, ISynth, NoteThread
- * 
+ *
  * Used by: RoundManager, Metronome
  */
 
@@ -26,7 +26,7 @@ public class Synth implements ISynth{
 	private int timeSignature = 4;
 
 	private final NoteThread notethread;
-	
+
 	public Synth(){
 		try {
 			synth = MidiSystem.getSynthesizer();
@@ -37,7 +37,7 @@ public class Synth implements ISynth{
 
 		//soundbank = synth.getDefaultSoundbank();
 		instr = synth.getAvailableInstruments();
-		
+
 		setInstrument(90);
 		notethread = new NoteThread(channel);
 		notethread.start();
@@ -56,31 +56,31 @@ public class Synth implements ISynth{
 	public void play(int noteNumber, int noteDuration){
 		notethread.play(noteNumber, noteDuration);
 	}
-	
+
 	public void noteOn(int noteNumber){
 		channel.noteOn(noteNumber, volume);
 	}
-	
+
 	public void noteOff(int noteNumber){
 		channel.noteOff(noteNumber);
 	}
-	
+
 	public void setInstrument(int instrument){
 		synth.loadInstrument(instr[instrument]);
 		channels = synth.getChannels();
 		channel = channels[nChannelNumber];
-		
+
 		channel.programChange(instr[instrument].getPatch().getProgram());
-	
+
 		Sequence sequence = null;
 		try {
 			sequence = new Sequence(Sequence.PPQ,1);
 		} catch (InvalidMidiDataException e) {
 			e.printStackTrace();
 		}
-	
+
 		Track track = sequence.createTrack();
-		
+
 		ShortMessage sm = new ShortMessage();
 		try {
 			sm.setMessage(ShortMessage.PROGRAM_CHANGE, nChannelNumber, instrument,nChannelNumber );

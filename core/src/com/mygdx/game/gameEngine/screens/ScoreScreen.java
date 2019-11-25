@@ -20,9 +20,9 @@ import com.mygdx.game.utils.Constants;
 /**
  * Screen that shows score after a game.
  * @author soflarb
- * 
+ *
  * Uses: AbstractScreen, IPlayer, ISong, IScore
- * 
+ *
  * Used by: GameScreen
  */
 public class ScoreScreen extends AbstractScreen{
@@ -52,10 +52,10 @@ public class ScoreScreen extends AbstractScreen{
 			this.add(playerBestStreakLabel).align(align);
 		}
 	}
-	
+
 	protected ScoreScreen(SpriteBatch batch, List<IPlayer> players, ISong song) {
 		super(batch);
-		
+
 		// table
 		Table table = new Table();
 		table.setFillParent(true);
@@ -79,7 +79,7 @@ public class ScoreScreen extends AbstractScreen{
 				return true;
 			}
 		);
-		
+
 		// table layout
 		scoreBoxes = new ScoreBox[players.size()];
 		Label resultsLabel = new Label("__Results_____ ", skin);
@@ -98,7 +98,7 @@ public class ScoreScreen extends AbstractScreen{
 		table.row();
 		table.add(mainMenuButton).colspan(totalColumns).center().padTop(20);
 	}
-	
+
 	@Override
 	public void render(float delta) {
 		super.render(delta);

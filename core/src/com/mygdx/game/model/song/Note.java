@@ -6,9 +6,9 @@ import java.util.Map;
 /**
  * A class that represents a single note.
  * @author car0b1nius
- * 
+ *
  * Uses: INote
- * 
+ *
  * Used by: Voice, NoteTest, ScoreTest
  */
 public class Note implements INote {
@@ -17,7 +17,7 @@ public class Note implements INote {
 	private static final int maxPitch = 127;
 	private static final int octaveSize = 12;
 	private static final int minNoteDenom = 64;
-	
+
 	private static Map<String, Note> noteMap = new HashMap<>();
 	public static Note getNote(String note) throws IOException {
 		//sanity checking
@@ -68,8 +68,8 @@ public class Note implements INote {
 		if(num < minPitch || maxPitch < num) throw new IOException("Invalid pitch: " + str + " (" + num + ")");
 		return num;
 	}
-	
-	/* takes in a string representing a Note duration (E.G. 3/4) and returns its length 
+
+	/* takes in a string representing a Note duration (E.G. 3/4) and returns its length
 	 as a factor of the programs' minimum note length*/
 	private static int getDur(String str) {
 		String[] sa = str.split("/");
@@ -86,7 +86,7 @@ public class Note implements INote {
 		this.duration = duration;
 		this.str = str;
 	}
-	
+
 	@Override
 	public String toString() {
 		return str;

@@ -6,7 +6,7 @@ import com.mygdx.game.utils.ConfigService;
  * Class for translating input to action, adapter layer.
  * @author rastom
  * Revised by car0b1nius, soflarb
- * 
+ *
  * Uses: ConfigService, Configservice.Action, ConfigService.ActionObject, InputAction
  * Used by: KeyboardInputManager, GameScreen
  */
@@ -36,6 +36,6 @@ public class KeyboardControllerAdapter {
 		else if(action == Action.PAUSE_GAME){
 			inputAction.uiKeyReleased(Action.PAUSE_GAME);
 		}
-		
+
 	}
 }

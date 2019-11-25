@@ -26,7 +26,7 @@ import java.util.List;
  * A class that defines the properties of the piano roll (the area where the notes are drawn).
  * @author soflarb
  * Revised by rastom, car0b1nius, rarvid
- * 
+ *
  * Uses: CompositeSpriteComponent, PositionComponent, CompositeSprite, IPlayer, Ticker, ISong, EntityFactory, SpriteFactory
  * Used by: GameScreen
  */

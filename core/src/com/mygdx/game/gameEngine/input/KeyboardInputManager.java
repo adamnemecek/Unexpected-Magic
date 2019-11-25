@@ -6,7 +6,7 @@ import com.badlogic.gdx.InputProcessor;
  * Class for listening to player keyboard input.
  * @author rastom
  * Revised by car0b1nius, soflarb
- * 
+ *
  * Uses: KeyboardControllerAdapter
  * Used by: GameScreen
  */

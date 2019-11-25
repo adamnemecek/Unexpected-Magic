@@ -8,7 +8,7 @@ import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.model.song.IVoice;
 
 /**
- * 
+ *
  * @author car0b1nius
  * Revised by rarvid
  *
@@ -31,7 +31,7 @@ public class SongTest {
 		assertEquals(4, voices.length);
 		INote note = voices[0].noteAtTick(0);
 		assertNotNull(note);
-		
-		
+
+
 	}
 }

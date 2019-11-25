@@ -21,9 +21,9 @@ import com.mygdx.game.utils.Constants;
  * Screen that contains the main menu.
  * @author soflarb
  * Revised by rastom and car0b1nius
- * 
+ *
  * Uses: OptionsScreen, NewGameScreen, AbstractScreen, AnimationManager, MusicPlayer
- * 
+ *
  * Used by: TitleScreen
  */
 public class MainMenuScreen extends AbstractScreen {
@@ -39,10 +39,10 @@ public class MainMenuScreen extends AbstractScreen {
 	public MainMenuScreen(final SpriteBatch batch) {
 		super(batch);
 		MusicPlayer.getInstance().play("main-theme");
-		
+
 		menuItemSelected = 0;
 		menuItems = new String[] { "New game", "Options", "Exit" };
-		
+
 	// ANIMATIONS
 		AnimatedImage djblookAnim = new AnimatedImage(new Texture(Gdx.files.internal("animationSheets/napstablook.png")),
 				batch, 1, 4, Math.round(Constants.VIEWPORT_DIM_X/2 - 52), Math.round(Constants.VIEWPORT_DIM_Y - 105), 110, 104, 0.1f);
@@ -57,7 +57,7 @@ public class MainMenuScreen extends AbstractScreen {
 		animations.add(feffeAnim);
 		animations.add(frodoAnim);
 		animations.add(nekkiAnim);
-		
+
 //	}
 
 //	@Override
@@ -86,7 +86,7 @@ public class MainMenuScreen extends AbstractScreen {
 		TextButton exitButton = new TextButton(menuItems[2], skin);
 //		exitButton.setTransform(true);
 //		exitButton.scaleBy(buttonScale);
-		
+
 		// table layout
 		float tableScaleX = 0.9f;
 		float tableScaleY = 0.8f;
@@ -100,13 +100,13 @@ public class MainMenuScreen extends AbstractScreen {
 		table.add(optionButton).fillX().uniformX();
 		table.row();
 		table.add(exitButton).fillX().uniformX();
-		
+
 		// BUTTON GROUP
 		buttonGroup = new ButtonGroup<TextButton>(newgameButton, optionButton, exitButton);
 		buttonGroup.setMaxCheckCount(1);
 		buttonGroup.setMinCheckCount(0);
 		buttonGroup.setChecked(menuItems[0]);
-		
+
 		newgameButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
@@ -177,7 +177,7 @@ public class MainMenuScreen extends AbstractScreen {
 		batch.begin();
 		batch.draw(background, 0, 0, Constants.VIEWPORT_DIM_X, Constants.VIEWPORT_DIM_Y);
 		batch.end();
-		for(AnimatedImage animation : animations){ 
+		for(AnimatedImage animation : animations){
 			animation.draw();
 		}
 		stage.act();

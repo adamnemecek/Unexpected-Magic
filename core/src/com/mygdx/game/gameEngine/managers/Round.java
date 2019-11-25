@@ -14,7 +14,7 @@ import java.util.List;
  * Class that instantiates the classes needed to play a round
  * @author soflarb
  * Revised by rarvid, rastom, car0b1nius
- * 
+ *
  * Uses: ISynth, Synth, Metronome, SongPlayback, Round, Ticker, ISong, IVoice, HitManager
  * Used by: InputAction, GameScreen
  */

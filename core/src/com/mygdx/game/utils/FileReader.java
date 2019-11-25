@@ -8,9 +8,9 @@ import java.util.Scanner;
 /**
  * Class for reading .uxm files.
  * @author car0b1nius
- * 
+ *
  * Uses: None
- * 
+ *
  * Used by: Song, SongList
  */
 public class FileReader {

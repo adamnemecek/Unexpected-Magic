@@ -10,9 +10,9 @@ import com.mygdx.game.utils.Constants;
 /**
  * The logo screen, shown when the application launches.
  * @author soflarb
- * 
+ *
  * Uses: AbstractScreen, MainMenuScreen, MusicPlayer
- * 
+ *
  * Used by: UnexpectedMagic
  */
 
@@ -40,7 +40,7 @@ public class TitleScreen extends AbstractScreen{
 		float scaledLogoHeight = logo.getHeight()*scale;
 		batch.draw(logo, scaledLogoX, scaledLogoY, scaledLogoWidth, scaledLogoHeight);
 		batch.draw(cred, (Constants.VIEWPORT_DIM_X - cred.getWidth())/2, scaledLogoY - cred.getHeight() - 15, cred.getWidth(), cred.getHeight());
-		
+
 		batch.end();
 	}
 	public void update(float delta) {

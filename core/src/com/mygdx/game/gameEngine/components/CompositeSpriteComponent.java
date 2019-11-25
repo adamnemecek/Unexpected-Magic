@@ -7,7 +7,7 @@ import com.mygdx.game.gdxUtils.CompositeSprite;
  * Component that holds the sprite.
  * @author rastom
  * Revised by soflarb
- * 
+ *
  * Uses: CompositeSprite
  * Used By: EntityFactory, PianoRoll
  */
@@ -15,7 +15,7 @@ import com.mygdx.game.gdxUtils.CompositeSprite;
 public class CompositeSpriteComponent implements Component{
 
 	private CompositeSprite sprite;
-	
+
 	public CompositeSpriteComponent(CompositeSprite sprite){
 		this.sprite = sprite;
 	}

@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 /**
  * Class for playing gif animations.
  * @author rastom
- * 
+ *
  * Uses: None
  * Used By: MainMenuScreen
  */

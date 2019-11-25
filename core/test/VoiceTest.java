@@ -17,7 +17,7 @@ import com.mygdx.game.model.song.Voice;
  */
 public class VoiceTest {
 	private static Voice voice;
-	
+
 	@BeforeClass
 	public static void Init() throws IOException{
 		SongList songList = new SongList();
@@ -27,14 +27,14 @@ public class VoiceTest {
 	@Test
 	public void testOctave(){
 		for (int tick = 0; tick < voice.length(); tick++){
-			assertEquals(voice.octaveAtTick(tick), 5.5 , 5.5); //checks that octaveAtTick Always is between 0 and 11		
+			assertEquals(voice.octaveAtTick(tick), 5.5 , 5.5); //checks that octaveAtTick Always is between 0 and 11
 		}
 	}
-	
+
 	@Test
 	public void testPitch(){
 		for (int tick = 0; tick < voice.length(); tick++){
-			assertEquals(voice.pitchAtTick(tick), 63.5 , 63.5); //checks that pitchAtTick Always is between 0 and 127		
+			assertEquals(voice.pitchAtTick(tick), 63.5 , 63.5); //checks that pitchAtTick Always is between 0 and 127
 		}
 	}
 }

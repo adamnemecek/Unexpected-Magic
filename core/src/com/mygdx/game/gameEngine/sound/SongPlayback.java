@@ -11,9 +11,9 @@ import java.util.List;
  * Class for playing non-player voices
  * @author rastom
  * Revised by car0b1nius
- * 
+ *
  * Uses: ISynth, ObserverHandler, TickListener, INote, IVoice
- * 
+ *
  * Used by: RoundManager
  */
 public class SongPlayback implements TickListener{

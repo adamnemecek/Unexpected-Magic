@@ -11,13 +11,13 @@ import java.util.TreeMap;
  * A class representing a single voice of a song.
  * @author car0b1nius
  * Revised by soflarb
- * 
+ *
  * Uses: INote, Note, IVoice
- * 
+ *
  * Used by: Song
  */
 public class Voice implements IVoice {
-	
+
 	private final NavigableMap<Integer, INote> notes;
 	private final int min, max;
 	public Voice(String voice) throws IOException {
@@ -39,11 +39,11 @@ public class Voice implements IVoice {
 			notes.put(sum, note);
 			sum += note.getDuration();
 		}
-		
+
 		this.min = min;
 		this.max = max;
 		//oMGIHAVECORNINMYCODEEEEE();
-		
+
 	}
 	@Override
 	public INote noteAtTick(int tick) {

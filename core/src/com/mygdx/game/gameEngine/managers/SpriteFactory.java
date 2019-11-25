@@ -8,7 +8,7 @@ import com.mygdx.game.gdxUtils.CompositeSprite;
  * Class creating sprites.
  * @author rastom
  * Revised by soflarb
- * 
+ *
  * Uses: CompositeSprite
  * Used By: EntityFactory, PianoRoll
  */

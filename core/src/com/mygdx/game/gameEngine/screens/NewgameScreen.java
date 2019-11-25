@@ -26,12 +26,12 @@ import com.mygdx.game.model.song.ISong;
 import com.mygdx.game.model.song.IVoice;
 
 /**
- * Screen for setting up a new game. 
+ * Screen for setting up a new game.
  * @author car0b1nius
  * Revised by soflarb
- * 
+ *
  * Uses: AbstractScreen, SongList
- * 
+ *
  * Used by: NewGameScreen
  */
 public class NewgameScreen extends AbstractScreen {
@@ -44,13 +44,13 @@ public class NewgameScreen extends AbstractScreen {
 		super(batch);
 		songList = new SongList();
 		Gdx.input.setInputProcessor(stage);
-		
+
 		// table
 		Table table = new Table();
 		table.setFillParent(true);
 		//table.setDebug(true, true);
 		stage.addActor(table);
-		
+
 		//back button
 		TextButton backButton = new TextButton("Back", skin);
 		backButton.addListener(
@@ -62,7 +62,7 @@ public class NewgameScreen extends AbstractScreen {
 					return true;
 				}
 			);
-		
+
 		// selecting number of players
 		Label selectPlayerNumLabel = new Label("Select number \nof players: ", skin);
 		String[] playerNumItems = new String[] {"0", "1", "2", "3", "4"};
@@ -89,7 +89,7 @@ public class NewgameScreen extends AbstractScreen {
 		};
 		playerNumButtongroup.setMaxCheckCount(1);
 		playerNumButtongroup.setMinCheckCount(1);
-		
+
 		// selecting song
 		Label selectSongLabel = new Label("Select song: ", skin);
 		SelectBox<SongEntry> songSelector = new SelectBox<>(skin);
@@ -131,7 +131,7 @@ public class NewgameScreen extends AbstractScreen {
 				makePlayerNameField("Player 4")
 		};
 		playerNumButtongroup.setChecked(playerNumItems[0]);
-		
+
 		// play button
 		TextButton playButton = new TextButton("Play", skin);
 		playButton.addListener(
@@ -170,7 +170,7 @@ public class NewgameScreen extends AbstractScreen {
 				return true;
 			}
 		);
-		
+
 		// table layout
 		int totalColumns = playerNumItems.length;
 		table.add(backButton).colspan(totalColumns).align(Align.left);
@@ -191,7 +191,7 @@ public class NewgameScreen extends AbstractScreen {
 			table.add(f).left().colspan(totalColumns).row();
 		}
 		table.add(playButton).colspan(totalColumns);
-		
+
 	}
 	private TextField makePlayerNameField(String placeholder) {
 		TextField textField = new TextField(null, skin);
@@ -223,7 +223,7 @@ public class NewgameScreen extends AbstractScreen {
 						"..." +
 						title.substring(l-(MAX_LENGTH-3-(MAX_LENGTH-3)/2)); //To ensure rounding errors go both ways
 			}
-			
+
 		}
 		@Override
 		public String toString() {
